@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 import com.stepstone.stepper.StepperLayout;
 
 import vg.victoryglobal.victoryglobal.R;
-import vg.victoryglobal.victoryglobal.adapter.ActivateCodeStepperAdapter;
+import vg.victoryglobal.victoryglobal.adapter.UpgradeAccountStepperAdapter;
 
 public class UpgradeAccountFragment extends Fragment {
 
@@ -37,12 +37,12 @@ public class UpgradeAccountFragment extends Fragment {
 
         currentView = view;
 
-        mStepperLayout = view.findViewById(R.id.activate_code_stepper_layout);
+        mStepperLayout = view.findViewById(R.id.upgrade_account_stepper_layout);
 
-        ActivateCodeStepperAdapter activateCodeStepperAdapter
-                = new ActivateCodeStepperAdapter(getChildFragmentManager(), getContext());
+        UpgradeAccountStepperAdapter upgradeAccountStepperAdapter
+                = new UpgradeAccountStepperAdapter(getChildFragmentManager(), getContext());
 
-        mStepperLayout.setAdapter(activateCodeStepperAdapter);
+        mStepperLayout.setAdapter(upgradeAccountStepperAdapter);
 
     }
 

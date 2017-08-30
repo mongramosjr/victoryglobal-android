@@ -5,10 +5,15 @@
     android:background="@color/viewBg"
     tools:context="vg.victoryglobal.victoryglobal.fragment.UpgradeAccountFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <com.stepstone.stepper.StepperLayout
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/upgrade_account_stepper_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/title_upgrade" />
+        app:ms_stepperFeedbackType="tabs|content_fade|content_overlay|disabled_bottom_navigation"
+        app:ms_bottomNavigationBackground="@color/colorAccent"
+        app:ms_stepperType="progress_bar">
+
+    </com.stepstone.stepper.StepperLayout>
 
 </RelativeLayout>

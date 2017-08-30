@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 import com.stepstone.stepper.StepperLayout;
 
 import vg.victoryglobal.victoryglobal.R;
-import vg.victoryglobal.victoryglobal.adapter.ActivateCodeStepperAdapter;
+import vg.victoryglobal.victoryglobal.adapter.RegisterAccountStepperAdapter;
 
 
 public class RegisterAccountFragment extends Fragment {
@@ -38,12 +38,12 @@ public class RegisterAccountFragment extends Fragment {
 
         currentView = view;
 
-        mStepperLayout = view.findViewById(R.id.activate_code_stepper_layout);
+        mStepperLayout = view.findViewById(R.id.register_account_stepper_layout);
 
-        ActivateCodeStepperAdapter activateCodeStepperAdapter
-                = new ActivateCodeStepperAdapter(getChildFragmentManager(), getContext());
+        RegisterAccountStepperAdapter registerAccountStepperAdapter
+                = new RegisterAccountStepperAdapter(getChildFragmentManager(), getContext());
 
-        mStepperLayout.setAdapter(activateCodeStepperAdapter);
+        mStepperLayout.setAdapter(registerAccountStepperAdapter);
 
     }
 
