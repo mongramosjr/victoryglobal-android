@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_home"
+        android:icon="@drawable/ic_home_white_48dp"
+        android:title="@string/title_home" />
+
+    <item
+        android:id="@+id/navigation_register"
+        android:icon="@drawable/ic_person_add_white_48dp"
+        android:title="@string/title_register" />
+
+    <item
+        android:id="@+id/navigation_activate_code"
+        android:icon="@drawable/ic_code_add_white_48dp"
+        android:title="@string/title_activate_code" />
+
+    <item
+        android:id="@+id/navigation_upgrade"
+        android:icon="@drawable/ic_update_white_48dp"
+        android:title="@string/title_upgrade" />
+
+</menu>

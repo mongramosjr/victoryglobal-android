@@ -1,0 +1,19 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorAccent"
+    tools:context="vg.victoryglobal.victoryglobal.fragment.ActivateCodeFragment">
+
+    <com.stepstone.stepper.StepperLayout
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/activate_code_stepper_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:ms_stepperFeedbackType="tabs|content_fade|content_overlay|disabled_bottom_navigation"
+        app:ms_bottomNavigationBackground="@color/colorAccent"
+        app:ms_stepperType="progress_bar">
+
+    </com.stepstone.stepper.StepperLayout>
+
+</RelativeLayout>

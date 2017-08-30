@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Victory Global</string>
+    <string name="title_home">Home</string>
+    <string name="title_register">Register Account</string>
+    <string name="title_activate_code">Activate Code</string>
+    <string name="title_upgrade">Upgrade Account</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
