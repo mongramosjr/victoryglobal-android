@@ -12,6 +12,7 @@
         android:layout_height="match_parent"
         app:ms_stepperFeedbackType="tabs|content_fade|content_overlay|disabled_bottom_navigation"
         app:ms_bottomNavigationBackground="@color/colorAccent"
+        app:ms_completeButtonText="@string/upgrade_completeButtonText"
         app:ms_stepperType="dots">
 
     </com.stepstone.stepper.StepperLayout>

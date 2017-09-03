@@ -44,5 +44,8 @@
     <string name="telephone_hint">Telephone</string>
     <string name="mobile_number_hint">Mobile</string>
 
+    <string name="register_completeButtonText">Register</string>
+    <string name="upgrade_completeButtonText">Confirm</string>
+    <string name="activate_completeButtonText">Confirm</string>
 
 </resources>

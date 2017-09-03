@@ -36,7 +36,7 @@
                     android:text="@string/mlm_account_id_hint"/>
 
                 <Spinner
-                    android:id="@+id/mlm_account_id_spinner"
+                    android:id="@+id/mlm_account_id"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/mlm_account_id_hint"

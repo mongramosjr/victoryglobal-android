@@ -37,7 +37,7 @@ public class RegisterAccountVerify extends Fragment implements BlockingStep {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
 
-        Spinner spinnerMlmAccount = view.findViewById(R.id.mlm_account_id_spinner);
+        Spinner spinnerMlmAccount = view.findViewById(R.id.mlm_account_id);
         //spinner.setOnItemSelectedListener(this);
         //spinnerMlmAccount.setVisibility(View.INVISIBLE);
 
