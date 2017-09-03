@@ -2,10 +2,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="vg.victoryglobal.victoryglobal.fragment.UpgradeAccountVerify">
+    tools:context="vg.victoryglobal.victoryglobal.fragment.RegisterAccountVerify">
 
     <LinearLayout
-        android:id="@+id/upgrade_account_linearlayout"
+        android:id="@+id/register_account_linearlayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -13,37 +13,42 @@
         android:layout_marginRight="@dimen/login_layout_marginRight"
         android:layout_marginLeft="@dimen/login_layout_marginRight"
         >
-        <android.support.design.widget.TextInputLayout
+
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/distributor_id_textinputlayout"
+            android:text="@string/account_security"
+            android:textAppearance="@style/itemTitleText"/>
+
+       <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/password_textinputlayout"
             >
 
             <android.support.design.widget.TextInputEditText
-                android:id="@+id/mlm_member_id"
+                android:id="@+id/password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/distributor_id_hint"
-                android:drawableLeft="@drawable/ic_distributor_circle_black_24dp"
-                android:drawablePadding="16dp"
-                android:inputType="number" />
+                android:hint="@string/password_hint"
+                android:inputType="textPassword" />
 
         </android.support.design.widget.TextInputLayout>
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/activate_code_textinputlayout"
+            android:id="@+id/verifiy_password_textinputlayout"
             >
+
             <android.support.design.widget.TextInputEditText
-                android:id="@+id/activation_code"
+                android:id="@+id/verifiy_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/activation_code_hint"
-                android:drawableLeft="@drawable/ic_activation_code_black_24dp"
-                android:drawablePadding="16dp"
-                android:inputType="text|textCapCharacters"
-                />
+                android:hint="@string/confirm_password_hint"
+                android:inputType="textPassword" />
+
         </android.support.design.widget.TextInputLayout>
+
     </LinearLayout>
 
 </FrameLayout>

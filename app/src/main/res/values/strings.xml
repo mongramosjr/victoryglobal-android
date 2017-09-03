@@ -7,4 +7,42 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+    <!-- activation code, upgrade account, register account -->
+    <string name="residence_address">Residence address</string>
+    <string name="contact_info">Contact Info</string>
+    <string name="personal_info">Personal info</string>
+    <string name="sponsor_and_placement">Sponsor and placement info</string>
+    <string name="account_security">Security</string>
+
+    <string name="distributor_id_hint">Distributor ID</string>
+    <string name="activation_code_hint">Activation Code</string>
+    <string name="first_name_hint">First Name</string>
+    <string name="middle_name_hint">Middle Name</string>
+    <string name="last_name_hint">Last Name</string>
+    <string name="upline_id_hint">Upline ID</string>
+    <string name="sponsor_id_hint">Sponsor ID</string>
+    <string name="password_hint">Password</string>
+    <string name="confirm_password_hint">Confirm Password</string>
+    <string name="mlm_location_hint">Group</string>
+    <string name="email_hint">Email</string>
+    <string name="mlm_account_id_hint">Account</string>
+    <string name="social_security_number_hint">SSS</string>
+    <string name="tax_number_hint">TIN</string>
+    <string name="date_of_birth_hint">Birth Date</string>
+    <string name="gender_hint">Gender</string>
+    <string name="marital_status_hint">Marital Status</string>
+
+    <string name="street_hint">Street</string>
+    <string name="city_hint">City</string>
+    <string name="region_hint">Province/State</string>
+    <string name="postal_code_hint">ZIP Code</string>
+    <string name="country_code_hint">Country</string>
+
+    <string name="pickup_center_id_hint">Pickup Center</string>
+    <string name="telephone_hint">Telephone</string>
+    <string name="mobile_number_hint">Mobile</string>
+
+
 </resources>

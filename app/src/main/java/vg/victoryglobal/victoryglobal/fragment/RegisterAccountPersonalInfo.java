@@ -4,7 +4,10 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.UiThread;
+import android.support.design.widget.TextInputEditText;
+import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.AppCompatAutoCompleteTextView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,7 +21,7 @@ import com.stepstone.stepper.VerificationError;
 
 import vg.victoryglobal.victoryglobal.R;
 
-public class RegisterAccountVerify extends Fragment implements BlockingStep {
+public class RegisterAccountPersonalInfo extends Fragment implements BlockingStep {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -29,7 +32,7 @@ public class RegisterAccountVerify extends Fragment implements BlockingStep {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.register_account_verify, container, false);
+        return inflater.inflate(R.layout.register_account_personalinfo, container, false);
     }
 
     // This event is triggered soon after onCreateView().
@@ -37,38 +40,30 @@ public class RegisterAccountVerify extends Fragment implements BlockingStep {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
 
-        Spinner spinnerMlmAccount = view.findViewById(R.id.mlm_account_id_spinner);
-        //spinner.setOnItemSelectedListener(this);
-        //spinnerMlmAccount.setVisibility(View.INVISIBLE);
+
+        TextInputEditText dateBirth = view.findViewById(R.id.date_of_birth);
+        TextInputDatePicker fromDate = new TextInputDatePicker(dateBirth, this.getContext());
+
+        Spinner spinnerGender = view.findViewById(R.id.gender);
+
 
         // Create an ArrayAdapter using the string array and a default spinner layout
-        ArrayAdapter<CharSequence> adapterMlmAccount = ArrayAdapter.createFromResource(view.getContext(),
-                R.array.mlm_location_array, android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> adapterGender = ArrayAdapter.createFromResource(view.getContext(),
+                R.array.gender_array, android.R.layout.simple_spinner_item);
         // Specify the layout to use when the list of choices appears
-        adapterMlmAccount.setDropDownViewResource(android.R.layout.simple_list_item_single_choice);
+        adapterGender.setDropDownViewResource(android.R.layout.simple_list_item_single_choice);
         // Apply the adapter to the spinner
-        spinnerMlmAccount.setAdapter(adapterMlmAccount);
+        spinnerGender.setAdapter(adapterGender);
 
-        Spinner spinnerMlmLocation = view.findViewById(R.id.mlm_location);
+        Spinner spinnerMaritalStatus = view.findViewById(R.id.marital_status);
 
         // Create an ArrayAdapter using the string array and a default spinner layout
-        ArrayAdapter<CharSequence> adapterMlmLocation = ArrayAdapter.createFromResource(view.getContext(),
-                R.array.mlm_location_array, android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> adapterMaritsalStatus = ArrayAdapter.createFromResource(view.getContext(),
+                R.array.marital_status_array, android.R.layout.simple_spinner_item);
         // Specify the layout to use when the list of choices appears
-        adapterMlmLocation.setDropDownViewResource(android.R.layout.simple_list_item_single_choice);
+        adapterMaritsalStatus.setDropDownViewResource(android.R.layout.simple_list_item_single_choice);
         // Apply the adapter to the spinner
-        spinnerMlmLocation.setAdapter(adapterMlmLocation);
-
-        Spinner spinnerPickupCenter = view.findViewById(R.id.pickup_center_id);
-
-        // Create an ArrayAdapter using the string array and a default spinner layout
-        ArrayAdapter<CharSequence> adapterPickupCenter = ArrayAdapter.createFromResource(view.getContext(),
-                R.array.mlm_location_array, android.R.layout.simple_spinner_item);
-        // Specify the layout to use when the list of choices appears
-        adapterPickupCenter.setDropDownViewResource(android.R.layout.simple_list_item_single_choice);
-        // Apply the adapter to the spinner
-        spinnerPickupCenter.setAdapter(adapterPickupCenter);
-
+        spinnerMaritalStatus.setAdapter(adapterMaritsalStatus);
     }
 
     @Override

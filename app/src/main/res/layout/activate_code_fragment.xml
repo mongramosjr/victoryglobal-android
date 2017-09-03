@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorAccent"
+    android:background="@color/colorAccentDark"
     tools:context="vg.victoryglobal.victoryglobal.fragment.ActivateCodeFragment">
 
     <com.stepstone.stepper.StepperLayout
@@ -12,7 +12,7 @@
         android:layout_height="match_parent"
         app:ms_stepperFeedbackType="tabs|content_fade|content_overlay|disabled_bottom_navigation"
         app:ms_bottomNavigationBackground="@color/colorAccent"
-        app:ms_stepperType="progress_bar">
+        app:ms_stepperType="dots">
 
     </com.stepstone.stepper.StepperLayout>
 

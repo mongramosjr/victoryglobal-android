@@ -25,11 +25,11 @@ public class UpgradeAccountStepperAdapter extends AbstractFragmentStepAdapter {
     public Step createStep(int position) {
 
         if(position == 0) {
-            //step = ActivateCodeVerify.class;
+            //step = UpgradeAccountVerify.class;
             final UpgradeAccountVerify stepVerify = new UpgradeAccountVerify();
             return stepVerify;
         }else if(position == 1){
-            //step = ActivateCodeConfirm.class;
+            //step = UpgradeAccountConfirm.class;
             final UpgradeAccountConfirm stepConfirm = new UpgradeAccountConfirm();
             return stepConfirm;
         }else{

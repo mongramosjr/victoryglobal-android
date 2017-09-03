@@ -1,12 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorPrimary">#be202e</color>
+    <color name="colorPrimaryDark">#860006</color>
 
-
+    <color name="colorAccent">#207dbe</color>
     <color name="colorAccentDark">#FFF5F5F5</color>
-    <color name="colorAccentLight">#FFF5F5F5</color>
+    <color name="colorAccentLight">#9E9E9E</color>
 
-    <color name="viewBg">#FFF5F5F5</color>
+    <color name="colorNeutralWarm">#AEA79F</color>
+    <color name="colorNeutralWarmLight">#e0d8d0</color>
+    <color name="colorNeutralWarmDark">#7f7871</color>
+
+    <color name="colorNeutralCool">#333333</color>
+
+
+
+
+
+    <color name="viewBg">#FFF2F1F0</color>
+
+    <!--
+
+    primary color be202e, compimentary color=20BEB0
+    bd202e
+
+    neutral color #AEA79F, warm grey; cool grey #333333
+
+     -->
 </resources>

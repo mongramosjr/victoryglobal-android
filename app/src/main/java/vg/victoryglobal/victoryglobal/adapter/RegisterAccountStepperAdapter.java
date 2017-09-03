@@ -10,7 +10,10 @@ import com.stepstone.stepper.Step;
 import com.stepstone.stepper.adapter.AbstractFragmentStepAdapter;
 import com.stepstone.stepper.viewmodel.StepViewModel;
 
+import vg.victoryglobal.victoryglobal.fragment.RegisterAccountAddressAndContact;
 import vg.victoryglobal.victoryglobal.fragment.RegisterAccountConfirm;
+import vg.victoryglobal.victoryglobal.fragment.RegisterAccountPersonalInfo;
+import vg.victoryglobal.victoryglobal.fragment.RegisterAccountSecurity;
 import vg.victoryglobal.victoryglobal.fragment.RegisterAccountVerify;
 
 public class RegisterAccountStepperAdapter extends AbstractFragmentStepAdapter {
@@ -24,21 +27,33 @@ public class RegisterAccountStepperAdapter extends AbstractFragmentStepAdapter {
 
         if(position == 0) {
             //step = ActivateCodeVerify.class;
+            final RegisterAccountPersonalInfo stepPersonalInfo = new RegisterAccountPersonalInfo();
+            return stepPersonalInfo;
+        }else if(position == 1){
+            //step = RegisterAccountAddressAndContact.class;
+            final RegisterAccountAddressAndContact stepAddressAndContact = new RegisterAccountAddressAndContact();
+            return stepAddressAndContact;
+        }else if(position == 2){
+            //step = RegisterAccountVerify.class;
             final RegisterAccountVerify stepVerify = new RegisterAccountVerify();
             return stepVerify;
-        }else if(position == 1){
-            //step = ActivateCodeConfirm.class;
+        }else if(position == 3){
+            //step = RegisterAccountSecurity.class;
+            final RegisterAccountSecurity stepSecurity = new RegisterAccountSecurity();
+            return stepSecurity;
+        }else if(position == 4){
+            //step = RegisterAccountConfirm.class;
             final RegisterAccountConfirm stepConfirm = new RegisterAccountConfirm();
             return stepConfirm;
         }else{
-            final RegisterAccountVerify stepVerify = new RegisterAccountVerify();
-            return stepVerify;
+            final RegisterAccountPersonalInfo stepPersonalInfo = new RegisterAccountPersonalInfo();
+            return stepPersonalInfo;
         }
     }
 
     @Override
     public int getCount() {
-        return 2;
+        return 5;
     }
 
     @NonNull

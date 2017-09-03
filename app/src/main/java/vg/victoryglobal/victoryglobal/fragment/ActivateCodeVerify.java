@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.UiThread;
+import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,6 +31,16 @@ public class ActivateCodeVerify extends Fragment implements BlockingStep {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.activate_code_verify, container, false);
+    }
+
+    // This event is triggered soon after onCreateView().
+    // Any view setup should occur here.  E.g., view lookups and attaching view listeners.
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+
+        TextInputLayout inputLayoutActivateCode = view.findViewById(R.id.activate_code_textinputlayout);
+        TextInputLayout inputLayoutDistributorId = view.findViewById(R.id.distributor_id_textinputlayout);
+        inputLayoutActivateCode.setError("Orayt!!");
     }
 
     @Override

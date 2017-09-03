@@ -4,10 +4,47 @@
     android:layout_height="match_parent"
     tools:context="vg.victoryglobal.victoryglobal.fragment.ActivateCodeVerify">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="VERIFY" />
+        <LinearLayout
+            android:id="@+id/activate_code_linearlayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="@dimen/login_layout_marginRight"
+            android:layout_marginLeft="@dimen/login_layout_marginRight"
+            >
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/distributor_id_textinputlayout"
+                        >
+
+                        <android.support.design.widget.TextInputEditText
+                            android:id="@+id/mlm_member_id"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/distributor_id_hint"
+                            android:drawableLeft="@drawable/ic_distributor_circle_black_24dp"
+                            android:drawablePadding="16dp"
+                            android:inputType="number" />
+
+                    </android.support.design.widget.TextInputLayout>
+                    <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/activate_code_textinputlayout"
+                    >
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/activation_code"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/activation_code_hint"
+                        android:drawableLeft="@drawable/ic_activation_code_black_24dp"
+                        android:drawablePadding="16dp"
+                        android:inputType="text|textCapCharacters"
+                    />
+                </android.support.design.widget.TextInputLayout>
+        </LinearLayout>
+
 
 </FrameLayout>

@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import com.stepstone.stepper.StepperLayout;
 
 import vg.victoryglobal.victoryglobal.R;
+import vg.victoryglobal.victoryglobal.adapter.ActivateCodeStepperAdapter;
 import vg.victoryglobal.victoryglobal.adapter.UpgradeAccountStepperAdapter;
 
 public class UpgradeAccountFragment extends Fragment {

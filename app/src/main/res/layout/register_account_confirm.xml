@@ -4,10 +4,478 @@
     android:layout_height="match_parent"
     tools:context="vg.victoryglobal.victoryglobal.fragment.RegisterAccountConfirm">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="CONFIRM" />
+        android:layout_height="wrap_content">
+    <LinearLayout
+        android:id="@+id/register_account_linearlayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginRight="@dimen/login_layout_marginRight"
+        android:layout_marginLeft="@dimen/login_layout_marginRight">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Personal Info"
+                android:textAppearance="@style/itemTitleText" />
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/item_label_paddingTop"
+                >
+                <TextView
+                    android:id="@+id/first_name"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:paddingRight="8dp"
+                    android:textAppearance="@style/itemBodyText"
+                    android:text="Juan" />
+
+                <TextView
+                    android:id="@+id/middle_name"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:paddingRight="8dp"
+                    android:textAppearance="@style/itemBodyText"
+                    android:text="Dimagiba" />
+
+                <TextView
+                    android:id="@+id/last_name"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:textAppearance="@style/itemBodyText"
+                    android:text="Dela Cruz" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/item_label_paddingTop"
+                >
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:text="@string/date_of_birth_hint"
+                    android:textAppearance="@style/itemLabelText"
+                    android:paddingRight="8dp"/>
+                <TextView
+                    android:id="@+id/date_of_birth"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:textAppearance="@style/itemBodyText"
+                    android:text="January 01, 1978" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/item_label_paddingTop"
+                >
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.5"
+                    android:layout_height="wrap_content"
+                    >
+                    <TextView
+                        android:id="@+id/marital_status_label"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:textAppearance="@style/itemLabelText"
+                        android:text="@string/marital_status_hint" />
+                    <TextView
+                        android:id="@+id/marital_status"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:textAppearance="@style/itemBodyText"
+                        android:text="Single" />
+                </LinearLayout>
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.5"
+                    android:layout_height="wrap_content"
+                    >
+                    <TextView
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:text="@string/gender_hint"
+                        android:textAppearance="@style/itemLabelText"
+                        android:paddingRight="8dp"/>
+                    <TextView
+                        android:id="@+id/gender"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:textAppearance="@style/itemBodyText"
+                        android:text="Male" />
+                </LinearLayout>
+
+
+
+
+            </LinearLayout>
+
+
+
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/item_label_paddingTop"
+                >
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.5"
+                    android:layout_height="wrap_content"
+                    >
+                    <TextView
+                        android:id="@+id/tax_number_label"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:textAppearance="@style/itemLabelText"
+                        android:text="@string/tax_number_hint"/>
+                    <TextView
+                        android:id="@+id/tax_number"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:textAppearance="@style/itemBodyText"
+                        android:hint="@string/tax_number_hint"
+                        android:text="Single00012345678900" />
+                </LinearLayout>
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.5"
+                    android:layout_height="wrap_content"
+                    >
+                    <TextView
+                        android:id="@+id/social_security_number_label"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:textAppearance="@style/itemLabelText"
+                        android:text="@string/social_security_number_hint"/>
+                    <TextView
+                        android:id="@+id/social_security_number"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:textAppearance="@style/itemBodyText"
+                        android:text="123000456789001" />
+                </LinearLayout>
+            </LinearLayout>
+
+
+
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/residence_address"
+                android:textAppearance="@style/itemTitleText"
+                android:paddingTop="@dimen/item_title_paddingTop"/>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/item_label_paddingTop"
+                >
+                <TextView
+                    android:id="@+id/street"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:hint="@string/street_hint"
+                    android:text="New York Street, Cubao"
+                    android:textAppearance="@style/itemBodyText"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+                <TextView
+                    android:id="@+id/city"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:hint="@string/city_hint"
+                    android:text="Quezon City"
+                    android:paddingRight="8dp"
+                    android:textAppearance="@style/itemBodyText"/>
+                <TextView
+                    android:id="@+id/region"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:hint="@string/region_hint"
+                    android:text="Metro Manila"
+                    android:textAppearance="@style/itemBodyText"/>
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+                <TextView
+                    android:id="@+id/postal_code"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:hint="@string/postal_code_hint"
+                    android:text="1111"
+                    android:paddingRight="8dp"
+                    android:textAppearance="@style/itemBodyText"/>
+                <TextView
+                    android:id="@+id/country_code"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:hint="@string/country_code_hint"
+                    android:text="Philippines"
+                    android:textAppearance="@style/itemBodyText"/>
+            </LinearLayout>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/contact_info"
+                android:textAppearance="@style/itemTitleText"
+                android:paddingTop="@dimen/item_title_paddingTop"/>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/item_label_paddingTop"
+                >
+                <TextView
+                    android:id="@+id/email_label"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:textAppearance="@style/itemLabelText"
+                    android:text="@string/email_hint" />
+                <TextView
+                    android:id="@+id/email"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:textAppearance="@style/itemBodyText"
+                    android:text="juandelacruz@email.com" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/item_label_paddingTop"
+                >
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.5"
+                    android:layout_height="wrap_content"
+                    >
+                    <TextView
+                        android:id="@+id/telephone_label"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:textAppearance="@style/itemLabelText"
+                        android:text="@string/telephone_hint"/>
+                    <TextView
+                        android:id="@+id/telephone"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:textAppearance="@style/itemBodyText"
+                        android:text="+63-2-1234567" />
+                </LinearLayout>
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.5"
+                    android:layout_height="wrap_content"
+                    >
+                    <TextView
+                        android:id="@+id/mobile_number_label"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:textAppearance="@style/itemLabelText"
+                        android:text="@string/mobile_number_hint"/>
+                    <TextView
+                        android:id="@+id/mobile_number"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:textAppearance="@style/itemBodyText"
+                        android:text="+63-912-3456789" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/sponsor_and_placement"
+                android:textAppearance="@style/itemTitleText"
+                android:paddingTop="@dimen/item_title_paddingTop"/>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/item_label_paddingTop"
+                >
+                <TextView
+                    android:id="@+id/mlm_account_name_label"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:textAppearance="@style/itemLabelText"
+                    android:text="@string/mlm_account_id_hint" />
+
+                <TextView
+                    android:id="@+id/mlm_account_name"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:textAppearance="@style/itemBodyText"
+                    android:text="Procopio Dela Cruz" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/item_label_paddingTop"
+                >
+                <TextView
+                    android:id="@+id/activation_code_label"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:textAppearance="@style/itemLabelText"
+                    android:text="@string/activation_code_hint" />
+
+                <TextView
+                    android:id="@+id/activation_code_name"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:textAppearance="@style/itemBodyText"
+                    android:text="Quick Package" />
+
+                <TextView
+                    android:id="@+id/activation_code"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:textAppearance="@style/itemBodyText"
+                    android:text="QPK12345ABCD" />
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/item_label_paddingTop"
+                >
+                <TextView
+                    android:id="@+id/sponsor_id_label"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:textAppearance="@style/itemLabelText"
+                    android:text="@string/sponsor_id_hint" />
+
+                <TextView
+                    android:id="@+id/sponsor_name"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:textAppearance="@style/itemBodyText"
+                    android:text="Maria Makiling" />
+
+                <TextView
+                    android:id="@+id/sponsor_id"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:textAppearance="@style/itemBodyText"
+                    android:text="123456789" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/item_label_paddingTop"
+                >
+                <TextView
+                    android:id="@+id/upline_id_label"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:textAppearance="@style/itemLabelText"
+                    android:text="@string/upline_id_hint" />
+
+                <TextView
+                    android:id="@+id/upline_name"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:textAppearance="@style/itemBodyText"
+                    android:text="Josefa Inangbayan" />
+
+                <TextView
+                    android:id="@+id/upline_id"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:textAppearance="@style/itemBodyText"
+                    android:text="987654321" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/item_label_paddingTop"
+                >
+                <TextView
+                    android:id="@+id/mlm_location_label"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:textAppearance="@style/itemLabelText"
+                    android:text="@string/mlm_location_hint" />
+
+                <TextView
+                    android:id="@+id/mlm_location"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:textAppearance="@style/itemBodyText"
+                    android:text="Group A" />
+            </LinearLayout>
+
+
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/item_label_paddingTop"
+                >
+                <TextView
+                    android:id="@+id/pickup_center_id_label"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:textAppearance="@style/itemLabelText"
+                    android:text="@string/pickup_center_id_hint" />
+                <TextView
+                    android:id="@+id/pickup_center_id"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:textAppearance="@style/itemBodyText"
+                    android:text="Baguio City" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
 
 </FrameLayout>
