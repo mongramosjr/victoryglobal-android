@@ -1,3 +1,11 @@
+/*
+ * Created by Mong Ramos Jr. <mongramosjr@gmail.com> on 9/9/17 7:01 AM
+ *
+ * Copyright (c) 2017 Victory Global Unlimited Systems Inc. All rights reserved.
+ *
+ * Last modified 9/9/17 6:59 AM
+ */
+
 package vg.victoryglobal.victoryglobal.fragment;
 
 import android.os.Bundle;

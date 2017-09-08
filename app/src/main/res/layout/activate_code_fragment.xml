@@ -1,8 +1,16 @@
+<!--
+  ~ Created by Mong Ramos Jr. <mongramosjr@gmail.com> on 9/9/17 7:01 AM
+  ~
+  ~ Copyright (c) 2017 Victory Global Unlimited Systems Inc. All rights reserved.
+  ~
+  ~ Last modified 9/9/17 6:59 AM
+  -->
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorAccentDark"
+    android:background="@color/colorNeutralWarmLight"
     tools:context="vg.victoryglobal.victoryglobal.fragment.ActivateCodeFragment">
 
     <com.stepstone.stepper.StepperLayout
@@ -11,7 +19,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:ms_stepperFeedbackType="tabs|content_fade|content_overlay|disabled_bottom_navigation"
-        app:ms_bottomNavigationBackground="@color/colorAccent"
+        app:ms_bottomNavigationBackground="@color/colorAccentDark"
         app:ms_completeButtonText="@string/activate_completeButtonText"
         app:ms_stepperType="dots">
 

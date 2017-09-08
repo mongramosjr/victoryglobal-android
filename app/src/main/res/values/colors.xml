@@ -1,14 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Created by Mong Ramos Jr. <mongramosjr@gmail.com> on 9/9/17 7:01 AM
+  ~
+  ~ Copyright (c) 2017 Victory Global Unlimited Systems Inc. All rights reserved.
+  ~
+  ~ Last modified 9/9/17 6:59 AM
+  -->
+
 <resources>
     <color name="colorPrimary">#be202e</color>
-    <color name="colorPrimaryDark">#860006</color>
+    <color name="colorPrimaryDark">#621118</color>
+    <color name="colorPrimaryLight">#DD8D94</color>
 
     <color name="colorAccent">#207dbe</color>
-    <color name="colorAccentDark">#FFF5F5F5</color>
-    <color name="colorAccentLight">#9E9E9E</color>
+    <color name="colorAccentDark">#15507A</color>
+    <color name="colorAccentLight">#71ACD5</color>
+
+    <color name="navigationBarColor">#32090C</color>
+    <color name="statusBarColor">#621118</color>
+    <color name="bottomNavigationBarColor">#15507A</color>
 
     <color name="colorNeutralWarm">#AEA79F</color>
-    <color name="colorNeutralWarmLight">#e0d8d0</color>
+    <color name="colorNeutralWarmLight">#EEEDEB</color>
     <color name="colorNeutralWarmDark">#7f7871</color>
 
     <color name="colorNeutralCool">#333333</color>
