@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2017 Victory Global Unlimited Systems Inc. All rights reserved.
  *
- * Last modified 9/9/17 2:42 PM
+ * Last modified 9/9/17 2:53 PM
  */
 
 package vg.victoryglobal.victoryglobal.model;
@@ -11,38 +11,37 @@ package vg.victoryglobal.victoryglobal.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class UpgradeAccount implements Parcelable {
+public class ActivateCode implements Parcelable {
 
     private String activationCode = "";
     private int mlmMemberId = 0;
-
     private String activationCodeName = "";
     private String memberName = "";
 
-    public UpgradeAccount(){
+
+    public ActivateCode(){
 
     }
 
-    public UpgradeAccount(int mlmMemberId, String activationCode){
+    public ActivateCode(int mlmMemberId, String activationCode){
         this.activationCode = activationCode;
         this.mlmMemberId = mlmMemberId;
     }
 
-    // "De-parcel object
-    public UpgradeAccount(Parcel in) {
+    public ActivateCode(Parcel in) {
         mlmMemberId = in.readInt();
         activationCode = in.readString();
     }
 
-    public static final Creator<UpgradeAccount> CREATOR = new Creator<UpgradeAccount>() {
+    public static final Creator<ActivateCode> CREATOR = new Creator<ActivateCode>() {
         @Override
-        public UpgradeAccount createFromParcel(Parcel in) {
-            return new UpgradeAccount(in);
+        public ActivateCode createFromParcel(Parcel in) {
+            return new ActivateCode(in);
         }
 
         @Override
-        public UpgradeAccount[] newArray(int size) {
-            return new UpgradeAccount[size];
+        public ActivateCode[] newArray(int size) {
+            return new ActivateCode[size];
         }
     };
 
@@ -55,6 +54,7 @@ public class UpgradeAccount implements Parcelable {
     public void writeToParcel(Parcel parcel, int i) {
         parcel.writeInt(mlmMemberId);
         parcel.writeString(activationCode);
+
     }
 
     //setter and getter
@@ -79,5 +79,4 @@ public class UpgradeAccount implements Parcelable {
     public String getMemberName() {
         return memberName;
     }
-
 }

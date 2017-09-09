@@ -1,9 +1,9 @@
 <!--
-  ~ Created by Mong Ramos Jr. <mongramosjr@gmail.com> on 9/9/17 7:01 AM
+  ~ Created by Mong Ramos Jr. <mongramosjr@gmail.com> on 9/9/17 9:19 PM
   ~
   ~ Copyright (c) 2017 Victory Global Unlimited Systems Inc. All rights reserved.
   ~
-  ~ Last modified 9/9/17 6:59 AM
+  ~ Last modified 9/9/17 6:33 PM
   -->
 
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -45,11 +45,11 @@
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/verifiy_password_textinputlayout"
+            android:id="@+id/verify_password_textinputlayout"
             >
 
             <android.support.design.widget.TextInputEditText
-                android:id="@+id/verifiy_password"
+                android:id="@+id/verify_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/confirm_password_hint"

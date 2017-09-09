@@ -1,9 +1,9 @@
 <!--
-  ~ Created by Mong Ramos Jr. <mongramosjr@gmail.com> on 9/9/17 7:01 AM
+  ~ Created by Mong Ramos Jr. <mongramosjr@gmail.com> on 9/9/17 9:19 PM
   ~
   ~ Copyright (c) 2017 Victory Global Unlimited Systems Inc. All rights reserved.
   ~
-  ~ Last modified 9/9/17 6:59 AM
+  ~ Last modified 9/9/17 6:49 PM
   -->
 
 <resources>
@@ -55,5 +55,49 @@
     <string name="register_completeButtonText">Register</string>
     <string name="upgrade_completeButtonText">Confirm</string>
     <string name="activate_completeButtonText">Confirm</string>
+
+    <string name="progress_message">Checking in progress, please wait...</string>
+
+    <string name="ui_no_distributor">Distributor ID is required</string>
+    <string name="ui_no_activation_code">Activation code is required</string>
+    <string name="ui_length_distributor">Invalid distributor ID</string>
+    <string name="ui_invalid_email">Invalid email</string>
+    <string name="ui_invalid_telephone">Invalid telephone</string>
+    <string name="ui_no_mobile_number">Mobile Number is required</string>
+    <string name="ui_invalid_mobile_number">Invalid mobile number</string>
+    <string name="ui_no_first_name">First name is required</string>
+    <string name="ui_no_last_name">Last name is required</string>
+    <string name="ui_no_password">Password is required</string>
+    <string name="ui_valid_password">Password is weak</string>
+    <string name="ui_no_verify_password">Verify password is required</string>
+    <string name="ui_valid_verify_password">Password not matched</string>
+
+    <!--
+    <string name="first_name_hint">First Name</string>
+    <string name="middle_name_hint">Middle Name</string>
+    <string name="last_name_hint">Last Name</string>
+    <string name="upline_id_hint">Upline ID</string>
+    <string name="sponsor_id_hint">Sponsor ID</string>
+    <string name="password_hint">Password</string>
+    <string name="confirm_password_hint">Confirm Password</string>
+    <string name="mlm_location_hint">Group</string>
+    <string name="email_hint">Email</string>
+    <string name="mlm_account_id_hint">Account</string>
+    <string name="social_security_number_hint">SSS</string>
+    <string name="tax_number_hint">TIN</string>
+    <string name="date_of_birth_hint">Birth Date</string>
+    <string name="gender_hint">Gender</string>
+    <string name="marital_status_hint">Marital Status</string>
+
+    <string name="street_hint">Street</string>
+    <string name="city_hint">City</string>
+    <string name="region_hint">Province/State</string>
+    <string name="postal_code_hint">ZIP Code</string>
+    <string name="country_code_hint">Country</string>
+
+    <string name="pickup_center_id_hint">Pickup Center</string>
+    <string name="telephone_hint">Telephone</string>
+    <string name="mobile_number_hint">Mobile</string>
+    -->
 
 </resources>

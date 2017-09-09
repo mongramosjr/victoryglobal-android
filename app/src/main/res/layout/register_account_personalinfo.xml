@@ -1,9 +1,9 @@
 <!--
-  ~ Created by Mong Ramos Jr. <mongramosjr@gmail.com> on 9/9/17 7:01 AM
+  ~ Created by Mong Ramos Jr. <mongramosjr@gmail.com> on 9/9/17 9:19 PM
   ~
   ~ Copyright (c) 2017 Victory Global Unlimited Systems Inc. All rights reserved.
   ~
-  ~ Last modified 9/9/17 6:59 AM
+  ~ Last modified 9/9/17 6:02 PM
   -->
 
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -160,7 +160,7 @@
                 android:layout_weight="0.5"
                 >
 
-                <EditText
+                <android.support.design.widget.TextInputEditText
                     android:id="@+id/tax_number"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

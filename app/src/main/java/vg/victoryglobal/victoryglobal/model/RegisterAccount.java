@@ -1,9 +1,9 @@
 /*
- * Created by Mong Ramos Jr. <mongramosjr@gmail.com> on 9/9/17 7:01 AM
+ * Created by Mong Ramos Jr. <mongramosjr@gmail.com> on 9/9/17 9:19 PM
  *
  * Copyright (c) 2017 Victory Global Unlimited Systems Inc. All rights reserved.
  *
- * Last modified 9/9/17 6:59 AM
+ * Last modified 9/9/17 6:25 PM
  */
 
 package vg.victoryglobal.victoryglobal.model;
@@ -16,13 +16,14 @@ import java.sql.Date;
 
 public class RegisterAccount implements Parcelable {
 
-    private String firstName;
-    private String lastName;
-    private String activationCode;
+    private String firstName = "";
+    private String lastName = "";
+    private String activationCode = "";
 
-    private int sponsorId;
-    private int uplineId;
-    private String password;
+    private int sponsorId = 0;
+    private int uplineId = 0;
+    private String password = "";
+    private String verifyPassword = "";
 
     private String middleName;
 
@@ -44,6 +45,10 @@ public class RegisterAccount implements Parcelable {
     private int mlmAccountId;
     private int mlmLocation;
     private int pickupCenterId;
+
+    private String activationCodeName = "";
+    private String sponsorName = "";
+    private String uplineName = "";
 
 
     public RegisterAccount(){
@@ -99,7 +104,7 @@ public class RegisterAccount implements Parcelable {
 
     //setter and getter
     public String getFirstName(){return firstName; }
-    void setFirstName(String firstName) {this.firstName = firstName; }
+    public void setFirstName(String firstName) {this.firstName = firstName; }
 
     public String getLastName(){return lastName; }
     public void setLastName(String lastName) {this.lastName = lastName; }
@@ -183,4 +188,16 @@ public class RegisterAccount implements Parcelable {
 
     public int getPickupCenterId() { return pickupCenterId; }
     public void setPickupCenterId(int pickupCenterId) {this.pickupCenterId = pickupCenterId; }
+
+    public String getActivationCodeName() { return activationCodeName; }
+    public void setActivationCodeName(String activationCodeName) { this.activationCodeName = activationCodeName; }
+
+    public String getSponsorName() { return sponsorName; }
+    public void setSponsorName(String sponsorName) { this.sponsorName = sponsorName; }
+
+    public String getUplineName() { return uplineName; }
+    public void setUplineName(String uplineName) { this.uplineName = uplineName; }
+
+    public String getVerifyPassword() { return verifyPassword; }
+    public void setVerifyPassword(String verifyPassword) { this.verifyPassword = verifyPassword; }
 }
