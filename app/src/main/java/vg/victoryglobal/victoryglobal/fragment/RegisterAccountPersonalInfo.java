@@ -1,9 +1,9 @@
 /*
- * Created by Mong Ramos Jr. <mongramosjr@gmail.com> on 9/9/17 9:19 PM
+ * Created by Mong Ramos Jr. <mongramosjr@gmail.com> on 9/9/17 9:37 PM
  *
  * Copyright (c) 2017 Victory Global Unlimited Systems Inc. All rights reserved.
  *
- * Last modified 9/9/17 9:19 PM
+ * Last modified 9/9/17 9:25 PM
  */
 
 package vg.victoryglobal.victoryglobal.fragment;
@@ -87,6 +87,8 @@ public class RegisterAccountPersonalInfo extends Fragment implements BlockingSte
         lastName = view.findViewById(R.id.last_name);
 
         dateOfBirth = view.findViewById(R.id.date_of_birth);
+        TextInputDatePicker dateOfBirthPicker = new TextInputDatePicker(dateOfBirth, this.getContext());
+
         maritalStatus = view.findViewById(R.id.marital_status);
         gender = view.findViewById(R.id.gender);
 
