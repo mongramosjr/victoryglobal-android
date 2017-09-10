@@ -1,9 +1,9 @@
 <!--
-  ~ Created by Mong Ramos Jr. <mongramosjr@gmail.com> on 9/9/17 9:19 PM
+  ~ Created by Mong Ramos Jr. <mongramosjr@gmail.com> on 9/10/17 1:54 PM
   ~
   ~ Copyright (c) 2017 Victory Global Unlimited Systems Inc. All rights reserved.
   ~
-  ~ Last modified 9/9/17 6:49 PM
+  ~ Last modified 9/10/17 7:24 AM
   -->
 
 <resources>
@@ -12,6 +12,13 @@
     <string name="title_register">Register Account</string>
     <string name="title_activate_code">Activate Code</string>
     <string name="title_upgrade">Upgrade Account</string>
+
+    <!-- facebook -->
+    <string name="facebook_app_id">344323752657014</string>
+    <string name="fb_login_protocol_scheme">fb344323752657014</string>
+
+    <string name="facebook_app_name">Victory Global</string>
+
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

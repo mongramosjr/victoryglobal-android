@@ -1,14 +1,14 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
-  ~ Created by Mong Ramos Jr. <mongramosjr@gmail.com> on 9/9/17 7:01 AM
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Created by Mong Ramos Jr. <mongramosjr@gmail.com> on 9/10/17 1:54 PM
   ~
   ~ Copyright (c) 2017 Victory Global Unlimited Systems Inc. All rights reserved.
   ~
-  ~ Last modified 9/9/17 6:59 AM
+  ~ Last modified 9/10/17 9:10 AM
   -->
-
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="vg.victoryglobal.victoryglobal">
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -17,6 +17,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+
         <activity
             android:name=".activity.MainFragmentActivity"
             android:label="@string/app_name">
@@ -25,7 +27,36 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
+            <meta-data
+                android:name="com.facebook.sdk.ApplicationId"
+                android:value="@string/facebook_app_id" />
         </activity>
+        <activity android:name=".activity.ConnectFacebook">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+
+        </activity>
+
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
+
+        <activity
+            android:name="com.facebook.FacebookActivity"
+            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+            android:label="@string/facebook_app_name"
+            android:screenOrientation="portrait"/>
+
+        <provider
+            android:authorities="com.facebook.app.FacebookContentProvider"
+            android:name="com.facebook.FacebookContentProvider"
+            android:exported="true"/>
     </application>
 
 </manifest>

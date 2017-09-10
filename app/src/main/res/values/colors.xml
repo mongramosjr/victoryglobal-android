@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-  ~ Created by Mong Ramos Jr. <mongramosjr@gmail.com> on 9/9/17 7:01 AM
+  ~ Created by Mong Ramos Jr. <mongramosjr@gmail.com> on 9/10/17 1:54 PM
   ~
   ~ Copyright (c) 2017 Victory Global Unlimited Systems Inc. All rights reserved.
   ~
-  ~ Last modified 9/9/17 6:59 AM
+  ~ Last modified 9/10/17 12:32 PM
   -->
 
 <resources>
@@ -40,4 +40,6 @@
     neutral color #AEA79F, warm grey; cool grey #333333
 
      -->
+
+    <color name="bg_circle_default">#666666</color>
 </resources>
