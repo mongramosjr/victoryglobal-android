@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-  ~ Created by Mong Ramos Jr. <mongramosjr@gmail.com> on 9/9/17 7:01 AM
+  ~ Created by Mong Ramos Jr. <mongramosjr@gmail.com> on 9/12/17 2:08 PM
   ~
   ~ Copyright (c) 2017 Victory Global Unlimited Systems Inc. All rights reserved.
   ~
-  ~ Last modified 9/9/17 6:59 AM
+  ~ Last modified 9/12/17 12:57 PM
   -->
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/container"
@@ -16,12 +17,12 @@
     android:orientation="vertical"
     tools:context="vg.victoryglobal.victoryglobal.activity.MainFragmentActivity">
 
-    <FrameLayout
+    <android.support.design.widget.CoordinatorLayout
         android:id="@+id/main_fragment_frame_layout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1">
-    </FrameLayout>
+    </android.support.design.widget.CoordinatorLayout>
 
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/navigation"

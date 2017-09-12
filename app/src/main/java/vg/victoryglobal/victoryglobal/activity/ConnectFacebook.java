@@ -1,9 +1,9 @@
 /*
- * Created by Mong Ramos Jr. <mongramosjr@gmail.com> on 9/10/17 1:54 PM
+ * Created by Mong Ramos Jr. <mongramosjr@gmail.com> on 9/12/17 2:08 PM
  *
  * Copyright (c) 2017 Victory Global Unlimited Systems Inc. All rights reserved.
  *
- * Last modified 9/10/17 8:56 AM
+ * Last modified 9/10/17 3:10 PM
  */
 
 package vg.victoryglobal.victoryglobal.activity;
@@ -19,6 +19,9 @@ import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
+import com.facebook.GraphRequest;
+import com.facebook.GraphResponse;
+import com.facebook.HttpMethod;
 import com.facebook.Profile;
 import com.facebook.ProfileTracker;
 import com.facebook.login.LoginResult;
@@ -87,6 +90,9 @@ public class ConnectFacebook extends AppCompatActivity {
         };
         loginButton.setReadPermissions("user_friends");
         loginButton.registerCallback(callbackManager, callback);
+
+
+
     }
 
     @Override

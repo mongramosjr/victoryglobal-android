@@ -1,9 +1,9 @@
 /*
- * Created by Mong Ramos Jr. <mongramosjr@gmail.com> on 9/9/17 9:19 PM
+ * Created by Mong Ramos Jr. <mongramosjr@gmail.com> on 9/12/17 2:08 PM
  *
  * Copyright (c) 2017 Victory Global Unlimited Systems Inc. All rights reserved.
  *
- * Last modified 9/9/17 9:19 PM
+ * Last modified 9/12/17 2:05 PM
  */
 
 package vg.victoryglobal.victoryglobal.fragment;
@@ -23,16 +23,36 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import com.stepstone.stepper.BlockingStep;
 import com.stepstone.stepper.StepperLayout;
 import com.stepstone.stepper.VerificationError;
 
+
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.json.JSONTokener;
+
+import java.io.IOException;
 import java.util.ArrayList;
 
+import okhttp3.MediaType;
+import okhttp3.OkHttpClient;
+import okhttp3.RequestBody;
+import okhttp3.Response;
 import vg.victoryglobal.victoryglobal.R;
+import vg.victoryglobal.victoryglobal.model.ActivateCode;
 import vg.victoryglobal.victoryglobal.model.ActivateCodeRequest;
 import vg.victoryglobal.victoryglobal.model.MlmResponseError;
+
 
 public class ActivateCodeVerify extends Fragment implements BlockingStep {
 
@@ -41,6 +61,8 @@ public class ActivateCodeVerify extends Fragment implements BlockingStep {
     TextInputEditText activateCode;
     TextInputEditText mlmMemberId;
     ActivateCodeRequest activateCodeRequest;
+
+    String response_data;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -60,13 +82,12 @@ public class ActivateCodeVerify extends Fragment implements BlockingStep {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
 
-        Log.e("ActivateCodeVerify", "onViewCreated");
-
         // get textview and textinputlayout
         inputLayoutActivateCode = view.findViewById(R.id.activate_code_textinputlayout);
         inputLayoutDistributorId = view.findViewById(R.id.distributor_id_textinputlayout);
         activateCode = view.findViewById(R.id.activation_code);
         mlmMemberId = view.findViewById(R.id.mlm_member_id);
+
 
         displayEnteredText();
 
@@ -86,7 +107,9 @@ public class ActivateCodeVerify extends Fragment implements BlockingStep {
 
             @Override
             public void afterTextChanged(Editable s) {
-                validateEditText(s, inputLayoutActivateCode, R.string.ui_no_activation_code);
+                if(!activateCodeRequest.isSuccess()) {
+                    validateEditText(s, inputLayoutActivateCode, R.string.ui_no_activation_code);
+                }
             }
         });
 
@@ -103,8 +126,10 @@ public class ActivateCodeVerify extends Fragment implements BlockingStep {
 
             @Override
             public void afterTextChanged(Editable s) {
-                validateEditText(s, inputLayoutDistributorId, R.string.ui_no_distributor);
-                validateAccountNumber(s, inputLayoutDistributorId, R.string.ui_length_distributor);
+                if(!activateCodeRequest.isSuccess()) {
+                    validateEditText(s, inputLayoutDistributorId, R.string.ui_no_distributor);
+                    validateAccountNumber(s, inputLayoutDistributorId, R.string.ui_length_distributor);
+                }
             }
         });
     }
@@ -197,17 +222,11 @@ public class ActivateCodeVerify extends Fragment implements BlockingStep {
         // Commit the edits!
         //editor.commit();
 
-
-
         callback.getStepperLayout().showProgress(getString(R.string.progress_message));
 
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                callback.goToNextStep();
-                callback.getStepperLayout().hideProgress();
-            }
-        }, 2000L);
+        codeCheckFirst(Integer.parseInt(mlmMemberId.getText().toString()),
+                activateCode.getText().toString(), callback);
+
     }
 
     @Override
@@ -232,15 +251,23 @@ public class ActivateCodeVerify extends Fragment implements BlockingStep {
 
         for (int i = 0; i < mlm_response_errors.size(); i++) {
             MlmResponseError res = mlm_response_errors.get(i);
-            if(res.getFieldName() == "mlm_member_id") {
+            if(res.getFieldName().equals("mlm_member_id")) {
                 inputLayoutDistributorId.setError(res.getErrMessage());
-            }else if(res.getFieldName() == "activation_code") {
+            }else if(res.getFieldName().equals("activation_code")) {
                 inputLayoutActivateCode.setError(res.getErrMessage());
             }
         }
     }
 
     private void displayEnteredText(){
+
+        if(activateCodeRequest.isSuccess()){
+
+            activateCode.setText("");
+            mlmMemberId.setText("");
+            activateCodeRequest.setSuccess(false);
+        }
+
         //using class variable  within singleton
         if(activateCodeRequest.getActivateCode().getActivationCode() != null) {
             if (activateCodeRequest.getActivateCode().getActivationCode().length() > 0) {
@@ -251,5 +278,193 @@ public class ActivateCodeVerify extends Fragment implements BlockingStep {
         if(activateCodeRequest.getActivateCode().getMlmMemberId() != 0 ) {
             mlmMemberId.setText(String.valueOf(activateCodeRequest.getActivateCode().getMlmMemberId()));
         }
+    }
+
+    private void codeCheckFirstCallback(String response_data, final StepperLayout.OnNextClickedCallback callback_code)
+    {
+        try {
+            JSONObject object = (JSONObject) new JSONTokener(response_data).nextValue();
+            int status = object.getInt("status");
+            String message = object.getString("message");
+
+            Log.e("ActivateCodeVerify ", "Status: " + String.valueOf(status));
+
+            if(status == 200 ){
+
+                JSONObject activation_code = object.getJSONObject("activation_code");
+                JSONObject member = object.getJSONObject("member");
+                //save
+                //singleton class variable, save the encoded data
+                activateCodeRequest.getActivateCode().setActivationCodeName(activation_code.getString("name"));
+                activateCodeRequest.getActivateCode().setMemberName(member.getString("name"));
+
+
+
+
+                // go to next page
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        callback_code.getStepperLayout().hideProgress();
+                        callback_code.goToNextStep();
+                    }
+                }, 2000L);
+
+
+
+            }else if(status == 402 ){
+
+                if(object.has("error")) {
+                    String error = object.getString("error");
+
+                    MlmResponseError err = new MlmResponseError();
+                    err.setFieldName(error);
+                    err.setErrMessage(message);
+                    activateCodeRequest.getMlmResponseErrors().add(err);
+
+                    if (error.equals("mlm_member_id")) {
+                        inputLayoutDistributorId.setError(message);
+                    } else if (error.equals("activation_code")) {
+                        inputLayoutActivateCode.setError(message);
+                    }
+                }else{
+
+                    Toast.makeText(getContext(), message, Toast.LENGTH_LONG).show();
+                }
+
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        callback_code.getStepperLayout().hideProgress();
+                    }
+                }, 2000L);
+
+
+            }else{
+                Toast.makeText(getContext(), R.string.ui_exception, Toast.LENGTH_LONG).show();
+
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        callback_code.getStepperLayout().hideProgress();
+                    }
+                }, 2000L);
+            }
+        } catch (JSONException e) {
+            //do nothing
+            Log.e("ActivateCodeVerify", "codeCheckFirstCallback: (4) " + e.getMessage());
+            Toast.makeText(getContext(), R.string.ui_exception, Toast.LENGTH_LONG).show();
+
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    callback_code.getStepperLayout().hideProgress();
+                }
+            }, 2000L);
+        }
+
+
+    }
+
+
+    private void codeCheckFirst(int mlm_member_id, String activation_code, final StepperLayout.OnNextClickedCallback callback_code) {
+
+        RequestQueue queue = Volley.newRequestQueue(getContext());
+
+        String url = getString(R.string.api_url).toString() + getString(R.string.api_code_checkfirst).toString();
+
+        ActivateCode code = new ActivateCode(mlm_member_id, activation_code);
+
+        JSONObject post_data = new JSONObject();
+        try {
+            post_data.put("mlm_member_id", code.getMlmMemberId());
+            post_data.put("activation_code", code.getActivationCode());
+        }catch(JSONException ex) {
+
+            callback_code.getStepperLayout().hideProgress();
+            Toast.makeText(getContext(), R.string.ui_exception, Toast.LENGTH_LONG).show();
+            Log.e("ActivateCodeVerify", ex.getMessage());
+            return;
+        }
+
+        JsonObjectRequest jsObjRequest = new JsonObjectRequest
+                (Request.Method.POST,
+                        url,
+                        post_data,
+                        new com.android.volley.Response.Listener<JSONObject>() {
+
+                            @Override
+                            public void onResponse(JSONObject response) {
+                                Log.e("ActivateCodeVerify", "Response: " + response.toString());
+                                response_data = response.toString();
+                                codeCheckFirstCallback(response.toString(), callback_code);
+                            }
+                        },
+                        new com.android.volley.Response.ErrorListener() {
+
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                // Do nothing
+                                Log.e("ActivateCodeVerify", "onErrorResponse: " + error.toString());
+                                Toast.makeText(getContext(), R.string.ui_unexpected_response, Toast.LENGTH_LONG).show();
+                                new Handler().postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        callback_code.getStepperLayout().hideProgress();
+                                    }
+                                }, 2000L);
+                            }
+                        }
+                );
+
+        queue.add(jsObjRequest);
+    }
+
+
+
+
+
+
+
+    @Deprecated
+    @SuppressWarnings("deprecation")
+    private void activationCodeCheckFirst2(int mlm_member_id, String activation_code){
+
+        String url = getString(R.string.api_url).toString() + getString(R.string.api_code_checkfirst).toString();
+
+        okhttp3.MediaType media_type = okhttp3.MediaType.parse("application/json; charset=utf-8");
+
+        okhttp3.OkHttpClient client = new okhttp3.OkHttpClient();
+
+        ActivateCode code = new ActivateCode(mlm_member_id, activation_code);
+
+
+        JSONObject post_data = new JSONObject();
+        try {
+            post_data.put("mlm_member_id", code.getMlmMemberId());
+            post_data.put("activation_code", code.getActivationCode());
+        }catch(JSONException ex) {
+
+        }
+
+        Log.e("okhttp3", post_data.toString());
+
+
+
+        okhttp3.RequestBody body = okhttp3.RequestBody.create(media_type, post_data.toString());
+
+        okhttp3.Request request = new okhttp3.Request.Builder()
+                    .url(url)
+                    .post(body)
+                    .build();
+
+        try{
+            okhttp3.Response response = client.newCall(request).execute();
+            Log.e("okhttp3", "Response: " + response.body().toString());
+        }catch(IOException ex) {
+
+        }
+
+
     }
 }

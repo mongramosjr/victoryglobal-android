@@ -1,9 +1,9 @@
 /*
- * Created by Mong Ramos Jr. <mongramosjr@gmail.com> on 9/10/17 1:54 PM
+ * Created by Mong Ramos Jr. <mongramosjr@gmail.com> on 9/12/17 2:08 PM
  *
  * Copyright (c) 2017 Victory Global Unlimited Systems Inc. All rights reserved.
  *
- * Last modified 9/10/17 1:54 PM
+ * Last modified 9/10/17 4:32 PM
  */
 
 package vg.victoryglobal.victoryglobal.fragment;
@@ -22,6 +22,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.facebook.AccessToken;
+import com.facebook.AccessTokenTracker;
+import com.facebook.CallbackManager;
+import com.facebook.FacebookSdk;
+import com.facebook.GraphRequest;
+import com.facebook.GraphResponse;
+import com.facebook.HttpMethod;
+import com.facebook.ProfileTracker;
+import com.facebook.appevents.AppEventsLogger;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,6 +49,10 @@ import static com.facebook.FacebookSdk.getApplicationContext;
 
 public class HomeFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener, FbGraphFeedAdapter.FacebookGraphFeedAdapterListener {
 
+    private CallbackManager callbackManager;
+    private AccessTokenTracker accessTokenTracker;
+    private ProfileTracker profileTracker;
+
     private List<FbGraphFeed> feeds = new ArrayList<>();
     private RecyclerView recyclerView;
     private FbGraphFeedAdapter mAdapter;
@@ -48,6 +62,10 @@ public class HomeFragment extends Fragment implements SwipeRefreshLayout.OnRefre
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        FacebookSdk.sdkInitialize(getApplicationContext());
+        callbackManager = CallbackManager.Factory.create();
+        AppEventsLogger.activateApp(getContext(), "344323752657014");
     }
 
     @Override
@@ -83,11 +101,14 @@ public class HomeFragment extends Fragment implements SwipeRefreshLayout.OnRefre
                 }
         );
 
+
+
     }
 
     @Override
     public void onRefresh() {
         // swipe refresh is performed, fetch the messages again
+        getFbAppToken();
         getFeed();
     }
 
@@ -110,12 +131,78 @@ public class HomeFragment extends Fragment implements SwipeRefreshLayout.OnRefre
 
     }
 
+    private void getFbAppToken(){
+        Bundle fb_bundle=  new Bundle();
+        fb_bundle.putString("client_id", "344323752657014");
+        fb_bundle.putString("client_secret", "536afccd5b2195e51fb935d22629d306");
+        fb_bundle.putString("grant_type", "client_credentials");
+
+                /* make the API call */
+        new GraphRequest(
+                null,
+                "/oauth/access_token",
+                fb_bundle,
+                HttpMethod.GET,
+                new GraphRequest.Callback() {
+                    public void onCompleted(GraphResponse response) {
+            /* handle the result */
+                        Log.e("Token","Response::" + String.valueOf(response.getJSONObject()));
+
+                    }
+                },
+                "2.10"
+
+        ).executeAsync();
+    }
+
+
+    private void getFbGraphFeed()
+
+    {
+        //AccessToken at = AccessToken.getCurrentAccessToken();
+        AccessToken at = new AccessToken("EAAE5KR73AHYBAJnvHcvEwuf7WIdSsyfyvZCG5HJZAs3h7VkYeAe9eGaHuZCwwUqmkFew01V29jIVq1vdu2GBJsEBvMpiZBygIgCZBN2IgwUh0ekW6BKMQZBaF5Mm5ZABu7cs980ZBD3iQCWi8hkhUbQZCjQJRQ67RdSXdufxpWyiqgwZDZD",
+                "344323752657014", "188501987866116", null, null, null, null, null);
+
+        //new AccessToken("beb1cb49909f66e289e31ee89eb694f5")
+
+
+
+        Bundle fb_bundle=  new Bundle();
+        fb_bundle.putString("fields", "feed{id,story,from,with_tags,icon,created_time,message,full_picture}");
+        fb_bundle.putString("access_token", "beb1cb49909f66e289e31ee89eb694f5");
+        //fb_bundle.putString("access_token", "344323752657014|536afccd5b2195e51fb935d22629d306");
+        fb_bundle.putInt("limit", 10);
+
+                /* make the API call */
+        new GraphRequest(
+                AccessToken.getCurrentAccessToken(),
+                "/188501987866116",
+                fb_bundle,
+                HttpMethod.GET,
+                new GraphRequest.Callback() {
+                    public void onCompleted(GraphResponse response) {
+            /* handle the result */
+                        Log.e("MOOOONG","Response::" + String.valueOf(response.getJSONObject()));
+
+                    }
+                },
+                "2.10"
+
+        ).executeAsync();
+    }
+
 
     /**
      * Fetches mail messages by making HTTP request
      * url: http://api.androidhive.info/json/inbox.json
      */
     private void getFeed() {
+
+
+        getFbAppToken();
+
+        getFbGraphFeed();
+
         swipeRefreshLayout.setRefreshing(true);
 
         FbGraphInterface apiService =
@@ -134,9 +221,9 @@ public class HomeFragment extends Fragment implements SwipeRefreshLayout.OnRefre
 
                 Log.e("sdfgsdg", String.valueOf(response.raw().body().toString()));
 
-                for(FbGraphFeed feed : response.body().getFeed().getData()){
-                    feeds.add(feed);
-                }
+                //for(FbGraphFeed feed : response.body().getFeed().getData()){
+                //    feeds.add(feed);
+                //}
 
                 mAdapter.notifyDataSetChanged();
                 swipeRefreshLayout.setRefreshing(false);

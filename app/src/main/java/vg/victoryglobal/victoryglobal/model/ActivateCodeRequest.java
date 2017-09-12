@@ -1,9 +1,9 @@
 /*
- * Created by Mong Ramos Jr. <mongramosjr@gmail.com> on 9/9/17 9:19 PM
+ * Created by Mong Ramos Jr. <mongramosjr@gmail.com> on 9/12/17 2:08 PM
  *
  * Copyright (c) 2017 Victory Global Unlimited Systems Inc. All rights reserved.
  *
- * Last modified 9/9/17 2:53 PM
+ * Last modified 9/12/17 1:35 PM
  */
 
 package vg.victoryglobal.victoryglobal.model;
@@ -15,6 +15,8 @@ public class ActivateCodeRequest {
     private ActivateCode activateCode = new ActivateCode();
 
     private ArrayList<MlmResponseError> mlmResponseErrors = new ArrayList<>();
+
+    private boolean success = false;
 
     //private AtomicReference<ActivateCode> codeActivationAtomicReference = new AtomicReference<ActivateCode>();
 
@@ -63,4 +65,11 @@ public class ActivateCodeRequest {
     }
 
 
+    public boolean isSuccess() {
+        return success;
+    }
+
+    public void setSuccess(boolean success) {
+        this.success = success;
+    }
 }

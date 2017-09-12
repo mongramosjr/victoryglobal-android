@@ -1,9 +1,9 @@
 /*
- * Created by Mong Ramos Jr. <mongramosjr@gmail.com> on 9/9/17 9:19 PM
+ * Created by Mong Ramos Jr. <mongramosjr@gmail.com> on 9/12/17 2:08 PM
  *
  * Copyright (c) 2017 Victory Global Unlimited Systems Inc. All rights reserved.
  *
- * Last modified 9/9/17 8:12 PM
+ * Last modified 9/12/17 1:55 PM
  */
 
 package vg.victoryglobal.victoryglobal.fragment;
@@ -21,13 +21,23 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.stepstone.stepper.BlockingStep;
 import com.stepstone.stepper.StepperLayout;
 import com.stepstone.stepper.VerificationError;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.json.JSONTokener;
+
 import java.util.ArrayList;
 
 import vg.victoryglobal.victoryglobal.R;
+import vg.victoryglobal.victoryglobal.model.ActivateCode;
 import vg.victoryglobal.victoryglobal.model.ActivateCodeRequest;
 import vg.victoryglobal.victoryglobal.model.MlmResponseError;
 
@@ -41,6 +51,8 @@ public class ActivateCodeConfirm extends Fragment implements BlockingStep {
 
     ActivateCodeRequest activateCodeRequest;
 
+    //String response_data;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,8 +61,7 @@ public class ActivateCodeConfirm extends Fragment implements BlockingStep {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.activate_code_confirm, container, false);
 
@@ -93,7 +104,6 @@ public class ActivateCodeConfirm extends Fragment implements BlockingStep {
     @Override
     @UiThread
     public void onNextClicked(final StepperLayout.OnNextClickedCallback callback) {
-        Toast.makeText(this.getContext(), "Your custom back action. Here you should cancel currently running operations", Toast.LENGTH_SHORT).show();
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -107,27 +117,20 @@ public class ActivateCodeConfirm extends Fragment implements BlockingStep {
     public void onCompleteClicked(final StepperLayout.OnCompleteClickedCallback callback) {
 
 
-        //clear request data and error response
-        activateCodeRequest.resetErrorCodes();
-        activateCodeRequest.reset();
+        callback.getStepperLayout().showProgress(getString(R.string.progress_message));
 
-        Snackbar.make(this.getView(), "Your custom back action. Here you should cancel currently running operations", Toast.LENGTH_SHORT).show();
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                callback.complete();
-            }
-        }, 2000L);
+        activateCodeRequest.getActivateCode().getActivationCode().toString();
+
+        codeRegistration(activateCodeRequest.getActivateCode().getMlmMemberId(), activateCodeRequest.getActivateCode().getActivationCode().toString(), callback);
     }
 
     @Override
     @UiThread
     public void onBackClicked(StepperLayout.OnBackClickedCallback callback) {
-        Toast.makeText(this.getContext(), "Your custom back action. Here you should cancel currently running operations", Toast.LENGTH_SHORT).show();
         callback.goToPrevStep();
     }
 
-    private void displayEnteredText(){
+    private void displayEnteredText() {
 
         // using data from sharepref
         //SharedPreferences shared_pref = getActivity().getSharedPreferences("activationCodePref", 0);
@@ -140,28 +143,190 @@ public class ActivateCodeConfirm extends Fragment implements BlockingStep {
         //}
 
         //using class variable  within singleton
-        if(activateCodeRequest.getActivateCode().getActivationCode() != null) {
+        if (activateCodeRequest.getActivateCode().getActivationCode() != null) {
             if (activateCodeRequest.getActivateCode().getActivationCode().length() > 0) {
                 activationCode.setText(activateCodeRequest.getActivateCode().getActivationCode());
             }
         }
 
-        if(activateCodeRequest.getActivateCode().getMlmMemberId() != 0 ) {
+        if (activateCodeRequest.getActivateCode().getMlmMemberId() != 0) {
             mlmMemberId.setText(String.valueOf(activateCodeRequest.getActivateCode().getMlmMemberId()));
         }
 
-        if(activateCodeRequest.getActivateCode().getActivationCodeName() != null) {
+        if (activateCodeRequest.getActivateCode().getActivationCodeName() != null) {
             if (activateCodeRequest.getActivateCode().getActivationCodeName().length() > 0) {
                 activationCodeName.setText(activateCodeRequest.getActivateCode().getActivationCodeName());
             }
         }
 
-        if(activateCodeRequest.getActivateCode().getMemberName() != null) {
+        if (activateCodeRequest.getActivateCode().getMemberName() != null) {
             if (activateCodeRequest.getActivateCode().getMemberName().length() > 0) {
                 memberName.setText(activateCodeRequest.getActivateCode().getMemberName());
             }
         }
 
 
+    }
+
+    private void codeRegistrationCallback(String response_data,
+                                          final StepperLayout.OnCompleteClickedCallback callback_code) {
+        try {
+            JSONObject object = (JSONObject) new JSONTokener(response_data).nextValue();
+            int status = object.getInt("status");
+            String message = object.getString("message");
+
+            Log.e("ActivateCodeConfirm ", "Status: " + String.valueOf(status));
+
+            if (status == 200) {
+
+                //JSONObject activation_code = object.getJSONObject("activation_code");
+                //JSONObject member = object.getJSONObject("member");
+
+                //Snackbar.make(getView(),
+                //        "Activation code " + activation_code.get("code").toString() + " confirmed successfully", Snackbar.LENGTH_LONG).show();
+
+
+                //clear request data and error response
+                activateCodeRequest.resetErrorCodes();
+                activateCodeRequest.reset();
+                activateCodeRequest.setSuccess(true);
+
+
+                // complete
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        callback_code.complete();
+                    }
+                }, 2000L);
+
+                Snackbar success = Snackbar.make(getView(), message, Snackbar.LENGTH_LONG);
+                //message_show.setAction();
+                success.show();
+
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        callback_code.getStepperLayout().hideProgress();
+                        callback_code.getStepperLayout().setCurrentStepPosition(0);
+                    }
+                }, 2000L);
+
+            } else if (status == 402) {
+                Log.e("ActivateCodeConfirm", "codeRegistrationCallback: " + message);
+
+                object.has("error");
+
+                if (object.has("error")) {
+                    String error = object.getString("error");
+                    Log.e("ActivateCodeConfirm", "codeRegistrationCallback: (1) " + error + ": " + message);
+
+                    MlmResponseError err = new MlmResponseError();
+                    err.setFieldName(error);
+                    err.setErrMessage(message);
+                    activateCodeRequest.getMlmResponseErrors().add(err);
+
+                    Toast.makeText(getContext(), message, Toast.LENGTH_LONG).show();
+
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            callback_code.getStepperLayout().hideProgress();
+                            callback_code.getStepperLayout().onBackClicked();
+                        }
+                    }, 2000L);
+
+
+                    //callback.getStepperLayout().onBackClicked();
+                } else if (object.has("exception")) {
+                    String exception = object.getString("exception");
+
+                    Log.e("ActivateCodeConfirm", "codeRegistrationCallback: (2) " + exception);
+                    Toast.makeText(getContext(), message, Toast.LENGTH_LONG).show();
+
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            callback_code.getStepperLayout().hideProgress();
+                            callback_code.getStepperLayout().onBackClicked();
+                        }
+                    }, 2000L);
+                }
+
+            } else {
+
+                Log.e("ActivateCodeConfirm", "codeRegistrationCallback: (3) Unexpected error");
+
+                Toast.makeText(getContext(), R.string.ui_exception, Toast.LENGTH_LONG).show();
+
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        callback_code.getStepperLayout().hideProgress();
+                        callback_code.getStepperLayout().onBackClicked();
+                    }
+                }, 2000L);
+            }
+        } catch (JSONException e) {
+            //do nothing
+            Log.e("ActivateCodeConfirm", "codeRegistrationCallback: (4) " + e.getMessage());
+            Toast.makeText(getContext(), R.string.ui_exception, Toast.LENGTH_LONG).show();
+
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    callback_code.getStepperLayout().hideProgress();
+                    callback_code.getStepperLayout().onBackClicked();
+                }
+            }, 2000L);
+        }
+
+
+    }
+
+
+    private void codeRegistration(int mlm_member_id, String activation_code, final StepperLayout.OnCompleteClickedCallback callback_code) {
+
+        RequestQueue queue = Volley.newRequestQueue(getContext());
+
+        String url = getString(R.string.api_url).toString() + getString(R.string.api_code_registration).toString();
+
+        ActivateCode code = new ActivateCode(mlm_member_id, activation_code);
+
+        JSONObject post_data = new JSONObject();
+        try {
+            post_data.put("mlm_member_id", code.getMlmMemberId());
+            post_data.put("activation_code", code.getActivationCode());
+        } catch (JSONException ex) {
+
+            callback_code.getStepperLayout().hideProgress();
+            Toast.makeText(getContext(), R.string.ui_exception, Toast.LENGTH_LONG).show();
+            Log.e("ActivateCodeConfirm", ex.getMessage());
+            return;
+        }
+
+        Log.e("Volley", post_data.toString());
+
+
+        JsonObjectRequest jsObjRequest = new JsonObjectRequest(Request.Method.POST, url, post_data, new com.android.volley.Response.Listener<JSONObject>() {
+
+            @Override
+            public void onResponse(JSONObject response) {
+                Log.e("ActivateCodeConfirm", "Response: " + response.toString());
+                codeRegistrationCallback(response.toString(), callback_code);
+            }
+        }, new com.android.volley.Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                // Do nothing
+                Log.e("ActivateCodeConfirm", "onErrorResponse: " + error.toString());
+                callback_code.getStepperLayout().hideProgress();
+                Toast.makeText(getContext(), R.string.ui_unexpected_response, Toast.LENGTH_LONG).show();
+
+            }
+        });
+
+        queue.add(jsObjRequest);
     }
 }

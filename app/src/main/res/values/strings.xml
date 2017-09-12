@@ -1,9 +1,9 @@
 <!--
-  ~ Created by Mong Ramos Jr. <mongramosjr@gmail.com> on 9/10/17 1:54 PM
+  ~ Created by Mong Ramos Jr. <mongramosjr@gmail.com> on 9/12/17 2:08 PM
   ~
   ~ Copyright (c) 2017 Victory Global Unlimited Systems Inc. All rights reserved.
   ~
-  ~ Last modified 9/10/17 7:24 AM
+  ~ Last modified 9/11/17 7:07 AM
   -->
 
 <resources>
@@ -79,6 +79,10 @@
     <string name="ui_no_verify_password">Verify password is required</string>
     <string name="ui_valid_verify_password">Password not matched</string>
 
+    <string name="ui_no_internet">There is no Internet connection</string>
+    <string name="ui_exception">Unexpected error. Try again.</string>
+    <string name="ui_unexpected_response">Unable to process. Try again.</string>
+
     <!--
     <string name="first_name_hint">First Name</string>
     <string name="middle_name_hint">Middle Name</string>
@@ -106,5 +110,9 @@
     <string name="telephone_hint">Telephone</string>
     <string name="mobile_number_hint">Mobile</string>
     -->
+
+    <string name="api_url">http://api-beta.victoryglobal.vg</string>
+    <string name="api_code_registration">/activation-code/registration/.json</string>
+    <string name="api_code_checkfirst">/activation-code/registration/checkfirst/.json</string>
 
 </resources>
