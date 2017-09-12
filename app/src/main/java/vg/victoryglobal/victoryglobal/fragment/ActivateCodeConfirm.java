@@ -1,9 +1,9 @@
 /*
- * Created by Mong Ramos Jr. <mongramosjr@gmail.com> on 9/12/17 2:08 PM
+ * Created by Mong Ramos Jr. <mongramosjr@gmail.com> on 9/12/17 2:54 PM
  *
  * Copyright (c) 2017 Victory Global Unlimited Systems Inc. All rights reserved.
  *
- * Last modified 9/12/17 1:55 PM
+ * Last modified 9/12/17 2:26 PM
  */
 
 package vg.victoryglobal.victoryglobal.fragment;
@@ -50,8 +50,6 @@ public class ActivateCodeConfirm extends Fragment implements BlockingStep {
     TextView memberName;
 
     ActivateCodeRequest activateCodeRequest;
-
-    //String response_data;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

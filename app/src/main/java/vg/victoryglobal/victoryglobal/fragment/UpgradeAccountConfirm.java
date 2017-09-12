@@ -1,9 +1,9 @@
 /*
- * Created by Mong Ramos Jr. <mongramosjr@gmail.com> on 9/9/17 9:19 PM
+ * Created by Mong Ramos Jr. <mongramosjr@gmail.com> on 9/12/17 2:54 PM
  *
  * Copyright (c) 2017 Victory Global Unlimited Systems Inc. All rights reserved.
  *
- * Last modified 9/9/17 8:13 PM
+ * Last modified 9/12/17 2:31 PM
  */
 
 package vg.victoryglobal.victoryglobal.fragment;
@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.UiThread;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -20,12 +21,23 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.stepstone.stepper.BlockingStep;
 import com.stepstone.stepper.StepperLayout;
 import com.stepstone.stepper.VerificationError;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.json.JSONTokener;
+
 import vg.victoryglobal.victoryglobal.R;
+import vg.victoryglobal.victoryglobal.model.ActivateCode;
 import vg.victoryglobal.victoryglobal.model.ActivateCodeRequest;
+import vg.victoryglobal.victoryglobal.model.MlmResponseError;
 import vg.victoryglobal.victoryglobal.model.UpgradeAccountRequest;
 
 public class UpgradeAccountConfirm extends Fragment implements BlockingStep {
@@ -88,7 +100,6 @@ public class UpgradeAccountConfirm extends Fragment implements BlockingStep {
     @Override
     @UiThread
     public void onNextClicked(final StepperLayout.OnNextClickedCallback callback) {
-        Toast.makeText(this.getContext(), "Your custom back action. Here you should cancel currently running operations", Toast.LENGTH_SHORT).show();
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -101,23 +112,17 @@ public class UpgradeAccountConfirm extends Fragment implements BlockingStep {
     @UiThread
     public void onCompleteClicked(final StepperLayout.OnCompleteClickedCallback callback) {
 
-        //clear request data and error response
-        upgradeAccountRequest.resetErrorCodes();
-        upgradeAccountRequest.reset();
+        callback.getStepperLayout().showProgress(getString(R.string.progress_message));
 
-        Toast.makeText(this.getContext(), "Your custom back action. Here you should cancel currently running operations", Toast.LENGTH_SHORT).show();
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                callback.complete();
-            }
-        }, 2000L);
+        upgradeAccountRequest.getUpgradeAccount().getActivationCode().toString();
+
+        upgradeRegistration(upgradeAccountRequest.getUpgradeAccount().getMlmMemberId(), upgradeAccountRequest.getUpgradeAccount().getActivationCode().toString(), callback);
+
     }
 
     @Override
     @UiThread
     public void onBackClicked(StepperLayout.OnBackClickedCallback callback) {
-        Toast.makeText(this.getContext(), "Your custom back action. Here you should cancel currently running operations", Toast.LENGTH_SHORT).show();
         callback.goToPrevStep();
     }
 
@@ -141,5 +146,167 @@ public class UpgradeAccountConfirm extends Fragment implements BlockingStep {
                 memberName.setText(upgradeAccountRequest.getUpgradeAccount().getMemberName());
             }
         }
+    }
+
+    private void upgradeRegistrationCallback(String response_data,
+                                          final StepperLayout.OnCompleteClickedCallback callback_code) {
+        try {
+            JSONObject object = (JSONObject) new JSONTokener(response_data).nextValue();
+            int status = object.getInt("status");
+            String message = object.getString("message");
+
+            Log.e("UpgradeAccountConfirm ", "Status: " + String.valueOf(status));
+
+            if (status == 200) {
+
+                //JSONObject activation_code = object.getJSONObject("activation_code");
+                //JSONObject member = object.getJSONObject("member");
+
+                //Snackbar.make(getView(),
+                //        "Activation code " + activation_code.get("code").toString() + " confirmed successfully", Snackbar.LENGTH_LONG).show();
+
+
+                //clear request data and error response
+                upgradeAccountRequest.resetErrorCodes();
+                upgradeAccountRequest.reset();
+                upgradeAccountRequest.setSuccess(true);
+
+
+                // complete
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        callback_code.complete();
+                    }
+                }, 2000L);
+
+                Snackbar success = Snackbar.make(getView(), message, Snackbar.LENGTH_LONG);
+                //message_show.setAction();
+                success.show();
+
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        callback_code.getStepperLayout().hideProgress();
+                        callback_code.getStepperLayout().setCurrentStepPosition(0);
+                    }
+                }, 2000L);
+
+            } else if (status == 402) {
+                Log.e("UpgradeAccountConfirm", "upgradeRegistrationCallback: " + message);
+
+                object.has("error");
+
+                if (object.has("error")) {
+                    String error = object.getString("error");
+                    Log.e("UpgradeAccountConfirm", "upgradeRegistrationCallback: (1) " + error + ": " + message);
+
+                    MlmResponseError err = new MlmResponseError();
+                    err.setFieldName(error);
+                    err.setErrMessage(message);
+                    upgradeAccountRequest.getMlmResponseErrors().add(err);
+
+                    Toast.makeText(getContext(), message, Toast.LENGTH_LONG).show();
+
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            callback_code.getStepperLayout().hideProgress();
+                            callback_code.getStepperLayout().onBackClicked();
+                        }
+                    }, 2000L);
+
+
+                    //callback.getStepperLayout().onBackClicked();
+                } else if (object.has("exception")) {
+                    String exception = object.getString("exception");
+
+                    Log.e("UpgradeAccountConfirm", "upgradeRegistrationCallback: (2) " + exception);
+                    Toast.makeText(getContext(), message, Toast.LENGTH_LONG).show();
+
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            callback_code.getStepperLayout().hideProgress();
+                            callback_code.getStepperLayout().onBackClicked();
+                        }
+                    }, 2000L);
+                }
+
+            } else {
+
+                Log.e("UpgradeAccountConfirm", "upgradeRegistrationCallback: (3) Unexpected error");
+
+                Toast.makeText(getContext(), R.string.ui_exception, Toast.LENGTH_LONG).show();
+
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        callback_code.getStepperLayout().hideProgress();
+                        callback_code.getStepperLayout().onBackClicked();
+                    }
+                }, 2000L);
+            }
+        } catch (JSONException e) {
+            //do nothing
+            Log.e("UpgradeAccountConfirm", "upgradeRegistrationCallback: (4) " + e.getMessage());
+            Toast.makeText(getContext(), R.string.ui_exception, Toast.LENGTH_LONG).show();
+
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    callback_code.getStepperLayout().hideProgress();
+                    callback_code.getStepperLayout().onBackClicked();
+                }
+            }, 2000L);
+        }
+
+
+    }
+
+
+    private void upgradeRegistration(int mlm_member_id, String activation_code, final StepperLayout.OnCompleteClickedCallback callback_upgrade) {
+
+        RequestQueue queue = Volley.newRequestQueue(getContext());
+
+        String url = getString(R.string.api_url).toString() + getString(R.string.api_upgrade_registration).toString();
+
+        ActivateCode code = new ActivateCode(mlm_member_id, activation_code);
+
+        JSONObject post_data = new JSONObject();
+        try {
+            post_data.put("mlm_member_id", code.getMlmMemberId());
+            post_data.put("activation_code", code.getActivationCode());
+        } catch (JSONException ex) {
+
+            callback_upgrade.getStepperLayout().hideProgress();
+            Toast.makeText(getContext(), R.string.ui_exception, Toast.LENGTH_LONG).show();
+            Log.e("UpgradeAccountConfirm", ex.getMessage());
+            return;
+        }
+
+        Log.e("Volley", post_data.toString());
+
+
+        JsonObjectRequest jsObjRequest = new JsonObjectRequest(Request.Method.POST, url, post_data, new com.android.volley.Response.Listener<JSONObject>() {
+
+            @Override
+            public void onResponse(JSONObject response) {
+                Log.e("UpgradeAccountConfirm", "Response: " + response.toString());
+                upgradeRegistrationCallback(response.toString(), callback_upgrade);
+            }
+        }, new com.android.volley.Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                // Do nothing
+                Log.e("UpgradeAccountConfirm", "onErrorResponse: " + error.toString());
+                callback_upgrade.getStepperLayout().hideProgress();
+                Toast.makeText(getContext(), R.string.ui_unexpected_response, Toast.LENGTH_LONG).show();
+
+            }
+        });
+
+        queue.add(jsObjRequest);
     }
 }

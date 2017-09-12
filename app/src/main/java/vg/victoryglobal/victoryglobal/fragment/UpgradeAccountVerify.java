@@ -1,9 +1,9 @@
 /*
- * Created by Mong Ramos Jr. <mongramosjr@gmail.com> on 9/9/17 9:19 PM
+ * Created by Mong Ramos Jr. <mongramosjr@gmail.com> on 9/12/17 2:54 PM
  *
  * Copyright (c) 2017 Victory Global Unlimited Systems Inc. All rights reserved.
  *
- * Last modified 9/9/17 9:19 PM
+ * Last modified 9/12/17 2:36 PM
  */
 
 package vg.victoryglobal.victoryglobal.fragment;
@@ -25,13 +25,23 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.stepstone.stepper.BlockingStep;
 import com.stepstone.stepper.StepperLayout;
 import com.stepstone.stepper.VerificationError;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.json.JSONTokener;
+
 import java.util.ArrayList;
 
 import vg.victoryglobal.victoryglobal.R;
+import vg.victoryglobal.victoryglobal.model.ActivateCode;
 import vg.victoryglobal.victoryglobal.model.MlmResponseError;
 import vg.victoryglobal.victoryglobal.model.UpgradeAccountRequest;
 
@@ -87,7 +97,9 @@ public class UpgradeAccountVerify extends Fragment implements BlockingStep {
 
             @Override
             public void afterTextChanged(Editable s) {
-                validateEditText(s, inputLayoutActivateCode, R.string.ui_no_activation_code);
+                if(!upgradeAccountRequest.isSuccess()) {
+                    validateEditText(s, inputLayoutActivateCode, R.string.ui_no_activation_code);
+                }
             }
         });
 
@@ -104,8 +116,10 @@ public class UpgradeAccountVerify extends Fragment implements BlockingStep {
 
             @Override
             public void afterTextChanged(Editable s) {
-                validateEditText(s, inputLayoutDistributorId, R.string.ui_no_distributor);
-                validateAccountNumber(s, inputLayoutDistributorId, R.string.ui_length_distributor);
+                if(!upgradeAccountRequest.isSuccess()) {
+                    validateEditText(s, inputLayoutDistributorId, R.string.ui_no_distributor);
+                    validateAccountNumber(s, inputLayoutDistributorId, R.string.ui_length_distributor);
+                }
             }
         });
     }
@@ -187,19 +201,15 @@ public class UpgradeAccountVerify extends Fragment implements BlockingStep {
         upgradeAccountRequest.getUpgradeAccount().setMlmMemberId(Integer.parseInt(mlmMemberId.getText().toString()));
 
 
-        Toast.makeText(this.getContext(), "Your custom back action. Here you should cancel currently running operations", Toast.LENGTH_SHORT).show();
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                callback.goToNextStep();
-            }
-        }, 2000L);
+        callback.getStepperLayout().showProgress(getString(R.string.progress_message));
+
+        upgradeCheckFirst(Integer.parseInt(mlmMemberId.getText().toString()),
+                activationCode.getText().toString(), callback);
     }
 
     @Override
     @UiThread
     public void onCompleteClicked(final StepperLayout.OnCompleteClickedCallback callback) {
-        Toast.makeText(this.getContext(), "Your custom back action. Here you should cancel currently running operations", Toast.LENGTH_SHORT).show();
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -211,7 +221,6 @@ public class UpgradeAccountVerify extends Fragment implements BlockingStep {
     @Override
     @UiThread
     public void onBackClicked(StepperLayout.OnBackClickedCallback callback) {
-        Toast.makeText(this.getContext(), "Your custom back action. Here you should cancel currently running operations", Toast.LENGTH_SHORT).show();
         callback.goToPrevStep();
     }
 
@@ -229,6 +238,14 @@ public class UpgradeAccountVerify extends Fragment implements BlockingStep {
     }
 
     private void displayEnteredText(){
+
+        if(upgradeAccountRequest.isSuccess()){
+
+            activationCode.setText("");
+            mlmMemberId.setText("");
+            upgradeAccountRequest.setSuccess(false);
+        }
+
         //using class variable  within singleton
         if(upgradeAccountRequest.getUpgradeAccount().getActivationCode() != null) {
             if (upgradeAccountRequest.getUpgradeAccount().getActivationCode().length() > 0) {
@@ -239,5 +256,144 @@ public class UpgradeAccountVerify extends Fragment implements BlockingStep {
             mlmMemberId.setText(String.valueOf(upgradeAccountRequest.getUpgradeAccount().getMlmMemberId()));
         }
 
+    }
+
+    private void upgradeCheckFirstCallback(String response_data, final StepperLayout.OnNextClickedCallback callback_upgrade)
+    {
+        try {
+            JSONObject object = (JSONObject) new JSONTokener(response_data).nextValue();
+            int status = object.getInt("status");
+            String message = object.getString("message");
+
+            Log.e("UpgradeAccountVerify ", "Status: " + String.valueOf(status));
+
+            if(status == 200 ){
+
+                JSONObject activation_code = object.getJSONObject("activation_code");
+                JSONObject member = object.getJSONObject("member");
+                //save
+                //singleton class variable, save the encoded data
+                upgradeAccountRequest.getUpgradeAccount().setActivationCodeName(activation_code.getString("name"));
+                upgradeAccountRequest.getUpgradeAccount().setMemberName(member.getString("name"));
+
+
+
+
+                // go to next page
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        callback_upgrade.getStepperLayout().hideProgress();
+                        callback_upgrade.goToNextStep();
+                    }
+                }, 2000L);
+
+
+
+            }else if(status == 402 ){
+
+                if(object.has("error")) {
+                    String error = object.getString("error");
+
+                    MlmResponseError err = new MlmResponseError();
+                    err.setFieldName(error);
+                    err.setErrMessage(message);
+                    upgradeAccountRequest.getMlmResponseErrors().add(err);
+
+                    if (error.equals("mlm_member_id")) {
+                        inputLayoutDistributorId.setError(message);
+                    } else if (error.equals("activation_code")) {
+                        inputLayoutActivateCode.setError(message);
+                    }
+                }else{
+
+                    Toast.makeText(getContext(), message, Toast.LENGTH_LONG).show();
+                }
+
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        callback_upgrade.getStepperLayout().hideProgress();
+                    }
+                }, 2000L);
+
+
+            }else{
+                Toast.makeText(getContext(), R.string.ui_exception, Toast.LENGTH_LONG).show();
+
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        callback_upgrade.getStepperLayout().hideProgress();
+                    }
+                }, 2000L);
+            }
+        } catch (JSONException e) {
+            //do nothing
+            Log.e("UpgradeAccountVerify", "upgradeCheckFirstCallback: (4) " + e.getMessage());
+            Toast.makeText(getContext(), R.string.ui_exception, Toast.LENGTH_LONG).show();
+
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    callback_upgrade.getStepperLayout().hideProgress();
+                }
+            }, 2000L);
+        }
+
+
+    }
+
+
+    private void upgradeCheckFirst(int mlm_member_id, String activation_code, final StepperLayout.OnNextClickedCallback callback_upgrade) {
+
+        RequestQueue queue = Volley.newRequestQueue(getContext());
+
+        String url = getString(R.string.api_url).toString() + getString(R.string.api_upgrade_checkfirst).toString();
+
+        ActivateCode code = new ActivateCode(mlm_member_id, activation_code);
+
+        JSONObject post_data = new JSONObject(); 
+        try {
+            post_data.put("mlm_member_id", code.getMlmMemberId());
+            post_data.put("activation_code", code.getActivationCode());
+        }catch(JSONException ex) {
+
+            callback_upgrade.getStepperLayout().hideProgress();
+            Toast.makeText(getContext(), R.string.ui_exception, Toast.LENGTH_LONG).show();
+            Log.e("UpgradeAccountVerify", ex.getMessage());
+            return;
+        }
+
+        JsonObjectRequest jsObjRequest = new JsonObjectRequest
+                (Request.Method.POST,
+                        url,
+                        post_data,
+                        new com.android.volley.Response.Listener<JSONObject>() {
+
+                            @Override
+                            public void onResponse(JSONObject response) {
+                                Log.e("UpgradeAccountVerify", "Response: " + response.toString());
+                                upgradeCheckFirstCallback(response.toString(), callback_upgrade);
+                            }
+                        },
+                        new com.android.volley.Response.ErrorListener() {
+
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                // Do nothing
+                                Log.e("UpgradeAccountVerify", "onErrorResponse: " + error.toString());
+                                Toast.makeText(getContext(), R.string.ui_unexpected_response, Toast.LENGTH_LONG).show();
+                                new Handler().postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        callback_upgrade.getStepperLayout().hideProgress();
+                                    }
+                                }, 2000L);
+                            }
+                        }
+                );
+
+        queue.add(jsObjRequest);
     }
 }

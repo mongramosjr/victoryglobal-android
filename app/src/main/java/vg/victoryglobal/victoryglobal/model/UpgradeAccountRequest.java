@@ -1,9 +1,9 @@
 /*
- * Created by Mong Ramos Jr. <mongramosjr@gmail.com> on 9/9/17 9:19 PM
+ * Created by Mong Ramos Jr. <mongramosjr@gmail.com> on 9/12/17 2:54 PM
  *
  * Copyright (c) 2017 Victory Global Unlimited Systems Inc. All rights reserved.
  *
- * Last modified 9/9/17 2:49 PM
+ * Last modified 9/12/17 2:16 PM
  */
 
 package vg.victoryglobal.victoryglobal.model;
@@ -15,6 +15,8 @@ public class UpgradeAccountRequest {
     private UpgradeAccount upgradeAccount =  new UpgradeAccount();
 
     private ArrayList<MlmResponseError> mlmResponseErrors = new ArrayList<>();
+
+    private boolean success = false;
 
     //eager loading singeton
     private static final UpgradeAccountRequest ourInstance = new UpgradeAccountRequest();
@@ -48,5 +50,13 @@ public class UpgradeAccountRequest {
     }
     public synchronized void resetErrorCodes() {
         mlmResponseErrors.clear();
+    }
+
+    public boolean isSuccess() {
+        return success;
+    }
+
+    public void setSuccess(boolean success) {
+        this.success = success;
     }
 }

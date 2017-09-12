@@ -1,9 +1,9 @@
 /*
- * Created by Mong Ramos Jr. <mongramosjr@gmail.com> on 9/12/17 2:08 PM
+ * Created by Mong Ramos Jr. <mongramosjr@gmail.com> on 9/12/17 2:54 PM
  *
  * Copyright (c) 2017 Victory Global Unlimited Systems Inc. All rights reserved.
  *
- * Last modified 9/12/17 2:05 PM
+ * Last modified 9/12/17 2:17 PM
  */
 
 package vg.victoryglobal.victoryglobal.fragment;
@@ -58,11 +58,9 @@ public class ActivateCodeVerify extends Fragment implements BlockingStep {
 
     TextInputLayout inputLayoutActivateCode;
     TextInputLayout inputLayoutDistributorId;
-    TextInputEditText activateCode;
+    TextInputEditText activationCode;
     TextInputEditText mlmMemberId;
     ActivateCodeRequest activateCodeRequest;
-
-    String response_data;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -85,7 +83,7 @@ public class ActivateCodeVerify extends Fragment implements BlockingStep {
         // get textview and textinputlayout
         inputLayoutActivateCode = view.findViewById(R.id.activate_code_textinputlayout);
         inputLayoutDistributorId = view.findViewById(R.id.distributor_id_textinputlayout);
-        activateCode = view.findViewById(R.id.activation_code);
+        activationCode = view.findViewById(R.id.activation_code);
         mlmMemberId = view.findViewById(R.id.mlm_member_id);
 
 
@@ -94,7 +92,7 @@ public class ActivateCodeVerify extends Fragment implements BlockingStep {
         // display error
         displayError();
 
-        activateCode.addTextChangedListener(new TextWatcher() {
+        activationCode.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -160,7 +158,7 @@ public class ActivateCodeVerify extends Fragment implements BlockingStep {
     private boolean validateAllEditText() {
 
         boolean status = true;
-        if(validateEditText(activateCode.getText(), inputLayoutActivateCode, R.string.ui_no_activation_code)==false){
+        if(validateEditText(activationCode.getText(), inputLayoutActivateCode, R.string.ui_no_activation_code)==false){
             status = false;
         }
         if(validateEditText(mlmMemberId.getText(), inputLayoutDistributorId, R.string.ui_no_distributor)==false){
@@ -209,7 +207,7 @@ public class ActivateCodeVerify extends Fragment implements BlockingStep {
         activateCodeRequest.resetErrorCodes();
 
         //singleton class variable, save the encoded data
-        activateCodeRequest.getActivateCode().setActivationCode(activateCode.getText().toString());
+        activateCodeRequest.getActivateCode().setActivationCode(activationCode.getText().toString());
         activateCodeRequest.getActivateCode().setMlmMemberId(Integer.parseInt(mlmMemberId.getText().toString()));
 
         //using SharedPreferences
@@ -225,7 +223,7 @@ public class ActivateCodeVerify extends Fragment implements BlockingStep {
         callback.getStepperLayout().showProgress(getString(R.string.progress_message));
 
         codeCheckFirst(Integer.parseInt(mlmMemberId.getText().toString()),
-                activateCode.getText().toString(), callback);
+                activationCode.getText().toString(), callback);
 
     }
 
@@ -263,7 +261,7 @@ public class ActivateCodeVerify extends Fragment implements BlockingStep {
 
         if(activateCodeRequest.isSuccess()){
 
-            activateCode.setText("");
+            activationCode.setText("");
             mlmMemberId.setText("");
             activateCodeRequest.setSuccess(false);
         }
@@ -271,7 +269,7 @@ public class ActivateCodeVerify extends Fragment implements BlockingStep {
         //using class variable  within singleton
         if(activateCodeRequest.getActivateCode().getActivationCode() != null) {
             if (activateCodeRequest.getActivateCode().getActivationCode().length() > 0) {
-                activateCode.setText(activateCodeRequest.getActivateCode().getActivationCode());
+                activationCode.setText(activateCodeRequest.getActivateCode().getActivationCode());
             }
         }
 
@@ -396,7 +394,6 @@ public class ActivateCodeVerify extends Fragment implements BlockingStep {
                             @Override
                             public void onResponse(JSONObject response) {
                                 Log.e("ActivateCodeVerify", "Response: " + response.toString());
-                                response_data = response.toString();
                                 codeCheckFirstCallback(response.toString(), callback_code);
                             }
                         },

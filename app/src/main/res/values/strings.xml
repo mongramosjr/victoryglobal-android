@@ -1,9 +1,9 @@
 <!--
-  ~ Created by Mong Ramos Jr. <mongramosjr@gmail.com> on 9/12/17 2:08 PM
+  ~ Created by Mong Ramos Jr. <mongramosjr@gmail.com> on 9/12/17 2:54 PM
   ~
   ~ Copyright (c) 2017 Victory Global Unlimited Systems Inc. All rights reserved.
   ~
-  ~ Last modified 9/11/17 7:07 AM
+  ~ Last modified 9/12/17 2:11 PM
   -->
 
 <resources>
@@ -114,5 +114,7 @@
     <string name="api_url">http://api-beta.victoryglobal.vg</string>
     <string name="api_code_registration">/activation-code/registration/.json</string>
     <string name="api_code_checkfirst">/activation-code/registration/checkfirst/.json</string>
+    <string name="api_upgrade_registration">/activation-code/registration/.json</string>
+    <string name="api_upgrade_checkfirst">/activation-code/registration/checkfirst/.json</string>
 
 </resources>
