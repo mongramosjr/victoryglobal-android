@@ -1,16 +1,16 @@
 <!--
-  ~ Created by Mong Ramos Jr. <mongramosjr@gmail.com> on 9/9/17 7:01 AM
+  ~ Created by Mong Ramos Jr. <mongramosjr@gmail.com> on 9/14/17 7:41 PM
   ~
   ~ Copyright (c) 2017 Victory Global Unlimited Systems Inc. All rights reserved.
   ~
-  ~ Last modified 9/9/17 6:59 AM
+  ~ Last modified 9/13/17 8:42 PM
   -->
 
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="vg.victoryglobal.victoryglobal.fragment.RegisterAccountVerify">
+    tools:context="vg.victoryglobal.victoryglobal.fragment.RegisterAccountMlmInfo">
 
     <ScrollView
         android:layout_width="match_parent"

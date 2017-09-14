@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?><!--
-  ~ Created by Mong Ramos Jr. <mongramosjr@gmail.com> on 9/10/17 1:54 PM
+  ~ Created by Mong Ramos Jr. <mongramosjr@gmail.com> on 9/14/17 7:41 PM
   ~
   ~ Copyright (c) 2017 Victory Global Unlimited Systems Inc. All rights reserved.
   ~
-  ~ Last modified 9/10/17 9:10 AM
+  ~ Last modified 9/13/17 6:41 AM
   -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="vg.victoryglobal.victoryglobal">
@@ -17,6 +17,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyAqojdiuuGTK94iAWg_EYyqLcBVQeuGjJY"/>
 
 
         <activity

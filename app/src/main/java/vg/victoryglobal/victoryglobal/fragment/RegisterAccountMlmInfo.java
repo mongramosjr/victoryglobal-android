@@ -1,9 +1,9 @@
 /*
- * Created by Mong Ramos Jr. <mongramosjr@gmail.com> on 9/9/17 9:19 PM
+ * Created by Mong Ramos Jr. <mongramosjr@gmail.com> on 9/14/17 7:41 PM
  *
  * Copyright (c) 2017 Victory Global Unlimited Systems Inc. All rights reserved.
  *
- * Last modified 9/9/17 9:19 PM
+ * Last modified 9/14/17 7:38 PM
  */
 
 package vg.victoryglobal.victoryglobal.fragment;
@@ -35,9 +35,8 @@ import java.util.ArrayList;
 import vg.victoryglobal.victoryglobal.R;
 import vg.victoryglobal.victoryglobal.model.MlmResponseError;
 import vg.victoryglobal.victoryglobal.model.RegisterAccountRequest;
-import vg.victoryglobal.victoryglobal.model.UpgradeAccountRequest;
 
-public class RegisterAccountVerify extends Fragment implements BlockingStep {
+public class RegisterAccountMlmInfo extends Fragment implements BlockingStep {
 
     TextInputLayout inputLayoutActivateCode;
     TextInputLayout inputLayoutUplineId;
@@ -62,7 +61,7 @@ public class RegisterAccountVerify extends Fragment implements BlockingStep {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.register_account_verify, container, false);
+        return inflater.inflate(R.layout.register_account_mlminfo, container, false);
     }
 
     // This event is triggered soon after onCreateView().
@@ -135,7 +134,9 @@ public class RegisterAccountVerify extends Fragment implements BlockingStep {
 
             @Override
             public void afterTextChanged(Editable s) {
-                validateEditText(s, inputLayoutActivateCode, R.string.ui_no_activation_code);
+                if(!registerAccountRequest.isSuccessMlmInfo()) {
+                    validateEditText(s, inputLayoutActivateCode, R.string.ui_no_activation_code);
+                }
             }
         });
 
@@ -152,8 +153,10 @@ public class RegisterAccountVerify extends Fragment implements BlockingStep {
 
             @Override
             public void afterTextChanged(Editable s) {
-                validateEditText(s, inputLayoutUplineId, R.string.ui_no_distributor);
-                validateAccountNumber(s, inputLayoutUplineId, R.string.ui_length_distributor);
+                if(!registerAccountRequest.isSuccessMlmInfo()) {
+                    validateEditText(s, inputLayoutUplineId, R.string.ui_no_distributor);
+                    validateAccountNumber(s, inputLayoutUplineId, R.string.ui_length_distributor);
+                }
             }
         });
 
@@ -170,8 +173,10 @@ public class RegisterAccountVerify extends Fragment implements BlockingStep {
 
             @Override
             public void afterTextChanged(Editable s) {
-                validateEditText(s, inputLayoutSponsorId, R.string.ui_no_distributor);
-                validateAccountNumber(s, inputLayoutSponsorId, R.string.ui_length_distributor);
+                if(!registerAccountRequest.isSuccessMlmInfo()) {
+                    validateEditText(s, inputLayoutSponsorId, R.string.ui_no_distributor);
+                    validateAccountNumber(s, inputLayoutSponsorId, R.string.ui_length_distributor);
+                }
             }
         });
 
@@ -273,7 +278,6 @@ public class RegisterAccountVerify extends Fragment implements BlockingStep {
     @Override
     @UiThread
     public void onCompleteClicked(final StepperLayout.OnCompleteClickedCallback callback) {
-        Toast.makeText(this.getContext(), "Your custom back action. Here you should cancel currently running operations", Toast.LENGTH_SHORT).show();
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -285,7 +289,6 @@ public class RegisterAccountVerify extends Fragment implements BlockingStep {
     @Override
     @UiThread
     public void onBackClicked(StepperLayout.OnBackClickedCallback callback) {
-        Toast.makeText(this.getContext(), "Your custom back action. Here you should cancel currently running operations", Toast.LENGTH_SHORT).show();
         callback.goToPrevStep();
     }
 
@@ -308,8 +311,24 @@ public class RegisterAccountVerify extends Fragment implements BlockingStep {
 
     private void displayEnteredText(){
 
-        //set the text
+        if(registerAccountRequest.isSuccess() && registerAccountRequest.isSuccessMlmInfo()){
 
+            mlmAccountId.setSelection(0);
+
+
+            activationCode.setText("");
+            uplineId.setText("");
+            sponsorId.setText("");
+
+            mlmLocation.setSelection(0);
+            pickupCenterId.setSelection(0);
+
+            registerAccountRequest.setSuccessMlmInfo(false);
+        }
+        //set the text
+        if(registerAccountRequest.getRegisterAccount().getMlmAccountId() != 0 ) {
+            //mlmAccountId.setText(registerAccountRequest.getRegisterAccount().getMlmAccountId());
+        }
         if(registerAccountRequest.getRegisterAccount().getMlmLocation() != 0 ) {
             //mlmLocation.setText(registerAccountRequest.getRegisterAccount().getMlmLocation());
         }

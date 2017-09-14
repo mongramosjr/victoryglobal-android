@@ -1,9 +1,9 @@
 /*
- * Created by Mong Ramos Jr. <mongramosjr@gmail.com> on 9/12/17 2:54 PM
+ * Created by Mong Ramos Jr. <mongramosjr@gmail.com> on 9/14/17 7:41 PM
  *
  * Copyright (c) 2017 Victory Global Unlimited Systems Inc. All rights reserved.
  *
- * Last modified 9/12/17 2:31 PM
+ * Last modified 9/13/17 8:03 PM
  */
 
 package vg.victoryglobal.victoryglobal.fragment;
@@ -38,6 +38,7 @@ import vg.victoryglobal.victoryglobal.R;
 import vg.victoryglobal.victoryglobal.model.ActivateCode;
 import vg.victoryglobal.victoryglobal.model.ActivateCodeRequest;
 import vg.victoryglobal.victoryglobal.model.MlmResponseError;
+import vg.victoryglobal.victoryglobal.model.UpgradeAccount;
 import vg.victoryglobal.victoryglobal.model.UpgradeAccountRequest;
 
 public class UpgradeAccountConfirm extends Fragment implements BlockingStep {
@@ -114,9 +115,7 @@ public class UpgradeAccountConfirm extends Fragment implements BlockingStep {
 
         callback.getStepperLayout().showProgress(getString(R.string.progress_message));
 
-        upgradeAccountRequest.getUpgradeAccount().getActivationCode().toString();
-
-        upgradeRegistration(upgradeAccountRequest.getUpgradeAccount().getMlmMemberId(), upgradeAccountRequest.getUpgradeAccount().getActivationCode().toString(), callback);
+        upgradeRegistration(upgradeAccountRequest.getUpgradeAccount(), callback);
 
     }
 
@@ -158,13 +157,6 @@ public class UpgradeAccountConfirm extends Fragment implements BlockingStep {
             Log.e("UpgradeAccountConfirm ", "Status: " + String.valueOf(status));
 
             if (status == 200) {
-
-                //JSONObject activation_code = object.getJSONObject("activation_code");
-                //JSONObject member = object.getJSONObject("member");
-
-                //Snackbar.make(getView(),
-                //        "Activation code " + activation_code.get("code").toString() + " confirmed successfully", Snackbar.LENGTH_LONG).show();
-
 
                 //clear request data and error response
                 upgradeAccountRequest.resetErrorCodes();
@@ -265,18 +257,16 @@ public class UpgradeAccountConfirm extends Fragment implements BlockingStep {
     }
 
 
-    private void upgradeRegistration(int mlm_member_id, String activation_code, final StepperLayout.OnCompleteClickedCallback callback_upgrade) {
+    private void upgradeRegistration(UpgradeAccount upgrade_account, final StepperLayout.OnCompleteClickedCallback callback_upgrade) {
 
         RequestQueue queue = Volley.newRequestQueue(getContext());
 
         String url = getString(R.string.api_url).toString() + getString(R.string.api_upgrade_registration).toString();
 
-        ActivateCode code = new ActivateCode(mlm_member_id, activation_code);
-
         JSONObject post_data = new JSONObject();
         try {
-            post_data.put("mlm_member_id", code.getMlmMemberId());
-            post_data.put("activation_code", code.getActivationCode());
+            post_data.put("mlm_member_id", upgrade_account.getMlmMemberId());
+            post_data.put("activation_code", upgrade_account.getActivationCode());
         } catch (JSONException ex) {
 
             callback_upgrade.getStepperLayout().hideProgress();

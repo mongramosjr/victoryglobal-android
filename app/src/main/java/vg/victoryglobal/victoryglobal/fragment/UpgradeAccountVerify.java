@@ -1,9 +1,9 @@
 /*
- * Created by Mong Ramos Jr. <mongramosjr@gmail.com> on 9/12/17 2:54 PM
+ * Created by Mong Ramos Jr. <mongramosjr@gmail.com> on 9/14/17 7:41 PM
  *
  * Copyright (c) 2017 Victory Global Unlimited Systems Inc. All rights reserved.
  *
- * Last modified 9/12/17 2:36 PM
+ * Last modified 9/13/17 8:05 PM
  */
 
 package vg.victoryglobal.victoryglobal.fragment;
@@ -43,6 +43,7 @@ import java.util.ArrayList;
 import vg.victoryglobal.victoryglobal.R;
 import vg.victoryglobal.victoryglobal.model.ActivateCode;
 import vg.victoryglobal.victoryglobal.model.MlmResponseError;
+import vg.victoryglobal.victoryglobal.model.UpgradeAccount;
 import vg.victoryglobal.victoryglobal.model.UpgradeAccountRequest;
 
 public class UpgradeAccountVerify extends Fragment implements BlockingStep {
@@ -203,8 +204,7 @@ public class UpgradeAccountVerify extends Fragment implements BlockingStep {
 
         callback.getStepperLayout().showProgress(getString(R.string.progress_message));
 
-        upgradeCheckFirst(Integer.parseInt(mlmMemberId.getText().toString()),
-                activationCode.getText().toString(), callback);
+        upgradeCheckFirst(upgradeAccountRequest.getUpgradeAccount(), callback);
     }
 
     @Override
@@ -345,18 +345,16 @@ public class UpgradeAccountVerify extends Fragment implements BlockingStep {
     }
 
 
-    private void upgradeCheckFirst(int mlm_member_id, String activation_code, final StepperLayout.OnNextClickedCallback callback_upgrade) {
+    private void upgradeCheckFirst(UpgradeAccount upgrade_account, final StepperLayout.OnNextClickedCallback callback_upgrade) {
 
         RequestQueue queue = Volley.newRequestQueue(getContext());
 
         String url = getString(R.string.api_url).toString() + getString(R.string.api_upgrade_checkfirst).toString();
 
-        ActivateCode code = new ActivateCode(mlm_member_id, activation_code);
-
-        JSONObject post_data = new JSONObject(); 
+        JSONObject post_data = new JSONObject();
         try {
-            post_data.put("mlm_member_id", code.getMlmMemberId());
-            post_data.put("activation_code", code.getActivationCode());
+            post_data.put("mlm_member_id", upgrade_account.getMlmMemberId());
+            post_data.put("activation_code", upgrade_account.getActivationCode());
         }catch(JSONException ex) {
 
             callback_upgrade.getStepperLayout().hideProgress();

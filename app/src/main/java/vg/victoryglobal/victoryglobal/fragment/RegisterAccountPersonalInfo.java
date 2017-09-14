@@ -1,9 +1,9 @@
 /*
- * Created by Mong Ramos Jr. <mongramosjr@gmail.com> on 9/9/17 9:37 PM
+ * Created by Mong Ramos Jr. <mongramosjr@gmail.com> on 9/14/17 7:41 PM
  *
  * Copyright (c) 2017 Victory Global Unlimited Systems Inc. All rights reserved.
  *
- * Last modified 9/9/17 9:25 PM
+ * Last modified 9/13/17 8:47 PM
  */
 
 package vg.victoryglobal.victoryglobal.fragment;
@@ -132,7 +132,9 @@ public class RegisterAccountPersonalInfo extends Fragment implements BlockingSte
 
             @Override
             public void afterTextChanged(Editable s) {
-                validateEditText(s, inputLayoutFirstName, R.string.ui_no_first_name);
+                if(!registerAccountRequest.isSuccessPersonalInfo()) {
+                    validateEditText(s, inputLayoutFirstName, R.string.ui_no_first_name);
+                }
             }
         });
 
@@ -149,7 +151,9 @@ public class RegisterAccountPersonalInfo extends Fragment implements BlockingSte
 
             @Override
             public void afterTextChanged(Editable s) {
-                validateEditText(s, inputLayoutLastName, R.string.ui_no_last_name);
+                if(!registerAccountRequest.isSuccessPersonalInfo()) {
+                    validateEditText(s, inputLayoutLastName, R.string.ui_no_last_name);
+                }
             }
         });
 
@@ -224,8 +228,6 @@ public class RegisterAccountPersonalInfo extends Fragment implements BlockingSte
         registerAccountRequest.getRegisterAccount().setTaxNumber(taxNumber.getText().toString());
         registerAccountRequest.getRegisterAccount().setSocialSecurityNumber(socialSecurityNumber.getText().toString());
 
-
-        Toast.makeText(this.getContext(), "Your custom back action. Here you should cancel currently running operations", Toast.LENGTH_SHORT).show();
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -237,7 +239,6 @@ public class RegisterAccountPersonalInfo extends Fragment implements BlockingSte
     @Override
     @UiThread
     public void onCompleteClicked(final StepperLayout.OnCompleteClickedCallback callback) {
-        Toast.makeText(this.getContext(), "Your custom back action. Here you should cancel currently running operations", Toast.LENGTH_SHORT).show();
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -249,7 +250,6 @@ public class RegisterAccountPersonalInfo extends Fragment implements BlockingSte
     @Override
     @UiThread
     public void onBackClicked(StepperLayout.OnBackClickedCallback callback) {
-        Toast.makeText(this.getContext(), "Your custom back action. Here you should cancel currently running operations", Toast.LENGTH_SHORT).show();
         callback.goToPrevStep();
     }
 
@@ -269,6 +269,23 @@ public class RegisterAccountPersonalInfo extends Fragment implements BlockingSte
     }
 
     private void displayEnteredText(){
+
+        if(registerAccountRequest.isSuccess() && registerAccountRequest.isSuccessPersonalInfo()){
+
+            firstName.setText("");
+            middleName.setText("");
+            lastName.setText("");
+            dateOfBirth.setText("");
+            //maritalStatus.setText("");
+
+            //gender.setText("");
+
+            taxNumber.setText("");
+            socialSecurityNumber.setText("");
+
+
+            registerAccountRequest.setSuccessPersonalInfo(false);
+        }
 
         //set the text
         if(registerAccountRequest.getRegisterAccount().getFirstName() != null) {

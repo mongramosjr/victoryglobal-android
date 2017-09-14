@@ -1,9 +1,9 @@
 /*
- * Created by Mong Ramos Jr. <mongramosjr@gmail.com> on 9/9/17 9:19 PM
+ * Created by Mong Ramos Jr. <mongramosjr@gmail.com> on 9/14/17 7:41 PM
  *
  * Copyright (c) 2017 Victory Global Unlimited Systems Inc. All rights reserved.
  *
- * Last modified 9/9/17 6:25 PM
+ * Last modified 9/13/17 7:51 PM
  */
 
 package vg.victoryglobal.victoryglobal.model;
@@ -49,6 +49,7 @@ public class RegisterAccount implements Parcelable {
     private String activationCodeName = "";
     private String sponsorName = "";
     private String uplineName = "";
+    private String mlmAccountName = "";
 
 
     public RegisterAccount(){
@@ -200,4 +201,8 @@ public class RegisterAccount implements Parcelable {
 
     public String getVerifyPassword() { return verifyPassword; }
     public void setVerifyPassword(String verifyPassword) { this.verifyPassword = verifyPassword; }
+
+    public String getMlmAccountName() { return mlmAccountName; }
+
+    public void setMlmAccountName(String mlmAccountName) { this.mlmAccountName = mlmAccountName; }
 }

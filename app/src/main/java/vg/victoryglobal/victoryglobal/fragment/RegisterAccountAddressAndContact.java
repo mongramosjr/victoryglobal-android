@@ -1,9 +1,9 @@
 /*
- * Created by Mong Ramos Jr. <mongramosjr@gmail.com> on 9/9/17 9:19 PM
+ * Created by Mong Ramos Jr. <mongramosjr@gmail.com> on 9/14/17 7:41 PM
  *
  * Copyright (c) 2017 Victory Global Unlimited Systems Inc. All rights reserved.
  *
- * Last modified 9/9/17 9:19 PM
+ * Last modified 9/13/17 8:33 PM
  */
 
 package vg.victoryglobal.victoryglobal.fragment;
@@ -109,7 +109,9 @@ public class RegisterAccountAddressAndContact extends Fragment implements Blocki
 
             @Override
             public void afterTextChanged(Editable s) {
-                validateEmail(s, inputLayoutEmail, R.string.ui_invalid_email);
+                if(!registerAccountRequest.isSuccessAddressAndContact()) {
+                    validateEmail(s, inputLayoutEmail, R.string.ui_invalid_email);
+                }
             }
         });
 
@@ -126,7 +128,9 @@ public class RegisterAccountAddressAndContact extends Fragment implements Blocki
 
             @Override
             public void afterTextChanged(Editable s) {
-                validatePhone(s, inputLayoutTelephone, R.string.ui_invalid_telephone);
+                if(!registerAccountRequest.isSuccessAddressAndContact()) {
+                    validatePhone(s, inputLayoutTelephone, R.string.ui_invalid_telephone);
+                }
             }
         });
 
@@ -143,8 +147,10 @@ public class RegisterAccountAddressAndContact extends Fragment implements Blocki
 
             @Override
             public void afterTextChanged(Editable s) {
-                validateEditText(s, inputLayoutMobileNumber, R.string.ui_no_mobile_number);
-                validatePhone(s, inputLayoutMobileNumber, R.string.ui_invalid_mobile_number);
+                if(!registerAccountRequest.isSuccessAddressAndContact()) {
+                    validateEditText(s, inputLayoutMobileNumber, R.string.ui_no_mobile_number);
+                    validatePhone(s, inputLayoutMobileNumber, R.string.ui_invalid_mobile_number);
+                }
             }
         });
 
@@ -253,7 +259,6 @@ public class RegisterAccountAddressAndContact extends Fragment implements Blocki
         registerAccountRequest.getRegisterAccount().setTelephone(telephone.getText().toString());
         registerAccountRequest.getRegisterAccount().setMobileNumber(mobileNumber.getText().toString());
 
-        Toast.makeText(this.getContext(), "Your custom back action. Here you should cancel currently running operations", Toast.LENGTH_SHORT).show();
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -265,7 +270,6 @@ public class RegisterAccountAddressAndContact extends Fragment implements Blocki
     @Override
     @UiThread
     public void onCompleteClicked(final StepperLayout.OnCompleteClickedCallback callback) {
-        Toast.makeText(this.getContext(), "Your custom back action. Here you should cancel currently running operations", Toast.LENGTH_SHORT).show();
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -277,7 +281,6 @@ public class RegisterAccountAddressAndContact extends Fragment implements Blocki
     @Override
     @UiThread
     public void onBackClicked(StepperLayout.OnBackClickedCallback callback) {
-        Toast.makeText(this.getContext(), "Your custom back action. Here you should cancel currently running operations", Toast.LENGTH_SHORT).show();
         callback.goToPrevStep();
     }
 
@@ -299,6 +302,24 @@ public class RegisterAccountAddressAndContact extends Fragment implements Blocki
     }
 
     private void displayEnteredText(){
+
+        if(registerAccountRequest.isSuccess() && registerAccountRequest.isSuccessAddressAndContact()){
+
+            street.setText("");
+            city.setText("");
+            region.setText("");
+            postalCode.setText("");
+            countryCode.setText("");
+
+            email.setText("");
+
+            telephone.setText("");
+            mobileNumber.setText("");
+
+
+            registerAccountRequest.setSuccessAddressAndContact(false);
+        }
+
         //set the text
         if(registerAccountRequest.getRegisterAccount().getStreet() != null) {
             if (registerAccountRequest.getRegisterAccount().getStreet().length() > 0) {

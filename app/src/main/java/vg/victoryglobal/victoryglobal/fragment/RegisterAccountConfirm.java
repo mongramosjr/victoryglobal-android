@@ -1,9 +1,9 @@
 /*
- * Created by Mong Ramos Jr. <mongramosjr@gmail.com> on 9/9/17 9:19 PM
+ * Created by Mong Ramos Jr. <mongramosjr@gmail.com> on 9/14/17 7:41 PM
  *
  * Copyright (c) 2017 Victory Global Unlimited Systems Inc. All rights reserved.
  *
- * Last modified 9/9/17 8:12 PM
+ * Last modified 9/13/17 8:28 PM
  */
 
 package vg.victoryglobal.victoryglobal.fragment;
@@ -12,20 +12,34 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.UiThread;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.stepstone.stepper.BlockingStep;
 import com.stepstone.stepper.StepperLayout;
 import com.stepstone.stepper.VerificationError;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.json.JSONTokener;
+
 import java.sql.Date;
 
 import vg.victoryglobal.victoryglobal.R;
+import vg.victoryglobal.victoryglobal.model.ActivateCode;
+import vg.victoryglobal.victoryglobal.model.MlmResponseError;
+import vg.victoryglobal.victoryglobal.model.RegisterAccount;
 import vg.victoryglobal.victoryglobal.model.RegisterAccountRequest;
 import vg.victoryglobal.victoryglobal.model.UpgradeAccountRequest;
 
@@ -150,7 +164,6 @@ public class RegisterAccountConfirm extends Fragment implements BlockingStep {
     @Override
     @UiThread
     public void onNextClicked(final StepperLayout.OnNextClickedCallback callback) {
-        Toast.makeText(this.getContext(), "Your custom back action. Here you should cancel currently running operations", Toast.LENGTH_SHORT).show();
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -163,23 +176,15 @@ public class RegisterAccountConfirm extends Fragment implements BlockingStep {
     @UiThread
     public void onCompleteClicked(final StepperLayout.OnCompleteClickedCallback callback) {
 
-        //clear request data and error response
-        registerAccountRequest.resetErrorCodes();
-        registerAccountRequest.reset();
+        callback.getStepperLayout().showProgress(getString(R.string.progress_message));
 
-        Toast.makeText(this.getContext(), "Your custom back action. Here you should cancel currently running operations", Toast.LENGTH_SHORT).show();
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                callback.complete();
-            }
-        }, 2000L);
+        accountRegistration(registerAccountRequest.getRegisterAccount(), callback);
+
     }
 
     @Override
     @UiThread
     public void onBackClicked(StepperLayout.OnBackClickedCallback callback) {
-        Toast.makeText(this.getContext(), "Your custom back action. Here you should cancel currently running operations", Toast.LENGTH_SHORT).show();
         callback.goToPrevStep();
     }
 
@@ -303,8 +308,196 @@ public class RegisterAccountConfirm extends Fragment implements BlockingStep {
             }
         }
 
+    }
+
+    private void accountRegistrationCallback(String response_data,
+                                             final StepperLayout.OnCompleteClickedCallback callback_code) {
+        try {
+            JSONObject object = (JSONObject) new JSONTokener(response_data).nextValue();
+            int status = object.getInt("status");
+            String message = object.getString("message");
+
+            Log.e("RegisterAccountConfirm ", "Status: " + String.valueOf(status));
+
+            if (status == 200) {
+
+                //clear request data and error response
+                registerAccountRequest.resetErrorCodes();
+                registerAccountRequest.reset();
+
+                registerAccountRequest.setSuccess(true);
+
+                registerAccountRequest.setSuccessAddressAndContact(true);
+                registerAccountRequest.setSuccessPersonalInfo(true);
+                registerAccountRequest.setSuccessMlmInfo(true);
+                registerAccountRequest.setSuccessSecurity(true);
 
 
 
+
+
+                // complete
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        callback_code.complete();
+                    }
+                }, 2000L);
+
+                Snackbar success = Snackbar.make(getView(), message, Snackbar.LENGTH_LONG);
+                //message_show.setAction();
+                success.show();
+
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        callback_code.getStepperLayout().hideProgress();
+                        callback_code.getStepperLayout().setCurrentStepPosition(0);
+                    }
+                }, 2000L);
+
+            } else if (status == 402) {
+                Log.e("RegisterAccountConfirm", "accountRegistrationCallback: " + message);
+
+                object.has("error");
+
+                if (object.has("error")) {
+                    String error = object.getString("error");
+                    Log.e("RegisterAccountConfirm", "accountRegistrationCallback: (1) " + error + ": " + message);
+
+                    MlmResponseError err = new MlmResponseError();
+                    err.setFieldName(error);
+                    err.setErrMessage(message);
+                    registerAccountRequest.getMlmResponseErrors().add(err);
+
+                    Toast.makeText(getContext(), message, Toast.LENGTH_LONG).show();
+
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            callback_code.getStepperLayout().hideProgress();
+                            callback_code.getStepperLayout().onBackClicked();
+                        }
+                    }, 2000L);
+
+
+                    //callback.getStepperLayout().onBackClicked();
+                } else if (object.has("exception")) {
+                    String exception = object.getString("exception");
+
+                    Log.e("RegisterAccountConfirm", "upgradeRegistrationCallback: (2) " + exception);
+                    Toast.makeText(getContext(), message, Toast.LENGTH_LONG).show();
+
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            callback_code.getStepperLayout().hideProgress();
+                            callback_code.getStepperLayout().onBackClicked();
+                        }
+                    }, 2000L);
+                }
+
+            } else {
+
+                Log.e("RegisterAccountConfirm", "upgradeRegistrationCallback: (3) Unexpected error");
+
+                Toast.makeText(getContext(), R.string.ui_exception, Toast.LENGTH_LONG).show();
+
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        callback_code.getStepperLayout().hideProgress();
+                        callback_code.getStepperLayout().onBackClicked();
+                    }
+                }, 2000L);
+            }
+        } catch (JSONException e) {
+            //do nothing
+            Log.e("RegisterAccountConfirm", "upgradeRegistrationCallback: (4) " + e.getMessage());
+            Toast.makeText(getContext(), R.string.ui_exception, Toast.LENGTH_LONG).show();
+
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    callback_code.getStepperLayout().hideProgress();
+                    callback_code.getStepperLayout().onBackClicked();
+                }
+            }, 2000L);
+        }
+
+
+    }
+
+
+    private void accountRegistration(RegisterAccount register_account, final StepperLayout.OnCompleteClickedCallback callback_upgrade) {
+
+        RequestQueue queue = Volley.newRequestQueue(getContext());
+
+        String url = getString(R.string.api_url).toString() + getString(R.string.api_account_registration).toString();
+
+        JSONObject post_data = new JSONObject();
+        try {
+            post_data.put("first_name", register_account.getFirstName());
+            post_data.put("last_name", register_account.getLastName());
+            post_data.put("activation_code", register_account.getActivationCode());
+
+            post_data.put("sponsor_id", register_account.getSponsorId());
+            post_data.put("upline_id", register_account.getUplineId());
+
+            post_data.put("password", register_account.getPassword());
+            //post_data.put("verify_password", register_account.getVerifyPassword());
+
+            post_data.put("middle_name", register_account.getMiddleName());
+
+            post_data.put("date_of_birth", register_account.getDateOfBirth());
+            post_data.put("marital_status", register_account.getMaritalStatus());
+            post_data.put("gender", register_account.getGender());
+            post_data.put("tax_number", register_account.getTaxNumber());
+            post_data.put("social_security_number", register_account.getSocialSecurityNumber());
+
+            post_data.put("street", register_account.getStreet());
+            post_data.put("city", register_account.getCity());
+            post_data.put("region", register_account.getRegion());
+            post_data.put("postal_code", register_account.getPostalCode());
+            post_data.put("country_code", register_account.getCountryCode());
+            post_data.put("email", register_account.getEmail());
+            post_data.put("telephone", register_account.getTelephone());
+            post_data.put("mobile_number", register_account.getMobileNumber());
+
+            post_data.put("mlm_account_id", register_account.getMlmAccountId());
+            post_data.put("mlm_location", register_account.getMlmLocation());
+            post_data.put("pickup_center_id", register_account.getPickupCenterId());
+
+        } catch (JSONException ex) {
+
+            callback_upgrade.getStepperLayout().hideProgress();
+            Toast.makeText(getContext(), R.string.ui_exception, Toast.LENGTH_LONG).show();
+            Log.e("RegisterAccountConfirm", ex.getMessage());
+            return;
+        }
+
+        Log.e("Volley", post_data.toString());
+
+
+        JsonObjectRequest jsObjRequest = new JsonObjectRequest(Request.Method.POST, url, post_data, new com.android.volley.Response.Listener<JSONObject>() {
+
+            @Override
+            public void onResponse(JSONObject response) {
+                Log.e("RegisterAccountConfirm", "Response: " + response.toString());
+                accountRegistrationCallback(response.toString(), callback_upgrade);
+            }
+        }, new com.android.volley.Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                // Do nothing
+                Log.e("RegisterAccountConfirm", "onErrorResponse: " + error.toString());
+                callback_upgrade.getStepperLayout().hideProgress();
+                Toast.makeText(getContext(), R.string.ui_unexpected_response, Toast.LENGTH_LONG).show();
+
+            }
+        });
+
+        queue.add(jsObjRequest);
     }
 }

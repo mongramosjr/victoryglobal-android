@@ -1,9 +1,9 @@
 /*
- * Created by Mong Ramos Jr. <mongramosjr@gmail.com> on 9/9/17 7:01 AM
+ * Created by Mong Ramos Jr. <mongramosjr@gmail.com> on 9/14/17 7:41 PM
  *
  * Copyright (c) 2017 Victory Global Unlimited Systems Inc. All rights reserved.
  *
- * Last modified 9/9/17 6:59 AM
+ * Last modified 9/13/17 8:42 PM
  */
 
 package vg.victoryglobal.victoryglobal.adapter;
@@ -20,9 +20,9 @@ import com.stepstone.stepper.viewmodel.StepViewModel;
 
 import vg.victoryglobal.victoryglobal.fragment.RegisterAccountAddressAndContact;
 import vg.victoryglobal.victoryglobal.fragment.RegisterAccountConfirm;
+import vg.victoryglobal.victoryglobal.fragment.RegisterAccountMlmInfo;
 import vg.victoryglobal.victoryglobal.fragment.RegisterAccountPersonalInfo;
 import vg.victoryglobal.victoryglobal.fragment.RegisterAccountSecurity;
-import vg.victoryglobal.victoryglobal.fragment.RegisterAccountVerify;
 
 public class RegisterAccountStepperAdapter extends AbstractFragmentStepAdapter {
 
@@ -42,8 +42,8 @@ public class RegisterAccountStepperAdapter extends AbstractFragmentStepAdapter {
             final RegisterAccountAddressAndContact stepAddressAndContact = new RegisterAccountAddressAndContact();
             return stepAddressAndContact;
         }else if(position == 2){
-            //step = RegisterAccountVerify.class;
-            final RegisterAccountVerify stepVerify = new RegisterAccountVerify();
+            //step = RegisterAccountMlmInfo.class;
+            final RegisterAccountMlmInfo stepVerify = new RegisterAccountMlmInfo();
             return stepVerify;
         }else if(position == 3){
             //step = RegisterAccountSecurity.class;

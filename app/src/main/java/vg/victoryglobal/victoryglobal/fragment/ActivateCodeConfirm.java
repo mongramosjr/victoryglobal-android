@@ -1,9 +1,9 @@
 /*
- * Created by Mong Ramos Jr. <mongramosjr@gmail.com> on 9/12/17 2:54 PM
+ * Created by Mong Ramos Jr. <mongramosjr@gmail.com> on 9/14/17 7:41 PM
  *
  * Copyright (c) 2017 Victory Global Unlimited Systems Inc. All rights reserved.
  *
- * Last modified 9/12/17 2:26 PM
+ * Last modified 9/13/17 7:38 PM
  */
 
 package vg.victoryglobal.victoryglobal.fragment;
@@ -117,9 +117,7 @@ public class ActivateCodeConfirm extends Fragment implements BlockingStep {
 
         callback.getStepperLayout().showProgress(getString(R.string.progress_message));
 
-        activateCodeRequest.getActivateCode().getActivationCode().toString();
-
-        codeRegistration(activateCodeRequest.getActivateCode().getMlmMemberId(), activateCodeRequest.getActivateCode().getActivationCode().toString(), callback);
+        codeRegistration(activateCodeRequest.getActivateCode(), callback);
     }
 
     @Override
@@ -283,18 +281,16 @@ public class ActivateCodeConfirm extends Fragment implements BlockingStep {
     }
 
 
-    private void codeRegistration(int mlm_member_id, String activation_code, final StepperLayout.OnCompleteClickedCallback callback_code) {
+    private void codeRegistration(ActivateCode activate_code, final StepperLayout.OnCompleteClickedCallback callback_code) {
 
         RequestQueue queue = Volley.newRequestQueue(getContext());
 
         String url = getString(R.string.api_url).toString() + getString(R.string.api_code_registration).toString();
 
-        ActivateCode code = new ActivateCode(mlm_member_id, activation_code);
-
         JSONObject post_data = new JSONObject();
         try {
-            post_data.put("mlm_member_id", code.getMlmMemberId());
-            post_data.put("activation_code", code.getActivationCode());
+            post_data.put("mlm_member_id", activate_code.getMlmMemberId());
+            post_data.put("activation_code", activate_code.getActivationCode());
         } catch (JSONException ex) {
 
             callback_code.getStepperLayout().hideProgress();
