@@ -1,9 +1,9 @@
 /*
- * Created by Mong Ramos Jr. <mongramosjr@gmail.com> on 9/14/17 7:41 PM
+ * Created by Mong Ramos Jr. <mongramosjr@gmail.com> on 9/17/17 2:31 PM
  *
  * Copyright (c) 2017 Victory Global Unlimited Systems Inc. All rights reserved.
  *
- * Last modified 9/13/17 8:33 PM
+ * Last modified 9/17/17 11:13 AM
  */
 
 package vg.victoryglobal.victoryglobal.fragment;
@@ -245,6 +245,8 @@ public class RegisterAccountAddressAndContact extends Fragment implements Blocki
             return;
         }
 
+        callback.getStepperLayout().showProgress(getString(R.string.progress_message));
+
         registerAccountRequest.resetErrorCodes();
 
         //singleton class variable, save the encoded data
@@ -262,6 +264,7 @@ public class RegisterAccountAddressAndContact extends Fragment implements Blocki
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
+                callback.getStepperLayout().hideProgress();
                 callback.goToNextStep();
             }
         }, 2000L);

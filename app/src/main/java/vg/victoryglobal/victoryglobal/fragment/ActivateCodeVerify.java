@@ -1,9 +1,9 @@
 /*
- * Created by Mong Ramos Jr. <mongramosjr@gmail.com> on 9/14/17 7:41 PM
+ * Created by Mong Ramos Jr. <mongramosjr@gmail.com> on 9/17/17 2:31 PM
  *
  * Copyright (c) 2017 Victory Global Unlimited Systems Inc. All rights reserved.
  *
- * Last modified 9/13/17 8:06 PM
+ * Last modified 9/17/17 1:15 PM
  */
 
 package vg.victoryglobal.victoryglobal.fragment;
@@ -25,6 +25,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.VolleyError;
@@ -410,6 +411,11 @@ public class ActivateCodeVerify extends Fragment implements BlockingStep {
                             }
                         }
                 );
+
+        // 6 minutes
+        jsObjRequest.setRetryPolicy(new DefaultRetryPolicy(DefaultRetryPolicy.DEFAULT_TIMEOUT_MS * 144,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+
 
         queue.add(jsObjRequest);
     }

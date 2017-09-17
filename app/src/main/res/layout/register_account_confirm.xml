@@ -1,9 +1,9 @@
 <!--
-  ~ Created by Mong Ramos Jr. <mongramosjr@gmail.com> on 9/9/17 9:19 PM
+  ~ Created by Mong Ramos Jr. <mongramosjr@gmail.com> on 9/17/17 2:31 PM
   ~
   ~ Copyright (c) 2017 Victory Global Unlimited Systems Inc. All rights reserved.
   ~
-  ~ Last modified 9/9/17 6:36 PM
+  ~ Last modified 9/17/17 1:22 PM
   -->
 
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -41,7 +41,7 @@
                     android:layout_width="wrap_content"
                     android:paddingRight="8dp"
                     android:textAppearance="@style/itemBodyText"
-                    android:text="Juan" />
+                    />
 
                 <TextView
                     android:id="@+id/middle_name"
@@ -49,14 +49,14 @@
                     android:layout_width="wrap_content"
                     android:paddingRight="8dp"
                     android:textAppearance="@style/itemBodyText"
-                    android:text="Dimagiba" />
+                    />
 
                 <TextView
                     android:id="@+id/last_name"
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
                     android:textAppearance="@style/itemBodyText"
-                    android:text="Dela Cruz" />
+                    />
             </LinearLayout>
 
             <LinearLayout
@@ -76,7 +76,7 @@
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
                     android:textAppearance="@style/itemBodyText"
-                    android:text="January 01, 1978" />
+                    />
 
             </LinearLayout>
 
@@ -104,7 +104,7 @@
                         android:layout_height="wrap_content"
                         android:layout_width="wrap_content"
                         android:textAppearance="@style/itemBodyText"
-                        android:text="Single" />
+                        />
                 </LinearLayout>
                 <LinearLayout
                     android:orientation="vertical"
@@ -123,7 +123,7 @@
                         android:layout_height="wrap_content"
                         android:layout_width="wrap_content"
                         android:textAppearance="@style/itemBodyText"
-                        android:text="Male" />
+                        />
                 </LinearLayout>
 
 
@@ -158,8 +158,7 @@
                         android:layout_height="wrap_content"
                         android:layout_width="wrap_content"
                         android:textAppearance="@style/itemBodyText"
-                        android:hint="@string/tax_number_hint"
-                        android:text="Single00012345678900" />
+                        />
                 </LinearLayout>
                 <LinearLayout
                     android:orientation="vertical"
@@ -178,7 +177,7 @@
                         android:layout_height="wrap_content"
                         android:layout_width="wrap_content"
                         android:textAppearance="@style/itemBodyText"
-                        android:text="123000456789001" />
+                         />
                 </LinearLayout>
             </LinearLayout>
 
@@ -203,8 +202,6 @@
                     android:id="@+id/street"
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
-                    android:hint="@string/street_hint"
-                    android:text="New York Street, Cubao"
                     android:textAppearance="@style/itemBodyText"/>
             </LinearLayout>
 
@@ -217,16 +214,12 @@
                     android:id="@+id/city"
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
-                    android:hint="@string/city_hint"
-                    android:text="Quezon City"
                     android:paddingRight="8dp"
                     android:textAppearance="@style/itemBodyText"/>
                 <TextView
                     android:id="@+id/region"
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
-                    android:hint="@string/region_hint"
-                    android:text="Metro Manila"
                     android:textAppearance="@style/itemBodyText"/>
             </LinearLayout>
             <LinearLayout
@@ -238,16 +231,12 @@
                     android:id="@+id/postal_code"
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
-                    android:hint="@string/postal_code_hint"
-                    android:text="1111"
                     android:paddingRight="8dp"
                     android:textAppearance="@style/itemBodyText"/>
                 <TextView
                     android:id="@+id/country_code"
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
-                    android:hint="@string/country_code_hint"
-                    android:text="Philippines"
                     android:textAppearance="@style/itemBodyText"/>
             </LinearLayout>
 
@@ -276,7 +265,7 @@
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
                     android:textAppearance="@style/itemBodyText"
-                    android:text="juandelacruz@email.com" />
+                    />
             </LinearLayout>
 
             <LinearLayout
@@ -303,7 +292,7 @@
                         android:layout_height="wrap_content"
                         android:layout_width="wrap_content"
                         android:textAppearance="@style/itemBodyText"
-                        android:text="+63-2-1234567" />
+                        />
                 </LinearLayout>
                 <LinearLayout
                     android:orientation="vertical"
@@ -322,7 +311,7 @@
                         android:layout_height="wrap_content"
                         android:layout_width="wrap_content"
                         android:textAppearance="@style/itemBodyText"
-                        android:text="+63-912-3456789" />
+                        />
                 </LinearLayout>
             </LinearLayout>
 
@@ -351,7 +340,7 @@
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
                     android:textAppearance="@style/itemBodyText"
-                    android:text="Procopio Dela Cruz" />
+                    />
             </LinearLayout>
 
             <LinearLayout
@@ -372,14 +361,14 @@
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
                     android:textAppearance="@style/itemBodyText"
-                    android:text="Quick Package" />
+                    />
 
                 <TextView
                     android:id="@+id/activation_code"
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
                     android:textAppearance="@style/itemBodyText"
-                    android:text="QPK12345ABCD" />
+                    />
             </LinearLayout>
             <LinearLayout
                 android:orientation="vertical"
@@ -399,14 +388,14 @@
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
                     android:textAppearance="@style/itemBodyText"
-                    android:text="Maria Makiling" />
+                    />
 
                 <TextView
                     android:id="@+id/sponsor_id"
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
                     android:textAppearance="@style/itemBodyText"
-                    android:text="123456789" />
+                    />
 
             </LinearLayout>
 
@@ -428,14 +417,14 @@
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
                     android:textAppearance="@style/itemBodyText"
-                    android:text="Josefa Inangbayan" />
+                     />
 
                 <TextView
                     android:id="@+id/upline_id"
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
                     android:textAppearance="@style/itemBodyText"
-                    android:text="987654321" />
+                    />
 
             </LinearLayout>
 
@@ -457,7 +446,7 @@
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
                     android:textAppearance="@style/itemBodyText"
-                    android:text="Group A" />
+                    />
             </LinearLayout>
 
 
@@ -479,7 +468,7 @@
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
                     android:textAppearance="@style/itemBodyText"
-                    android:text="Baguio City" />
+                    />
 
             </LinearLayout>
 
@@ -530,7 +519,7 @@
                     android:layout_width="wrap_content"
                     android:textAppearance="@style/itemBodyText"
                     android:inputType="textPassword"
-                    android:text="Baguio City" />
+                    />
 
             </LinearLayout>
 

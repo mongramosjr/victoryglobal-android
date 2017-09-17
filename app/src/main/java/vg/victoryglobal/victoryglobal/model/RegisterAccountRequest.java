@@ -1,14 +1,15 @@
 /*
- * Created by Mong Ramos Jr. <mongramosjr@gmail.com> on 9/14/17 7:41 PM
+ * Created by Mong Ramos Jr. <mongramosjr@gmail.com> on 9/17/17 2:31 PM
  *
  * Copyright (c) 2017 Victory Global Unlimited Systems Inc. All rights reserved.
  *
- * Last modified 9/13/17 8:27 PM
+ * Last modified 9/17/17 11:33 AM
  */
 
 package vg.victoryglobal.victoryglobal.model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class RegisterAccountRequest {
 
@@ -50,6 +51,7 @@ public class RegisterAccountRequest {
 
     public synchronized void reset() {
         registerAccount = new RegisterAccount();
+
     }
     public synchronized void resetErrorCodes() {
         mlmResponseErrors.clear();
@@ -94,4 +96,6 @@ public class RegisterAccountRequest {
     public boolean isSuccessSecurity() {
         return successSecurity;
     }
+
+
 }

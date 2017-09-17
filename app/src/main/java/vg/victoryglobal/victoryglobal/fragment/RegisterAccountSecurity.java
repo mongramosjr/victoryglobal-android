@@ -1,9 +1,9 @@
 /*
- * Created by Mong Ramos Jr. <mongramosjr@gmail.com> on 9/14/17 7:41 PM
+ * Created by Mong Ramos Jr. <mongramosjr@gmail.com> on 9/17/17 2:31 PM
  *
  * Copyright (c) 2017 Victory Global Unlimited Systems Inc. All rights reserved.
  *
- * Last modified 9/14/17 7:38 PM
+ * Last modified 9/17/17 2:29 PM
  */
 
 package vg.victoryglobal.victoryglobal.fragment;
@@ -26,6 +26,7 @@ import android.view.ViewGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.VolleyError;
@@ -35,6 +36,7 @@ import com.stepstone.stepper.BlockingStep;
 import com.stepstone.stepper.StepperLayout;
 import com.stepstone.stepper.VerificationError;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONTokener;
@@ -44,6 +46,7 @@ import java.util.ArrayList;
 
 import vg.victoryglobal.victoryglobal.R;
 import vg.victoryglobal.victoryglobal.model.ActivateCode;
+import vg.victoryglobal.victoryglobal.model.MlmAccountRequest;
 import vg.victoryglobal.victoryglobal.model.MlmResponseError;
 import vg.victoryglobal.victoryglobal.model.RegisterAccount;
 import vg.victoryglobal.victoryglobal.model.RegisterAccountRequest;
@@ -59,11 +62,14 @@ public class RegisterAccountSecurity extends Fragment implements BlockingStep {
 
     RegisterAccountRequest registerAccountRequest;
 
+    MlmAccountRequest mlmAccountRequest;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         registerAccountRequest = RegisterAccountRequest.getInstance();
+        mlmAccountRequest = MlmAccountRequest.getInstance();
 
     }
 
@@ -302,14 +308,24 @@ public class RegisterAccountSecurity extends Fragment implements BlockingStep {
                 JSONObject activation_code = object.getJSONObject("activation_code");
                 JSONObject sponsor = object.getJSONObject("sponsor");
                 JSONObject upline = object.getJSONObject("upline");
-                JSONObject mlm_account = object.getJSONObject("mlm_account");
+
+                if(object.has("similar_account")) {
+
+                    if(object.get("similar_account").toString()=="false") {
+                        Log.e("MONGNGNG False", object.get("similar_account").toString());
+                        //JSONArray similar_account = object.getJSONArray("similar_account");
+                    }else{
+                        Log.e("MONGNGNG Array", object.get("similar_account").toString());
+                    }
+                }
+
 
                 //save
                 //singleton class variable, save the encoded data
                 registerAccountRequest.getRegisterAccount().setActivationCodeName(activation_code.getString("name"));
                 registerAccountRequest.getRegisterAccount().setSponsorName(sponsor.getString("name"));
-                registerAccountRequest.getRegisterAccount().setSponsorName(upline.getString("name"));
-                registerAccountRequest.getRegisterAccount().setMlmAccountName(mlm_account.getString("name"));
+                registerAccountRequest.getRegisterAccount().setUplineName(upline.getString("name"));
+                //registerAccountRequest.getRegisterAccount().setMlmAccountName(similar_account.getString("name"));
 
 
 
@@ -397,19 +413,45 @@ public class RegisterAccountSecurity extends Fragment implements BlockingStep {
             post_data.put("password", register_account.getPassword());
             //post_data.put("verify_password", register_account.getVerifyPassword());
 
-            post_data.put("middle_name", register_account.getMiddleName());
 
-            post_data.put("date_of_birth", register_account.getDateOfBirth());
-            post_data.put("marital_status", register_account.getMaritalStatus());
+            if(!register_account.getMiddleName().isEmpty()) {
+                post_data.put("middle_name", register_account.getMiddleName());
+            }
+
+            //if(!register_account.getDateOfBirth()..isEmpty()){
+            //    post_data.put("date_of_birth", register_account.getDateOfBirth());
+            //}
+
+            if(!register_account.getMaritalStatus().isEmpty()) {
+                post_data.put("marital_status", register_account.getMaritalStatus());
+            }
+
             post_data.put("gender", register_account.getGender());
-            post_data.put("tax_number", register_account.getTaxNumber());
-            post_data.put("social_security_number", register_account.getSocialSecurityNumber());
 
-            post_data.put("street", register_account.getStreet());
-            post_data.put("city", register_account.getCity());
-            post_data.put("region", register_account.getRegion());
-            post_data.put("postal_code", register_account.getPostalCode());
-            post_data.put("country_code", register_account.getCountryCode());
+
+            if(!register_account.getTaxNumber().isEmpty()) {
+                post_data.put("tax_number", register_account.getTaxNumber());
+            }
+            if(!register_account.getSocialSecurityNumber().isEmpty()) {
+                post_data.put("social_security_number", register_account.getSocialSecurityNumber());
+            }
+
+            if(!register_account.getStreet().isEmpty()) {
+                post_data.put("street", register_account.getStreet());
+            }
+            if(!register_account.getCity().isEmpty()) {
+                post_data.put("city", register_account.getCity());
+            }
+            if(!register_account.getRegion().isEmpty()) {
+                post_data.put("region", register_account.getRegion());
+            }
+            if(!register_account.getPostalCode().isEmpty()) {
+                post_data.put("postal_code", register_account.getPostalCode());
+            }
+            if(!register_account.getCountryCode().isEmpty()) {
+                post_data.put("country_code", register_account.getCountryCode());
+            }
+
             post_data.put("email", register_account.getEmail());
             post_data.put("telephone", register_account.getTelephone());
             post_data.put("mobile_number", register_account.getMobileNumber());
@@ -454,6 +496,10 @@ public class RegisterAccountSecurity extends Fragment implements BlockingStep {
                             }
                         }
                 );
+
+        // 6 minutes
+        jsObjRequest.setRetryPolicy(new DefaultRetryPolicy(DefaultRetryPolicy.DEFAULT_TIMEOUT_MS * 144,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
 
         queue.add(jsObjRequest);
     }

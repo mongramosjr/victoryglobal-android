@@ -1,9 +1,9 @@
 <!--
-  ~ Created by Mong Ramos Jr. <mongramosjr@gmail.com> on 9/14/17 7:41 PM
+  ~ Created by Mong Ramos Jr. <mongramosjr@gmail.com> on 9/17/17 2:31 PM
   ~
   ~ Copyright (c) 2017 Victory Global Unlimited Systems Inc. All rights reserved.
   ~
-  ~ Last modified 9/13/17 7:33 PM
+  ~ Last modified 9/17/17 8:01 AM
   -->
 
 <resources>
@@ -118,5 +118,6 @@
     <string name="api_upgrade_checkfirst">/activation-code/registration/checkfirst/.json</string>
     <string name="api_account_registration">/distributor/registration/.json</string>
     <string name="api_account_registration_checkfirst">/distributor/registration/checkfirst/.json</string>
+    <string name="api_pickupcenters">/distributor/pickup_centers/.json</string>
 
 </resources>

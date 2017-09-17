@@ -1,9 +1,9 @@
 <!--
-  ~ Created by Mong Ramos Jr. <mongramosjr@gmail.com> on 9/14/17 7:41 PM
+  ~ Created by Mong Ramos Jr. <mongramosjr@gmail.com> on 9/17/17 2:31 PM
   ~
   ~ Copyright (c) 2017 Victory Global Unlimited Systems Inc. All rights reserved.
   ~
-  ~ Last modified 9/13/17 8:42 PM
+  ~ Last modified 9/17/17 9:42 AM
   -->
 
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -36,11 +36,13 @@
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:id="@+id/mlm_account_id_layout"
                 >
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textAppearance="@android:style/TextAppearance.Material.Caption"
+                    android:id="@+id/mlm_account_id_label"
                     android:text="@string/mlm_account_id_hint"/>
 
                 <Spinner
@@ -121,11 +123,13 @@
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:id="@+id/pickup_center_id_layout"
                 >
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textAppearance="@android:style/TextAppearance.Material.Caption"
+                    android:id="@+id/pickup_center_id_label"
                     android:text="@string/pickup_center_id_hint"/>
 
                 <Spinner

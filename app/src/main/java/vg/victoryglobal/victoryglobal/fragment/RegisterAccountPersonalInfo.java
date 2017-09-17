@@ -1,9 +1,9 @@
 /*
- * Created by Mong Ramos Jr. <mongramosjr@gmail.com> on 9/14/17 7:41 PM
+ * Created by Mong Ramos Jr. <mongramosjr@gmail.com> on 9/17/17 2:31 PM
  *
  * Copyright (c) 2017 Victory Global Unlimited Systems Inc. All rights reserved.
  *
- * Last modified 9/13/17 8:47 PM
+ * Last modified 9/17/17 12:40 PM
  */
 
 package vg.victoryglobal.victoryglobal.fragment;
@@ -58,6 +58,10 @@ public class RegisterAccountPersonalInfo extends Fragment implements BlockingSte
 
     RegisterAccountRequest registerAccountRequest;
 
+    ArrayAdapter<CharSequence> adapterGender;
+
+    ArrayAdapter<CharSequence> adapterMaritalStatus;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -97,7 +101,7 @@ public class RegisterAccountPersonalInfo extends Fragment implements BlockingSte
 
 
         // Create an ArrayAdapter using the string array and a default spinner layout
-        ArrayAdapter<CharSequence> adapterGender = ArrayAdapter.createFromResource(view.getContext(),
+        adapterGender = ArrayAdapter.createFromResource(view.getContext(),
                 R.array.gender_array, android.R.layout.simple_spinner_item);
         // Specify the layout to use when the list of choices appears
         adapterGender.setDropDownViewResource(android.R.layout.simple_list_item_single_choice);
@@ -105,12 +109,12 @@ public class RegisterAccountPersonalInfo extends Fragment implements BlockingSte
         gender.setAdapter(adapterGender);
 
         // Create an ArrayAdapter using the string array and a default spinner layout
-        ArrayAdapter<CharSequence> adapterMaritsalStatus = ArrayAdapter.createFromResource(view.getContext(),
+        adapterMaritalStatus = ArrayAdapter.createFromResource(view.getContext(),
                 R.array.marital_status_array, android.R.layout.simple_spinner_item);
         // Specify the layout to use when the list of choices appears
-        adapterMaritsalStatus.setDropDownViewResource(android.R.layout.simple_list_item_single_choice);
+        adapterMaritalStatus.setDropDownViewResource(android.R.layout.simple_list_item_single_choice);
         // Apply the adapter to the spinner
-        maritalStatus.setAdapter(adapterMaritsalStatus);
+        maritalStatus.setAdapter(adapterMaritalStatus);
 
         //display text
         displayEnteredText();
@@ -214,6 +218,8 @@ public class RegisterAccountPersonalInfo extends Fragment implements BlockingSte
             return;
         }
 
+        callback.getStepperLayout().showProgress(getString(R.string.progress_message));
+
         registerAccountRequest.resetErrorCodes();
 
 
@@ -221,16 +227,28 @@ public class RegisterAccountPersonalInfo extends Fragment implements BlockingSte
         registerAccountRequest.getRegisterAccount().setFirstName(firstName.getText().toString());
         registerAccountRequest.getRegisterAccount().setMiddleName(middleName.getText().toString());
         registerAccountRequest.getRegisterAccount().setLastName(lastName.getText().toString());
+
+        //TODO:
         //registerAccountRequest.getRegisterAccount().
         //        setDateOfBirth(Date.valueOf(dateOfBirth.getText().toString()));
-        //registerAccountRequest.getRegisterAccount().setGender(gender.getText().toString());
-        //registerAccountRequest.getRegisterAccount().setMaritalStatus(maritalStatus.getText().toString());
+
+        int position_marital_status = maritalStatus.getSelectedItemPosition();
+        CharSequence marital_status = adapterMaritalStatus.getItem(position_marital_status);
+        registerAccountRequest.getRegisterAccount().setMaritalStatus(marital_status.toString());
+
+        int position_gender = gender.getSelectedItemPosition();
+        CharSequence gender_name = adapterGender.getItem(position_gender);
+        registerAccountRequest.getRegisterAccount().setGender(position_gender);
+        registerAccountRequest.getRegisterAccount().setGenderName(gender_name.toString());
+
+
         registerAccountRequest.getRegisterAccount().setTaxNumber(taxNumber.getText().toString());
         registerAccountRequest.getRegisterAccount().setSocialSecurityNumber(socialSecurityNumber.getText().toString());
 
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
+                callback.getStepperLayout().hideProgress();
                 callback.goToNextStep();
             }
         }, 2000L);
@@ -276,9 +294,10 @@ public class RegisterAccountPersonalInfo extends Fragment implements BlockingSte
             middleName.setText("");
             lastName.setText("");
             dateOfBirth.setText("");
-            //maritalStatus.setText("");
 
-            //gender.setText("");
+            maritalStatus.setSelection(0);
+
+            gender.setSelection(0);
 
             taxNumber.setText("");
             socialSecurityNumber.setText("");
@@ -309,14 +328,19 @@ public class RegisterAccountPersonalInfo extends Fragment implements BlockingSte
                 dateOfBirth.setText(registerAccountRequest.getRegisterAccount().getDateOfBirth().toString());
             }
         }
-        if(registerAccountRequest.getRegisterAccount().getGender() != null) {
-            if (registerAccountRequest.getRegisterAccount().getGender().length() > 0) {
-                //gender.setText(registerAccountRequest.getRegisterAccount().getGender());
-            }
+
+        if(registerAccountRequest.getRegisterAccount().getGender() != 0 ) {
+            String gender_name = registerAccountRequest.getRegisterAccount().getGenderName();
+            int position = adapterGender.getPosition(gender_name);
+            gender.setSelection(position);
         }
+
+
         if(registerAccountRequest.getRegisterAccount().getMaritalStatus() != null) {
             if (registerAccountRequest.getRegisterAccount().getMaritalStatus().length() > 0) {
-                //maritalStatus.setText(registerAccountRequest.getRegisterAccount().getMaritalStatus());
+                String marital_status_name = registerAccountRequest.getRegisterAccount().getMaritalStatus();
+                int position = adapterMaritalStatus.getPosition(marital_status_name);
+                maritalStatus.setSelection(position);
             }
         }
         if(registerAccountRequest.getRegisterAccount().getTaxNumber() != null) {

@@ -1,9 +1,9 @@
 /*
- * Created by Mong Ramos Jr. <mongramosjr@gmail.com> on 9/14/17 7:41 PM
+ * Created by Mong Ramos Jr. <mongramosjr@gmail.com> on 9/17/17 2:31 PM
  *
  * Copyright (c) 2017 Victory Global Unlimited Systems Inc. All rights reserved.
  *
- * Last modified 9/13/17 7:51 PM
+ * Last modified 9/17/17 12:38 PM
  */
 
 package vg.victoryglobal.victoryglobal.model;
@@ -29,7 +29,7 @@ public class RegisterAccount implements Parcelable {
 
     private Date dateOfBirth;
     private String maritalStatus;
-    private String gender;
+    private int gender;
     private String taxNumber;
     private String socialSecurityNumber;
 
@@ -50,6 +50,12 @@ public class RegisterAccount implements Parcelable {
     private String sponsorName = "";
     private String uplineName = "";
     private String mlmAccountName = "";
+
+    private String pickupCenterName = "";
+    private String mlmLocationName = "";
+
+    private String genderName = "";
+
 
 
     public RegisterAccount(){
@@ -134,8 +140,8 @@ public class RegisterAccount implements Parcelable {
     public void setMaritalStatus(String maritalStatus) {this.maritalStatus = maritalStatus; }
 
 
-    public String getGender() { return gender; }
-    public void setGender(String gender) {this.gender = gender; }
+    public int getGender() { return gender; }
+    public void setGender(int gender) {this.gender = gender; }
 
 
     public String getTaxNumber() { return taxNumber; }
@@ -205,4 +211,28 @@ public class RegisterAccount implements Parcelable {
     public String getMlmAccountName() { return mlmAccountName; }
 
     public void setMlmAccountName(String mlmAccountName) { this.mlmAccountName = mlmAccountName; }
+
+    public String getMlmLocationName() {
+        return mlmLocationName;
+    }
+
+    public void setMlmLocationName(String mlmLocationName) {
+        this.mlmLocationName = mlmLocationName;
+    }
+
+    public String getPickupCenterName() {
+        return pickupCenterName;
+    }
+
+    public void setPickupCenterName(String pickupCenterName) {
+        this.pickupCenterName = pickupCenterName;
+    }
+
+    public String getGenderName() {
+        return genderName;
+    }
+
+    public void setGenderName(String genderName) {
+        this.genderName = genderName;
+    }
 }

@@ -1,9 +1,9 @@
 /*
- * Created by Mong Ramos Jr. <mongramosjr@gmail.com> on 9/14/17 7:41 PM
+ * Created by Mong Ramos Jr. <mongramosjr@gmail.com> on 9/17/17 2:31 PM
  *
  * Copyright (c) 2017 Victory Global Unlimited Systems Inc. All rights reserved.
  *
- * Last modified 9/13/17 8:28 PM
+ * Last modified 9/17/17 2:30 PM
  */
 
 package vg.victoryglobal.victoryglobal.fragment;
@@ -21,6 +21,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.VolleyError;
@@ -211,9 +212,10 @@ public class RegisterAccountConfirm extends Fragment implements BlockingStep {
                 dateOfBirth.setText(registerAccountRequest.getRegisterAccount().getDateOfBirth().toString());
             }
         }
-        if(registerAccountRequest.getRegisterAccount().getGender() != null) {
-            if (registerAccountRequest.getRegisterAccount().getGender().length() > 0) {
-                gender.setText(registerAccountRequest.getRegisterAccount().getGender());
+
+        if(registerAccountRequest.getRegisterAccount().getGenderName() != null) {
+            if (registerAccountRequest.getRegisterAccount().getGenderName().length() > 0) {
+                gender.setText(registerAccountRequest.getRegisterAccount().getGenderName());
             }
         }
         if(registerAccountRequest.getRegisterAccount().getMaritalStatus() != null) {
@@ -276,24 +278,56 @@ public class RegisterAccountConfirm extends Fragment implements BlockingStep {
 
 
         if(registerAccountRequest.getRegisterAccount().getMlmAccountId() != 0 ) {
-            mlmAccountId.setText(String.valueOf(registerAccountRequest.getRegisterAccount().getMlmAccountId()));
+            if(registerAccountRequest.getRegisterAccount().getMlmAccountName() != null) {
+                if (registerAccountRequest.getRegisterAccount().getMlmAccountName().length() > 0) {
+                    mlmAccountId.setText(registerAccountRequest.getRegisterAccount().getMlmAccountName());
+                }
+            }
+
         }
         if(registerAccountRequest.getRegisterAccount().getActivationCode() != null) {
             if (registerAccountRequest.getRegisterAccount().getActivationCode().length() > 0) {
                 activationCode.setText(registerAccountRequest.getRegisterAccount().getActivationCode());
             }
+
+            if(registerAccountRequest.getRegisterAccount().getActivationCodeName() != null) {
+                if (registerAccountRequest.getRegisterAccount().getActivationCodeName().length() > 0) {
+                    activationCodeName.setText(registerAccountRequest.getRegisterAccount().getActivationCodeName());
+                }
+            }
         }
         if(registerAccountRequest.getRegisterAccount().getUplineId() != 0 ) {
             uplineId.setText(String.valueOf(registerAccountRequest.getRegisterAccount().getUplineId()));
+            if(registerAccountRequest.getRegisterAccount().getUplineName() != null) {
+                if (registerAccountRequest.getRegisterAccount().getUplineName().length() > 0) {
+                    uplineName.setText(registerAccountRequest.getRegisterAccount().getUplineName());
+                }
+            }
         }
         if(registerAccountRequest.getRegisterAccount().getSponsorId() != 0 ) {
             sponsorId.setText(String.valueOf(registerAccountRequest.getRegisterAccount().getSponsorId()));
+            if(registerAccountRequest.getRegisterAccount().getSponsorName() != null) {
+                if (registerAccountRequest.getRegisterAccount().getSponsorName().length() > 0) {
+                    sponsorName.setText(registerAccountRequest.getRegisterAccount().getSponsorName());
+                }
+            }
         }
-        if(registerAccountRequest.getRegisterAccount().getMlmLocation() != 0 ) {
-            mlmLocation.setText(String.valueOf(registerAccountRequest.getRegisterAccount().getMlmLocation()));
-        }
+
+        //if(registerAccountRequest.getRegisterAccount().getMlmLocation() != 0 ) {
+            //mlmLocation.setText(String.valueOf(registerAccountRequest.getRegisterAccount().getMlmLocation()));
+            if(registerAccountRequest.getRegisterAccount().getMlmLocationName() != null) {
+                if (registerAccountRequest.getRegisterAccount().getMlmLocationName().length() > 0) {
+                    mlmLocation.setText(registerAccountRequest.getRegisterAccount().getMlmLocationName());
+                }
+            }
+        //}
+
         if(registerAccountRequest.getRegisterAccount().getPickupCenterId() != 0 ) {
-            pickupCenterId.setText(String.valueOf(registerAccountRequest.getRegisterAccount().getPickupCenterId()));
+            if(registerAccountRequest.getRegisterAccount().getPickupCenterName() != null) {
+                if (registerAccountRequest.getRegisterAccount().getPickupCenterName().length() > 0) {
+                    pickupCenterId.setText(registerAccountRequest.getRegisterAccount().getPickupCenterName());
+                }
+            }
         }
 
 
@@ -311,7 +345,7 @@ public class RegisterAccountConfirm extends Fragment implements BlockingStep {
     }
 
     private void accountRegistrationCallback(String response_data,
-                                             final StepperLayout.OnCompleteClickedCallback callback_code) {
+                                             final StepperLayout.OnCompleteClickedCallback callback_register) {
         try {
             JSONObject object = (JSONObject) new JSONTokener(response_data).nextValue();
             int status = object.getInt("status");
@@ -340,7 +374,7 @@ public class RegisterAccountConfirm extends Fragment implements BlockingStep {
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        callback_code.complete();
+                        callback_register.complete();
                     }
                 }, 2000L);
 
@@ -351,8 +385,8 @@ public class RegisterAccountConfirm extends Fragment implements BlockingStep {
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        callback_code.getStepperLayout().hideProgress();
-                        callback_code.getStepperLayout().setCurrentStepPosition(0);
+                        callback_register.getStepperLayout().hideProgress();
+                        callback_register.getStepperLayout().setCurrentStepPosition(0);
                     }
                 }, 2000L);
 
@@ -375,8 +409,8 @@ public class RegisterAccountConfirm extends Fragment implements BlockingStep {
                     new Handler().postDelayed(new Runnable() {
                         @Override
                         public void run() {
-                            callback_code.getStepperLayout().hideProgress();
-                            callback_code.getStepperLayout().onBackClicked();
+                            callback_register.getStepperLayout().hideProgress();
+                            callback_register.getStepperLayout().onBackClicked();
                         }
                     }, 2000L);
 
@@ -391,8 +425,8 @@ public class RegisterAccountConfirm extends Fragment implements BlockingStep {
                     new Handler().postDelayed(new Runnable() {
                         @Override
                         public void run() {
-                            callback_code.getStepperLayout().hideProgress();
-                            callback_code.getStepperLayout().onBackClicked();
+                            callback_register.getStepperLayout().hideProgress();
+                            callback_register.getStepperLayout().onBackClicked();
                         }
                     }, 2000L);
                 }
@@ -406,8 +440,8 @@ public class RegisterAccountConfirm extends Fragment implements BlockingStep {
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        callback_code.getStepperLayout().hideProgress();
-                        callback_code.getStepperLayout().onBackClicked();
+                        callback_register.getStepperLayout().hideProgress();
+                        callback_register.getStepperLayout().onBackClicked();
                     }
                 }, 2000L);
             }
@@ -419,8 +453,8 @@ public class RegisterAccountConfirm extends Fragment implements BlockingStep {
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    callback_code.getStepperLayout().hideProgress();
-                    callback_code.getStepperLayout().onBackClicked();
+                    callback_register.getStepperLayout().hideProgress();
+                    callback_register.getStepperLayout().onBackClicked();
                 }
             }, 2000L);
         }
@@ -429,7 +463,7 @@ public class RegisterAccountConfirm extends Fragment implements BlockingStep {
     }
 
 
-    private void accountRegistration(RegisterAccount register_account, final StepperLayout.OnCompleteClickedCallback callback_upgrade) {
+    private void accountRegistration(RegisterAccount register_account, final StepperLayout.OnCompleteClickedCallback callback_register) {
 
         RequestQueue queue = Volley.newRequestQueue(getContext());
 
@@ -447,19 +481,44 @@ public class RegisterAccountConfirm extends Fragment implements BlockingStep {
             post_data.put("password", register_account.getPassword());
             //post_data.put("verify_password", register_account.getVerifyPassword());
 
-            post_data.put("middle_name", register_account.getMiddleName());
 
-            post_data.put("date_of_birth", register_account.getDateOfBirth());
-            post_data.put("marital_status", register_account.getMaritalStatus());
+            if(!register_account.getMiddleName().isEmpty()) {
+                post_data.put("middle_name", register_account.getMiddleName());
+            }
+
+            //if(!register_account.getDateOfBirth()..isEmpty()){
+            //    post_data.put("date_of_birth", register_account.getDateOfBirth());
+            //}
+
+            if(!register_account.getMaritalStatus().isEmpty()) {
+                post_data.put("marital_status", register_account.getMaritalStatus());
+            }
+
             post_data.put("gender", register_account.getGender());
-            post_data.put("tax_number", register_account.getTaxNumber());
-            post_data.put("social_security_number", register_account.getSocialSecurityNumber());
 
-            post_data.put("street", register_account.getStreet());
-            post_data.put("city", register_account.getCity());
-            post_data.put("region", register_account.getRegion());
-            post_data.put("postal_code", register_account.getPostalCode());
-            post_data.put("country_code", register_account.getCountryCode());
+
+            if(!register_account.getTaxNumber().isEmpty()) {
+                post_data.put("tax_number", register_account.getTaxNumber());
+            }
+            if(!register_account.getSocialSecurityNumber().isEmpty()) {
+                post_data.put("social_security_number", register_account.getSocialSecurityNumber());
+            }
+
+            if(!register_account.getStreet().isEmpty()) {
+                post_data.put("street", register_account.getStreet());
+            }
+            if(!register_account.getCity().isEmpty()) {
+                post_data.put("city", register_account.getCity());
+            }
+            if(!register_account.getRegion().isEmpty()) {
+                post_data.put("region", register_account.getRegion());
+            }
+            if(!register_account.getPostalCode().isEmpty()) {
+                post_data.put("postal_code", register_account.getPostalCode());
+            }
+            if(!register_account.getCountryCode().isEmpty()) {
+                post_data.put("country_code", register_account.getCountryCode());
+            }
             post_data.put("email", register_account.getEmail());
             post_data.put("telephone", register_account.getTelephone());
             post_data.put("mobile_number", register_account.getMobileNumber());
@@ -470,21 +529,18 @@ public class RegisterAccountConfirm extends Fragment implements BlockingStep {
 
         } catch (JSONException ex) {
 
-            callback_upgrade.getStepperLayout().hideProgress();
+            callback_register.getStepperLayout().hideProgress();
             Toast.makeText(getContext(), R.string.ui_exception, Toast.LENGTH_LONG).show();
             Log.e("RegisterAccountConfirm", ex.getMessage());
             return;
         }
-
-        Log.e("Volley", post_data.toString());
-
 
         JsonObjectRequest jsObjRequest = new JsonObjectRequest(Request.Method.POST, url, post_data, new com.android.volley.Response.Listener<JSONObject>() {
 
             @Override
             public void onResponse(JSONObject response) {
                 Log.e("RegisterAccountConfirm", "Response: " + response.toString());
-                accountRegistrationCallback(response.toString(), callback_upgrade);
+                accountRegistrationCallback(response.toString(), callback_register);
             }
         }, new com.android.volley.Response.ErrorListener() {
 
@@ -492,11 +548,15 @@ public class RegisterAccountConfirm extends Fragment implements BlockingStep {
             public void onErrorResponse(VolleyError error) {
                 // Do nothing
                 Log.e("RegisterAccountConfirm", "onErrorResponse: " + error.toString());
-                callback_upgrade.getStepperLayout().hideProgress();
+                callback_register.getStepperLayout().hideProgress();
                 Toast.makeText(getContext(), R.string.ui_unexpected_response, Toast.LENGTH_LONG).show();
 
             }
         });
+
+        // 6 minutes
+        jsObjRequest.setRetryPolicy(new DefaultRetryPolicy(DefaultRetryPolicy.DEFAULT_TIMEOUT_MS * 144,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
 
         queue.add(jsObjRequest);
     }
