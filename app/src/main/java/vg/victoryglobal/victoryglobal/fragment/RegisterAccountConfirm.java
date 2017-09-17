@@ -1,9 +1,9 @@
 /*
- * Created by Mong Ramos Jr. <mongramosjr@gmail.com> on 9/17/17 2:52 PM
+ * Created by Mong Ramos Jr. <mongramosjr@gmail.com> on 9/14/17 7:41 PM
  *
  * Copyright (c) 2017 Victory Global Unlimited Systems Inc. All rights reserved.
  *
- * Last modified 9/17/17 2:52 PM
+ * Last modified 9/13/17 8:28 PM
  */
 
 package vg.victoryglobal.victoryglobal.fragment;
@@ -288,6 +288,7 @@ public class RegisterAccountConfirm extends Fragment implements BlockingStep {
                     mlmAccountName.setText(registerAccountRequest.getRegisterAccount().getMlmAccountName());
                 }
             }
+
         }else{
             mlmAccountName.setVisibility(View.INVISIBLE);
             mlmAccountLabel.setVisibility(View.INVISIBLE);
@@ -542,6 +543,9 @@ public class RegisterAccountConfirm extends Fragment implements BlockingStep {
             Log.e("RegisterAccountConfirm", ex.getMessage());
             return;
         }
+
+        Log.e("Volley", post_data.toString());
+
 
         JsonObjectRequest jsObjRequest = new JsonObjectRequest(Request.Method.POST, url, post_data, new com.android.volley.Response.Listener<JSONObject>() {
 

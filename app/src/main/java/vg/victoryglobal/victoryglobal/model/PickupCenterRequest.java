@@ -1,9 +1,9 @@
 /*
- * Created by Mong Ramos Jr. <mongramosjr@gmail.com> on 9/17/17 2:52 PM
+ * Created by Mong Ramos Jr. <mongramosjr@gmail.com> on 9/9/17 9:19 PM
  *
  * Copyright (c) 2017 Victory Global Unlimited Systems Inc. All rights reserved.
  *
- * Last modified 9/17/17 2:32 PM
+ * Last modified 9/9/17 9:02 PM
  */
 
 package vg.victoryglobal.victoryglobal.model;
