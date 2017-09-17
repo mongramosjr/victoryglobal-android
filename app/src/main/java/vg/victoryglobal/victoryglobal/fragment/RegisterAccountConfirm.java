@@ -1,9 +1,9 @@
 /*
- * Created by Mong Ramos Jr. <mongramosjr@gmail.com> on 9/17/17 2:31 PM
+ * Created by Mong Ramos Jr. <mongramosjr@gmail.com> on 9/17/17 2:52 PM
  *
  * Copyright (c) 2017 Victory Global Unlimited Systems Inc. All rights reserved.
  *
- * Last modified 9/17/17 2:30 PM
+ * Last modified 9/17/17 2:52 PM
  */
 
 package vg.victoryglobal.victoryglobal.fragment;
@@ -75,7 +75,8 @@ public class RegisterAccountConfirm extends Fragment implements BlockingStep {
     TextView telephone;
     TextView mobileNumber;
 
-    TextView mlmAccountId;
+    TextView mlmAccountName;
+    TextView mlmAccountLabel;
     TextView mlmLocation;
     TextView pickupCenterId;
 
@@ -130,7 +131,9 @@ public class RegisterAccountConfirm extends Fragment implements BlockingStep {
         telephone = view.findViewById(R.id.telephone);
         mobileNumber = view.findViewById(R.id.mobile_number);
 
-        mlmAccountId = view.findViewById(R.id.mlm_account_id);
+        mlmAccountName = view.findViewById(R.id.mlm_account_name);
+        mlmAccountLabel = view.findViewById(R.id.mlm_account_id_label);
+
         mlmLocation = view.findViewById(R.id.mlm_location);
         pickupCenterId  = view.findViewById(R.id.pickup_center_id);
 
@@ -280,11 +283,16 @@ public class RegisterAccountConfirm extends Fragment implements BlockingStep {
         if(registerAccountRequest.getRegisterAccount().getMlmAccountId() != 0 ) {
             if(registerAccountRequest.getRegisterAccount().getMlmAccountName() != null) {
                 if (registerAccountRequest.getRegisterAccount().getMlmAccountName().length() > 0) {
-                    mlmAccountId.setText(registerAccountRequest.getRegisterAccount().getMlmAccountName());
+                    mlmAccountName.setVisibility(View.VISIBLE);
+                    mlmAccountLabel.setVisibility(View.VISIBLE);
+                    mlmAccountName.setText(registerAccountRequest.getRegisterAccount().getMlmAccountName());
                 }
             }
-
+        }else{
+            mlmAccountName.setVisibility(View.INVISIBLE);
+            mlmAccountLabel.setVisibility(View.INVISIBLE);
         }
+
         if(registerAccountRequest.getRegisterAccount().getActivationCode() != null) {
             if (registerAccountRequest.getRegisterAccount().getActivationCode().length() > 0) {
                 activationCode.setText(registerAccountRequest.getRegisterAccount().getActivationCode());

@@ -1,9 +1,9 @@
 <!--
-  ~ Created by Mong Ramos Jr. <mongramosjr@gmail.com> on 9/17/17 2:31 PM
+  ~ Created by Mong Ramos Jr. <mongramosjr@gmail.com> on 9/17/17 2:52 PM
   ~
   ~ Copyright (c) 2017 Victory Global Unlimited Systems Inc. All rights reserved.
   ~
-  ~ Last modified 9/17/17 8:01 AM
+  ~ Last modified 9/17/17 2:40 PM
   -->
 
 <resources>
@@ -112,12 +112,12 @@
     -->
 
     <string name="api_url">http://api-beta.victoryglobal.vg</string>
-    <string name="api_code_registration">/activation-code/registration/.json</string>
+    <string name="api_code_registration">/activation-code/registration/index.json</string>
     <string name="api_code_checkfirst">/activation-code/registration/checkfirst/.json</string>
-    <string name="api_upgrade_registration">/activation-code/registration/.json</string>
+    <string name="api_upgrade_registration">/activation-code/registration/index.json</string>
     <string name="api_upgrade_checkfirst">/activation-code/registration/checkfirst/.json</string>
-    <string name="api_account_registration">/distributor/registration/.json</string>
+    <string name="api_account_registration">/distributor/registration/index.json</string>
     <string name="api_account_registration_checkfirst">/distributor/registration/checkfirst/.json</string>
-    <string name="api_pickupcenters">/distributor/pickup_centers/.json</string>
+    <string name="api_pickupcenters">/distributor/pickup_centers/index.json</string>
 
 </resources>
