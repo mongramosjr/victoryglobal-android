@@ -50,8 +50,7 @@ public class RegisterAccountRequest {
     }
 
     public synchronized void reset() {
-        registerAccount = new RegisterAccount();
-
+        setRegisterAccount(new RegisterAccount());
     }
     public synchronized void resetErrorCodes() {
         mlmResponseErrors.clear();

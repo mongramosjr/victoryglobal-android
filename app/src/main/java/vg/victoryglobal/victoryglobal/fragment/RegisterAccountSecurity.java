@@ -46,8 +46,10 @@ import java.util.ArrayList;
 
 import vg.victoryglobal.victoryglobal.R;
 import vg.victoryglobal.victoryglobal.model.ActivateCode;
+import vg.victoryglobal.victoryglobal.model.MlmAccount;
 import vg.victoryglobal.victoryglobal.model.MlmAccountRequest;
 import vg.victoryglobal.victoryglobal.model.MlmResponseError;
+import vg.victoryglobal.victoryglobal.model.PickupCenter;
 import vg.victoryglobal.victoryglobal.model.RegisterAccount;
 import vg.victoryglobal.victoryglobal.model.RegisterAccountRequest;
 
@@ -260,9 +262,9 @@ public class RegisterAccountSecurity extends Fragment implements BlockingStep {
 
         for (int i = 0; i < mlm_response_errors.size(); i++) {
             MlmResponseError res = mlm_response_errors.get(i);
-            if(res.getFieldName() == "password") {
+            if(res.getFieldName().equals("password")) {
                 inputLayoutPassword.setError(res.getErrMessage());
-            }else if(res.getFieldName() == "confirm_password") {
+            }else if(res.getFieldName().equals("confirm_password")) {
                 inputLayoutVerifyPassword.setError(res.getErrMessage());
             }
 
@@ -294,8 +296,10 @@ public class RegisterAccountSecurity extends Fragment implements BlockingStep {
 
     }
 
-    private void accountRegistrationCheckFirstCallback(String response_data, final StepperLayout.OnNextClickedCallback callback_upgrade)
+    private void accountRegistrationCheckFirstCallback(String response_data, final StepperLayout.OnNextClickedCallback callback_register)
     {
+        boolean has_similar_account = false;
+
         try {
             JSONObject object = (JSONObject) new JSONTokener(response_data).nextValue();
             int status = object.getInt("status");
@@ -312,10 +316,31 @@ public class RegisterAccountSecurity extends Fragment implements BlockingStep {
                 if(object.has("similar_account")) {
 
                     if(object.get("similar_account").toString()=="false") {
-                        Log.e("MONGNGNG False", object.get("similar_account").toString());
-                        //JSONArray similar_account = object.getJSONArray("similar_account");
                     }else{
-                        Log.e("MONGNGNG Array", object.get("similar_account").toString());
+                        JSONArray similar_account = object.getJSONArray("similar_account");
+
+                        mlmAccountRequest.getMlmAccountStr().clear();
+                        mlmAccountRequest.getMlmAccountHsh().clear();
+                        mlmAccountRequest.getMlmAccounts().clear();
+
+                        for (int i = 0; i < similar_account.length(); ++i) {
+                            JSONObject similar_account_json = similar_account.getJSONObject(i);
+
+                            MlmAccount mlm_account =  new MlmAccount(
+                                    similar_account_json.getString("id"),
+                                    similar_account_json.getString("first_name")
+                            + " " + similar_account_json.getString("last_name"));
+
+                            mlmAccountRequest.getMlmAccountStr().add(
+                                    similar_account_json.getString("first_name")
+                                    + " " + similar_account_json.getString("last_name"));
+                            mlmAccountRequest.getMlmAccountHsh().put(
+                                    similar_account_json.getString("first_name")
+                                            + " " + similar_account_json.getString("last_name"),
+                                    mlm_account);
+                            mlmAccountRequest.getMlmAccounts().add(mlm_account);
+                        }
+                        has_similar_account = true;
                     }
                 }
 
@@ -328,16 +353,27 @@ public class RegisterAccountSecurity extends Fragment implements BlockingStep {
                 //registerAccountRequest.getRegisterAccount().setMlmAccountName(similar_account.getString("name"));
 
 
+                if(has_similar_account && registerAccountRequest.getRegisterAccount().getMlmAccountId()==0){
 
+                    Toast.makeText(getContext(), message, Toast.LENGTH_LONG).show();
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            callback_register.getStepperLayout().hideProgress();
+                            callback_register.getStepperLayout().setCurrentStepPosition(2);
+                        }
+                    }, 2000L);
+                }else {
 
-                // go to next page
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        callback_upgrade.getStepperLayout().hideProgress();
-                        callback_upgrade.goToNextStep();
-                    }
-                }, 2000L);
+                    // go to next page
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            callback_register.getStepperLayout().hideProgress();
+                            callback_register.goToNextStep();
+                        }
+                    }, 2000L);
+                }
 
 
 
@@ -353,28 +389,85 @@ public class RegisterAccountSecurity extends Fragment implements BlockingStep {
 
                     //TODO: if error, go to a particular page
                     if (error.equals("activation_code")) {
-                        //inputLayoutActivateCode.setError(message);
+                        Toast.makeText(getContext(), message, Toast.LENGTH_LONG).show();
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                callback_register.getStepperLayout().hideProgress();
+                                callback_register.getStepperLayout().setCurrentStepPosition(2);
+                            }
+                        }, 2000L);
+                    }else if (error.equals("sponsor_id")) {
+                        Toast.makeText(getContext(), message, Toast.LENGTH_LONG).show();
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                callback_register.getStepperLayout().hideProgress();
+                                callback_register.getStepperLayout().setCurrentStepPosition(2);
+                            }
+                        }, 2000L);
+                    }else if (error.equals("upline_id")) {
+                        Toast.makeText(getContext(), message, Toast.LENGTH_LONG).show();
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                callback_register.getStepperLayout().hideProgress();
+                                callback_register.getStepperLayout().setCurrentStepPosition(2);
+                            }
+                        }, 2000L);
+                    }else if (error.equals("password")) {
+                        Toast.makeText(getContext(), message, Toast.LENGTH_LONG).show();
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                callback_register.getStepperLayout().hideProgress();
+                                callback_register.getStepperLayout().setCurrentStepPosition(3);
+                            }
+                        }, 2000L);
+                    }else if (error.equals("first_name")) {
+                        Toast.makeText(getContext(), message, Toast.LENGTH_LONG).show();
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                callback_register.getStepperLayout().hideProgress();
+                                callback_register.getStepperLayout().setCurrentStepPosition(0);
+                            }
+                        }, 2000L);
+                    }else if (error.equals("last_name")) {
+                        Toast.makeText(getContext(), message, Toast.LENGTH_LONG).show();
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                callback_register.getStepperLayout().hideProgress();
+                                callback_register.getStepperLayout().setCurrentStepPosition(0);
+                            }
+                        }, 2000L);
+                    }else{
+                        Toast.makeText(getContext(), message, Toast.LENGTH_LONG).show();
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                callback_register.getStepperLayout().hideProgress();
+                            }
+                        }, 2000L);
                     }
                 }else{
 
                     Toast.makeText(getContext(), message, Toast.LENGTH_LONG).show();
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            callback_register.getStepperLayout().hideProgress();
+                        }
+                    }, 2000L);
                 }
-
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        callback_upgrade.getStepperLayout().hideProgress();
-                    }
-                }, 2000L);
-
-
             }else{
                 Toast.makeText(getContext(), R.string.ui_exception, Toast.LENGTH_LONG).show();
 
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        callback_upgrade.getStepperLayout().hideProgress();
+                        callback_register.getStepperLayout().hideProgress();
                     }
                 }, 2000L);
             }
@@ -386,7 +479,7 @@ public class RegisterAccountSecurity extends Fragment implements BlockingStep {
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    callback_upgrade.getStepperLayout().hideProgress();
+                    callback_register.getStepperLayout().hideProgress();
                 }
             }, 2000L);
         }

@@ -39,8 +39,8 @@ public class MlmAccountRequest {
 
     public synchronized void reset() {
         mlmAccounts.clear();
-        mlmAccountStr =  new ArrayList<>();
-        mlmAccountHsh = new HashMap<>();
+        mlmAccountStr.clear();
+        mlmAccountHsh.clear();
     }
 
     public ArrayList<String> getMlmAccountStr() {

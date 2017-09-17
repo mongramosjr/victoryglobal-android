@@ -74,6 +74,8 @@ public class PickupCenterRequest {
 
     public synchronized void reset() {
         pickupCenters.clear();
+        pickupCentersStr.clear();
+        pickupCentersHsh.clear();
     }
 
 

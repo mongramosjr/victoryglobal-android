@@ -220,6 +220,7 @@ public class RegisterAccountPersonalInfo extends Fragment implements BlockingSte
 
         callback.getStepperLayout().showProgress(getString(R.string.progress_message));
 
+        //TODO:
         registerAccountRequest.resetErrorCodes();
 
 
@@ -277,9 +278,9 @@ public class RegisterAccountPersonalInfo extends Fragment implements BlockingSte
 
         for (int i = 0; i < mlm_response_errors.size(); i++) {
             MlmResponseError res = mlm_response_errors.get(i);
-            if(res.getFieldName() == "first_name") {
+            if(res.getFieldName().equals("first_name")) {
                 inputLayoutFirstName.setError(res.getErrMessage());
-            }else if(res.getFieldName() == "last_name") {
+            }else if(res.getFieldName().equals("last_name")) {
                 inputLayoutLastName.setError(res.getErrMessage());
             }
 

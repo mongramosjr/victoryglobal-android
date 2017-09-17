@@ -293,11 +293,11 @@ public class RegisterAccountAddressAndContact extends Fragment implements Blocki
 
         for (int i = 0; i < mlm_response_errors.size(); i++) {
             MlmResponseError res = mlm_response_errors.get(i);
-            if(res.getFieldName() == "email") {
+            if(res.getFieldName().equals("email")) {
                 inputLayoutEmail.setError(res.getErrMessage());
-            }else if(res.getFieldName() == "telephone") {
+            }else if(res.getFieldName().equals("telephone")) {
                 inputLayoutTelephone.setError(res.getErrMessage());
-            }else if(res.getFieldName() == "mobile_number") {
+            }else if(res.getFieldName().equals("mobile_number")) {
                 inputLayoutMobileNumber.setError(res.getErrMessage());
             }
 

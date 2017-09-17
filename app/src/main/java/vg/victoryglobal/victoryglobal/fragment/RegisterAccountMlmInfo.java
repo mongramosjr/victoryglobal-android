@@ -284,6 +284,8 @@ public class RegisterAccountMlmInfo extends Fragment implements BlockingStep {
             MlmAccount mlm_account = mlmAccountRequest.getMlmAccountHsh().get(mlm_account_name);
             registerAccountRequest.getRegisterAccount().setMlmAccountId(Integer.parseInt(mlm_account.getId()));
             registerAccountRequest.getRegisterAccount().setMlmAccountName(mlm_account_name);
+        }else{
+            registerAccountRequest.getRegisterAccount().setMlmAccountId(0);
         }
 
         registerAccountRequest.getRegisterAccount().setActivationCode(activationCode.getText().toString());
@@ -337,11 +339,11 @@ public class RegisterAccountMlmInfo extends Fragment implements BlockingStep {
 
         for (int i = 0; i < mlm_response_errors.size(); i++) {
             MlmResponseError res = mlm_response_errors.get(i);
-            if(res.getFieldName() == "upline_id") {
+            if(res.getFieldName().equals("upline_id")) {
                 inputLayoutUplineId.setError(res.getErrMessage());
-            }else if(res.getFieldName() == "sponsor_id") {
+            }else if(res.getFieldName().equals("sponsor_id")) {
                 inputLayoutSponsorId.setError(res.getErrMessage());
-            }else if(res.getFieldName() == "activation_code") {
+            }else if(res.getFieldName().equals("activation_code")) {
                 inputLayoutActivateCode.setError(res.getErrMessage());
             }
 

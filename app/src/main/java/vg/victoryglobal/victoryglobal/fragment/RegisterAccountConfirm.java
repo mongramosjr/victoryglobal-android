@@ -39,6 +39,7 @@ import java.sql.Date;
 
 import vg.victoryglobal.victoryglobal.R;
 import vg.victoryglobal.victoryglobal.model.ActivateCode;
+import vg.victoryglobal.victoryglobal.model.MlmAccountRequest;
 import vg.victoryglobal.victoryglobal.model.MlmResponseError;
 import vg.victoryglobal.victoryglobal.model.RegisterAccount;
 import vg.victoryglobal.victoryglobal.model.RegisterAccountRequest;
@@ -85,11 +86,13 @@ public class RegisterAccountConfirm extends Fragment implements BlockingStep {
     TextView sponsorName;
 
     RegisterAccountRequest registerAccountRequest;
+    MlmAccountRequest mlmAccountRequest;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         registerAccountRequest = RegisterAccountRequest.getInstance();
+        mlmAccountRequest = MlmAccountRequest.getInstance();
     }
 
     @Override
@@ -132,7 +135,7 @@ public class RegisterAccountConfirm extends Fragment implements BlockingStep {
         mobileNumber = view.findViewById(R.id.mobile_number);
 
         mlmAccountName = view.findViewById(R.id.mlm_account_name);
-        mlmAccountLabel = view.findViewById(R.id.mlm_account_id_label);
+        mlmAccountLabel = view.findViewById(R.id.mlm_account_name_label);
 
         mlmLocation = view.findViewById(R.id.mlm_location);
         pickupCenterId  = view.findViewById(R.id.pickup_center_id);
@@ -367,6 +370,7 @@ public class RegisterAccountConfirm extends Fragment implements BlockingStep {
                 //clear request data and error response
                 registerAccountRequest.resetErrorCodes();
                 registerAccountRequest.reset();
+                mlmAccountRequest.reset();
 
                 registerAccountRequest.setSuccess(true);
 
@@ -413,18 +417,71 @@ public class RegisterAccountConfirm extends Fragment implements BlockingStep {
                     err.setErrMessage(message);
                     registerAccountRequest.getMlmResponseErrors().add(err);
 
-                    Toast.makeText(getContext(), message, Toast.LENGTH_LONG).show();
-
-                    new Handler().postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            callback_register.getStepperLayout().hideProgress();
-                            callback_register.getStepperLayout().onBackClicked();
-                        }
-                    }, 2000L);
-
-
-                    //callback.getStepperLayout().onBackClicked();
+                    //TODO: if error, go to a particular page
+                    if (error.equals("activation_code")) {
+                        Toast.makeText(getContext(), message, Toast.LENGTH_LONG).show();
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                callback_register.getStepperLayout().hideProgress();
+                                callback_register.getStepperLayout().setCurrentStepPosition(2);
+                            }
+                        }, 2000L);
+                    }else if (error.equals("sponsor_id")) {
+                        Toast.makeText(getContext(), message, Toast.LENGTH_LONG).show();
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                callback_register.getStepperLayout().hideProgress();
+                                callback_register.getStepperLayout().setCurrentStepPosition(2);
+                            }
+                        }, 2000L);
+                    }else if (error.equals("upline_id")) {
+                        Toast.makeText(getContext(), message, Toast.LENGTH_LONG).show();
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                callback_register.getStepperLayout().hideProgress();
+                                callback_register.getStepperLayout().setCurrentStepPosition(2);
+                            }
+                        }, 2000L);
+                    }else if (error.equals("password")) {
+                        Toast.makeText(getContext(), message, Toast.LENGTH_LONG).show();
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                callback_register.getStepperLayout().hideProgress();
+                                callback_register.getStepperLayout().setCurrentStepPosition(3);
+                            }
+                        }, 2000L);
+                    }else if (error.equals("first_name")) {
+                        Toast.makeText(getContext(), message, Toast.LENGTH_LONG).show();
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                callback_register.getStepperLayout().hideProgress();
+                                callback_register.getStepperLayout().setCurrentStepPosition(0);
+                            }
+                        }, 2000L);
+                    }else if (error.equals("last_name")) {
+                        Toast.makeText(getContext(), message, Toast.LENGTH_LONG).show();
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                callback_register.getStepperLayout().hideProgress();
+                                callback_register.getStepperLayout().setCurrentStepPosition(0);
+                            }
+                        }, 2000L);
+                    }else{
+                        Toast.makeText(getContext(), message, Toast.LENGTH_LONG).show();
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                callback_register.getStepperLayout().hideProgress();
+                                callback_register.getStepperLayout().onBackClicked();
+                            }
+                        }, 2000L);
+                    }
                 } else if (object.has("exception")) {
                     String exception = object.getString("exception");
 
