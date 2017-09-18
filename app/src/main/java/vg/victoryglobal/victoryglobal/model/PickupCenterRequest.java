@@ -143,7 +143,6 @@ public class PickupCenterRequest {
 
                             @Override
                             public void onResponse(JSONObject response) {
-                                Log.e("PickupCenterRequest", "Response: " + response.toString());
                                 pickupCentersCallback(context, response.toString());
                             }
                         },

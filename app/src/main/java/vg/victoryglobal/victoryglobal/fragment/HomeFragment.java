@@ -111,76 +111,43 @@ public class HomeFragment extends Fragment implements SwipeRefreshLayout.OnRefre
 
         swipeRefreshLayout.setRefreshing(true);
 
-        //TODO: get from server after the last id
-        // 1. if empty singleton, pull from the server, save to sqlite and singleton,
-        // notify adapter
-        // 2. if singleton is not empty and no network, dont notify adapter
-        // 3. if singleton is not empty,pull from the server starting from the last id,
-        // append to sqlite and singleton if has results, notify adapter.
-        // otherwise dont notify adapter
-
-        feeds = fbGraphFeedRequest.getFeeds();
-
-        if(feeds.size() == 0 ){
+        if(fbGraphFeedRequest.getFeeds().size() == 0 ){
 
             FbGraphFeed();
-
-            new Handler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    if(feeds.size()>0){
-
-                        fbGraphFeedAdapter.notifyDataSetChanged();
-                    }
-                }
-            }, 6000L);
-
 
         }else{
 
-            FbGraphFeed();
+            //FbGraphFeed();
 
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    if(feeds.size()>0){
-
-                        fbGraphFeedAdapter.notifyDataSetChanged();
-                    }
+                    swipeRefreshLayout.setRefreshing(false);
                 }
-            }, 6000L);
-
+            }, 1000L);
 
         }
 
-        swipeRefreshLayout.setRefreshing(false);
+        //swipeRefreshLayout.setRefreshing(false);
     }
 
     public void refreshFeeds(String next){
 
         swipeRefreshLayout.setRefreshing(true);
 
-        //TODO: get from server using next
-        if(feeds.size() == 0 ){
-
+        //NOTICE: get from server using next
+        // 1. if empty singleton, pull from the server, save to sqlite and singleton,
+        // notify adapter
+        // 2. if singleton is not empty and no network, dont notify adapter
+        // 3. if singleton is not empty,pull from the server starting from the last id,
+        // append to sqlite and singleton if has results, notify adapter.
+        // otherwise dont notify adapter
+        if(fbGraphFeedRequest.getFeeds().size() == 0 ){
             FbGraphFeed();
-
-            if(feeds.size()>0){
-
-                fbGraphFeedAdapter.notifyDataSetChanged();
-            }
         }else{
-
             FbGraphFeed();
-
-            if(feeds.size()>0){
-
-                fbGraphFeedAdapter.notifyDataSetChanged();
-            }
-
         }
-
-        swipeRefreshLayout.setRefreshing(false);
+        //swipeRefreshLayout.setRefreshing(false);
     }
 
     @Override
@@ -275,7 +242,10 @@ public class HomeFragment extends Fragment implements SwipeRefreshLayout.OnRefre
     }
 
     private void FbGraphFeedCallBack(GraphResponse response) {
+
         JSONObject graphObject = response.getJSONObject();
+
+        boolean has_updates = false;
 
 
         if(graphObject.has("posts")){
@@ -356,6 +326,9 @@ public class HomeFragment extends Fragment implements SwipeRefreshLayout.OnRefre
                         fbGraphFeed.setType(type);
 
                         if(!fbGraphFeedRequest.getFeedsHsh().containsKey(id)){
+
+                            has_updates = true;
+
                             fbGraphFeedRequest.getFeedsHsh().put(id, fbGraphFeed);
                             fbGraphFeedRequest.getFeeds().add(0, fbGraphFeed);
                         }
@@ -366,9 +339,18 @@ public class HomeFragment extends Fragment implements SwipeRefreshLayout.OnRefre
                     e.printStackTrace();
                 }
             }
+        }
 
+        if(has_updates)
+        {
+            if(fbGraphFeedRequest.getFeeds().size()>0){
+
+                fbGraphFeedAdapter.notifyDataSetChanged();
+            }
 
         }
+
+        swipeRefreshLayout.setRefreshing(false);
     }
 
 
@@ -387,7 +369,7 @@ public class HomeFragment extends Fragment implements SwipeRefreshLayout.OnRefre
         //fb_bundle.putString("access_token", "344323752657014|536afccd5b2195e51fb935d22629d306");
         fb_bundle.putInt("limit", 10);
 
-        fbGraphFeedRequest.getFeeds().clear();
+        //fbGraphFeedRequest.getFeeds().clear();
 
                 /* make the API call */
         new GraphRequest(
