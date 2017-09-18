@@ -58,7 +58,7 @@
             android:screenOrientation="portrait"/>
 
         <provider
-            android:authorities="com.facebook.app.FacebookContentProvider"
+            android:authorities="com.facebook.app.FacebookContentProvider344323752657014"
             android:name="com.facebook.FacebookContentProvider"
             android:exported="true"/>
     </application>

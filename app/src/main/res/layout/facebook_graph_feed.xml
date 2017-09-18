@@ -8,41 +8,112 @@
   -->
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <LinearLayout
+              xmlns:card_view="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content">
+
+    <android.support.v7.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        >
-        <ImageView
-            android:layout_width="40dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:layout_marginVertical="10dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:elevation="3dp"
+        android:numColumns="1"
+        card_view:cardCornerRadius="6dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/icon"/>
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:id="@+id/deal_container"
+            >
+
+
+
+            <LinearLayout
+                android:id="@+id/story_container"
+                android:layout_width="match_parent"
+                android:layout_height="72dp"
+                android:orientation="horizontal">
+                >
+                <ImageView
+                    android:layout_margin="5dp"
+                    android:layout_width="62dp"
+                    android:layout_height="62dp"
+                    android:id="@+id/icon"/>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginRight="5dp"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/from_or_story"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/created_time"/>
+                </LinearLayout>
+            </LinearLayout>
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/from"/>
-            <TextView
+                android:layout_margin="8dp"
+                android:layout_below="@id/story_container"
+                android:textAppearance="@android:style/TextAppearance.Material.Body1"
+                android:id="@+id/message"/>
+
+
+
+
+            <RelativeLayout
+                android:id="@+id/full_picture_container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/story"/>
-            <TextView
+                android:layout_below="@id/message">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/colorNeutralCool"
+                    android:clickable="true"
+                    android:id="@+id/full_picture">
+                </ImageView>
+
+                <ImageView
+                    android:id="@+id/video_source"
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    android:src="@drawable/ic_play_circle_outline_black_64dp"
+                    android:layout_centerInParent="true" />
+
+            </RelativeLayout>
+
+
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/created_time"/>
-        </LinearLayout>
-    </LinearLayout>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/message"/>
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/full_picture"/>
+                android:layout_below="@id/full_picture_container"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="5dp"
+                android:id="@+id/description_container"
+                >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="16dp"
+                    android:textAppearance="@android:style/TextAppearance.Material.Body1"
+                    android:id="@+id/description"/>
+
+            </LinearLayout>
+        </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
 </LinearLayout>

@@ -6,20 +6,23 @@
   ~ Last modified 9/10/17 11:30 AM
   -->
 
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    tools:context="vg.victoryglobal.victoryglobal.fragment.HomeFragment"
     android:background="@color/viewBg"
-    tools:context="vg.victoryglobal.victoryglobal.fragment.HomeFragment">
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
     <android.support.v4.widget.SwipeRefreshLayout
-        android:id="@+id/home_swipe_refresh_layout"
+        android:id="@+id/facebook_feeds_swipe_refresh_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <android.support.v7.widget.RecyclerView
-            android:id="@+id/home_recycler_view"
+            android:id="@+id/facebook_feeds_recycler_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scrollbars="vertical" />

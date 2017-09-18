@@ -8,30 +8,23 @@
 
 package vg.victoryglobal.victoryglobal.adapter;
 
-import android.app.Application;
 import android.content.Context;
-import android.content.res.TypedArray;
-import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import java.util.List;
+import java.util.ArrayList;
 
 import vg.victoryglobal.victoryglobal.R;
 import vg.victoryglobal.victoryglobal.model.facebook.FbGraphFeed;
 
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
-
-import static android.R.id.message;
 
 /**
  * Created by mong on 9/10/17.
@@ -40,30 +33,24 @@ import static android.R.id.message;
 public class FbGraphFeedAdapter extends RecyclerView.Adapter<FbGraphFeedAdapter.VictoryGlobalFeedViewHolder> {
 
     private Context mContext;
-    private List<FbGraphFeed> feeds;
+    private ArrayList<FbGraphFeed> feeds = new ArrayList<>();
     private FacebookGraphFeedAdapterListener listener;
 
-    public FbGraphFeedAdapter(Context mContext, List<FbGraphFeed> feeds,
-                              FacebookGraphFeedAdapterListener listener) {
-        this.mContext = mContext;
-        this.feeds = feeds;
-        this.listener = listener;
-    }
-
     public class VictoryGlobalFeedViewHolder extends RecyclerView.ViewHolder implements View.OnLongClickListener {
-        public TextView story, createdTime, message, from;
-        public ImageView fullPicture, icon;
-        public LinearLayout messageContainer;
-        public RelativeLayout iconContainer, iconBack, iconFront;
+        public TextView createdTime, message, from_or_story, description;
+        public ImageView fullPicture, videoSource;
 
         public VictoryGlobalFeedViewHolder(View view) {
             super(view);
-            story = view.findViewById(R.id.story);
+
+            Log.e("YYYYYYYYYYYYYY", "3333333333333333333333");
+
             createdTime = view.findViewById(R.id.created_time);
             message = view.findViewById(R.id.message);
             fullPicture = view.findViewById(R.id.full_picture);
-            icon = view.findViewById(R.id.icon);
-            from = view.findViewById(R.id.from);
+            videoSource = view.findViewById(R.id.video_source);
+            from_or_story = view.findViewById(R.id.from_or_story);
+            description =  view.findViewById(R.id.description);
 
             view.setOnLongClickListener(this);
         }
@@ -75,6 +62,56 @@ public class FbGraphFeedAdapter extends RecyclerView.Adapter<FbGraphFeedAdapter.
             return true;
         }
     }
+
+    public FbGraphFeedAdapter(Context mContext, ArrayList<FbGraphFeed> feeds,
+                              FacebookGraphFeedAdapterListener listener) {
+        this.mContext = mContext;
+        this.feeds = feeds;
+        this.listener = listener;
+
+
+        Log.e("YYYYYYYYYYYYYY", "4444444444444444444444");
+    }
+
+    /* --------------- */
+    @Override
+    public VictoryGlobalFeedViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+
+        Log.e("YYYYYYYYYYYYYY", "222222222222222222222222");
+
+        View itemView = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.facebook_graph_feed, parent, false);
+
+        return new VictoryGlobalFeedViewHolder(itemView);
+    }
+
+    @Override
+    public void onBindViewHolder(VictoryGlobalFeedViewHolder holder, int position) {
+
+        Log.e("YYYYYYYYYYYYYY", "11111111111111111111111111111111111");
+
+        FbGraphFeed feed = feeds.get(position);
+
+        // displaying text view data
+        applyFromOrStory(holder, feed);
+
+        applyMessage(holder, feed);
+
+
+        holder.createdTime.setText(feed.createdTimeFormatted());
+
+        applyVideo(holder, feed);
+        applyDescription(holder, feed);
+        applyFullPicture(holder, feed);
+
+
+    }
+
+    @Override
+    public int getItemCount() {
+        return feeds.size();
+    }
+
 
 
 
@@ -89,54 +126,6 @@ public class FbGraphFeedAdapter extends RecyclerView.Adapter<FbGraphFeedAdapter.
         void onRowLongClicked(int position);
     }
 
-    /* --------------- */
-    @Override
-    public VictoryGlobalFeedViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.facebook_graph_feed, parent, false);
-
-        return new VictoryGlobalFeedViewHolder(itemView);
-    }
-
-    @Override
-    public void onBindViewHolder(VictoryGlobalFeedViewHolder holder, int position) {
-
-        FbGraphFeed feed = feeds.get(position);
-
-        // displaying text view data
-        applyStory(holder, feed);
-
-        holder.message.setText(feed.getMessage());
-        holder.createdTime.setText(feed.getCreatedTime());
-
-        // display profile image
-        applyIcon(holder, feed);
-        applyFullPicture(holder, feed);
-
-
-    }
-
-    @Override
-    public int getItemCount() {
-        return 0;
-    }
-
-
-    private void applyIcon(VictoryGlobalFeedViewHolder holder, FbGraphFeed feed) {
-        if (!TextUtils.isEmpty(feed.getIcon())) {
-            Glide.with(mContext).load(feed.getIcon())
-                    .thumbnail(1f)
-                    //.crossFade()
-                    //.transform(new CircleTransform(mContext))
-                    //.diskCacheStrategy(DiskCacheStrategy.ALL)
-                    .into(holder.icon);
-            holder.icon.setVisibility(View.VISIBLE);
-        }else{
-            holder.icon.setImageResource(R.drawable.bg_circle);
-            //holder.icon.setColorFilter();
-            holder.icon.setVisibility(View.VISIBLE);
-        }
-    }
 
     private void applyFullPicture(VictoryGlobalFeedViewHolder holder, FbGraphFeed feed) {
         if (!TextUtils.isEmpty(feed.getFullPicture())) {
@@ -147,19 +136,41 @@ public class FbGraphFeedAdapter extends RecyclerView.Adapter<FbGraphFeedAdapter.
                     .into(holder.fullPicture);
             holder.fullPicture.setVisibility(View.VISIBLE);
         }else{
-            holder.fullPicture.setVisibility(View.GONE);
+            holder.fullPicture.setVisibility(View.INVISIBLE);
         }
     }
 
-    private void applyStory(VictoryGlobalFeedViewHolder holder, FbGraphFeed feed) {
+    private void applyFromOrStory(VictoryGlobalFeedViewHolder holder, FbGraphFeed feed) {
         if (!TextUtils.isEmpty(feed.getStory())) {
-            holder.from.setText(feed.getStory());
-            holder.from.setVisibility(View.GONE);
-            holder.story.setVisibility(View.VISIBLE);
+            holder.from_or_story.setText(feed.getStory());
         } else {
-            holder.from.setText(feed.getFrom().getName());
-            holder.from.setVisibility(View.VISIBLE);
-            holder.story.setVisibility(View.GONE);
+            holder.from_or_story.setText(feed.getFrom().getName());
+        }
+    }
+
+    private void applyMessage(VictoryGlobalFeedViewHolder holder, FbGraphFeed feed) {
+        if (!TextUtils.isEmpty(feed.getMessage())) {
+            holder.message.setText(feed.getMessage());
+            holder.message.setVisibility(View.VISIBLE);
+        } else {
+            holder.message.setVisibility(View.GONE);
+        }
+    }
+
+    private void applyVideo(VictoryGlobalFeedViewHolder holder, FbGraphFeed feed) {
+        if (feed.getType().equals("video")) {
+            holder.videoSource.setVisibility(View.VISIBLE);
+        } else {
+            holder.videoSource.setVisibility(View.GONE);
+        }
+    }
+
+    private void applyDescription(VictoryGlobalFeedViewHolder holder, FbGraphFeed feed) {
+        if (!TextUtils.isEmpty(feed.getDescription())) {
+            holder.description.setText(feed.getDescription());
+            holder.description.setVisibility(View.VISIBLE);
+        } else {
+            holder.description.setVisibility(View.GONE);
         }
     }
 

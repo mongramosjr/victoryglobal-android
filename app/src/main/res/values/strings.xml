@@ -16,6 +16,8 @@
     <!-- facebook -->
     <string name="facebook_app_id">344323752657014</string>
     <string name="fb_login_protocol_scheme">fb344323752657014</string>
+    <string name="fb_page_access_token_ryr">EAAE5KR73AHYBABZC0ztDYf1y6Aoyrga6hEpCPJK4CV898v6mnuDQBZAv39DwOnpuPkMmnjjTpbC0s7I8bYGFXtjfjDoI0GfkBPWc0VsjVZACjCKUdidhk8odcoBFqIIM1SlgWZBRA0d2jwSqFAUC5ke7Iqwx1Uz4AnkKp0IVHwZDZD</string>
+    <string name="fb_user_id_mong">188501987866116</string>
 
     <string name="facebook_app_name">Victory Global</string>
 
