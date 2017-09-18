@@ -109,8 +109,6 @@ public class HomeFragment extends Fragment implements SwipeRefreshLayout.OnRefre
      */
     private void getPageFeeds() {
 
-        Log.e("MONNNNNNNNNGGGGGGGG", "MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM");
-
         swipeRefreshLayout.setRefreshing(true);
 
         //TODO: get from server after the last id
@@ -125,17 +123,12 @@ public class HomeFragment extends Fragment implements SwipeRefreshLayout.OnRefre
 
         if(feeds.size() == 0 ){
 
-            Log.e("MONNNNNNNNNGGGGGGGG", "oooooooooooooooooooooooooooooooo");
-
-
             FbGraphFeed();
 
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     if(feeds.size()>0){
-
-                        Log.e("MONNNNNNNNNGGGGGGGG", "oooooooooooooooooooooooooooooooo");
 
                         fbGraphFeedAdapter.notifyDataSetChanged();
                     }
@@ -145,16 +138,12 @@ public class HomeFragment extends Fragment implements SwipeRefreshLayout.OnRefre
 
         }else{
 
-            Log.e("MONNNNNNNNNGGGGGGGG", "--------------------++++++++++++++++-------------------");
-
             FbGraphFeed();
 
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     if(feeds.size()>0){
-
-                        Log.e("MONNNNNNNNNGGGGGGGG", "--------------------++++++++++++++++-------------------");
 
                         fbGraphFeedAdapter.notifyDataSetChanged();
                     }
@@ -169,31 +158,22 @@ public class HomeFragment extends Fragment implements SwipeRefreshLayout.OnRefre
 
     public void refreshFeeds(String next){
 
-        Log.e("MONNNNNNNNNGGGGGGGG", "MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM");
-
         swipeRefreshLayout.setRefreshing(true);
 
         //TODO: get from server using next
         if(feeds.size() == 0 ){
 
-            Log.e("MONNNNNNNNNGGGGGGGG", "00000000000000000000000000000000000000000");
-
             FbGraphFeed();
 
             if(feeds.size()>0){
-                Log.e("MONNNNNNNNNGGGGGGGG", "00000000000000000000000000000000000000000");
 
                 fbGraphFeedAdapter.notifyDataSetChanged();
             }
         }else{
 
-            Log.e("MONNNNNNNNNGGGGGGGG", "+++++++++++++++++++++++++++++");
-
             FbGraphFeed();
 
             if(feeds.size()>0){
-
-                Log.e("MONNNNNNNNNGGGGGGGG", "+++++++++++++++++++++++++++++");
 
                 fbGraphFeedAdapter.notifyDataSetChanged();
             }
@@ -273,7 +253,6 @@ public class HomeFragment extends Fragment implements SwipeRefreshLayout.OnRefre
 
             @Override
             public void onResponse(JSONObject response) {
-                Log.e("FbGraphFeedVolley", "Response: " + response.toString());
                 FbGraphFeedVolleyCallback(response);
             }
         }, new com.android.volley.Response.ErrorListener() {
@@ -312,7 +291,7 @@ public class HomeFragment extends Fragment implements SwipeRefreshLayout.OnRefre
                 try {
                     JSONArray graphData = graphFeed.getJSONArray("data");
 
-                    for (int i = 0; i < graphData.length(); ++i) {
+                    for (int i =  graphData.length() - 1 ; i >= 0; --i) {
                         JSONObject feed = graphData.getJSONObject(i);
 
 
@@ -376,7 +355,12 @@ public class HomeFragment extends Fragment implements SwipeRefreshLayout.OnRefre
                         fbGraphFeed.setSource(source);
                         fbGraphFeed.setType(type);
 
-                        fbGraphFeedRequest.getFeeds().add(fbGraphFeed);
+                        if(!fbGraphFeedRequest.getFeedsHsh().containsKey(id)){
+                            fbGraphFeedRequest.getFeedsHsh().put(id, fbGraphFeed);
+                            fbGraphFeedRequest.getFeeds().add(0, fbGraphFeed);
+                        }
+
+
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -385,21 +369,6 @@ public class HomeFragment extends Fragment implements SwipeRefreshLayout.OnRefre
 
 
         }
-
-        //feeds = fbGraphFeedRequest.getFeeds();
-
-        if(feeds.size()>0) {
-
-            Log.e("FbGraphFeed", "data: " + String.valueOf(feeds.size()));
-
-            for (int i = feeds.size() - 2; i < feeds.size(); ++i) {
-                FbGraphFeed feed = feeds.get(i);
-
-                Log.e("FbGraphFeed", "data: " + feed.getCreatedTime());
-                Log.e("FbGraphFeed", "data: " + feed.getMessage());
-            }
-        }
-
     }
 
 

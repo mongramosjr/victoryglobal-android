@@ -43,8 +43,6 @@ public class FbGraphFeedAdapter extends RecyclerView.Adapter<FbGraphFeedAdapter.
         public VictoryGlobalFeedViewHolder(View view) {
             super(view);
 
-            Log.e("YYYYYYYYYYYYYY", "3333333333333333333333");
-
             createdTime = view.findViewById(R.id.created_time);
             message = view.findViewById(R.id.message);
             fullPicture = view.findViewById(R.id.full_picture);
@@ -68,16 +66,11 @@ public class FbGraphFeedAdapter extends RecyclerView.Adapter<FbGraphFeedAdapter.
         this.mContext = mContext;
         this.feeds = feeds;
         this.listener = listener;
-
-
-        Log.e("YYYYYYYYYYYYYY", "4444444444444444444444");
     }
 
     /* --------------- */
     @Override
     public VictoryGlobalFeedViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-
-        Log.e("YYYYYYYYYYYYYY", "222222222222222222222222");
 
         View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.facebook_graph_feed, parent, false);
@@ -87,8 +80,6 @@ public class FbGraphFeedAdapter extends RecyclerView.Adapter<FbGraphFeedAdapter.
 
     @Override
     public void onBindViewHolder(VictoryGlobalFeedViewHolder holder, int position) {
-
-        Log.e("YYYYYYYYYYYYYY", "11111111111111111111111111111111111");
 
         FbGraphFeed feed = feeds.get(position);
 
@@ -103,7 +94,6 @@ public class FbGraphFeedAdapter extends RecyclerView.Adapter<FbGraphFeedAdapter.
         applyVideo(holder, feed);
         applyDescription(holder, feed);
         applyFullPicture(holder, feed);
-
 
     }
 

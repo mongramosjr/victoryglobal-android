@@ -11,6 +11,7 @@ package vg.victoryglobal.victoryglobal.model.facebook;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.text.format.DateUtils;
+import android.util.Log;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -208,7 +209,9 @@ public class FbGraphFeed implements Parcelable {
     public String createdTimeFormatted()
     {
         String display_date = createdTime;
-        String myFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX"; //In which you need put here
+        //2017-09-18T08:02:39+0000
+        //yyyy-MM-dd'T'HH:mm:ssZ
+        String myFormat = "yyyy-MM-dd'T'HH:mm:ssZ"; //In which you need put here
         SimpleDateFormat sdformat = new SimpleDateFormat(myFormat, Locale.US);
 
         Calendar calendar = Calendar.getInstance();

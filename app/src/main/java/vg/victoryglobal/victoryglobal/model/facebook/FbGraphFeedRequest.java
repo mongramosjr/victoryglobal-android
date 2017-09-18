@@ -10,10 +10,13 @@ package vg.victoryglobal.victoryglobal.model.facebook;
 
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class FbGraphFeedRequest {
 
     private ArrayList<FbGraphFeed> feeds = new ArrayList<>();
+
+    HashMap<String , FbGraphFeed> feedsHsh = new HashMap<>();
 
     String next = null;
 
@@ -41,5 +44,13 @@ public class FbGraphFeedRequest {
 
     public void setNext(String next) {
         this.next = next;
+    }
+
+    public HashMap<String, FbGraphFeed> getFeedsHsh() {
+        return feedsHsh;
+    }
+
+    public void setFeedsHsh(HashMap<String, FbGraphFeed> feedsHsh) {
+        this.feedsHsh = feedsHsh;
     }
 }
