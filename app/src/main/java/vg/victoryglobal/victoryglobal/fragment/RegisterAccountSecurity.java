@@ -135,7 +135,7 @@ public class RegisterAccountSecurity extends Fragment implements BlockingStep {
             public void afterTextChanged(Editable s) {
                 if(!registerAccountRequest.isSuccessSecurity()){
                     validateEditText(s, inputLayoutVerifyPassword, R.string.ui_no_verify_password);
-                    validateVerifyPassword(s, inputLayoutVerifyPassword, R.string.ui_valid_verify_password);
+                    validateVerifyPassword(s, inputLayoutVerifyPassword, password.getText(), R.string.ui_valid_verify_password);
                 }
             }
         });
@@ -163,10 +163,18 @@ public class RegisterAccountSecurity extends Fragment implements BlockingStep {
         }
     }
 
-    private boolean validateVerifyPassword(Editable s, TextInputLayout t, @StringRes int resId) {
+    private boolean validateVerifyPassword(Editable s, TextInputLayout t,
+                                           Editable passwd, @StringRes int resId) {
         if (!TextUtils.isEmpty(s)) {
-            t.setError(null);
-            return true;
+
+            if(s.toString().equals(passwd.toString())) {
+                t.setError(null);
+                return true;
+            }else{
+                t.setError(getString(R.string.ui_valid_verify_password));
+                return false;
+
+            }
         }
         else{
             t.setError(getString(resId));
@@ -188,7 +196,7 @@ public class RegisterAccountSecurity extends Fragment implements BlockingStep {
         if(validateEditText(verifyPassword.getText(), inputLayoutVerifyPassword, R.string.ui_no_verify_password)==false){
             status = false;
         }
-        if(validateVerifyPassword(verifyPassword.getText(), inputLayoutVerifyPassword, R.string.ui_valid_verify_password)==false){
+        if(validateVerifyPassword(verifyPassword.getText(), inputLayoutVerifyPassword, password.getText(), R.string.ui_valid_verify_password)==false){
             status = false;
         }
 
