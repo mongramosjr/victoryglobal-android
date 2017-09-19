@@ -350,7 +350,7 @@ public class UpgradeAccountVerify extends Fragment implements BlockingStep {
 
         RequestQueue queue = Volley.newRequestQueue(getContext());
 
-        String url = getString(R.string.api_url).toString() + getString(R.string.api_upgrade_checkfirst).toString();
+        String url = getString(R.string.api_url) + getString(R.string.api_upgrade_checkfirst);
 
         JSONObject post_data = new JSONObject();
         try {

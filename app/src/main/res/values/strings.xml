@@ -21,11 +21,6 @@
 
     <string name="facebook_app_name">Victory Global</string>
 
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-
-
     <!-- activation code, upgrade account, register account -->
     <string name="residence_address">Residence address</string>
     <string name="contact_info">Contact Info</string>
@@ -113,7 +108,7 @@
     <string name="mobile_number_hint">Mobile</string>
     -->
 
-    <string name="api_url">http://api-beta.victoryglobal.vg</string>
+    <string name="api_url">http://api.victoryglobal.vg</string>
     <string name="api_code_registration">/activation-code/registration/index.json</string>
     <string name="api_code_checkfirst">/activation-code/registration/checkfirst/.json</string>
     <string name="api_upgrade_registration">/activation-code/registration/index.json</string>
