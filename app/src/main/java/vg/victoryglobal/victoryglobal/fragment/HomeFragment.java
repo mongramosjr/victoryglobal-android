@@ -94,7 +94,10 @@ public class HomeFragment extends Fragment implements SwipeRefreshLayout.OnRefre
         fbGraphFeedAdapter = new FbGraphFeedAdapter(view.getContext(), feeds, this);
 //        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(view.getContext());
 
-        RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(view.getContext(), 1, LinearLayoutManager.VERTICAL, false);
+        int news_feeds_grid_columns = getResources().getInteger(R.integer.news_feeds_grid_columns);
+
+        RecyclerView.LayoutManager mLayoutManager
+                = new GridLayoutManager(view.getContext(), news_feeds_grid_columns, LinearLayoutManager.VERTICAL, false);
 
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());

@@ -16,12 +16,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"
-        android:layout_marginVertical="10dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
+        android:layout_marginVertical="@dimen/news_feeds_marginVertical"
+        android:layout_marginBottom="@dimen/news_feeds_marginBottom"
+        android:layout_marginTop="@dimen/news_feeds_marginTop"
+        android:layout_marginLeft="@dimen/news_feeds_marginLeft"
+        android:layout_marginRight="@dimen/news_feeds_marginRight"
         android:elevation="3dp"
         android:numColumns="1"
-        card_view:cardCornerRadius="6dp">
+        card_view:cardCornerRadius="@dimen/news_feeds_cardCornerRadius">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -34,28 +36,35 @@
             <LinearLayout
                 android:id="@+id/story_container"
                 android:layout_width="match_parent"
-                android:layout_height="72dp"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/news_feeds_fromstrorycreatedtime_container_paddingTop"
+                android:paddingBottom="@dimen/news_feeds_fromstrorycreatedtime_container_paddingBottom"
+                android:paddingLeft="@dimen/news_feeds_fromstrorycreatedtime_container_padding"
+                android:paddingRight="@dimen/news_feeds_fromstrorycreatedtime_container_padding"
                 android:orientation="horizontal">
                 >
-                <ImageView
-                    android:layout_margin="5dp"
-                    android:layout_width="62dp"
-                    android:layout_height="62dp"
-                    android:id="@+id/icon"/>
+                <de.hdodenhof.circleimageview.CircleImageView
+                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/icon"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginRight="@dimen/news_feeds_icon_container_padding"
+                    android:src="@drawable/ic_vg_logo"
+                    app:civ_border_width="2dp"
+                    app:civ_border_color="@color/colorNeutralWarmLight"/>
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp"
-                    android:layout_marginRight="5dp"
                     android:orientation="vertical">
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:textAppearance="@android:style/TextAppearance.Material.Subhead"
                         android:id="@+id/from_or_story"/>
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:textAppearance="@android:style/TextAppearance.Material.Caption"
                         android:id="@+id/created_time"/>
                 </LinearLayout>
             </LinearLayout>
@@ -63,7 +72,9 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="8dp"
+                android:paddingBottom="@dimen/news_feeds_message_padding"
+                android:paddingLeft="@dimen/news_feeds_message_padding"
+                android:paddingRight="@dimen/news_feeds_message_padding"
                 android:layout_below="@id/story_container"
                 android:textAppearance="@android:style/TextAppearance.Material.Body1"
                 android:id="@+id/message"/>
@@ -108,7 +119,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="16dp"
+                    android:padding="@dimen/news_feeds_description_padding"
                     android:textAppearance="@android:style/TextAppearance.Material.Body1"
                     android:id="@+id/description"/>
 

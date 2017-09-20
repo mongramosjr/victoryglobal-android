@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Created by Mong Ramos Jr. <mongramosjr@gmail.com> on 9/20/17 8:08 AM
+  ~
+  ~ Copyright (c) 2017 Victory Global Unlimited Systems Inc. All rights reserved.
+  ~
+  ~ Last modified 9/20/17 8:08 AM
+  -->
+
+<resources>
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+
+    <integer name="news_feeds_grid_columns">1</integer>
+
+    <dimen name="news_feeds_marginVertical">16dp</dimen>
+    <dimen name="news_feeds_marginHorizontal">16dp</dimen>
+    <dimen name="news_feeds_marginBottom">8dp</dimen>
+    <dimen name="news_feeds_marginTop">8dp</dimen>
+    <dimen name="news_feeds_marginLeft">8dp</dimen>
+    <dimen name="news_feeds_marginRight">8dp</dimen>
+    <dimen name="news_feeds_cardCornerRadius">8dp</dimen>
+</resources>

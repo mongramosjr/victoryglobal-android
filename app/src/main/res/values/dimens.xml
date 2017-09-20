@@ -21,4 +21,23 @@
     <dimen name="item_label_paddingTop">8dp</dimen>
     <dimen name="item_title_paddingTop">16dp</dimen>
 
+    <integer name="news_feeds_grid_columns">1</integer>
+
+    <dimen name="news_feeds_marginVertical">8dp</dimen>
+    <dimen name="news_feeds_marginHorizontal">8dp</dimen>
+    <dimen name="news_feeds_marginBottom">4dp</dimen>
+    <dimen name="news_feeds_marginTop">4dp</dimen>
+    <dimen name="news_feeds_marginLeft">4dp</dimen>
+    <dimen name="news_feeds_marginRight">4dp</dimen>
+    <dimen name="news_feeds_cardCornerRadius">8dp</dimen>
+
+
+    <dimen name="news_feeds_fromstrorycreatedtime_container_paddingTop">16dp</dimen>
+    <dimen name="news_feeds_fromstrorycreatedtime_container_paddingBottom">16dp</dimen>
+    <dimen name="news_feeds_fromstrorycreatedtime_container_padding">16dp</dimen>
+    <dimen name="news_feeds_icon_container_paddingTop">16dp</dimen>
+    <dimen name="news_feeds_icon_container_paddingBottom">16dp</dimen>
+    <dimen name="news_feeds_icon_container_padding">16dp</dimen>
+    <dimen name="news_feeds_message_padding">16dp</dimen>
+    <dimen name="news_feeds_description_padding">16dp</dimen>
 </resources>
