@@ -19,8 +19,8 @@
         android:layout_marginVertical="@dimen/news_feeds_marginVertical"
         android:layout_marginBottom="@dimen/news_feeds_marginBottom"
         android:layout_marginTop="@dimen/news_feeds_marginTop"
-        android:layout_marginLeft="@dimen/news_feeds_marginLeft"
-        android:layout_marginRight="@dimen/news_feeds_marginRight"
+        android:layout_marginStart="@dimen/news_feeds_marginLeft"
+        android:layout_marginEnd="@dimen/news_feeds_marginRight"
         android:elevation="3dp"
         android:numColumns="1"
         card_view:cardCornerRadius="@dimen/news_feeds_cardCornerRadius">
@@ -42,13 +42,12 @@
                 android:paddingLeft="@dimen/news_feeds_fromstrorycreatedtime_container_padding"
                 android:paddingRight="@dimen/news_feeds_fromstrorycreatedtime_container_padding"
                 android:orientation="horizontal">
-                >
                 <de.hdodenhof.circleimageview.CircleImageView
                     xmlns:app="http://schemas.android.com/apk/res-auto"
                     android:id="@+id/icon"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:layout_marginRight="@dimen/news_feeds_icon_container_padding"
+                    android:layout_marginEnd="@dimen/news_feeds_icon_container_padding"
                     android:src="@drawable/ic_vg_logo"
                     app:civ_border_width="2dp"
                     app:civ_border_color="@color/colorNeutralWarmLight"/>
@@ -93,6 +92,7 @@
                     android:layout_height="wrap_content"
                     android:background="@color/colorNeutralCool"
                     android:clickable="true"
+                    android:contentDescription="Full picture"
                     android:id="@+id/full_picture">
                 </ImageView>
 
@@ -101,6 +101,7 @@
                     android:layout_width="64dp"
                     android:layout_height="64dp"
                     android:src="@drawable/ic_play_circle_outline_black_64dp"
+                    android:contentDescription="Play button"
                     android:layout_centerInParent="true" />
 
             </RelativeLayout>
@@ -111,8 +112,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/full_picture_container"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="5dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="5dp"
                 android:id="@+id/description_container"
                 >
 

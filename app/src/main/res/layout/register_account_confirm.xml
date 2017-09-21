@@ -39,7 +39,8 @@
                     android:id="@+id/first_name"
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
-                    android:paddingRight="8dp"
+                    android:paddingEnd="8dp"
+                    android:paddingStart="8dp"
                     android:textAppearance="@style/itemBodyText"
                     />
 
@@ -47,7 +48,8 @@
                     android:id="@+id/middle_name"
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
-                    android:paddingRight="8dp"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="8dp"
                     android:textAppearance="@style/itemBodyText"
                     />
 
@@ -70,7 +72,8 @@
                     android:layout_width="wrap_content"
                     android:text="@string/date_of_birth_hint"
                     android:textAppearance="@style/itemLabelText"
-                    android:paddingRight="8dp"/>
+                    android:paddingStart="8dp"
+                    android:paddingEnd="8dp"/>
                 <TextView
                     android:id="@+id/date_of_birth"
                     android:layout_height="wrap_content"
@@ -117,7 +120,8 @@
                         android:layout_width="wrap_content"
                         android:text="@string/gender_hint"
                         android:textAppearance="@style/itemLabelText"
-                        android:paddingRight="8dp"/>
+                        android:paddingStart="8dp"
+                        android:paddingEnd="8dp"/>
                     <TextView
                         android:id="@+id/gender"
                         android:layout_height="wrap_content"
@@ -214,7 +218,8 @@
                     android:id="@+id/city"
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
-                    android:paddingRight="8dp"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="8dp"
                     android:textAppearance="@style/itemBodyText"/>
                 <TextView
                     android:id="@+id/region"
@@ -231,7 +236,8 @@
                     android:id="@+id/postal_code"
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
-                    android:paddingRight="8dp"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="8dp"
                     android:textAppearance="@style/itemBodyText"/>
                 <TextView
                     android:id="@+id/country_code"

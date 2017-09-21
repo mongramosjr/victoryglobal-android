@@ -60,7 +60,7 @@
     <string name="upgrade_completeButtonText">Confirm</string>
     <string name="activate_completeButtonText">Confirm</string>
 
-    <string name="progress_message">Checking in progress, please wait...</string>
+    <string name="progress_message">Checking in progress, please wait…</string>
 
     <string name="ui_no_distributor">Distributor ID is required</string>
     <string name="ui_no_activation_code">Activation code is required</string>
