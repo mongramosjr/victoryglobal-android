@@ -67,7 +67,7 @@ public class MainFragmentActivity extends AppCompatActivity {
             }
             //-- using fragment
             try {
-                fragment = (Fragment) fragmentClass.newInstance();
+                fragment = (Fragment) (fragmentClass != null ? fragmentClass.newInstance() : null);
                 fragment.setArguments(bundle);
             } catch (Exception e) {
                 e.printStackTrace();

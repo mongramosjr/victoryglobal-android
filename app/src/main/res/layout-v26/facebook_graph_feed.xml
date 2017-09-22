@@ -16,6 +16,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"
+        android:layout_marginVertical="@dimen/news_feeds_marginVertical"
         android:layout_marginBottom="@dimen/news_feeds_marginBottom"
         android:layout_marginTop="@dimen/news_feeds_marginTop"
         android:layout_marginStart="@dimen/news_feeds_marginLeft"

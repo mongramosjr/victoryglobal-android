@@ -258,7 +258,7 @@ public class HomeFragment extends Fragment implements SwipeRefreshLayout.OnRefre
                 e.printStackTrace();
             }
 
-            if(graphFeed.has("data")){
+            if(graphFeed != null && graphFeed.has("data")){
                 try {
                     JSONArray graphData = graphFeed.getJSONArray("data");
 
