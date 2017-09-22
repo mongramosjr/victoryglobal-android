@@ -92,7 +92,7 @@
                     android:layout_height="wrap_content"
                     android:background="@color/colorNeutralCool"
                     android:clickable="true"
-                    android:contentDescription="Full picture"
+                    android:contentDescription="@string/full_picture_desc"
                     android:id="@+id/full_picture">
                 </ImageView>
 
@@ -101,7 +101,7 @@
                     android:layout_width="64dp"
                     android:layout_height="64dp"
                     android:src="@drawable/ic_play_circle_outline_black_64dp"
-                    android:contentDescription="Play button"
+                    android:contentDescription="@string/play_button_desc"
                     android:layout_centerInParent="true" />
 
             </RelativeLayout>

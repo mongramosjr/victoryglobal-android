@@ -33,7 +33,7 @@
                 android:textAppearance="@style/itemBodyText"
                 android:drawableStart="@drawable/ic_distributor_circle_black_24dp"
                 android:drawablePadding="16dp"
-                android:text="Mong Ramos Jr" />
+                />
 
             <TextView
                 android:id="@+id/mlm_member_id"
@@ -42,7 +42,7 @@
                 android:textAppearance="@style/itemBodyText"
                 android:paddingStart="40dp"
                 android:paddingEnd="40dp"
-                android:text="5004" />
+                />
         </LinearLayout>
 
         <LinearLayout
@@ -59,7 +59,7 @@
                 android:textAppearance="@style/itemBodyText"
                 android:drawableStart="@drawable/ic_activation_code_black_24dp"
                 android:drawablePadding="16dp"
-                android:text="Quick Package" />
+                />
 
             <TextView
                 android:id="@+id/activation_code"
@@ -68,7 +68,7 @@
                 android:textAppearance="@style/itemBodyText"
                 android:paddingStart="40dp"
                 android:paddingEnd="40dp"
-                android:text="QPK56789ABCD" />
+                />
         </LinearLayout>
 
 
