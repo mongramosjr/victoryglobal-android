@@ -235,12 +235,12 @@ public class RegisterAccountPersonalInfo extends Fragment implements BlockingSte
 
         int position_marital_status = maritalStatus.getSelectedItemPosition();
         CharSequence marital_status = adapterMaritalStatus.getItem(position_marital_status);
-        registerAccountRequest.getRegisterAccount().setMaritalStatus(marital_status.toString());
+        registerAccountRequest.getRegisterAccount().setMaritalStatus(marital_status != null ? marital_status.toString() : null);
 
         int position_gender = gender.getSelectedItemPosition();
         CharSequence gender_name = adapterGender.getItem(position_gender);
         registerAccountRequest.getRegisterAccount().setGender(position_gender);
-        registerAccountRequest.getRegisterAccount().setGenderName(gender_name.toString());
+        registerAccountRequest.getRegisterAccount().setGenderName(gender_name != null ? gender_name.toString() : null);
 
 
         registerAccountRequest.getRegisterAccount().setTaxNumber(taxNumber.getText().toString());

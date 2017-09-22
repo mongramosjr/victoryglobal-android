@@ -36,8 +36,6 @@ import org.json.JSONObject;
 import org.json.JSONTokener;
 
 import vg.victoryglobal.victoryglobal.R;
-import vg.victoryglobal.victoryglobal.model.ActivateCode;
-import vg.victoryglobal.victoryglobal.model.ActivateCodeRequest;
 import vg.victoryglobal.victoryglobal.model.MlmResponseError;
 import vg.victoryglobal.victoryglobal.model.UpgradeAccount;
 import vg.victoryglobal.victoryglobal.model.UpgradeAccountRequest;
@@ -116,7 +114,7 @@ public class UpgradeAccountConfirm extends Fragment implements BlockingStep {
 
         callback.getStepperLayout().showProgress(getString(R.string.progress_message));
 
-        upgradeRegistration(upgradeAccountRequest.getUpgradeAccount(), callback);
+        upgradeRegistration(getView(), upgradeAccountRequest.getUpgradeAccount(), callback);
 
     }
 
@@ -148,7 +146,7 @@ public class UpgradeAccountConfirm extends Fragment implements BlockingStep {
         }
     }
 
-    private void upgradeRegistrationCallback(String response_data,
+    private void upgradeRegistrationCallback(View view, String response_data,
                                           final StepperLayout.OnCompleteClickedCallback callback_code) {
         try {
             JSONObject object = (JSONObject) new JSONTokener(response_data).nextValue();
@@ -173,7 +171,7 @@ public class UpgradeAccountConfirm extends Fragment implements BlockingStep {
                     }
                 }, 2000L);
 
-                Snackbar success = Snackbar.make(getView(), message, Snackbar.LENGTH_LONG);
+                Snackbar success = Snackbar.make(view, message, Snackbar.LENGTH_LONG);
                 //message_show.setAction();
                 success.show();
 
@@ -258,7 +256,7 @@ public class UpgradeAccountConfirm extends Fragment implements BlockingStep {
     }
 
 
-    private void upgradeRegistration(UpgradeAccount upgrade_account, final StepperLayout.OnCompleteClickedCallback callback_upgrade) {
+    private void upgradeRegistration(final View view, UpgradeAccount upgrade_account, final StepperLayout.OnCompleteClickedCallback callback_upgrade) {
 
         RequestQueue queue = Volley.newRequestQueue(getContext());
 
@@ -281,7 +279,7 @@ public class UpgradeAccountConfirm extends Fragment implements BlockingStep {
             @Override
             public void onResponse(JSONObject response) {
                 Log.e("UpgradeAccountConfirm", "Response: " + response.toString());
-                upgradeRegistrationCallback(response.toString(), callback_upgrade);
+                upgradeRegistrationCallback(view, response.toString(), callback_upgrade);
             }
         }, new com.android.volley.Response.ErrorListener() {
 

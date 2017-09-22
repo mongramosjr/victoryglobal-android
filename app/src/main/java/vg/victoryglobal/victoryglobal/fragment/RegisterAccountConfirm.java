@@ -35,15 +35,12 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
-import java.sql.Date;
-
 import vg.victoryglobal.victoryglobal.R;
-import vg.victoryglobal.victoryglobal.model.ActivateCode;
 import vg.victoryglobal.victoryglobal.model.MlmAccountRequest;
 import vg.victoryglobal.victoryglobal.model.MlmResponseError;
 import vg.victoryglobal.victoryglobal.model.RegisterAccount;
 import vg.victoryglobal.victoryglobal.model.RegisterAccountRequest;
-import vg.victoryglobal.victoryglobal.model.UpgradeAccountRequest;
+
 
 public class RegisterAccountConfirm extends Fragment implements BlockingStep {
 
@@ -185,7 +182,7 @@ public class RegisterAccountConfirm extends Fragment implements BlockingStep {
 
         callback.getStepperLayout().showProgress(getString(R.string.progress_message));
 
-        accountRegistration(registerAccountRequest.getRegisterAccount(), callback);
+        accountRegistration(getView(), registerAccountRequest.getRegisterAccount(), callback);
 
     }
 
@@ -356,7 +353,7 @@ public class RegisterAccountConfirm extends Fragment implements BlockingStep {
 
     }
 
-    private void accountRegistrationCallback(String response_data,
+    private void accountRegistrationCallback(View view, String response_data,
                                              final StepperLayout.OnCompleteClickedCallback callback_register) {
         try {
             JSONObject object = (JSONObject) new JSONTokener(response_data).nextValue();
@@ -391,7 +388,7 @@ public class RegisterAccountConfirm extends Fragment implements BlockingStep {
                     }
                 }, 2000L);
 
-                Snackbar success = Snackbar.make(getView(), message, Snackbar.LENGTH_LONG);
+                Snackbar success = Snackbar.make(view, message, Snackbar.LENGTH_LONG);
                 //message_show.setAction();
                 success.show();
 
@@ -529,7 +526,7 @@ public class RegisterAccountConfirm extends Fragment implements BlockingStep {
     }
 
 
-    private void accountRegistration(RegisterAccount register_account, final StepperLayout.OnCompleteClickedCallback callback_register) {
+    private void accountRegistration(final View view, RegisterAccount register_account, final StepperLayout.OnCompleteClickedCallback callback_register) {
 
         RequestQueue queue = Volley.newRequestQueue(getContext());
 
@@ -609,7 +606,7 @@ public class RegisterAccountConfirm extends Fragment implements BlockingStep {
             @Override
             public void onResponse(JSONObject response) {
                 Log.e("RegisterAccountConfirm", "Response: " + response.toString());
-                accountRegistrationCallback(response.toString(), callback_register);
+                accountRegistrationCallback(view, response.toString(), callback_register);
             }
         }, new com.android.volley.Response.ErrorListener() {
 

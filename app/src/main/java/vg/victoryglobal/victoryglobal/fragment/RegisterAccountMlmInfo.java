@@ -297,7 +297,9 @@ public class RegisterAccountMlmInfo extends Fragment implements BlockingStep {
         int position_mlm_location = mlmLocation.getSelectedItemPosition();
         CharSequence mlm_location_name = adapterMlmLocation.getItem(position_mlm_location);
         registerAccountRequest.getRegisterAccount().setMlmLocation(position_mlm_location);
-        registerAccountRequest.getRegisterAccount().setMlmLocationName(mlm_location_name.toString());
+        assert mlm_location_name != null;
+        registerAccountRequest.getRegisterAccount().setMlmLocationName(
+                mlm_location_name != null ? mlm_location_name.toString() : null);
 
         if(pickupCenterId.isShown()) {
             int position_pickup_center = pickupCenterId.getSelectedItemPosition();

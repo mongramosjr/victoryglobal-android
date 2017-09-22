@@ -118,7 +118,7 @@ public class ActivateCodeConfirm extends Fragment implements BlockingStep {
 
         callback.getStepperLayout().showProgress(getString(R.string.progress_message));
 
-        codeRegistration(activateCodeRequest.getActivateCode(), callback);
+        codeRegistration(getView(), activateCodeRequest.getActivateCode(), callback);
     }
 
     @Override
@@ -165,7 +165,7 @@ public class ActivateCodeConfirm extends Fragment implements BlockingStep {
 
     }
 
-    private void codeRegistrationCallback(String response_data,
+    private void codeRegistrationCallback(View view, String response_data,
                                           final StepperLayout.OnCompleteClickedCallback callback_code) {
         try {
             JSONObject object = (JSONObject) new JSONTokener(response_data).nextValue();
@@ -197,7 +197,7 @@ public class ActivateCodeConfirm extends Fragment implements BlockingStep {
                     }
                 }, 2000L);
 
-                Snackbar success = Snackbar.make(getView(), message, Snackbar.LENGTH_LONG);
+                Snackbar success = Snackbar.make(view, message, Snackbar.LENGTH_LONG);
                 //message_show.setAction();
                 success.show();
 
@@ -282,7 +282,7 @@ public class ActivateCodeConfirm extends Fragment implements BlockingStep {
     }
 
 
-    private void codeRegistration(ActivateCode activate_code, final StepperLayout.OnCompleteClickedCallback callback_code) {
+    private void codeRegistration(final View view, ActivateCode activate_code, final StepperLayout.OnCompleteClickedCallback callback_code) {
 
         RequestQueue queue = Volley.newRequestQueue(getContext());
 
@@ -305,7 +305,7 @@ public class ActivateCodeConfirm extends Fragment implements BlockingStep {
             @Override
             public void onResponse(JSONObject response) {
                 Log.e("ActivateCodeConfirm", "Response: " + response.toString());
-                codeRegistrationCallback(response.toString(), callback_code);
+                codeRegistrationCallback(view, response.toString(), callback_code);
             }
         }, new com.android.volley.Response.ErrorListener() {
 
