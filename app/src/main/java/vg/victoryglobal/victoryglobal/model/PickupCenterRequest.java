@@ -32,10 +32,10 @@ public class PickupCenterRequest {
 
     private ArrayList<PickupCenter> pickupCenters = new ArrayList<>();
 
-    private ArrayList<String> pickupCentersStr = new ArrayList<String>();
+    private ArrayList<String> pickupCentersStr = new ArrayList<>();
 
     //int id,
-    HashMap<String , PickupCenter> pickupCentersHsh = new HashMap<String, PickupCenter>();
+    HashMap<String , PickupCenter> pickupCentersHsh = new HashMap<>();
 
     private static final PickupCenterRequest ourInstance = new PickupCenterRequest();
 

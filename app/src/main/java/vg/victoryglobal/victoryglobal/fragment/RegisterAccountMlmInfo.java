@@ -371,7 +371,7 @@ public class RegisterAccountMlmInfo extends Fragment implements BlockingStep {
             mlmAccountId.setVisibility(View.VISIBLE);
             mlmAccountIdLabel.setVisibility(View.VISIBLE);
             mlmAccountIdLayout.setVisibility(View.VISIBLE);
-            adapterMlmAccount = new ArrayAdapter<String>(getContext(),
+            adapterMlmAccount = new ArrayAdapter<>(getContext(),
                     android.R.layout.simple_spinner_item, mlmAccountRequest.getMlmAccountStr());
             // Specify the layout to use when the list of choices appears
             adapterMlmAccount.setDropDownViewResource(android.R.layout.simple_list_item_single_choice);
@@ -397,7 +397,7 @@ public class RegisterAccountMlmInfo extends Fragment implements BlockingStep {
             pickupCenterId.setVisibility(View.VISIBLE);
             pickupCenterIdLabel.setVisibility(View.VISIBLE);
             pickupCenterIdLayout.setVisibility(View.VISIBLE);
-            adapterPickupCenter = new ArrayAdapter<String>(getContext(),
+            adapterPickupCenter = new ArrayAdapter<>(getContext(),
                     android.R.layout.simple_spinner_item, pickupCenterRequest.getPickupCentersStr());
             // Specify the layout to use when the list of choices appears
             adapterPickupCenter.setDropDownViewResource(android.R.layout.simple_list_item_single_choice);
