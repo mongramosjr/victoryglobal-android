@@ -46,7 +46,7 @@ public class CountryCode {
     public boolean equals(Object obj) {
         if(obj instanceof CountryCode){
             CountryCode c = (CountryCode)obj;
-            if(c.getName().equals(name) && c.getCode()==code ) return true;
+            if(c.getName().equals(name) && c.getCode().equals(code)) return true;
         }
 
         return false;

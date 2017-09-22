@@ -323,7 +323,7 @@ public class RegisterAccountSecurity extends Fragment implements BlockingStep {
 
                 if(object.has("similar_account")) {
 
-                    if(object.get("similar_account").toString()=="false") {
+                    if(object.get("similar_account").toString().equals("false")) {
                     }else{
                         JSONArray similar_account = object.getJSONArray("similar_account");
 

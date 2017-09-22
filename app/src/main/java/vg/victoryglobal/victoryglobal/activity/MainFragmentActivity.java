@@ -39,7 +39,7 @@ public class MainFragmentActivity extends AppCompatActivity {
 
             Bundle bundle = new Bundle();
 
-            switch (item.getItemId()) {
+            switch (id) {
                 case R.id.navigation_home:
                     fragmentClass = HomeFragment.class;
 

@@ -230,9 +230,9 @@ public class UpgradeAccountVerify extends Fragment implements BlockingStep {
 
         for (int i = 0; i < mlm_response_errors.size(); i++) {
             MlmResponseError res = mlm_response_errors.get(i);
-            if(res.getFieldName() == "mlm_member_id") {
+            if(res.getFieldName().equals("mlm_member_id")) {
                 inputLayoutDistributorId.setError(res.getErrMessage());
-            }else if(res.getFieldName() == "activation_code") {
+            }else if(res.getFieldName().equals("activation_code")) {
                 inputLayoutActivateCode.setError(res.getErrMessage());
             }
         }

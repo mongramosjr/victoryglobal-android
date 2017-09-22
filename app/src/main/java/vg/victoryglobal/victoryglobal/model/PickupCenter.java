@@ -45,7 +45,7 @@ public class PickupCenter {
     public boolean equals(Object obj) {
         if(obj instanceof PickupCenter){
             PickupCenter c = (PickupCenter )obj;
-            if(c.getName().equals(name) && c.getId()==id ) return true;
+            if(c.getName().equals(name) && c.getId().equals(id)) return true;
         }
 
         return false;
