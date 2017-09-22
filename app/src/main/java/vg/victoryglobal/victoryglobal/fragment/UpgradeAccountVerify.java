@@ -152,13 +152,13 @@ public class UpgradeAccountVerify extends Fragment implements BlockingStep {
     private boolean validateAllEditText() {
 
         boolean status = true;
-        if(validateEditText(activationCode.getText(), inputLayoutActivateCode, R.string.ui_no_activation_code)==false){
+        if(!validateEditText(activationCode.getText(), inputLayoutActivateCode, R.string.ui_no_activation_code)){
             status = false;
         }
-        if(validateEditText(mlmMemberId.getText(), inputLayoutDistributorId, R.string.ui_no_distributor)==false){
+        if(!validateEditText(mlmMemberId.getText(), inputLayoutDistributorId, R.string.ui_no_distributor)){
             status = false;
         }
-        if(validateAccountNumber(mlmMemberId.getText(), inputLayoutDistributorId, R.string.ui_length_distributor)==false){
+        if(!validateAccountNumber(mlmMemberId.getText(), inputLayoutDistributorId, R.string.ui_length_distributor)){
             status = false;
         }
 
@@ -192,7 +192,7 @@ public class UpgradeAccountVerify extends Fragment implements BlockingStep {
     @UiThread
     public void onNextClicked(final StepperLayout.OnNextClickedCallback callback) {
 
-        if(validateAllEditText()==false){
+        if(!validateAllEditText()){
             return;
         }
 

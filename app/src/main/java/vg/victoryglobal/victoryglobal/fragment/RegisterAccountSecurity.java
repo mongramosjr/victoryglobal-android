@@ -186,17 +186,17 @@ public class RegisterAccountSecurity extends Fragment implements BlockingStep {
 
         boolean status = true;
 
-        if(validateEditText(password.getText(), inputLayoutPassword, R.string.ui_no_password)==false){
+        if(!validateEditText(password.getText(), inputLayoutPassword, R.string.ui_no_password)){
             status = false;
         }
-        if(validatePasword(password.getText(), inputLayoutPassword, R.string.ui_valid_password)==false){
+        if(!validatePasword(password.getText(), inputLayoutPassword, R.string.ui_valid_password)){
             status = false;
         }
 
-        if(validateEditText(verifyPassword.getText(), inputLayoutVerifyPassword, R.string.ui_no_verify_password)==false){
+        if(!validateEditText(verifyPassword.getText(), inputLayoutVerifyPassword, R.string.ui_no_verify_password)){
             status = false;
         }
-        if(validateVerifyPassword(verifyPassword.getText(), inputLayoutVerifyPassword, password.getText(), R.string.ui_valid_verify_password)==false){
+        if(!validateVerifyPassword(verifyPassword.getText(), inputLayoutVerifyPassword, password.getText(), R.string.ui_valid_verify_password)){
             status = false;
         }
 
@@ -230,7 +230,7 @@ public class RegisterAccountSecurity extends Fragment implements BlockingStep {
     @UiThread
     public void onNextClicked(final StepperLayout.OnNextClickedCallback callback) {
 
-        if(validateAllEditText()==false){
+        if(!validateAllEditText()){
             return;
         }
 

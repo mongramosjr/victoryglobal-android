@@ -177,10 +177,10 @@ public class RegisterAccountPersonalInfo extends Fragment implements BlockingSte
     private boolean validateAllEditText() {
 
         boolean status = true;
-        if(validateEditText(firstName.getText(), inputLayoutFirstName, R.string.ui_no_first_name)==false){
+        if(!validateEditText(firstName.getText(), inputLayoutFirstName, R.string.ui_no_first_name)){
             status = false;
         }
-        if(validateEditText(lastName.getText(), inputLayoutLastName, R.string.ui_no_last_name)==false){
+        if(!validateEditText(lastName.getText(), inputLayoutLastName, R.string.ui_no_last_name)){
             status = false;
         }
 
@@ -214,7 +214,7 @@ public class RegisterAccountPersonalInfo extends Fragment implements BlockingSte
     @UiThread
     public void onNextClicked(final StepperLayout.OnNextClickedCallback callback) {
 
-        if(validateAllEditText()==false){
+        if(!validateAllEditText()){
             return;
         }
 

@@ -197,17 +197,17 @@ public class RegisterAccountAddressAndContact extends Fragment implements Blocki
 
         boolean status = true;
 
-        if(validateEmail(email.getText(), inputLayoutEmail, R.string.ui_invalid_email) == false){
+        if(!validateEmail(email.getText(), inputLayoutEmail, R.string.ui_invalid_email)){
             status = false;
         }
-        if(validatePhone(telephone.getText(), inputLayoutTelephone, R.string.ui_invalid_telephone) == false){
+        if(!validatePhone(telephone.getText(), inputLayoutTelephone, R.string.ui_invalid_telephone)){
             status = false;
         }
 
-        if(validateEditText(mobileNumber.getText(), inputLayoutMobileNumber, R.string.ui_no_mobile_number) == false){
+        if(!validateEditText(mobileNumber.getText(), inputLayoutMobileNumber, R.string.ui_no_mobile_number)){
             status = false;
         }
-        if(validatePhone(mobileNumber.getText(), inputLayoutMobileNumber, R.string.ui_invalid_mobile_number) == false){
+        if(!validatePhone(mobileNumber.getText(), inputLayoutMobileNumber, R.string.ui_invalid_mobile_number)){
             status = false;
         }
 
@@ -241,7 +241,7 @@ public class RegisterAccountAddressAndContact extends Fragment implements Blocki
     @UiThread
     public void onNextClicked(final StepperLayout.OnNextClickedCallback callback) {
 
-        if(validateAllEditText()==false){
+        if(!validateAllEditText()){
             return;
         }
 
