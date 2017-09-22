@@ -30,7 +30,7 @@ public class ActivateCodeRequest {
 
     //lazy loading singleton
     private static class Loader {
-        static volatile ActivateCodeRequest onlyInstance = new ActivateCodeRequest();
+        static final ActivateCodeRequest onlyInstance = new ActivateCodeRequest();
     }
 
     public static ActivateCodeRequest getInstance(){

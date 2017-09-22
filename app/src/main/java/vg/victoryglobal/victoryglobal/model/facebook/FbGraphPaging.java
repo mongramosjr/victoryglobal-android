@@ -8,7 +8,6 @@
 
 package vg.victoryglobal.victoryglobal.model.facebook;
 
-import java.util.ArrayList;
 
 public class FbGraphPaging {
 

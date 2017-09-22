@@ -9,11 +9,8 @@
 package vg.victoryglobal.victoryglobal.fragment;
 
 import android.app.DatePickerDialog;
-import android.app.Dialog;
-import android.app.DialogFragment;
 
 import android.content.Context;
-import android.os.Bundle;
 import android.support.design.widget.TextInputEditText;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -26,9 +23,9 @@ import java.util.TimeZone;
 
 class TextInputDatePicker implements OnClickListener, DatePickerDialog.OnDateSetListener {
 
-    private TextInputEditText editText;
-    private Calendar myCalendar;
-    private Context ctx;
+    private final TextInputEditText editText;
+    private final Calendar myCalendar;
+    private final Context ctx;
 
     public TextInputDatePicker(TextInputEditText editText, Context ctx){
         this.editText = editText;

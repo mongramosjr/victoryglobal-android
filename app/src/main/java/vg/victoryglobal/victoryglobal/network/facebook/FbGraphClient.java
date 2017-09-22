@@ -8,7 +8,6 @@
 
 package vg.victoryglobal.victoryglobal.network.facebook;
 
-import com.facebook.GraphRequest;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 

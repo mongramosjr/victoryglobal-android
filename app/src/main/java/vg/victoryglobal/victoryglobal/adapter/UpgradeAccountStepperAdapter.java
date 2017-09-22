@@ -18,8 +18,6 @@ import com.stepstone.stepper.Step;
 import com.stepstone.stepper.adapter.AbstractFragmentStepAdapter;
 import com.stepstone.stepper.viewmodel.StepViewModel;
 
-import vg.victoryglobal.victoryglobal.fragment.ActivateCodeConfirm;
-import vg.victoryglobal.victoryglobal.fragment.ActivateCodeVerify;
 import vg.victoryglobal.victoryglobal.fragment.UpgradeAccountConfirm;
 import vg.victoryglobal.victoryglobal.fragment.UpgradeAccountVerify;
 

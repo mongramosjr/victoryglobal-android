@@ -23,7 +23,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.android.volley.DefaultRetryPolicy;
@@ -41,15 +40,12 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
-import java.sql.Date;
 import java.util.ArrayList;
 
 import vg.victoryglobal.victoryglobal.R;
-import vg.victoryglobal.victoryglobal.model.ActivateCode;
 import vg.victoryglobal.victoryglobal.model.MlmAccount;
 import vg.victoryglobal.victoryglobal.model.MlmAccountRequest;
 import vg.victoryglobal.victoryglobal.model.MlmResponseError;
-import vg.victoryglobal.victoryglobal.model.PickupCenter;
 import vg.victoryglobal.victoryglobal.model.RegisterAccount;
 import vg.victoryglobal.victoryglobal.model.RegisterAccountRequest;
 

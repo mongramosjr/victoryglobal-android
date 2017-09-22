@@ -31,8 +31,6 @@ import com.android.volley.RequestQueue;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 import com.stepstone.stepper.BlockingStep;
 import com.stepstone.stepper.StepperLayout;
 import com.stepstone.stepper.VerificationError;
@@ -45,10 +43,6 @@ import org.json.JSONTokener;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import okhttp3.MediaType;
-import okhttp3.OkHttpClient;
-import okhttp3.RequestBody;
-import okhttp3.Response;
 import vg.victoryglobal.victoryglobal.R;
 import vg.victoryglobal.victoryglobal.model.ActivateCode;
 import vg.victoryglobal.victoryglobal.model.ActivateCodeRequest;
@@ -460,7 +454,7 @@ public class ActivateCodeVerify extends Fragment implements BlockingStep {
 
         try{
             okhttp3.Response response = client.newCall(request).execute();
-            Log.e("okhttp3", "Response: " + response.body().toString());
+            //Log.e("okhttp3", "Response: " + response.body().toString());
         }catch(IOException ex) {
             Log.e("okhttp3", ex.toString());
         }

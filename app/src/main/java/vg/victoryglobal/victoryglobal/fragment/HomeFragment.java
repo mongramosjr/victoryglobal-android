@@ -40,8 +40,6 @@ import com.facebook.ProfileTracker;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.json.JSONTokener;
-
 import java.util.ArrayList;
 
 import vg.victoryglobal.victoryglobal.R;

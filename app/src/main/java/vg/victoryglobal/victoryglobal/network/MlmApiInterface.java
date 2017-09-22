@@ -9,7 +9,6 @@
 package vg.victoryglobal.victoryglobal.network;
 
 import retrofit2.Call;
-import retrofit2.http.GET;
 import retrofit2.http.POST;
 import vg.victoryglobal.victoryglobal.model.facebook.FbGraph;
 

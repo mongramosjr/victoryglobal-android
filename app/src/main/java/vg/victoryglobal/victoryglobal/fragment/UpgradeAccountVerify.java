@@ -42,7 +42,6 @@ import org.json.JSONTokener;
 import java.util.ArrayList;
 
 import vg.victoryglobal.victoryglobal.R;
-import vg.victoryglobal.victoryglobal.model.ActivateCode;
 import vg.victoryglobal.victoryglobal.model.MlmResponseError;
 import vg.victoryglobal.victoryglobal.model.UpgradeAccount;
 import vg.victoryglobal.victoryglobal.model.UpgradeAccountRequest;

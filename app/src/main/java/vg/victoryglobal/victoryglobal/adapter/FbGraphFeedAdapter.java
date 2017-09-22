@@ -11,7 +11,6 @@ package vg.victoryglobal.victoryglobal.adapter;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,13 +28,17 @@ import com.bumptech.glide.Glide;
 
 public class FbGraphFeedAdapter extends RecyclerView.Adapter<FbGraphFeedAdapter.VictoryGlobalFeedViewHolder> {
 
-    private Context mContext;
+    private final Context mContext;
     private ArrayList<FbGraphFeed> feeds = new ArrayList<>();
-    private FacebookGraphFeedAdapterListener listener;
+    private final FacebookGraphFeedAdapterListener listener;
 
     public class VictoryGlobalFeedViewHolder extends RecyclerView.ViewHolder implements View.OnLongClickListener {
-        public TextView createdTime, message, from_or_story, description;
-        public ImageView fullPicture, videoSource;
+        public final TextView createdTime;
+        public final TextView message;
+        public final TextView from_or_story;
+        public final TextView description;
+        public final ImageView fullPicture;
+        public final ImageView videoSource;
 
         public VictoryGlobalFeedViewHolder(View view) {
             super(view);

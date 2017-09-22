@@ -9,7 +9,6 @@
 package vg.victoryglobal.victoryglobal.model;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class RegisterAccountRequest {
 

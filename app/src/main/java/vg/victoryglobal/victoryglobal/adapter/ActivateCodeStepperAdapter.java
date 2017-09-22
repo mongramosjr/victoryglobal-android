@@ -10,20 +10,16 @@ package vg.victoryglobal.victoryglobal.adapter;
 
 
 import android.content.Context;
-import android.os.Bundle;
 import android.support.annotation.IntRange;
 import android.support.annotation.NonNull;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 
 import com.stepstone.stepper.Step;
 import com.stepstone.stepper.adapter.AbstractFragmentStepAdapter;
 import com.stepstone.stepper.viewmodel.StepViewModel;
 
-import vg.victoryglobal.victoryglobal.R;
 import vg.victoryglobal.victoryglobal.fragment.ActivateCodeConfirm;
 import vg.victoryglobal.victoryglobal.fragment.ActivateCodeVerify;
-import vg.victoryglobal.victoryglobal.fragment.RegisterAccountFragment;
 
 public class ActivateCodeStepperAdapter extends AbstractFragmentStepAdapter {
 

@@ -8,7 +8,6 @@
 
 package vg.victoryglobal.victoryglobal.network.facebook;
 
-import java.util.List;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import vg.victoryglobal.victoryglobal.model.facebook.FbGraph;

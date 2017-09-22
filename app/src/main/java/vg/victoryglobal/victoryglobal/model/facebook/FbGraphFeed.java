@@ -10,8 +10,6 @@ package vg.victoryglobal.victoryglobal.model.facebook;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.text.format.DateUtils;
-import android.util.Log;
 
 import org.json.JSONArray;
 import org.json.JSONException;

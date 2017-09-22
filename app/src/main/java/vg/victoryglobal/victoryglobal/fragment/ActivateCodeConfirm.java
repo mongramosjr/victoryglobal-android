@@ -35,8 +35,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
-import java.util.ArrayList;
-
 import vg.victoryglobal.victoryglobal.R;
 import vg.victoryglobal.victoryglobal.model.ActivateCode;
 import vg.victoryglobal.victoryglobal.model.ActivateCodeRequest;
