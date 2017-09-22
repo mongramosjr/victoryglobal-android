@@ -506,7 +506,6 @@
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
                     android:textAppearance="@style/itemBodyText"
-                    android:inputType="textPassword"
                     />
 
             </LinearLayout>
@@ -527,7 +526,6 @@
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
                     android:textAppearance="@style/itemBodyText"
-                    android:inputType="textPassword"
                     />
 
             </LinearLayout>
