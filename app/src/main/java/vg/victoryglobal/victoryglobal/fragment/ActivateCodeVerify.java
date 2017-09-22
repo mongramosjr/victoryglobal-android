@@ -430,7 +430,7 @@ public class ActivateCodeVerify extends Fragment implements BlockingStep {
     @SuppressWarnings("deprecation")
     private void activationCodeCheckFirst2(int mlm_member_id, String activation_code){
 
-        String url = getString(R.string.api_url).toString() + getString(R.string.api_code_checkfirst).toString();
+        String url = getString(R.string.api_url) + getString(R.string.api_code_checkfirst);
 
         okhttp3.MediaType media_type = okhttp3.MediaType.parse("application/json; charset=utf-8");
 

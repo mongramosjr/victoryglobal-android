@@ -131,7 +131,7 @@ public class PickupCenterRequest {
 
         RequestQueue queue = Volley.newRequestQueue(context);
 
-        String url = context.getString(R.string.api_url).toString() + context.getString(R.string.api_pickupcenters).toString();
+        String url = context.getString(R.string.api_url) + context.getString(R.string.api_pickupcenters);
 
         JSONObject post_data = new JSONObject();
 

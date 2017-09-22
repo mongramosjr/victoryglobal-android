@@ -200,7 +200,7 @@ public class HomeFragment extends Fragment implements SwipeRefreshLayout.OnRefre
     private void FbGraphFeedVolley(){
 
         RequestQueue queue = Volley.newRequestQueue(getContext());
-        String url = getString(R.string.api_url).toString() + getString(R.string.api_code_registration).toString();
+        String url = getString(R.string.api_url) + getString(R.string.api_code_registration);
 
         //url = "https://graph.facebook.com/329922417180457?fields=feed{id,story,created_time,message,full_picture,from,with_tags,icon}&access_token=EAAE5KR73AHYBABZC0ztDYf1y6Aoyrga6hEpCPJK4CV898v6mnuDQBZAv39DwOnpuPkMmnjjTpbC0s7I8bYGFXtjfjDoI0GfkBPWc0VsjVZACjCKUdidhk8odcoBFqIIM1SlgWZBRA0d2jwSqFAUC5ke7Iqwx1Uz4AnkKp0IVHwZDZD&limit=20";
         url = "https://graph.facebook.com/188501987866116?fields=posts{id,story,from,with_tags,description,type,source,created_time,message,full_picture}&access_token=EAAE5KR73AHYBABZC0ztDYf1y6Aoyrga6hEpCPJK4CV898v6mnuDQBZAv39DwOnpuPkMmnjjTpbC0s7I8bYGFXtjfjDoI0GfkBPWc0VsjVZACjCKUdidhk8odcoBFqIIM1SlgWZBRA0d2jwSqFAUC5ke7Iqwx1Uz4AnkKp0IVHwZDZD";
