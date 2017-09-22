@@ -151,7 +151,6 @@ public class FbGraphFeed implements Parcelable {
 
     public FbGraphFrom fromJSON(JSONObject jsonObject){
 
-        String from_name, from_id;
         FbGraphFrom fbGraphFrom =  new FbGraphFrom();
 
         try {
@@ -202,7 +201,6 @@ public class FbGraphFeed implements Parcelable {
     {
         String display_date;
 
-        display_date = createdTime;
         //2017-09-18T08:02:39+0000
         //yyyy-MM-dd'T'HH:mm:ssZ
         String myFormat = "yyyy-MM-dd'T'HH:mm:ssZ"; //In which you need put here

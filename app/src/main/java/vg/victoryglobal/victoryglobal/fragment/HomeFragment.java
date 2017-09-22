@@ -183,7 +183,7 @@ public class HomeFragment extends Fragment implements SwipeRefreshLayout.OnRefre
         try {
             JSONObject fb_feed = response_data.getJSONObject("posts");
 
-
+            Log.e("FbGraphFeedCallback", "Response " + fb_feed.toString());
 
         } catch (JSONException e) {
             //do nothing

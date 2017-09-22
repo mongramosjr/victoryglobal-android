@@ -40,7 +40,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 import vg.victoryglobal.victoryglobal.R;
@@ -412,53 +411,5 @@ public class ActivateCodeVerify extends Fragment implements BlockingStep {
 
 
         queue.add(jsObjRequest);
-    }
-
-
-
-
-
-
-
-    @Deprecated
-    @SuppressWarnings("deprecation")
-    private void activationCodeCheckFirst2(int mlm_member_id, String activation_code){
-
-        String url = getString(R.string.api_url) + getString(R.string.api_code_checkfirst);
-
-        okhttp3.MediaType media_type = okhttp3.MediaType.parse("application/json; charset=utf-8");
-
-        okhttp3.OkHttpClient client = new okhttp3.OkHttpClient();
-
-        ActivateCode code = new ActivateCode(mlm_member_id, activation_code);
-
-
-        JSONObject post_data = new JSONObject();
-        try {
-            post_data.put("mlm_member_id", code.getMlmMemberId());
-            post_data.put("activation_code", code.getActivationCode());
-        }catch(JSONException ex) {
-            Log.e("okhttp3", ex.toString());
-        }
-
-        Log.e("okhttp3", post_data.toString());
-
-
-
-        okhttp3.RequestBody body = okhttp3.RequestBody.create(media_type, post_data.toString());
-
-        okhttp3.Request request = new okhttp3.Request.Builder()
-                    .url(url)
-                    .post(body)
-                    .build();
-
-        try{
-            okhttp3.Response response = client.newCall(request).execute();
-            //Log.e("okhttp3", "Response: " + response.body().toString());
-        }catch(IOException ex) {
-            Log.e("okhttp3", ex.toString());
-        }
-
-
     }
 }
