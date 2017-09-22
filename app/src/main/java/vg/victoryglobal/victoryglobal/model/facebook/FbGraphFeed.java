@@ -24,10 +24,6 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
-/**
- * Created by mong on 9/10/17.
- */
-
 public class FbGraphFeed implements Parcelable {
 
 

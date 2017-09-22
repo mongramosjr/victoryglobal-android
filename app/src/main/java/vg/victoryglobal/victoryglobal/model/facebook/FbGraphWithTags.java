@@ -8,10 +8,6 @@
 
 package vg.victoryglobal.victoryglobal.model.facebook;
 
-/**
- * Created by mong on 9/10/17.
- */
-
 public class FbGraphWithTags {
 
     private String id;

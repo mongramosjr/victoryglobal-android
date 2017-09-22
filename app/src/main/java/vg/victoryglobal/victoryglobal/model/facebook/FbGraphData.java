@@ -10,10 +10,6 @@ package vg.victoryglobal.victoryglobal.model.facebook;
 
 import java.util.ArrayList;
 
-/**
- * Created by mong on 9/10/17.
- */
-
 public class FbGraphData {
 
     ArrayList<FbGraphFeed> data =  new ArrayList<>();

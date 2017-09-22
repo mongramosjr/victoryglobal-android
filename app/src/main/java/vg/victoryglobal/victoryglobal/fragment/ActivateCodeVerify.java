@@ -444,7 +444,7 @@ public class ActivateCodeVerify extends Fragment implements BlockingStep {
             post_data.put("mlm_member_id", code.getMlmMemberId());
             post_data.put("activation_code", code.getActivationCode());
         }catch(JSONException ex) {
-
+            Log.e("okhttp3", ex.toString());
         }
 
         Log.e("okhttp3", post_data.toString());
@@ -462,7 +462,7 @@ public class ActivateCodeVerify extends Fragment implements BlockingStep {
             okhttp3.Response response = client.newCall(request).execute();
             Log.e("okhttp3", "Response: " + response.body().toString());
         }catch(IOException ex) {
-
+            Log.e("okhttp3", ex.toString());
         }
 
 

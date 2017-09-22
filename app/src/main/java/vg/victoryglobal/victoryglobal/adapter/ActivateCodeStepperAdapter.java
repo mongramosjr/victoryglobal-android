@@ -34,16 +34,20 @@ public class ActivateCodeStepperAdapter extends AbstractFragmentStepAdapter {
     @Override
     public Step createStep(int position) {
 
+        final ActivateCodeVerify stepVerify;
+        final ActivateCodeConfirm stepConfirm;
+
+
         if(position == 0) {
             //step = ActivateCodeVerify.class;
-            final ActivateCodeVerify stepVerify = new ActivateCodeVerify();
+            stepVerify = new ActivateCodeVerify();
             return stepVerify;
         }else if(position == 1){
             //step = ActivateCodeConfirm.class;
-            final ActivateCodeConfirm stepConfirm = new ActivateCodeConfirm();
+            stepConfirm = new ActivateCodeConfirm();
             return stepConfirm;
         }else{
-            final ActivateCodeVerify stepVerify = new ActivateCodeVerify();
+            stepVerify = new ActivateCodeVerify();
             return stepVerify;
         }
     }

@@ -33,28 +33,36 @@ public class RegisterAccountStepperAdapter extends AbstractFragmentStepAdapter {
     @Override
     public Step createStep(int position) {
 
+        final RegisterAccountPersonalInfo stepPersonalInfo;
+        final RegisterAccountAddressAndContact stepAddressAndContact;
+        final RegisterAccountMlmInfo stepVerify;
+        final RegisterAccountConfirm stepConfirm;
+        final RegisterAccountSecurity stepSecurity;
+
+
+
         if(position == 0) {
             //step = ActivateCodeVerify.class;
-            final RegisterAccountPersonalInfo stepPersonalInfo = new RegisterAccountPersonalInfo();
+            stepPersonalInfo = new RegisterAccountPersonalInfo();
             return stepPersonalInfo;
         }else if(position == 1){
             //step = RegisterAccountAddressAndContact.class;
-            final RegisterAccountAddressAndContact stepAddressAndContact = new RegisterAccountAddressAndContact();
+            stepAddressAndContact = new RegisterAccountAddressAndContact();
             return stepAddressAndContact;
         }else if(position == 2){
             //step = RegisterAccountMlmInfo.class;
-            final RegisterAccountMlmInfo stepVerify = new RegisterAccountMlmInfo();
+            stepVerify = new RegisterAccountMlmInfo();
             return stepVerify;
         }else if(position == 3){
             //step = RegisterAccountSecurity.class;
-            final RegisterAccountSecurity stepSecurity = new RegisterAccountSecurity();
+            stepSecurity = new RegisterAccountSecurity();
             return stepSecurity;
         }else if(position == 4){
             //step = RegisterAccountConfirm.class;
-            final RegisterAccountConfirm stepConfirm = new RegisterAccountConfirm();
+            stepConfirm = new RegisterAccountConfirm();
             return stepConfirm;
         }else{
-            final RegisterAccountPersonalInfo stepPersonalInfo = new RegisterAccountPersonalInfo();
+            stepPersonalInfo = new RegisterAccountPersonalInfo();
             return stepPersonalInfo;
         }
     }

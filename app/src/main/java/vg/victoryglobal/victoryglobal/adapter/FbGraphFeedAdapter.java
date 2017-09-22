@@ -26,9 +26,6 @@ import vg.victoryglobal.victoryglobal.model.facebook.FbGraphFeed;
 
 import com.bumptech.glide.Glide;
 
-/**
- * Created by mong on 9/10/17.
- */
 
 public class FbGraphFeedAdapter extends RecyclerView.Adapter<FbGraphFeedAdapter.VictoryGlobalFeedViewHolder> {
 
