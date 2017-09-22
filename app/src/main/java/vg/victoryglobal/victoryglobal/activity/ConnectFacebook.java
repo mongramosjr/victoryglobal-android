@@ -54,7 +54,6 @@ public class ConnectFacebook extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.connect_facebook_activity);
 
-        FacebookSdk.sdkInitialize(getApplicationContext());
         callbackManager = CallbackManager.Factory.create();
         accessTokenTracker = new AccessTokenTracker() {
             @Override
