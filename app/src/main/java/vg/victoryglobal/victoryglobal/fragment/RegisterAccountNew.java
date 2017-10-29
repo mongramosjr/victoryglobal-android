@@ -294,18 +294,6 @@ public class RegisterAccountNew extends Fragment implements BlockingStep {
             return;
         }
 
-        //reset all saved error codes
-        registerAccountRequest.resetErrorCodes();
-
-        //singleton class variable, save the encoded data
-        registerAccountRequest.getRegisterAccount().setFirstName(firstName.getText().toString());
-        registerAccountRequest.getRegisterAccount().setMiddleName(middleName.getText().toString());
-        registerAccountRequest.getRegisterAccount().setLastName(lastName.getText().toString());
-
-        registerAccountRequest.getRegisterAccount().setPassword(password.getText().toString());
-        registerAccountRequest.getRegisterAccount().setVerifyPassword(verifyPassword.getText().toString());
-
-
         callback.getStepperLayout().showProgress(getString(R.string.progress_message));
 
         try {
@@ -315,6 +303,39 @@ public class RegisterAccountNew extends Fragment implements BlockingStep {
         }catch (Exception e) {
             Log.e("RegisterAccountNew", e.getMessage());
         }
+
+        //reset all saved error codes
+        registerAccountRequest.resetErrorCodes();
+
+        //check mlm_account_id selection
+        boolean is_name_change = false;
+        if(registerAccountRequest.getRegisterAccount().getFirstName() != null) {
+            String first_name = registerAccountRequest.getRegisterAccount().getFirstName();
+            if(!first_name.equals(firstName.getText().toString())){
+                is_name_change =  true;
+            }
+        }
+        if(registerAccountRequest.getRegisterAccount().getLastName() != null) {
+            String first_name = registerAccountRequest.getRegisterAccount().getLastName();
+            if(!first_name.equals(lastName.getText().toString())){
+                is_name_change =  true;
+            }
+        }
+        if(is_name_change){
+            //remove mlm_account_id selection
+            mlmAccountRequest.reset();
+            registerAccountRequest.getRegisterAccount().setMlmAccountId(0);
+        }
+
+
+        //singleton class variable, save the encoded data
+        registerAccountRequest.getRegisterAccount().setFirstName(firstName.getText().toString());
+        registerAccountRequest.getRegisterAccount().setMiddleName(middleName.getText().toString());
+        registerAccountRequest.getRegisterAccount().setLastName(lastName.getText().toString());
+
+        registerAccountRequest.getRegisterAccount().setPassword(password.getText().toString());
+        registerAccountRequest.getRegisterAccount().setVerifyPassword(verifyPassword.getText().toString());
+
 
         new Handler().postDelayed(new Runnable() {
             @Override

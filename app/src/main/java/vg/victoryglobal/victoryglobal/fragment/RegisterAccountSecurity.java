@@ -8,6 +8,7 @@
 
 package vg.victoryglobal.victoryglobal.fragment;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
@@ -23,6 +24,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
 import com.android.volley.DefaultRetryPolicy;
@@ -231,15 +233,22 @@ public class RegisterAccountSecurity extends Fragment implements BlockingStep {
             return;
         }
 
+        callback.getStepperLayout().showProgress(getString(R.string.progress_message));
+
+        try {
+            InputMethodManager inputManager = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+
+            inputManager.hideSoftInputFromWindow((null == getActivity().getCurrentFocus()) ? null : getActivity().getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+        }catch (Exception e) {
+            Log.e("RegisterAccountSec", e.getMessage());
+        }
+
         //reset all saved error codes
         registerAccountRequest.resetErrorCodes();
 
         //singleton class variable, save the encoded data
         registerAccountRequest.getRegisterAccount().setPassword(password.getText().toString());
         registerAccountRequest.getRegisterAccount().setVerifyPassword(verifyPassword.getText().toString());
-
-
-        callback.getStepperLayout().showProgress(getString(R.string.progress_message));
 
         accountRegistrationCheckFirst(registerAccountRequest.getRegisterAccount(), callback);
     }

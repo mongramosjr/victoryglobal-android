@@ -8,6 +8,7 @@
 
 package vg.victoryglobal.victoryglobal.fragment;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
@@ -19,9 +20,11 @@ import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
@@ -215,6 +218,14 @@ public class RegisterAccountPersonalInfo extends Fragment implements BlockingSte
         }
 
         callback.getStepperLayout().showProgress(getString(R.string.progress_message));
+
+        try {
+            InputMethodManager inputManager = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+
+            inputManager.hideSoftInputFromWindow((null == getActivity().getCurrentFocus()) ? null : getActivity().getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+        }catch (Exception e) {
+            Log.e("RegisterAccountPersonal", e.getMessage());
+        }
 
         //TODO:
         registerAccountRequest.resetErrorCodes();

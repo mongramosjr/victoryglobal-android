@@ -8,6 +8,7 @@
 
 package vg.victoryglobal.victoryglobal.fragment;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
@@ -23,6 +24,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
 import com.android.volley.DefaultRetryPolicy;
@@ -195,14 +197,22 @@ public class UpgradeAccountVerify extends Fragment implements BlockingStep {
             return;
         }
 
+        callback.getStepperLayout().showProgress(getString(R.string.progress_message));
+
+        try {
+            InputMethodManager inputManager = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+
+            inputManager.hideSoftInputFromWindow((null == getActivity().getCurrentFocus()) ? null : getActivity().getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+        }catch (Exception e) {
+            Log.e("UpgradeAccountVerify", e.getMessage());
+        }
+
         upgradeAccountRequest.resetErrorCodes();
 
         //singleton class variable, save the encoded data
         upgradeAccountRequest.getUpgradeAccount().setActivationCode(activationCode.getText().toString());
         upgradeAccountRequest.getUpgradeAccount().setMlmMemberId(Integer.parseInt(mlmMemberId.getText().toString()));
 
-
-        callback.getStepperLayout().showProgress(getString(R.string.progress_message));
 
         upgradeCheckFirst(upgradeAccountRequest.getUpgradeAccount(), callback);
     }

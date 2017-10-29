@@ -32,27 +32,27 @@
             android:textAppearance="@style/itemTitleText"
             />
 
-            <LinearLayout
-                android:orientation="vertical"
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/mlm_account_id_layout"
+            >
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/mlm_account_id_layout"
-                >
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="@android:style/TextAppearance.Material.Caption"
-                    android:id="@+id/mlm_account_id_label"
-                    android:text="@string/mlm_account_id_hint"/>
+                android:textAppearance="@android:style/TextAppearance.Material.Caption"
+                android:id="@+id/mlm_account_id_label"
+                android:text="@string/mlm_account_id_hint"/>
 
-                <Spinner
-                    android:id="@+id/mlm_account_id"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/mlm_account_id_hint"
-                    style="@style/Widget.AppCompat.Spinner.Underlined"
-                    />
-            </LinearLayout>
+            <Spinner
+                android:id="@+id/mlm_account_id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/mlm_account_id_hint"
+                style="@style/Widget.AppCompat.Spinner.Underlined"
+                />
+        </LinearLayout>
 
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"

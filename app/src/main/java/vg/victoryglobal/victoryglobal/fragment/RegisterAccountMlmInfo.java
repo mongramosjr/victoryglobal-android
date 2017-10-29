@@ -8,6 +8,7 @@
 
 package vg.victoryglobal.victoryglobal.fragment;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
@@ -23,6 +24,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
@@ -289,6 +291,14 @@ public class RegisterAccountMlmInfo extends Fragment implements BlockingStep {
 
         callback.getStepperLayout().showProgress(getString(R.string.progress_message));
 
+        try {
+            InputMethodManager inputManager = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+
+            inputManager.hideSoftInputFromWindow((null == getActivity().getCurrentFocus()) ? null : getActivity().getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+        }catch (Exception e) {
+            Log.e("RegisterAccountMlmInfo", e.getMessage());
+        }
+
         registerAccountRequest.resetErrorCodes();
 
         //singleton class variable, save the encoded data
@@ -374,6 +384,7 @@ public class RegisterAccountMlmInfo extends Fragment implements BlockingStep {
             mlmLocation.setSelection(0);
             pickupCenterId.setSelection(0);
 
+            registerAccountRequest.setSuccess(false);
             registerAccountRequest.setSuccessMlmInfo(false);
         }
 
@@ -398,9 +409,9 @@ public class RegisterAccountMlmInfo extends Fragment implements BlockingStep {
             }
 
         }else{
-            mlmAccountId.setVisibility(View.INVISIBLE);
-            mlmAccountIdLabel.setVisibility(View.INVISIBLE);
-            mlmAccountIdLayout.setVisibility(View.INVISIBLE);
+            mlmAccountId.setVisibility(View.GONE);
+            mlmAccountIdLabel.setVisibility(View.GONE);
+            mlmAccountIdLayout.setVisibility(View.GONE);
         }
 
         if(!pickupCenterRequest.getPickupCentersStr().isEmpty()) {
@@ -423,9 +434,9 @@ public class RegisterAccountMlmInfo extends Fragment implements BlockingStep {
             }
 
         }else{
-            pickupCenterId.setVisibility(View.INVISIBLE);
-            pickupCenterIdLabel.setVisibility(View.INVISIBLE);
-            pickupCenterIdLayout.setVisibility(View.INVISIBLE);
+            pickupCenterId.setVisibility(View.GONE);
+            pickupCenterIdLabel.setVisibility(View.GONE);
+            pickupCenterIdLayout.setVisibility(View.GONE);
         }
 
 
@@ -516,6 +527,7 @@ public class RegisterAccountMlmInfo extends Fragment implements BlockingStep {
                     new Handler().postDelayed(new Runnable() {
                         @Override
                         public void run() {
+                            callback_register.getStepperLayout().hideProgress();
                             RegisterAccountStepperAdapter regAcctAdptr
                                     =  (RegisterAccountStepperAdapter) callback_register.getStepperLayout().getAdapter();
                             int position = regAcctAdptr.positionStepFragment("RegisterAccountMlmInfo");

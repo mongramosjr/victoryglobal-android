@@ -29,6 +29,7 @@ import vg.victoryglobal.victoryglobal.fragment.RegisterAccountMlmInfo;
 import vg.victoryglobal.victoryglobal.fragment.RegisterAccountNew;
 import vg.victoryglobal.victoryglobal.fragment.RegisterAccountPersonalInfo;
 import vg.victoryglobal.victoryglobal.fragment.RegisterAccountSecurity;
+import vg.victoryglobal.victoryglobal.fragment.RegisterAccountSubscribe;
 
 public class RegisterAccountStepperAdapter extends AbstractFragmentStepAdapter {
 
@@ -51,10 +52,11 @@ public class RegisterAccountStepperAdapter extends AbstractFragmentStepAdapter {
         final RegisterAccountMlmInfo stepMlmInfo  = new RegisterAccountMlmInfo();
         final RegisterAccountConfirm stepConfirm  = new RegisterAccountConfirm();
         final RegisterAccountSecurity stepSecurity = new RegisterAccountSecurity();
+        final RegisterAccountSubscribe stepSubscribe = new RegisterAccountSubscribe();
 
         registerStepFragment(0, stepNew);
         registerStepFragment(1, stepMlmInfo);
-        registerStepFragment(2, stepConfirm);
+        registerStepFragment(2, stepSubscribe);
         //registerStepFragment(3, stepPersonalInfo);
         //registerStepFragment(4, stepAddressAndContact);
     }

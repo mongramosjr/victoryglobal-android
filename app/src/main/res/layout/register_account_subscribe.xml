@@ -1,0 +1,273 @@
+<!--
+  ~ Created by Mong Ramos Jr. <mongramosjr@gmail.com> on 10/29/17 8:26 PM
+  ~
+  ~ Copyright (c) 2017 Victory Global Unlimited Systems Inc. All rights reserved.
+  ~
+  ~ Last modified 9/22/17 8:41 AM
+  -->
+
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="vg.victoryglobal.victoryglobal.fragment.RegisterAccountConfirm">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <LinearLayout
+        android:id="@+id/register_account_linearlayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginRight="@dimen/login_layout_marginRight"
+        android:layout_marginLeft="@dimen/login_layout_marginRight">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/personal_info"
+                android:textAppearance="@style/itemTitleText" />
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/item_label_paddingTop"
+                >
+                <TextView
+                    android:id="@+id/first_name"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:paddingEnd="8dp"
+                    android:paddingStart="8dp"
+                    android:textAppearance="@style/itemBodyText"
+                    />
+
+                <TextView
+                    android:id="@+id/middle_name"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="8dp"
+                    android:textAppearance="@style/itemBodyText"
+                    />
+
+                <TextView
+                    android:id="@+id/last_name"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:textAppearance="@style/itemBodyText"
+                    />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/account_security"
+                android:textAppearance="@style/itemTitleText"
+                android:paddingTop="@dimen/item_title_paddingTop"/>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/item_label_paddingTop"
+                >
+                <TextView
+                    android:id="@+id/password_label"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:textAppearance="@style/itemLabelText"
+                    android:text="@string/password_hint" />
+                <TextView
+                    android:id="@+id/password"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:textAppearance="@style/itemBodyText"
+                    />
+
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/item_label_paddingTop"
+                >
+                <TextView
+                    android:id="@+id/verify_password_label"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:textAppearance="@style/itemLabelText"
+                    android:text="@string/confirm_password_hint" />
+                <TextView
+                    android:id="@+id/verify_password"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:textAppearance="@style/itemBodyText"
+                    />
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/sponsor_and_placement"
+                android:textAppearance="@style/itemTitleText"
+                android:paddingTop="@dimen/item_title_paddingTop"/>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/item_label_paddingTop"
+                >
+                <TextView
+                    android:id="@+id/mlm_account_name_label"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:textAppearance="@style/itemLabelText"
+                    android:text="@string/mlm_account_id_hint" />
+
+                <TextView
+                    android:id="@+id/mlm_account_name"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:textAppearance="@style/itemBodyText"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/item_label_paddingTop"
+                >
+                <TextView
+                    android:id="@+id/activation_code_label"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:textAppearance="@style/itemLabelText"
+                    android:text="@string/activation_code_hint" />
+
+                <TextView
+                    android:id="@+id/activation_code_name"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:textAppearance="@style/itemBodyText"
+                    />
+
+                <TextView
+                    android:id="@+id/activation_code"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:textAppearance="@style/itemBodyText"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/item_label_paddingTop"
+                >
+                <TextView
+                    android:id="@+id/sponsor_id_label"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:textAppearance="@style/itemLabelText"
+                    android:text="@string/sponsor_id_hint" />
+
+                <TextView
+                    android:id="@+id/sponsor_name"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:textAppearance="@style/itemBodyText"
+                    />
+
+                <TextView
+                    android:id="@+id/sponsor_id"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:textAppearance="@style/itemBodyText"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/item_label_paddingTop"
+                >
+                <TextView
+                    android:id="@+id/upline_id_label"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:textAppearance="@style/itemLabelText"
+                    android:text="@string/upline_id_hint" />
+
+                <TextView
+                    android:id="@+id/upline_name"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:textAppearance="@style/itemBodyText"
+                     />
+
+                <TextView
+                    android:id="@+id/upline_id"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:textAppearance="@style/itemBodyText"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/item_label_paddingTop"
+                >
+                <TextView
+                    android:id="@+id/mlm_location_label"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:textAppearance="@style/itemLabelText"
+                    android:text="@string/mlm_location_hint" />
+
+                <TextView
+                    android:id="@+id/mlm_location"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:textAppearance="@style/itemBodyText"
+                    />
+            </LinearLayout>
+
+
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/item_label_paddingTop"
+                >
+                <TextView
+                    android:id="@+id/pickup_center_id_label"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:textAppearance="@style/itemLabelText"
+                    android:text="@string/pickup_center_id_hint" />
+                <TextView
+                    android:id="@+id/pickup_center_id"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:textAppearance="@style/itemBodyText"
+                    />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+    </ScrollView>
+
+</FrameLayout>

@@ -8,6 +8,7 @@
 
 package vg.victoryglobal.victoryglobal.fragment;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
@@ -23,6 +24,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
 import com.android.volley.DefaultRetryPolicy;
@@ -198,6 +200,16 @@ public class ActivateCodeVerify extends Fragment implements BlockingStep {
             return;
         }
 
+        callback.getStepperLayout().showProgress(getString(R.string.progress_message));
+
+        try {
+            InputMethodManager inputManager = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+
+            inputManager.hideSoftInputFromWindow((null == getActivity().getCurrentFocus()) ? null : getActivity().getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+        }catch (Exception e) {
+            Log.e("ActivateCodeVerify", e.getMessage());
+        }
+
         activateCodeRequest.resetErrorCodes();
 
         //singleton class variable, save the encoded data
@@ -213,8 +225,6 @@ public class ActivateCodeVerify extends Fragment implements BlockingStep {
         //}
         // Commit the edits!
         //editor.commit();
-
-        callback.getStepperLayout().showProgress(getString(R.string.progress_message));
 
         codeCheckFirst(activateCodeRequest.getActivateCode(), callback);
 
