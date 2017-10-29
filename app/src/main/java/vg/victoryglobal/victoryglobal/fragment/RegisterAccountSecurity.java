@@ -43,6 +43,7 @@ import org.json.JSONTokener;
 import java.util.ArrayList;
 
 import vg.victoryglobal.victoryglobal.R;
+import vg.victoryglobal.victoryglobal.adapter.RegisterAccountStepperAdapter;
 import vg.victoryglobal.victoryglobal.model.MlmAccount;
 import vg.victoryglobal.victoryglobal.model.MlmAccountRequest;
 import vg.victoryglobal.victoryglobal.model.MlmResponseError;
@@ -365,7 +366,10 @@ public class RegisterAccountSecurity extends Fragment implements BlockingStep {
                         @Override
                         public void run() {
                             callback_register.getStepperLayout().hideProgress();
-                            callback_register.getStepperLayout().setCurrentStepPosition(2);
+                            RegisterAccountStepperAdapter regAcctAdptr
+                                    =  (RegisterAccountStepperAdapter) callback_register.getStepperLayout().getAdapter();
+                            int position = regAcctAdptr.positionStepFragment("RegisterAccountMlmInfo");
+                            callback_register.getStepperLayout().setCurrentStepPosition(position);
                         }
                     }, 2000L);
                 }else {
@@ -399,7 +403,10 @@ public class RegisterAccountSecurity extends Fragment implements BlockingStep {
                             @Override
                             public void run() {
                                 callback_register.getStepperLayout().hideProgress();
-                                callback_register.getStepperLayout().setCurrentStepPosition(2);
+                                RegisterAccountStepperAdapter regAcctAdptr
+                                        =  (RegisterAccountStepperAdapter) callback_register.getStepperLayout().getAdapter();
+                                int position = regAcctAdptr.positionStepFragment("RegisterAccountMlmInfo");
+                                callback_register.getStepperLayout().setCurrentStepPosition(position);
                             }
                         }, 2000L);
                     }else if (error.equals("sponsor_id")) {
@@ -408,7 +415,10 @@ public class RegisterAccountSecurity extends Fragment implements BlockingStep {
                             @Override
                             public void run() {
                                 callback_register.getStepperLayout().hideProgress();
-                                callback_register.getStepperLayout().setCurrentStepPosition(2);
+                                RegisterAccountStepperAdapter regAcctAdptr
+                                        =  (RegisterAccountStepperAdapter) callback_register.getStepperLayout().getAdapter();
+                                int position = regAcctAdptr.positionStepFragment("RegisterAccountMlmInfo");
+                                callback_register.getStepperLayout().setCurrentStepPosition(position);
                             }
                         }, 2000L);
                     }else if (error.equals("upline_id")) {
@@ -417,7 +427,10 @@ public class RegisterAccountSecurity extends Fragment implements BlockingStep {
                             @Override
                             public void run() {
                                 callback_register.getStepperLayout().hideProgress();
-                                callback_register.getStepperLayout().setCurrentStepPosition(2);
+                                RegisterAccountStepperAdapter regAcctAdptr
+                                        =  (RegisterAccountStepperAdapter) callback_register.getStepperLayout().getAdapter();
+                                int position = regAcctAdptr.positionStepFragment("RegisterAccountMlmInfo");
+                                callback_register.getStepperLayout().setCurrentStepPosition(position);
                             }
                         }, 2000L);
                     }else if (error.equals("password")) {
@@ -426,7 +439,10 @@ public class RegisterAccountSecurity extends Fragment implements BlockingStep {
                             @Override
                             public void run() {
                                 callback_register.getStepperLayout().hideProgress();
-                                callback_register.getStepperLayout().setCurrentStepPosition(3);
+                                RegisterAccountStepperAdapter regAcctAdptr
+                                        =  (RegisterAccountStepperAdapter) callback_register.getStepperLayout().getAdapter();
+                                int position = regAcctAdptr.positionStepFragment("RegisterAccountNew");
+                                callback_register.getStepperLayout().setCurrentStepPosition(position);
                             }
                         }, 2000L);
                     }else if (error.equals("first_name")) {
@@ -435,7 +451,10 @@ public class RegisterAccountSecurity extends Fragment implements BlockingStep {
                             @Override
                             public void run() {
                                 callback_register.getStepperLayout().hideProgress();
-                                callback_register.getStepperLayout().setCurrentStepPosition(0);
+                                RegisterAccountStepperAdapter regAcctAdptr
+                                        =  (RegisterAccountStepperAdapter) callback_register.getStepperLayout().getAdapter();
+                                int position = regAcctAdptr.positionStepFragment("RegisterAccountNew");
+                                callback_register.getStepperLayout().setCurrentStepPosition(position);
                             }
                         }, 2000L);
                     }else if (error.equals("last_name")) {
@@ -444,7 +463,10 @@ public class RegisterAccountSecurity extends Fragment implements BlockingStep {
                             @Override
                             public void run() {
                                 callback_register.getStepperLayout().hideProgress();
-                                callback_register.getStepperLayout().setCurrentStepPosition(0);
+                                RegisterAccountStepperAdapter regAcctAdptr
+                                        =  (RegisterAccountStepperAdapter) callback_register.getStepperLayout().getAdapter();
+                                int position = regAcctAdptr.positionStepFragment("RegisterAccountNew");
+                                callback_register.getStepperLayout().setCurrentStepPosition(position);
                             }
                         }, 2000L);
                     }else{

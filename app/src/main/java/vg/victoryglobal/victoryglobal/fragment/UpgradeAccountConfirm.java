@@ -36,6 +36,8 @@ import org.json.JSONObject;
 import org.json.JSONTokener;
 
 import vg.victoryglobal.victoryglobal.R;
+import vg.victoryglobal.victoryglobal.adapter.RegisterAccountStepperAdapter;
+import vg.victoryglobal.victoryglobal.adapter.UpgradeAccountStepperAdapter;
 import vg.victoryglobal.victoryglobal.model.MlmResponseError;
 import vg.victoryglobal.victoryglobal.model.UpgradeAccount;
 import vg.victoryglobal.victoryglobal.model.UpgradeAccountRequest;
@@ -147,7 +149,7 @@ public class UpgradeAccountConfirm extends Fragment implements BlockingStep {
     }
 
     private void upgradeRegistrationCallback(View view, String response_data,
-                                          final StepperLayout.OnCompleteClickedCallback callback_code) {
+                                          final StepperLayout.OnCompleteClickedCallback callback_upgrade) {
         try {
             JSONObject object = (JSONObject) new JSONTokener(response_data).nextValue();
             int status = object.getInt("status");
@@ -167,7 +169,7 @@ public class UpgradeAccountConfirm extends Fragment implements BlockingStep {
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        callback_code.complete();
+                        callback_upgrade.complete();
                     }
                 }, 2000L);
 
@@ -178,8 +180,11 @@ public class UpgradeAccountConfirm extends Fragment implements BlockingStep {
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        callback_code.getStepperLayout().hideProgress();
-                        callback_code.getStepperLayout().setCurrentStepPosition(0);
+                        callback_upgrade.getStepperLayout().hideProgress();
+                        UpgradeAccountStepperAdapter upAcctAdptr
+                                =  (UpgradeAccountStepperAdapter) callback_upgrade.getStepperLayout().getAdapter();
+                        int position = upAcctAdptr.positionStepFragment("UpgradeAccountVerify");
+                        callback_upgrade.getStepperLayout().setCurrentStepPosition(position);
                     }
                 }, 2000L);
 
@@ -202,8 +207,8 @@ public class UpgradeAccountConfirm extends Fragment implements BlockingStep {
                     new Handler().postDelayed(new Runnable() {
                         @Override
                         public void run() {
-                            callback_code.getStepperLayout().hideProgress();
-                            callback_code.getStepperLayout().onBackClicked();
+                            callback_upgrade.getStepperLayout().hideProgress();
+                            callback_upgrade.getStepperLayout().onBackClicked();
                         }
                     }, 2000L);
 
@@ -218,8 +223,8 @@ public class UpgradeAccountConfirm extends Fragment implements BlockingStep {
                     new Handler().postDelayed(new Runnable() {
                         @Override
                         public void run() {
-                            callback_code.getStepperLayout().hideProgress();
-                            callback_code.getStepperLayout().onBackClicked();
+                            callback_upgrade.getStepperLayout().hideProgress();
+                            callback_upgrade.getStepperLayout().onBackClicked();
                         }
                     }, 2000L);
                 }
@@ -233,8 +238,8 @@ public class UpgradeAccountConfirm extends Fragment implements BlockingStep {
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        callback_code.getStepperLayout().hideProgress();
-                        callback_code.getStepperLayout().onBackClicked();
+                        callback_upgrade.getStepperLayout().hideProgress();
+                        callback_upgrade.getStepperLayout().onBackClicked();
                     }
                 }, 2000L);
             }
@@ -246,8 +251,8 @@ public class UpgradeAccountConfirm extends Fragment implements BlockingStep {
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    callback_code.getStepperLayout().hideProgress();
-                    callback_code.getStepperLayout().onBackClicked();
+                    callback_upgrade.getStepperLayout().hideProgress();
+                    callback_upgrade.getStepperLayout().onBackClicked();
                 }
             }, 2000L);
         }

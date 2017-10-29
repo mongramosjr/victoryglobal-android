@@ -17,11 +17,13 @@
     <string name="facebook_app_id">344323752657014</string>
     <string name="fb_login_protocol_scheme">fb344323752657014</string>
     <string name="fb_page_access_token_ryr">EAAE5KR73AHYBABZC0ztDYf1y6Aoyrga6hEpCPJK4CV898v6mnuDQBZAv39DwOnpuPkMmnjjTpbC0s7I8bYGFXtjfjDoI0GfkBPWc0VsjVZACjCKUdidhk8odcoBFqIIM1SlgWZBRA0d2jwSqFAUC5ke7Iqwx1Uz4AnkKp0IVHwZDZD</string>
+    <string name="fb_page_access_token_vg">EAAE5KR73AHYBALEb3UtndR0SjiYjrWPaf5yqwOjiPbDJFSZBcDqV7y88pAdgAz11zJoT2UZC5nw4tijLVH3Eob8GKupFS2GWvF5SP1Y3yU3JGZCgzQCY6Xz9RaqKj18pVTMDYQsW1mxy8wTJfAVeHeJENW1OB9kG3QKL6zvZAgZDZD</string>
     <string name="fb_user_id_mong">188501987866116</string>
 
     <string name="facebook_app_name">Victory Global</string>
 
     <!-- activation code, upgrade account, register account -->
+    <string name="new_account">Set up your business account with us — so you can stand out, and reach your goals.</string>
     <string name="residence_address">Residence address</string>
     <string name="contact_info">Contact Info</string>
     <string name="personal_info">Personal info</string>
@@ -79,6 +81,7 @@
     <string name="ui_no_internet">There is no Internet connection</string>
     <string name="ui_exception">Unexpected error. Try again.</string>
     <string name="ui_unexpected_response">Unable to process. Try again.</string>
+    <string name="ui_fb_exception">Error in retrieving newsfeeds. Try again.</string>
 
     <!--
     <string name="first_name_hint">First Name</string>

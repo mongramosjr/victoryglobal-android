@@ -14,42 +14,59 @@ import android.support.annotation.IntRange;
 import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentManager;
 
+import com.stepstone.stepper.BlockingStep;
 import com.stepstone.stepper.Step;
 import com.stepstone.stepper.adapter.AbstractFragmentStepAdapter;
 import com.stepstone.stepper.viewmodel.StepViewModel;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 
 import vg.victoryglobal.victoryglobal.fragment.UpgradeAccountConfirm;
 import vg.victoryglobal.victoryglobal.fragment.UpgradeAccountVerify;
 
 public class UpgradeAccountStepperAdapter extends AbstractFragmentStepAdapter {
 
+    ArrayList<Object> stepFragment = new ArrayList<>();
+
+    HashMap<String , Integer> stepFragmentPosition = new HashMap<>();
+
     public UpgradeAccountStepperAdapter(FragmentManager fm, Context context) {
         super(fm, context);
+
+        final UpgradeAccountVerify stepVerify = new UpgradeAccountVerify();
+        final UpgradeAccountConfirm stepConfirm = new UpgradeAccountConfirm();
+
+        registerStepFragment(0, stepVerify);
+        registerStepFragment(1, stepConfirm);
     }
 
-    @Override
-    public Step createStep(int position) {
+    public void registerStepFragment(int index,  Object o)
+    {
+        stepFragment.add(index, o);
+        String step_name = o.getClass().getSimpleName();
+        stepFragmentPosition.put(step_name, index);
+    }
 
-        final UpgradeAccountVerify stepVerify;
-        final UpgradeAccountConfirm stepConfirm;
-
-        if(position == 0) {
-            //step = UpgradeAccountVerify.class;
-            stepVerify = new UpgradeAccountVerify();
-            return stepVerify;
-        }else if(position == 1){
-            //step = UpgradeAccountConfirm.class;
-            stepConfirm = new UpgradeAccountConfirm();
-            return stepConfirm;
+    public int positionStepFragment(String name)
+    {
+        Integer position = stepFragmentPosition.get(name);
+        if(position != null)
+        {
+            return position.intValue();
         }else{
-            stepVerify = new UpgradeAccountVerify();
-            return stepVerify;
+            return -1;
         }
     }
 
     @Override
+    public Step createStep(int position) {
+        return (BlockingStep) stepFragment.get(position);
+    }
+
+    @Override
     public int getCount() {
-        return 2;
+        return stepFragment.size();
     }
 
     @NonNull

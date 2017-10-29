@@ -13,63 +13,80 @@ import android.content.Context;
 import android.support.annotation.IntRange;
 import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentManager;
+import android.util.Log;
 
+import com.stepstone.stepper.BlockingStep;
 import com.stepstone.stepper.Step;
 import com.stepstone.stepper.adapter.AbstractFragmentStepAdapter;
 import com.stepstone.stepper.viewmodel.StepViewModel;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 import vg.victoryglobal.victoryglobal.fragment.RegisterAccountAddressAndContact;
 import vg.victoryglobal.victoryglobal.fragment.RegisterAccountConfirm;
 import vg.victoryglobal.victoryglobal.fragment.RegisterAccountMlmInfo;
+import vg.victoryglobal.victoryglobal.fragment.RegisterAccountNew;
 import vg.victoryglobal.victoryglobal.fragment.RegisterAccountPersonalInfo;
 import vg.victoryglobal.victoryglobal.fragment.RegisterAccountSecurity;
 
 public class RegisterAccountStepperAdapter extends AbstractFragmentStepAdapter {
 
+
+    ArrayList<Object> stepFragment = new ArrayList<>();
+
+    HashMap<String , Integer> stepFragmentPosition = new HashMap<>();
+
+    class StepFragment{
+        Step step;
+        int position;
+    }
+
     public RegisterAccountStepperAdapter(FragmentManager fm, Context context) {
         super(fm, context);
+
+        final RegisterAccountPersonalInfo stepPersonalInfo = new RegisterAccountPersonalInfo();
+        final RegisterAccountNew stepNew = new RegisterAccountNew();
+        final RegisterAccountAddressAndContact stepAddressAndContact  = new RegisterAccountAddressAndContact();
+        final RegisterAccountMlmInfo stepMlmInfo  = new RegisterAccountMlmInfo();
+        final RegisterAccountConfirm stepConfirm  = new RegisterAccountConfirm();
+        final RegisterAccountSecurity stepSecurity = new RegisterAccountSecurity();
+
+        registerStepFragment(0, stepNew);
+        registerStepFragment(1, stepMlmInfo);
+        registerStepFragment(2, stepConfirm);
+        //registerStepFragment(3, stepPersonalInfo);
+        //registerStepFragment(4, stepAddressAndContact);
+    }
+
+    public void registerStepFragment(int index,  Object o)
+    {
+        stepFragment.add(index, o);
+        String step_name = o.getClass().getSimpleName();
+        stepFragmentPosition.put(step_name, index);
+    }
+
+    public int positionStepFragment(String name)
+    {
+        Integer position = stepFragmentPosition.get(name);
+
+        if(position != null)
+        {
+            return position.intValue();
+        }else{
+            return -1;
+        }
     }
 
     @Override
     public Step createStep(int position) {
 
-        final RegisterAccountPersonalInfo stepPersonalInfo;
-        final RegisterAccountAddressAndContact stepAddressAndContact;
-        final RegisterAccountMlmInfo stepVerify;
-        final RegisterAccountConfirm stepConfirm;
-        final RegisterAccountSecurity stepSecurity;
-
-
-
-        if(position == 0) {
-            //step = ActivateCodeVerify.class;
-            stepPersonalInfo = new RegisterAccountPersonalInfo();
-            return stepPersonalInfo;
-        }else if(position == 1){
-            //step = RegisterAccountAddressAndContact.class;
-            stepAddressAndContact = new RegisterAccountAddressAndContact();
-            return stepAddressAndContact;
-        }else if(position == 2){
-            //step = RegisterAccountMlmInfo.class;
-            stepVerify = new RegisterAccountMlmInfo();
-            return stepVerify;
-        }else if(position == 3){
-            //step = RegisterAccountSecurity.class;
-            stepSecurity = new RegisterAccountSecurity();
-            return stepSecurity;
-        }else if(position == 4){
-            //step = RegisterAccountConfirm.class;
-            stepConfirm = new RegisterAccountConfirm();
-            return stepConfirm;
-        }else{
-            stepPersonalInfo = new RegisterAccountPersonalInfo();
-            return stepPersonalInfo;
-        }
+        return (BlockingStep) stepFragment.get(position);
     }
 
     @Override
     public int getCount() {
-        return 5;
+        return stepFragment.size();
     }
 
     @NonNull

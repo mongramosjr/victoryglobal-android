@@ -59,8 +59,8 @@ android {
             applicationId 'vg.victoryglobal.victoryglobal'
             signingConfig signingConfigs.vg_signing_config
             targetSdkVersion 26
-            versionName 'vgcaps-1.0.3'
-            versionCode 3
+            versionName 'vgcaps-1.0.6'
+            versionCode 6
             testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
         }
     }

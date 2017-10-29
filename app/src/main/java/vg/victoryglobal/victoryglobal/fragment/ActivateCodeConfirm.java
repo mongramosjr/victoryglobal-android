@@ -36,6 +36,8 @@ import org.json.JSONObject;
 import org.json.JSONTokener;
 
 import vg.victoryglobal.victoryglobal.R;
+import vg.victoryglobal.victoryglobal.adapter.ActivateCodeStepperAdapter;
+import vg.victoryglobal.victoryglobal.adapter.UpgradeAccountStepperAdapter;
 import vg.victoryglobal.victoryglobal.model.ActivateCode;
 import vg.victoryglobal.victoryglobal.model.ActivateCodeRequest;
 import vg.victoryglobal.victoryglobal.model.MlmResponseError;
@@ -203,7 +205,10 @@ public class ActivateCodeConfirm extends Fragment implements BlockingStep {
                     @Override
                     public void run() {
                         callback_code.getStepperLayout().hideProgress();
-                        callback_code.getStepperLayout().setCurrentStepPosition(0);
+                        ActivateCodeStepperAdapter actCodeAdptr
+                                =  (ActivateCodeStepperAdapter) callback_code.getStepperLayout().getAdapter();
+                        int position = actCodeAdptr.positionStepFragment("ActivateCodeVerify");
+                        callback_code.getStepperLayout().setCurrentStepPosition(position);
                     }
                 }, 2000L);
 

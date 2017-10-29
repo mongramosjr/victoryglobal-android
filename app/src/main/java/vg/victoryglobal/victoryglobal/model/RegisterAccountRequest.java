@@ -21,6 +21,7 @@ public class RegisterAccountRequest {
     private boolean successAddressAndContact = false;
     private boolean successMlmInfo = false;
     private boolean successSecurity = false;
+    private boolean successNew = false;
 
     private static final RegisterAccountRequest ourInstance = new RegisterAccountRequest();
 
@@ -95,5 +96,11 @@ public class RegisterAccountRequest {
         return successSecurity;
     }
 
+    public boolean isSuccessNew() {
+        return successNew;
+    }
 
+    public void setSuccessNew(boolean successNew) {
+        this.successNew = successNew;
+    }
 }

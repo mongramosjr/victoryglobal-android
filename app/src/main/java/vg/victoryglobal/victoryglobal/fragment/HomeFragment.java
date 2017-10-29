@@ -8,6 +8,8 @@
 
 package vg.victoryglobal.victoryglobal.fragment;
 
+import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
@@ -21,6 +23,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
@@ -31,6 +34,7 @@ import com.android.volley.toolbox.Volley;
 import com.facebook.AccessToken;
 import com.facebook.AccessTokenTracker;
 import com.facebook.CallbackManager;
+import com.facebook.FacebookRequestError;
 import com.facebook.GraphRequest;
 import com.facebook.GraphResponse;
 import com.facebook.HttpMethod;
@@ -43,6 +47,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 import vg.victoryglobal.victoryglobal.R;
+import vg.victoryglobal.victoryglobal.activity.MainFragmentActivity;
 import vg.victoryglobal.victoryglobal.adapter.FbGraphFeedAdapter;
 import vg.victoryglobal.victoryglobal.model.facebook.FbGraphFeed;
 import vg.victoryglobal.victoryglobal.model.facebook.FbGraphFeedRequest;
@@ -60,6 +65,8 @@ public class HomeFragment extends Fragment implements SwipeRefreshLayout.OnRefre
     private ActionMode actionMode;
 
     FbGraphFeedRequest fbGraphFeedRequest;
+
+    private Activity mActivity;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -246,6 +253,20 @@ public class HomeFragment extends Fragment implements SwipeRefreshLayout.OnRefre
 
         JSONObject graphObject = response.getJSONObject();
 
+        if(graphObject == null){
+
+            FacebookRequestError fb_request_error = response.getError();
+            Log.e("FbGraphFeedCallBack", "onCompleted: " + fb_request_error.toString());
+            swipeRefreshLayout.setRefreshing(false);
+
+            //Note: Toast inside of GraphRequest executeAsync inside of fragment causes crashes
+            final Activity activity = getActivity();
+            if(activity != null) {
+                Toast.makeText(activity.getApplicationContext(), R.string.ui_fb_exception, Toast.LENGTH_LONG).show();
+            }
+            return;
+        }
+
         boolean has_updates = false;
 
 
@@ -361,8 +382,8 @@ public class HomeFragment extends Fragment implements SwipeRefreshLayout.OnRefre
         //AccessToken at = AccessToken.getCurrentAccessToken();
 
         AccessToken at = new AccessToken(
-                "EAAE5KR73AHYBABZC0ztDYf1y6Aoyrga6hEpCPJK4CV898v6mnuDQBZAv39DwOnpuPkMmnjjTpbC0s7I8bYGFXtjfjDoI0GfkBPWc0VsjVZACjCKUdidhk8odcoBFqIIM1SlgWZBRA0d2jwSqFAUC5ke7Iqwx1Uz4AnkKp0IVHwZDZD",
-                "344323752657014", "188501987866116", null, null, null, null, null);
+                getString(R.string.fb_page_access_token_vg),
+                getString(R.string.facebook_app_id), getString(R.string.fb_user_id_mong), null, null, null, null, null);
 
         Bundle fb_bundle=  new Bundle();
         fb_bundle.putString("fields", "posts{id,story,from,with_tags,description,type,source,created_time,message,full_picture}");
