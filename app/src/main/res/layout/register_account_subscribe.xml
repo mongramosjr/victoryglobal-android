@@ -112,30 +112,9 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/sponsor_and_placement"
+                android:text="@string/activation_code_hint"
                 android:textAppearance="@style/itemTitleText"
                 android:paddingTop="@dimen/item_title_paddingTop"/>
-
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingTop="@dimen/item_label_paddingTop"
-                >
-                <TextView
-                    android:id="@+id/mlm_account_name_label"
-                    android:layout_height="wrap_content"
-                    android:layout_width="wrap_content"
-                    android:textAppearance="@style/itemLabelText"
-                    android:text="@string/mlm_account_id_hint" />
-
-                <TextView
-                    android:id="@+id/mlm_account_name"
-                    android:layout_height="wrap_content"
-                    android:layout_width="wrap_content"
-                    android:textAppearance="@style/itemBodyText"
-                    />
-            </LinearLayout>
 
             <LinearLayout
                 android:orientation="vertical"
@@ -164,6 +143,36 @@
                     android:textAppearance="@style/itemBodyText"
                     />
             </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/sponsor_and_placement"
+                android:textAppearance="@style/itemTitleText"
+                android:paddingTop="@dimen/item_title_paddingTop"/>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/item_label_paddingTop"
+                >
+                <TextView
+                    android:id="@+id/mlm_account_name_label"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:textAppearance="@style/itemLabelText"
+                    android:text="@string/mlm_account_id_hint" />
+
+                <TextView
+                    android:id="@+id/mlm_account_name"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:textAppearance="@style/itemBodyText"
+                    />
+            </LinearLayout>
+
+
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="match_parent"
