@@ -25,6 +25,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -56,6 +57,8 @@ public class LoginFragment extends Fragment {
     TextInputLayout inputLayoutDistributorId;
     TextInputEditText password;
     TextInputEditText mlmMemberId;
+
+    ProgressBar simpleProgressBar;
 
     private LoginListener loginListener;
 
@@ -104,6 +107,9 @@ public class LoginFragment extends Fragment {
         password = view.findViewById(R.id.password);
         mlmMemberId = view.findViewById(R.id.mlm_member_id);
 
+        simpleProgressBar = view.findViewById(R.id.simpleProgressBar);
+
+
         final Button button = view.findViewById(R.id.login_button);
 
         button.setOnClickListener(new View.OnClickListener() {
@@ -114,13 +120,14 @@ public class LoginFragment extends Fragment {
                     return;
                 }
 
+                simpleProgressBar.setVisibility(View.VISIBLE);
 
                try {
                     InputMethodManager inputManager = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
 
                     inputManager.hideSoftInputFromWindow((null == getActivity().getCurrentFocus()) ? null : getActivity().getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
                 }catch (Exception e) {
-                    Log.e("ActivateCodeVerify", e.getMessage());
+                    Log.e("LoginFragment", e.getMessage());
                 }
 
                 accountLoginRequest.reset();
@@ -278,18 +285,19 @@ public class LoginFragment extends Fragment {
                 accountLoginRequest.getAccountLogin().setSession(session);
                 accountLoginRequest.getAccountLogin().setAuthToken(auth_token);
 
-                loginListener.prepareLogin(accountLoginRequest.getAccountLogin());
+                Toast.makeText(getActivity().getApplicationContext(), R.string.login_succesful, Toast.LENGTH_SHORT).show();
 
-                /*
                 // go to next page
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        callback_code.getStepperLayout().hideProgress();
-                        callback_code.goToNextStep();
+                        //callback_code.getStepperLayout().hideProgress();
+                        //callback_code.goToNextStep();
+                        simpleProgressBar.setVisibility(View.INVISIBLE);
+                        loginListener.prepareLogin(accountLoginRequest.getAccountLogin());
                     }
                 }, 2000L);
-                */
+
 
 
             }else if(status == 402 ) {

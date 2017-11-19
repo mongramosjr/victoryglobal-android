@@ -13,13 +13,14 @@
     android:layout_width="match_parent"
     android:layout_height="@dimen/drawer_navigation_header_height"
     android:background="@drawable/drawer_navigation_header_bg"
-    android:gravity="bottom"
+    android:gravity="top|center_vertical"
     android:orientation="vertical"
     android:paddingBottom="@dimen/drawer_navigation_header_vertical_spacing"
     android:paddingLeft="@dimen/drawer_navigation_header_horizontal_spacing"
     android:paddingRight="@dimen/drawer_navigation_header_horizontal_spacing"
     android:paddingTop="@dimen/drawer_navigation_header_vertical_spacing"
     android:layout_marginTop="@dimen/drawer_navigation_header_marginTop"
+    android:visibility="visible"
     android:id="@+id/drawer_navigation_header_layout"
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
 

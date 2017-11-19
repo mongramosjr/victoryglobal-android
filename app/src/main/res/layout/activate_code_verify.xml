@@ -32,7 +32,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint="@string/distributor_id_hint"
-                            android:drawableStart="@drawable/ic_distributor_circle_black_24dp"
+                            android:drawableStart="@drawable/face"
                             android:drawablePadding="16dp"
                             android:inputType="number" />
 
@@ -47,7 +47,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/activation_code_hint"
-                        android:drawableStart="@drawable/ic_activation_code_black_24dp"
+                        android:drawableStart="@drawable/qrcode"
                         android:drawablePadding="16dp"
                         android:inputType="text|textCapCharacters"
                     />

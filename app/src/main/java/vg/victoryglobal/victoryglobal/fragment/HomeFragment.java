@@ -120,10 +120,11 @@ public class HomeFragment extends Fragment implements SwipeRefreshLayout.OnRefre
      */
     private void getPageFeeds() {
 
-        swipeRefreshLayout.setRefreshing(true);
+
 
         if(fbGraphFeedRequest.getFeeds().size() == 0 ){
 
+            swipeRefreshLayout.setRefreshing(true);
             FbGraphFeed();
 
         }else{
@@ -136,6 +137,7 @@ public class HomeFragment extends Fragment implements SwipeRefreshLayout.OnRefre
                     swipeRefreshLayout.setRefreshing(false);
                 }
             }, 1000L);
+
 
         }
 

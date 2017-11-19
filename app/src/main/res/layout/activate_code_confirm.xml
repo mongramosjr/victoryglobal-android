@@ -31,7 +31,7 @@
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
                 android:textAppearance="@style/itemBodyText"
-                android:drawableStart="@drawable/ic_distributor_circle_black_24dp"
+                android:drawableStart="@drawable/face"
                 android:drawablePadding="16dp"
                 />
 
@@ -57,7 +57,7 @@
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
                 android:textAppearance="@style/itemBodyText"
-                android:drawableStart="@drawable/ic_activation_code_black_24dp"
+                android:drawableStart="@drawable/qrcode"
                 android:drawablePadding="16dp"
                 />
 

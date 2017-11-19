@@ -75,6 +75,7 @@
     <string name="login_ButtonText">Log in</string>
 
     <string name="progress_message">Checking in progress, please wait…</string>
+    <string name="login_succesful">Login successful</string>
 
     <string name="ui_no_distributor">Distributor ID is required</string>
     <string name="ui_no_activation_code">Activation code is required</string>

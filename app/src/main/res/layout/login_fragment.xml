@@ -17,13 +17,27 @@
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
     >
 
+
+
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="56dp"
         android:paddingLeft="24dp"
+        android:paddingTop="16dp"
         android:paddingRight="24dp">
+
+        <ProgressBar
+            android:id="@+id/simpleProgressBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"
+            android:gravity="top|center_horizontal"
+            android:layout_centerHorizontal="true"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="16dp"/>
 
         <ImageView android:src="@drawable/vg_logo"
             android:layout_width="wrap_content"

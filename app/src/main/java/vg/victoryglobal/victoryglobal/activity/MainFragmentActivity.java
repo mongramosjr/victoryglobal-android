@@ -132,6 +132,8 @@ public class MainFragmentActivity extends AppCompatActivity implements LoginList
         mNavigationView = (NavigationView) findViewById(R.id.drawer_navigation_view);
         mNavigationView.setNavigationItemSelectedListener(drawerOnNavigationItemSelectedListener);
 
+        drawer_navigation_header = (android.widget.LinearLayout) mNavigationView.getHeaderView(0);
+
         toggleNavigationHeader(false);
         toggleNavigationLoginMenu(false);
 
@@ -211,9 +213,11 @@ public class MainFragmentActivity extends AppCompatActivity implements LoginList
 
             String distributor_id_label = String.format("%09d", accountLoginRequest.getAccountLogin().getMlmMemberId());
 
-            mNavigationView.inflateHeaderView(R.layout.drawer_navigation_header);
+            //mNavigationView.inflateHeaderView(R.layout.drawer_navigation_header);
+            //drawer_navigation_header.setVisibility(View.VISIBLE);
 
-            drawer_navigation_header = (android.widget.LinearLayout) mNavigationView.getHeaderView(0);
+            //drawer_navigation_header.findViewById(R.id.header_fullname).setVisibility(View.VISIBLE);
+            //drawer_navigation_header.findViewById(R.id.header_distributor_id).setVisibility(View.VISIBLE);
 
             TextView header_full_name = drawer_navigation_header.findViewById(R.id.header_fullname);
             header_full_name.setText(full_name);
@@ -222,7 +226,15 @@ public class MainFragmentActivity extends AppCompatActivity implements LoginList
             header_distributor_id.setText(distributor_id_label);
 
         }else{
-            mNavigationView.removeHeaderView(drawer_navigation_header);
+            //drawer_navigation_header.setVisibility(View.GONE);
+            //drawer_navigation_header.findViewById(R.id.header_fullname).setVisibility(View.GONE);
+            //drawer_navigation_header.findViewById(R.id.header_distributor_id).setVisibility(View.GONE);
+
+            TextView header_full_name = drawer_navigation_header.findViewById(R.id.header_fullname);
+            header_full_name.setText("Sign in to Victory Global");
+
+            TextView header_distributor_id = drawer_navigation_header.findViewById(R.id.header_distributor_id);
+            header_distributor_id.setText("to manage your account");
         }
     }
 
@@ -270,7 +282,9 @@ public class MainFragmentActivity extends AppCompatActivity implements LoginList
 
             mNavigationView.setCheckedItem(id);
 
-            setTitle(item.getTitle());
+            if(id != R.id.drawer_navigation_logout) {
+                setTitle(item.getTitle());
+            }
             mDrawerLayout.closeDrawer(Gravity.START);
             return true;
         }
