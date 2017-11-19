@@ -12,7 +12,10 @@ import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v4.app.Fragment;
+
+import android.app.Fragment;
+import android.app.FragmentManager;
+
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.view.ActionMode;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -204,7 +207,7 @@ public class HomeFragment extends Fragment implements SwipeRefreshLayout.OnRefre
 
     private void FbGraphFeedVolley(){
 
-        RequestQueue queue = Volley.newRequestQueue(getContext());
+        RequestQueue queue = Volley.newRequestQueue(this.getActivity().getApplicationContext());
         String url; // = getString(R.string.api_url) + getString(R.string.api_code_registration);
 
         //url = "https://graph.facebook.com/329922417180457?fields=feed{id,story,created_time,message,full_picture,from,with_tags,icon}&access_token=EAAE5KR73AHYBABZC0ztDYf1y6Aoyrga6hEpCPJK4CV898v6mnuDQBZAv39DwOnpuPkMmnjjTpbC0s7I8bYGFXtjfjDoI0GfkBPWc0VsjVZACjCKUdidhk8odcoBFqIIM1SlgWZBRA0d2jwSqFAUC5ke7Iqwx1Uz4AnkKp0IVHwZDZD&limit=20";

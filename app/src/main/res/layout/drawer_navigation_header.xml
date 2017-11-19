@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Created by Mong Ramos Jr. <mongramosjr@gmail.com> on 11/18/17 10:11 PM
+  ~
+  ~ Copyright (c) 2017 Victory Global Unlimited Systems Inc. All rights reserved.
+  ~
+  ~ Last modified 11/18/17 10:00 AM
+  -->
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/drawer_navigation_header_height"
+    android:background="@drawable/drawer_navigation_header_bg"
+    android:gravity="bottom"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/drawer_navigation_header_vertical_spacing"
+    android:paddingLeft="@dimen/drawer_navigation_header_horizontal_spacing"
+    android:paddingRight="@dimen/drawer_navigation_header_horizontal_spacing"
+    android:paddingTop="@dimen/drawer_navigation_header_vertical_spacing"
+    android:layout_marginTop="@dimen/drawer_navigation_header_marginTop"
+    android:id="@+id/drawer_navigation_header_layout"
+    android:theme="@style/ThemeOverlay.AppCompat.Dark">
+
+    <ImageView
+        android:id="@+id/header_distributor_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@android:drawable/sym_def_app_icon" />
+
+    <TextView
+        android:id="@+id/header_fullname"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/drawer_navigation_header_vertical_spacing"
+        android:text="Android Studio"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+
+    <TextView
+        android:id="@+id/header_distributor_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="0000000000"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
+
+</LinearLayout>
