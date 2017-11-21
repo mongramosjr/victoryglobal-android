@@ -19,6 +19,11 @@
             android:icon="@drawable/login"
             android:title="@string/title_login" />
 
+        <item
+            android:id="@+id/drawer_navigation_profile"
+            android:icon="@drawable/face"
+            android:title="Profile" />
+
     </group>
     <item android:title="Account"
           android:id="@+id/drawer_navigation_account">
@@ -47,6 +52,8 @@
                 android:icon="@drawable/logout"
                 android:title="@string/title_logout" />
             </group>
+
+
         </menu>
 
     </item>

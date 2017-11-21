@@ -278,12 +278,11 @@ public class LoginFragment extends Fragment {
                 JSONObject account = object.getJSONObject("account");
                 String session = object.getString("session");
                 String auth_token = object.getString("auth_token");
-                //save
+
                 //singleton class variable, save the response auth data
-                accountLoginRequest.getAccountLogin().setFullname(user.getString("frontend_label"));
-                accountLoginRequest.getAccountLogin().setMlmMemberId(Integer.valueOf(account.getString("id")));
-                accountLoginRequest.getAccountLogin().setSession(session);
-                accountLoginRequest.getAccountLogin().setAuthToken(auth_token);
+                // save auth token to sqlite/SharedPreferences
+                accountLoginRequest.saveAccountSession(response_data);
+
 
                 Toast.makeText(getActivity().getApplicationContext(), R.string.login_succesful, Toast.LENGTH_SHORT).show();
 
@@ -395,6 +394,8 @@ public class LoginFragment extends Fragment {
     private void authAccount(AccountLogin account_login) {
 
         RequestQueue queue = Volley.newRequestQueue(getActivity().getApplicationContext());
+
+        Log.e("******************", queue.toString());
 
         String url = getString(R.string.api_url) + getString(R.string.api_account_login);
 

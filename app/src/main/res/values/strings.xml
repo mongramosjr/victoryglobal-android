@@ -133,9 +133,14 @@
     <string name="api_account_registration">/distributor/registration/index.json</string>
     <string name="api_account_registration_checkfirst">/distributor/registration/checkfirst/.json</string>
     <string name="api_pickupcenters">/distributor/pickup-centers/index.json</string>
+    <string name="api_account">/distributor/account/index/</string>
 
     <string name="full_picture_desc">Full picture</string>
     <string name="play_button_desc">Play button</string>
+
+
+    <string name="user_authentication">vg.victoryglobal.victoryglobal.user_authentication</string>
+    <string name="preference_cookie_store">vg.victoryglobal.victoryglobal.preference_cookie_store</string>
 
 
 </resources>

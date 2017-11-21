@@ -30,7 +30,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.webkit.CookieSyncManager;
 import android.widget.TextView;
+
+import java.net.CookieHandler;
+import java.net.CookieManager;
+import java.net.CookiePolicy;
+import java.net.CookieStore;
 
 import vg.victoryglobal.victoryglobal.R;
 import vg.victoryglobal.victoryglobal.fragment.ActivateCodeFragment;
@@ -39,6 +45,7 @@ import vg.victoryglobal.victoryglobal.fragment.GenealogyFragment;
 import vg.victoryglobal.victoryglobal.fragment.HomeFragment;
 import vg.victoryglobal.victoryglobal.fragment.LoginFragment;
 import vg.victoryglobal.victoryglobal.fragment.PayoutReportsFragment;
+import vg.victoryglobal.victoryglobal.fragment.ProfileFragment;
 import vg.victoryglobal.victoryglobal.fragment.PurchasesFragment;
 import vg.victoryglobal.victoryglobal.fragment.RegisterAccountFragment;
 import vg.victoryglobal.victoryglobal.fragment.UpgradeAccountFragment;
@@ -46,6 +53,7 @@ import vg.victoryglobal.victoryglobal.listener.LoginListener;
 import vg.victoryglobal.victoryglobal.listener.LogoutListener;
 import vg.victoryglobal.victoryglobal.model.AccountLogin;
 import vg.victoryglobal.victoryglobal.model.AccountLoginRequest;
+import vg.victoryglobal.victoryglobal.utils.PersistentCookieStore;
 
 public class MainFragmentActivity extends AppCompatActivity implements LoginListener,LogoutListener {
 
@@ -62,10 +70,54 @@ public class MainFragmentActivity extends AppCompatActivity implements LoginList
 
     android.widget.LinearLayout drawer_navigation_header;
 
+    AccountLoginRequest accountLoginRequest = AccountLoginRequest.getInstance();
+
+    CookieStore cookieStore;
+
+    boolean isLogin = false;
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+    /*Save your data to be restored here
+    Example : outState.putLong("time_state", time); , time is a long variable*/
+        boolean userAuthenticated = accountLoginRequest.isSuccess();
+        outState.putBoolean("userAuthenticated", userAuthenticated);
+        super.onSaveInstanceState(outState);
+    }
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_fragment_activity);
+
+        // CookieStore is just an interface, you can implement it and do things like
+        // save the cookies to disk or what ever.
+        // get auth token from sqlite/SharedPreferences
+        if(savedInstanceState!= null){
+            if(!savedInstanceState.getBoolean("userAuthenticated"))
+            {
+                accountLoginRequest.setAccountContext(getApplicationContext());
+                accountLoginRequest.getAccountSession();
+                cookieStore = new PersistentCookieStore(getApplicationContext());
+                CookieManager manager = new CookieManager( cookieStore, CookiePolicy.ACCEPT_ALL );
+                CookieHandler.setDefault( manager );
+            }
+        }else{
+            accountLoginRequest.setAccountContext(getApplicationContext());
+            accountLoginRequest.getAccountSession();
+            cookieStore = new PersistentCookieStore(getApplicationContext());
+            CookieManager manager = new CookieManager( cookieStore, CookiePolicy.ACCEPT_ALL );
+            CookieHandler.setDefault( manager );
+        }
+
+        // check if account is already authenticated
+        isLogin = accountLoginRequest.getAccountLogin().isStatus();
+
+
+        // Optionally, you can just use the default CookieManager
+        //CookieManager manager = new CookieManager();
+        //CookieHandler.setDefault( manager  );
 
         mTitle = mDrawerTitle = getTitle();
 
@@ -134,12 +186,19 @@ public class MainFragmentActivity extends AppCompatActivity implements LoginList
 
         drawer_navigation_header = (android.widget.LinearLayout) mNavigationView.getHeaderView(0);
 
-        toggleNavigationHeader(false);
-        toggleNavigationLoginMenu(false);
+
+        if(accountLoginRequest.getAccountLogin().isStatus() && accountLoginRequest.hasAuthLogin()) {
+            toggleNavigationHeader(true);
+            toggleNavigationLoginMenu(true);
+        }else{
+            toggleNavigationHeader(false);
+            toggleNavigationLoginMenu(false);
+        }
 
         //toggleBottomNavigation(false);
-        mBottomNavigationView.setSelectedItemId(R.id.navigation_home);
-
+        if(savedInstanceState == null) {
+            mBottomNavigationView.setSelectedItemId(R.id.navigation_home);
+        }
     }
 
     @Override
@@ -190,13 +249,17 @@ public class MainFragmentActivity extends AppCompatActivity implements LoginList
         MenuItem menu_item_account = menu.findItem(R.id.drawer_navigation_account);
         if(menu_item_account == null) return;
 
+        AccountLoginRequest accountLoginRequest = AccountLoginRequest.getInstance();
 
+        if(!accountLoginRequest.hasAuthLogin()) {
+            show = false;
+        }
 
         MenuItem menu_item_login = menu.findItem(R.id.drawer_navigation_login);
 
         if(show){
-            menu_item_account.getSubMenu().setGroupVisible(R.id.group_menu_login, true);
-            menu_item_login.setVisible(false);
+             menu_item_account.getSubMenu().setGroupVisible(R.id.group_menu_login, true);
+             menu_item_login.setVisible(false);
         }else{
             menu_item_account.getSubMenu().setGroupVisible(R.id.group_menu_login, false);
             menu_item_login.setVisible(true);
@@ -204,27 +267,22 @@ public class MainFragmentActivity extends AppCompatActivity implements LoginList
     }
 
     private void toggleNavigationHeader(boolean show) {
+        AccountLoginRequest accountLoginRequest = AccountLoginRequest.getInstance();
+
+        if(!accountLoginRequest.hasAuthLogin()) {
+            show = false;
+        }
 
         if(show){
-
-            AccountLoginRequest accountLoginRequest = AccountLoginRequest.getInstance();
-
-            String full_name = accountLoginRequest.getAccountLogin().getFullname();
+            String full_name = accountLoginRequest.getAuthLogin().getUser().frontend_label;
 
             String distributor_id_label = String.format("%09d", accountLoginRequest.getAccountLogin().getMlmMemberId());
-
-            //mNavigationView.inflateHeaderView(R.layout.drawer_navigation_header);
-            //drawer_navigation_header.setVisibility(View.VISIBLE);
-
-            //drawer_navigation_header.findViewById(R.id.header_fullname).setVisibility(View.VISIBLE);
-            //drawer_navigation_header.findViewById(R.id.header_distributor_id).setVisibility(View.VISIBLE);
 
             TextView header_full_name = drawer_navigation_header.findViewById(R.id.header_fullname);
             header_full_name.setText(full_name);
 
             TextView header_distributor_id = drawer_navigation_header.findViewById(R.id.header_distributor_id);
             header_distributor_id.setText(distributor_id_label);
-
         }else{
             //drawer_navigation_header.setVisibility(View.GONE);
             //drawer_navigation_header.findViewById(R.id.header_fullname).setVisibility(View.GONE);
@@ -277,6 +335,12 @@ public class MainFragmentActivity extends AppCompatActivity implements LoginList
             }else if(id == R.id.drawer_navigation_logout){
                 toggleNavigationHeader(false);
                 toggleNavigationLoginMenu(false);
+                mBottomNavigationView.getMenu().findItem(R.id.navigation_home).setChecked(true);
+            }
+
+            else if(id == R.id.drawer_navigation_profile){
+                fragment = new ProfileFragment();
+                fragment_manager.beginTransaction().replace(R.id.content_frame, fragment).commit();
                 mBottomNavigationView.getMenu().findItem(R.id.navigation_home).setChecked(true);
             }
 

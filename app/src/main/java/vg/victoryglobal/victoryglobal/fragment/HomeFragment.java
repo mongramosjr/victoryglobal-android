@@ -79,6 +79,8 @@ public class HomeFragment extends Fragment implements SwipeRefreshLayout.OnRefre
         callbackManager = CallbackManager.Factory.create();
         //AppEventsLogger.activateApp(getContext(), "344323752657014");
         fbGraphFeedRequest = FbGraphFeedRequest.getInstance();
+
+        setRetainInstance(true);
     }
 
     @Override

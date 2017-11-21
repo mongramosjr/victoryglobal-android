@@ -11,23 +11,16 @@ package vg.victoryglobal.victoryglobal.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import java.sql.Date;
-
 public class AccountLogin implements Parcelable {
 
+    //request params
     private int mlmMemberId = 0;
     private String password = "";
 
+    //response data
     private String session = "";
     private String authToken = "";
-    private String email = "";
-    private String fullname = "";
-    private String first_name = "";
-    private String middle_name = "";
-    private String last_name = "";
-    private String username = "";
-
-    private DistributorAccount account;
+    private boolean status = false;
 
     public AccountLogin(){
 
@@ -61,8 +54,6 @@ public class AccountLogin implements Parcelable {
     @Override
     public void writeToParcel(Parcel parcel, int i) {
         parcel.writeInt(mlmMemberId);
-        parcel.writeString(fullname);
-        parcel.writeString(email);
         parcel.writeString(session);
         parcel.writeString(authToken);
     }
@@ -82,12 +73,7 @@ public class AccountLogin implements Parcelable {
         this.authToken = authToken;
     }
 
-    public String getEmail() {
-        return email;
-    }
-    public void setEmail(String email) {
-        this.email = email;
-    }
+
 
     public String getSession() {
         return session;
@@ -97,19 +83,11 @@ public class AccountLogin implements Parcelable {
         this.session = session;
     }
 
-    public String getFullname() {
-        return fullname;
+    public void setStatus(boolean status) {
+        this.status = status;
     }
 
-    public void setFullname(String fullname) {
-        this.fullname = fullname;
-    }
-
-    public void setAccount(DistributorAccount account) {
-        this.account = account;
-    }
-
-    public DistributorAccount getAccount() {
-        return account;
+    public boolean isStatus() {
+        return status;
     }
 }
