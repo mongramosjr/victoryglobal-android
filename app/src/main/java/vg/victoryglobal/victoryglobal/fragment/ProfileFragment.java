@@ -31,6 +31,7 @@ import org.json.JSONObject;
 import vg.victoryglobal.victoryglobal.R;
 import vg.victoryglobal.victoryglobal.model.AccountLogin;
 import vg.victoryglobal.victoryglobal.model.AccountLoginRequest;
+import vg.victoryglobal.victoryglobal.model.AuthLoginRequest;
 
 public class ProfileFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
 
@@ -38,12 +39,12 @@ public class ProfileFragment extends Fragment implements SwipeRefreshLayout.OnRe
 
     private SwipeRefreshLayout swipeRefreshLayout;
 
-    AccountLoginRequest accountLoginRequest;
+    AuthLoginRequest authLoginRequest;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        accountLoginRequest = AccountLoginRequest.getInstance();
+        authLoginRequest = AuthLoginRequest.getAuthLoginRequest("main");
         setRetainInstance(true);
     }
 
@@ -87,15 +88,9 @@ public class ProfileFragment extends Fragment implements SwipeRefreshLayout.OnRe
 
         RequestQueue queue = Volley.newRequestQueue(getActivity().getApplicationContext());
 
-        Log.e("******************", queue.toString());
-
-        String mlm_member_id = String.valueOf(accountLoginRequest.getAccountLogin().getMlmMemberId());
-        String session = accountLoginRequest.getAccountLogin().getSession();
-        String auth_token = accountLoginRequest.getAccountLogin().getAuthToken();
-
-        Log.e("******************", "Token "  +  auth_token);
-        Log.e("******************", "session "  +  session);
-        Log.e("******************", "mlm_member_id "  +  mlm_member_id);
+        String mlm_member_id = String.valueOf(authLoginRequest.getAccountLogin().getMlmMemberId());
+        String session = authLoginRequest.getAccountLogin().getSession();
+        String auth_token = authLoginRequest.getAccountLogin().getAuthToken();
 
         String url = getString(R.string.api_url) + getString(R.string.api_account) + mlm_member_id + ".json";
 

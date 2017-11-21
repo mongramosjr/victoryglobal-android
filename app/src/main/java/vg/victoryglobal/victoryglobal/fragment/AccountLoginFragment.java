@@ -8,7 +8,6 @@
 
 package vg.victoryglobal.victoryglobal.fragment;
 
-import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.app.Fragment;
@@ -36,7 +35,6 @@ import com.android.volley.RequestQueue;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.stepstone.stepper.StepperLayout;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -48,9 +46,10 @@ import vg.victoryglobal.victoryglobal.R;
 import vg.victoryglobal.victoryglobal.listener.LoginListener;
 import vg.victoryglobal.victoryglobal.model.AccountLogin;
 import vg.victoryglobal.victoryglobal.model.AccountLoginRequest;
+import vg.victoryglobal.victoryglobal.model.AuthLoginRequest;
 import vg.victoryglobal.victoryglobal.model.MlmResponseError;
 
-public class LoginFragment extends Fragment {
+public class AccountLoginFragment extends Fragment {
 
     public View currentView;
     TextInputLayout inputLayoutPassword;
@@ -62,7 +61,7 @@ public class LoginFragment extends Fragment {
 
     private LoginListener loginListener;
 
-    AccountLoginRequest accountLoginRequest;
+    AuthLoginRequest authLoginRequest;
 
     @Override
     public void onAttach(Context context)
@@ -79,7 +78,7 @@ public class LoginFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        accountLoginRequest = AccountLoginRequest.getInstance();
+        authLoginRequest = AuthLoginRequest.getAuthLoginRequest("main", getActivity().getApplicationContext());
     }
 
     // The onCreateView method is called when Fragment should create its View object hierarchy,
@@ -88,7 +87,7 @@ public class LoginFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.login_fragment, container, false);
+        return inflater.inflate(R.layout.account_login_fragment, container, false);
 
 
 
@@ -127,16 +126,16 @@ public class LoginFragment extends Fragment {
 
                     inputManager.hideSoftInputFromWindow((null == getActivity().getCurrentFocus()) ? null : getActivity().getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
                 }catch (Exception e) {
-                    Log.e("LoginFragment", e.getMessage());
+                    Log.e("AccountLoginFragment", e.getMessage());
                 }
 
-                accountLoginRequest.reset();
+                authLoginRequest.reset();
 
                 //singleton class variable, save the encoded data
-                accountLoginRequest.getAccountLogin().setPassword(password.getText().toString());
-                accountLoginRequest.getAccountLogin().setMlmMemberId(Integer.parseInt(mlmMemberId.getText().toString()));
+                authLoginRequest.getAccountLogin().setPassword(password.getText().toString());
+                authLoginRequest.getAccountLogin().setMlmMemberId(Integer.parseInt(mlmMemberId.getText().toString()));
 
-                authAccount(accountLoginRequest.getAccountLogin());
+                authAccount(authLoginRequest.getAccountLogin());
             }
         });
 
@@ -164,7 +163,7 @@ public class LoginFragment extends Fragment {
 
             @Override
             public void afterTextChanged(Editable s) {
-                if(!accountLoginRequest.isSuccess()) {
+                if(!authLoginRequest.isSuccess()) {
                     validateEditText(s, inputLayoutDistributorId, R.string.ui_no_distributor);
                     validateAccountNumber(s, inputLayoutDistributorId, R.string.ui_length_distributor);
                 }
@@ -184,7 +183,7 @@ public class LoginFragment extends Fragment {
 
             @Override
             public void afterTextChanged(Editable s) {
-                if(!accountLoginRequest.isSuccess()) {
+                if(!authLoginRequest.isSuccess()) {
                     validateEditText(s, inputLayoutPassword, R.string.ui_no_password);
                     validatePasword(s, inputLayoutPassword, R.string.ui_valid_password);
                 }
@@ -251,7 +250,7 @@ public class LoginFragment extends Fragment {
     }
 
     private void displayError() {
-        ArrayList<MlmResponseError> mlm_response_errors = accountLoginRequest.getMlmResponseErrors();
+        ArrayList<MlmResponseError> mlm_response_errors = authLoginRequest.getMlmResponseErrors();
 
         for (int i = 0; i < mlm_response_errors.size(); i++) {
             MlmResponseError res = mlm_response_errors.get(i);
@@ -281,7 +280,7 @@ public class LoginFragment extends Fragment {
 
                 //singleton class variable, save the response auth data
                 // save auth token to sqlite/SharedPreferences
-                accountLoginRequest.saveAccountSession(response_data);
+                authLoginRequest.saveAuthSession(response_data);
 
 
                 Toast.makeText(getActivity().getApplicationContext(), R.string.login_succesful, Toast.LENGTH_SHORT).show();
@@ -293,7 +292,7 @@ public class LoginFragment extends Fragment {
                         //callback_code.getStepperLayout().hideProgress();
                         //callback_code.goToNextStep();
                         simpleProgressBar.setVisibility(View.INVISIBLE);
-                        loginListener.prepareLogin(accountLoginRequest.getAccountLogin());
+                        loginListener.prepareLogin(authLoginRequest.getAccountLogin());
                     }
                 }, 2000L);
 
@@ -309,7 +308,7 @@ public class LoginFragment extends Fragment {
                     MlmResponseError err = new MlmResponseError();
                     err.setFieldName(error);
                     err.setErrMessage(message);
-                    accountLoginRequest.getMlmResponseErrors().add(err);
+                    authLoginRequest.getMlmResponseErrors().add(err);
 
                     if (error.equals("mlm_member_id")) {
                         inputLayoutDistributorId.setError(message);
@@ -340,7 +339,7 @@ public class LoginFragment extends Fragment {
                         MlmResponseError err = new MlmResponseError();
                         err.setFieldName(error);
                         err.setErrMessage(message);
-                        accountLoginRequest.getMlmResponseErrors().add(err);
+                        authLoginRequest.getMlmResponseErrors().add(err);
 
                         if (error.equals("mlm_member_id")) {
                             inputLayoutDistributorId.setError(message);
@@ -394,8 +393,6 @@ public class LoginFragment extends Fragment {
     private void authAccount(AccountLogin account_login) {
 
         RequestQueue queue = Volley.newRequestQueue(getActivity().getApplicationContext());
-
-        Log.e("******************", queue.toString());
 
         String url = getString(R.string.api_url) + getString(R.string.api_account_login);
 

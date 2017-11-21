@@ -10,7 +10,7 @@ package vg.victoryglobal.victoryglobal.model;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.support.annotation.Nullable;
+import android.util.Log;
 
 import com.google.gson.Gson;
 
@@ -25,19 +25,20 @@ public class AuthLoginRequest {
     /**
      * Singleton instance of authentication request
      */
-    static final AuthLoginRequest rootInstance = new AuthLoginRequest(null);
+    static final AuthLoginRequest root = new AuthLoginRequest("", null);
+
+    private final String name;
 
     /**
      * The Context of the AuthLoginRequest
      */
     private final Context applicationContext;
 
-
     // request
     private AccountLogin accountLogin  = new AccountLogin();
 
     // response
-    private AuthLogin authLogin;
+    private AuthLogin authLogin = new AuthLogin();
 
     // cookie
     private CookieStore cookieStore;
@@ -52,11 +53,12 @@ public class AuthLoginRequest {
      * Constructs a AuthLoginRequest for a subsystem.  Most applications do not
      * need to create new AuthLoginRequest explicitly; instead, they should call
      * the static factory methods
-     * {@link #getAuthLoginRequest(android.content.Context) getAuthLoginRequest}.
+     * {@link #getAuthLoginRequest(String, android.content.Context) getAuthLoginRequest}.
      *
      * @param context the context for the AuthLoginRequest
      */
-    protected AuthLoginRequest(@Nullable Context context) {
+    protected AuthLoginRequest(String name, Context context) {
+        this.name = name;
         this.applicationContext = context;
     }
 
@@ -69,17 +71,46 @@ public class AuthLoginRequest {
      *
      * @throws NullPointerException if <code>context</code> is <code>null</code>.
      */
-    public static AuthLoginRequest getAuthLoginRequest(Context context){
+    public static AuthLoginRequest getAuthLoginRequest(String name, Context context){
 
-        if (context == null) {
+        AuthLoginManager alm = AuthLoginManager.getAuthLoginManager();
+        AuthLoginRequest     result;
+
+        if (name == null) {
             throw new NullPointerException();
         }
 
-        AuthLoginRequest result;
-        result = new AuthLoginRequest(context);
+        synchronized (alm)
+        {
+            result = alm.getAuthLoginRequest(name);
+            if (result == null) {
+                boolean couldBeAdded;
+                result = new AuthLoginRequest(name, context);
+                couldBeAdded = alm.addAuthLoginRequest(result);
+                if (!couldBeAdded) {
+                    throw new IllegalStateException("cannot register new authloginrequest");
+                }
+            }else{
+                Context existing_context = result.getApplicationContext();
+                if(existing_context != null) {
+                    if ((existing_context.equals(context)) && (context != null)) {
+                        return result;
+                    }
+                }
+                if(existing_context==null) {
+                    if (!existing_context.equals(context)) {
+                        throw new IllegalArgumentException();
+                    }
+                }
+            }
+        }
         return result;
     }
 
+    public static AuthLoginRequest getAuthLoginRequest(String name)
+    {
+        return getAuthLoginRequest(name, null);
+    }
 
     //getter and setter
 
@@ -89,11 +120,26 @@ public class AuthLoginRequest {
      * @return the context of this authlogin
      */
     public Context getApplicationContext() {
-        /* Note that the name of a logger cannot be changed during
+        /* Note that the context of a AuthLoginRequest cannot be changed during
         * its lifetime, so no synchronization is needed.
         */
         return applicationContext;
     }
+
+    /**
+     * Returns the name of this logger.
+     *
+     * @return the name of this logger, or <code>null</code> if
+     *         the logger is anonymous.
+     */
+    public String getName()
+    {
+        /* Note that the name of a AuthLoginRequest cannot be changed during
+        * its lifetime, so no synchronization is needed.
+        */
+        return name;
+    }
+
 
     public synchronized AccountLogin getAccountLogin() {
         return accountLogin;
@@ -169,8 +215,10 @@ public class AuthLoginRequest {
 
         if(authLogin.getStatus() == 200){
             accountLogin.setStatus(true);
+            success = true;
         }else{
             accountLogin.setStatus(false);
+            success = false;
         }
 
         // save to SharedPreferences

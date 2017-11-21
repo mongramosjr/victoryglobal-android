@@ -12,7 +12,6 @@ import android.content.Context;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.NavigationView;
 
@@ -30,7 +29,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
-import android.webkit.CookieSyncManager;
 import android.widget.TextView;
 
 import java.net.CookieHandler;
@@ -43,7 +41,7 @@ import vg.victoryglobal.victoryglobal.fragment.ActivateCodeFragment;
 import vg.victoryglobal.victoryglobal.fragment.CurrentSalesFragment;
 import vg.victoryglobal.victoryglobal.fragment.GenealogyFragment;
 import vg.victoryglobal.victoryglobal.fragment.HomeFragment;
-import vg.victoryglobal.victoryglobal.fragment.LoginFragment;
+import vg.victoryglobal.victoryglobal.fragment.AccountLoginFragment;
 import vg.victoryglobal.victoryglobal.fragment.PayoutReportsFragment;
 import vg.victoryglobal.victoryglobal.fragment.ProfileFragment;
 import vg.victoryglobal.victoryglobal.fragment.PurchasesFragment;
@@ -53,6 +51,8 @@ import vg.victoryglobal.victoryglobal.listener.LoginListener;
 import vg.victoryglobal.victoryglobal.listener.LogoutListener;
 import vg.victoryglobal.victoryglobal.model.AccountLogin;
 import vg.victoryglobal.victoryglobal.model.AccountLoginRequest;
+import vg.victoryglobal.victoryglobal.model.AuthLoginManager;
+import vg.victoryglobal.victoryglobal.model.AuthLoginRequest;
 import vg.victoryglobal.victoryglobal.utils.PersistentCookieStore;
 
 public class MainFragmentActivity extends AppCompatActivity implements LoginListener,LogoutListener {
@@ -70,7 +70,8 @@ public class MainFragmentActivity extends AppCompatActivity implements LoginList
 
     android.widget.LinearLayout drawer_navigation_header;
 
-    AccountLoginRequest accountLoginRequest = AccountLoginRequest.getInstance();
+    //AccountLoginRequest accountLoginRequest = AccountLoginRequest.getInstance();
+    AuthLoginRequest authLoginRequest;
 
     CookieStore cookieStore;
 
@@ -80,7 +81,7 @@ public class MainFragmentActivity extends AppCompatActivity implements LoginList
     public void onSaveInstanceState(Bundle outState) {
     /*Save your data to be restored here
     Example : outState.putLong("time_state", time); , time is a long variable*/
-        boolean userAuthenticated = accountLoginRequest.isSuccess();
+        boolean userAuthenticated = authLoginRequest.isSuccess();
         outState.putBoolean("userAuthenticated", userAuthenticated);
         super.onSaveInstanceState(outState);
     }
@@ -91,29 +92,28 @@ public class MainFragmentActivity extends AppCompatActivity implements LoginList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_fragment_activity);
 
+        authLoginRequest = AuthLoginRequest.getAuthLoginRequest("main", getApplicationContext());
+
         // CookieStore is just an interface, you can implement it and do things like
         // save the cookies to disk or what ever.
         // get auth token from sqlite/SharedPreferences
         if(savedInstanceState!= null){
             if(!savedInstanceState.getBoolean("userAuthenticated"))
             {
-                accountLoginRequest.setAccountContext(getApplicationContext());
-                accountLoginRequest.getAccountSession();
+                //authLoginRequest.getAuthSession();
                 cookieStore = new PersistentCookieStore(getApplicationContext());
                 CookieManager manager = new CookieManager( cookieStore, CookiePolicy.ACCEPT_ALL );
                 CookieHandler.setDefault( manager );
             }
         }else{
-            accountLoginRequest.setAccountContext(getApplicationContext());
-            accountLoginRequest.getAccountSession();
+            //authLoginRequest.getAuthSession();
             cookieStore = new PersistentCookieStore(getApplicationContext());
             CookieManager manager = new CookieManager( cookieStore, CookiePolicy.ACCEPT_ALL );
             CookieHandler.setDefault( manager );
         }
 
         // check if account is already authenticated
-        isLogin = accountLoginRequest.getAccountLogin().isStatus();
-
+        isLogin = authLoginRequest.isSuccess();
 
         // Optionally, you can just use the default CookieManager
         //CookieManager manager = new CookieManager();
@@ -187,7 +187,7 @@ public class MainFragmentActivity extends AppCompatActivity implements LoginList
         drawer_navigation_header = (android.widget.LinearLayout) mNavigationView.getHeaderView(0);
 
 
-        if(accountLoginRequest.getAccountLogin().isStatus() && accountLoginRequest.hasAuthLogin()) {
+        if(authLoginRequest.isSuccess() && authLoginRequest.hasAuthLogin()) {
             toggleNavigationHeader(true);
             toggleNavigationLoginMenu(true);
         }else{
@@ -249,9 +249,8 @@ public class MainFragmentActivity extends AppCompatActivity implements LoginList
         MenuItem menu_item_account = menu.findItem(R.id.drawer_navigation_account);
         if(menu_item_account == null) return;
 
-        AccountLoginRequest accountLoginRequest = AccountLoginRequest.getInstance();
 
-        if(!accountLoginRequest.hasAuthLogin()) {
+        if(!authLoginRequest.hasAuthLogin()) {
             show = false;
         }
 
@@ -267,16 +266,15 @@ public class MainFragmentActivity extends AppCompatActivity implements LoginList
     }
 
     private void toggleNavigationHeader(boolean show) {
-        AccountLoginRequest accountLoginRequest = AccountLoginRequest.getInstance();
 
-        if(!accountLoginRequest.hasAuthLogin()) {
+        if(!authLoginRequest.hasAuthLogin()) {
             show = false;
         }
 
         if(show){
-            String full_name = accountLoginRequest.getAuthLogin().getUser().frontend_label;
+            String full_name = authLoginRequest.getAuthLogin().getUser().frontend_label;
 
-            String distributor_id_label = String.format("%09d", accountLoginRequest.getAccountLogin().getMlmMemberId());
+            String distributor_id_label = String.format("%09d", authLoginRequest.getAccountLogin().getMlmMemberId());
 
             TextView header_full_name = drawer_navigation_header.findViewById(R.id.header_fullname);
             header_full_name.setText(full_name);
@@ -330,7 +328,7 @@ public class MainFragmentActivity extends AppCompatActivity implements LoginList
                 fragment_manager.beginTransaction().replace(R.id.content_frame, fragment).commit();
                 mBottomNavigationView.getMenu().findItem(R.id.navigation_home).setChecked(true);
             } else if(id == R.id.drawer_navigation_login){
-                fragment = new LoginFragment();
+                fragment = new AccountLoginFragment();
                 fragment_manager.beginTransaction().replace(R.id.content_frame, fragment).commit();
             }else if(id == R.id.drawer_navigation_logout){
                 toggleNavigationHeader(false);
