@@ -11,7 +11,10 @@ package vg.victoryglobal.victoryglobal.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 
 public class Account implements Parcelable {
 
@@ -66,5 +69,29 @@ public class Account implements Parcelable {
     }
 
     //setter and getter
+    public String createdTimeFormatted(Date date_time)
+    {
+        String display_date;
+
+        //2017-09-18T08:02:39+0000
+        //yyyy-MM-dd'T'HH:mm:ssZ
+        String myFormat = "yyyy-MM-dd'T'HH:mm:ssZ"; //In which you need put here
+        SimpleDateFormat sdformat = new SimpleDateFormat(myFormat, Locale.US);
+
+        Calendar calendar = Calendar.getInstance();
+
+        calendar.setTime(date_time);
+
+        myFormat = "MMM dd, yyyy 'at' hh:mm a"; //In which you need put here
+        sdformat = new SimpleDateFormat(myFormat, Locale.US);
+
+
+        display_date = sdformat.format(calendar.getTime());
+
+
+        return display_date;
+
+
+    }
 
 }

@@ -215,10 +215,10 @@ public class AuthLoginRequest {
 
         if(authLogin.getStatus() == 200){
             accountLogin.setStatus(true);
-            success = true;
+            setSuccess(true);
         }else{
             accountLogin.setStatus(false);
-            success = false;
+            setSuccess(false);
         }
 
         // save to SharedPreferences

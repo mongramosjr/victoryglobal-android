@@ -1,0 +1,527 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Created by Mong Ramos Jr. <mongramosjr@gmail.com> on 11/21/17 2:43 PM
+  ~
+  ~ Copyright (c) 2017 Victory Global Unlimited Systems Inc. All rights reserved.
+  ~
+  ~ Last modified 11/21/17 2:43 PM
+  -->
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- template for profile for each field -->
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        >
+
+        <LinearLayout
+            android:layout_width="64dp"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal">
+            <ImageView
+                android:src="@drawable/cake_variant"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                />
+        </LinearLayout>
+
+        <View
+            style="@style/ViewVerticalSeparator"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Date of Birth"
+                
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="May 23 1978"
+                
+                
+                
+                />
+
+            <View
+                style="@style/ViewSeparator"
+                android:layout_gravity="bottom"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+        <!-- template for profile for each field -->
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        >
+
+        <LinearLayout
+            android:layout_width="64dp"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal">
+            <ImageView
+                android:src="@drawable/star_location"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                />
+        </LinearLayout>
+
+        <View
+            style="@style/ViewVerticalSeparator"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Place of Birth"
+                
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Tabaco"
+                
+                
+                
+                />
+
+            <View
+                style="@style/ViewSeparator"
+                android:layout_gravity="bottom"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+        <!-- template for profile for each field -->
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="64dp"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal">
+            <ImageView
+                android:src="@drawable/worker"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                />
+        </LinearLayout>
+
+        <View
+            style="@style/ViewVerticalSeparator"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Occupation"
+                
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="IT"
+                
+                
+                
+                />
+
+            <View
+                style="@style/ViewSeparator"
+                android:layout_gravity="bottom"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+        <!-- template for profile for each field -->
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="64dp"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal">
+            <ImageView
+                android:src="@drawable/gender_male_female"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                />
+        </LinearLayout>
+
+        <View
+            style="@style/ViewVerticalSeparator"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Gender"
+                
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Male"
+                
+                
+                
+                />
+
+            <View
+                style="@style/ViewSeparator"
+                android:layout_gravity="bottom"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+        <!-- template for profile for each field -->
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="64dp"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal">
+            <ImageView
+                android:src="@drawable/email_variant"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                />
+        </LinearLayout>
+
+        <View
+            style="@style/ViewVerticalSeparator"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Email"
+                
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Male"
+                
+                
+                
+                />
+
+            <View
+                style="@style/ViewSeparator"
+                android:layout_gravity="bottom"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+        <!-- template for profile for each field -->
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="64dp"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal">
+            <ImageView
+                android:src="@drawable/calculator"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                />
+        </LinearLayout>
+
+        <View
+            style="@style/ViewVerticalSeparator"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Tax Number"
+                
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="2352365236"
+                
+                
+                
+                />
+
+            <View
+                style="@style/ViewSeparator"
+                android:layout_gravity="bottom"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+        <!-- template for profile for each field -->
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="64dp"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal">
+            <ImageView
+                android:src="@drawable/security"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                />
+        </LinearLayout>
+
+        <View
+            style="@style/ViewVerticalSeparator"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Social Security"
+                
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="5346346"
+                
+                
+                
+                />
+
+            <View
+                style="@style/ViewSeparator"
+                android:layout_gravity="bottom"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+        <!-- template for profile for each field -->
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="64dp"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal">
+            <ImageView
+                android:src="@drawable/ring"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                />
+        </LinearLayout>
+
+        <View
+            style="@style/ViewVerticalSeparator"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Marital Status"
+                
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Single"
+                
+                
+                
+                />
+
+            <View
+                style="@style/ViewSeparator"
+                android:layout_gravity="bottom"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+        <!-- template for profile for each field -->
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="64dp"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal">
+            <ImageView
+                android:src="@drawable/flag_variant_outline"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                />
+        </LinearLayout>
+
+        <View
+            style="@style/ViewVerticalSeparator"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Nationality"
+                
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Filipino"
+                
+                
+                
+                />
+
+            <View
+                style="@style/ViewSeparator"
+                android:layout_gravity="bottom"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+        <!-- template for profile for each field -->
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="64dp"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal">
+            <ImageView
+                android:src="@drawable/heart_outline"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                />
+        </LinearLayout>
+
+        <View
+            style="@style/ViewVerticalSeparator"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Spouse Name"
+                
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Ruht"
+                
+                
+                
+                />
+
+            <View
+                style="@style/ViewSeparator"
+                android:layout_gravity="bottom"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>

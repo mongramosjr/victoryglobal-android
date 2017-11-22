@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Created by Mong Ramos Jr. <mongramosjr@gmail.com> on 11/21/17 12:18 PM
+  ~
+  ~ Copyright (c) 2017 Victory Global Unlimited Systems Inc. All rights reserved.
+  ~
+  ~ Last modified 11/21/17 12:18 PM
+  -->
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- template for profile for each field -->
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="64dp"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal">
+            <ImageView
+                android:src="@drawable/email_variant"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                />
+        </LinearLayout>
+
+        <View
+            style="@style/ViewVerticalSeparator"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Email"
+                
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Lady Iza Village"/>
+
+            <View
+                style="@style/ViewSeparator"
+                android:layout_gravity="bottom"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+        <!-- template for profile for each field -->
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="64dp"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal">
+            <ImageView
+                android:src="@drawable/phone"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                />
+        </LinearLayout>
+
+        <View
+            style="@style/ViewVerticalSeparator"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Telephone"
+                
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Magallanes"
+                
+                
+                
+                />
+
+            <View
+                style="@style/ViewSeparator"
+                android:layout_gravity="bottom"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+        <!-- template for profile for each field -->
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="64dp"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal">
+            <ImageView
+                android:src="@drawable/cellphone_basic"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                />
+        </LinearLayout>
+
+        <View
+            style="@style/ViewVerticalSeparator"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Mobile Number"
+                android:gravity="left"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Magallanes"
+                
+                
+
+                />
+
+            <View
+                style="@style/ViewSeparator"
+                android:layout_gravity="bottom"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+        <!-- template for profile for each field -->
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="64dp"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal">
+            <ImageView
+                android:src="@drawable/fax"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                />
+        </LinearLayout>
+
+        <View
+            style="@style/ViewVerticalSeparator"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Fax"
+                android:gravity="left"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Magallanes"
+                />
+
+            <View
+                style="@style/ViewSeparator"
+                android:layout_gravity="bottom"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

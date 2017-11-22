@@ -91,6 +91,7 @@ public class PickupCenterRequest {
 
             if(status == 200 ){
 
+                //TODO: use gson instead of JSONObject
                 JSONArray pickup_centers = object.getJSONArray("pickup_centers");
 
                 for (int i = 0; i < pickup_centers.length(); ++i) {

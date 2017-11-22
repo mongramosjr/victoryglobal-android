@@ -9,6 +9,7 @@
 package vg.victoryglobal.victoryglobal.fragment;
 
 import android.app.Fragment;
+import android.content.pm.ApplicationInfo;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -29,8 +30,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import vg.victoryglobal.victoryglobal.R;
-import vg.victoryglobal.victoryglobal.model.AccountLogin;
-import vg.victoryglobal.victoryglobal.model.AccountLoginRequest;
 import vg.victoryglobal.victoryglobal.model.AuthLoginRequest;
 
 public class ProfileFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
@@ -92,12 +91,13 @@ public class ProfileFragment extends Fragment implements SwipeRefreshLayout.OnRe
         String session = authLoginRequest.getAccountLogin().getSession();
         String auth_token = authLoginRequest.getAccountLogin().getAuthToken();
 
-        String url = getString(R.string.api_url) + getString(R.string.api_account) + mlm_member_id + ".json";
+        String url = getString(R.string.api_url) + getString(R.string.api_account);
 
         JSONObject post_data = new JSONObject();
         try {
             post_data.put("session", session);
             post_data.put("auth_token", auth_token);
+            post_data.put("mlm_member_id", mlm_member_id);
         }catch(JSONException ex) {
 
             //callback_code.getStepperLayout().hideProgress();

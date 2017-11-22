@@ -11,6 +11,7 @@ package vg.victoryglobal.victoryglobal.adapter;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
+import android.view.HapticFeedbackConstants;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -56,7 +57,7 @@ public class FbGraphFeedAdapter extends RecyclerView.Adapter<FbGraphFeedAdapter.
         @Override
         public boolean onLongClick(View view) {
             listener.onRowLongClicked(getAdapterPosition());
-            //view.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS);
+            view.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS);
             return true;
         }
     }

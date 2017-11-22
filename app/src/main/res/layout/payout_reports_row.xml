@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Created by Mong Ramos Jr. <mongramosjr@gmail.com> on 11/22/17 8:18 PM
+  ~
+  ~ Copyright (c) 2017 Victory Global Unlimited Systems Inc. All rights reserved.
+  ~
+  ~ Last modified 11/22/17 8:18 PM
+  -->
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:clickable="true"
+    android:focusable="true"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/message_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/total_amount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:lines="1"
+            android:text="55235.98"/>
+
+        <TextView
+            android:id="@+id/created"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="1 Nov 2017"/>
+        <TextView
+            android:id="@+id/date_start"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="24 Oct 2017"/>
+        <TextView
+            android:id="@+id/date_end"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="30 Oct 2017"/>
+
+    </LinearLayout>
+</RelativeLayout>

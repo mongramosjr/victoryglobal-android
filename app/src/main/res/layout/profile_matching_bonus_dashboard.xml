@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Created by Mong Ramos Jr. <mongramosjr@gmail.com> on 11/21/17 2:48 PM
+  ~
+  ~ Copyright (c) 2017 Victory Global Unlimited Systems Inc. All rights reserved.
+  ~
+  ~ Last modified 11/21/17 2:48 PM
+  -->
+
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/card_view"
+    android:layout_gravity="center"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:elevation="3dp"
+    android:layout_marginEnd="@dimen/container_margin_vertical"
+    android:layout_marginStart="@dimen/container_margin_vertical"
+    app:cardBackgroundColor="@color/colorPrimaryDark"
+    card_view:cardElevation="10dp"
+    card_view:cardCornerRadius="8dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/textcontainer_padding_vertical"
+                android:paddingStart="@dimen/container_padding_horizontal"
+                android:paddingEnd="@dimen/container_padding_horizontal"
+                android:text="Matching Bonus"
+                android:textAppearance="@style/TextAppearance.AppCompat.Subhead.Inverse"/>
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                      xmlns:prefix="http://schemas.android.com/apk/res-auto"
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:orientation="horizontal"
+                      android:weightSum="2">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingVertical="@dimen/textcontainer_padding_vertical"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:text="2.04k"
+                        android:textAppearance="@style/StatNumber"
+                        />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:text="Group A"
+                        android:textAllCaps="true"
+                        android:textColor="@color/colorNeutralWarmLight"
+                        />
+
+                </LinearLayout>
+<!--
+                <View
+                    style="@style/ViewVerticalSeparator"/>
+                    -->
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingVertical="@dimen/textcontainer_padding_vertical"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:text="23.41k"
+                        android:textAppearance="@style/StatNumber"
+                        />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:text="Group B"
+                        android:textAllCaps="true"
+                        android:textColor="@color/colorNeutralWarmLight"
+                        />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <View
+                style="@style/ViewSeparator"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingVertical="@dimen/textcontainer_padding_vertical"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="12,123,234"
+                    android:textAppearance="@style/StatSubNumber"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="Personal"
+                    android:textAllCaps="true"
+                    android:textColor="@color/colorNeutralWarmLight"
+                    />
+
+                <!--
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="Personal"
+                    android:textAllCaps="true"
+                    android:textColor="?android:attr/textColorPrimaryInverse"
+                    />
+                -->
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+</android.support.v7.widget.CardView>

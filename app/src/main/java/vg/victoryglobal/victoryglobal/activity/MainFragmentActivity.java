@@ -9,6 +9,7 @@
 package vg.victoryglobal.victoryglobal.activity;
 
 import android.content.Context;
+import android.content.pm.ApplicationInfo;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -50,8 +51,6 @@ import vg.victoryglobal.victoryglobal.fragment.UpgradeAccountFragment;
 import vg.victoryglobal.victoryglobal.listener.LoginListener;
 import vg.victoryglobal.victoryglobal.listener.LogoutListener;
 import vg.victoryglobal.victoryglobal.model.AccountLogin;
-import vg.victoryglobal.victoryglobal.model.AccountLoginRequest;
-import vg.victoryglobal.victoryglobal.model.AuthLoginManager;
 import vg.victoryglobal.victoryglobal.model.AuthLoginRequest;
 import vg.victoryglobal.victoryglobal.utils.PersistentCookieStore;
 
@@ -70,12 +69,14 @@ public class MainFragmentActivity extends AppCompatActivity implements LoginList
 
     android.widget.LinearLayout drawer_navigation_header;
 
-    //AccountLoginRequest accountLoginRequest = AccountLoginRequest.getInstance();
     AuthLoginRequest authLoginRequest;
 
     CookieStore cookieStore;
 
     boolean isLogin = false;
+
+    public final boolean isDebuggable =  ( 0 != ( getApplicationInfo().flags & ApplicationInfo.FLAG_DEBUGGABLE ) );
+
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
@@ -417,9 +418,6 @@ public class MainFragmentActivity extends AppCompatActivity implements LoginList
 
     @Override
     public void prepareLogin(AccountLogin account_login) {
-        AccountLoginRequest accountLoginRequest = AccountLoginRequest.getInstance();
-        accountLoginRequest.setSuccess(true);
-
         toggleNavigationHeader(true);
         toggleNavigationLoginMenu(true);
 
@@ -433,9 +431,9 @@ public class MainFragmentActivity extends AppCompatActivity implements LoginList
 
     @Override
     public void prepareLogout(AccountLogin account_login) {
-        AccountLoginRequest accountLoginRequest = AccountLoginRequest.getInstance();
-        accountLoginRequest.setSuccess(false);
-        accountLoginRequest.reset();
+        AuthLoginRequest authLoginRequest = AuthLoginRequest.getAuthLoginRequest("main");
+        authLoginRequest.setSuccess(false);
+        authLoginRequest.reset();
 
         toggleNavigationHeader(false);
         toggleNavigationLoginMenu(false);

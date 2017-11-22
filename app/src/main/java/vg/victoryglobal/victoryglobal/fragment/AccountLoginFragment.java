@@ -45,7 +45,6 @@ import java.util.ArrayList;
 import vg.victoryglobal.victoryglobal.R;
 import vg.victoryglobal.victoryglobal.listener.LoginListener;
 import vg.victoryglobal.victoryglobal.model.AccountLogin;
-import vg.victoryglobal.victoryglobal.model.AccountLoginRequest;
 import vg.victoryglobal.victoryglobal.model.AuthLoginRequest;
 import vg.victoryglobal.victoryglobal.model.MlmResponseError;
 
