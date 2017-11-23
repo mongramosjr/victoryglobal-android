@@ -26,10 +26,12 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.HapticFeedbackConstants;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.net.CookieHandler;
@@ -185,6 +187,11 @@ public class MainFragmentActivity extends AppCompatActivity implements LoginList
 
         drawer_navigation_header = (android.widget.LinearLayout) mNavigationView.getHeaderView(0);
 
+        ImageView header_image = drawer_navigation_header.findViewById(R.id.header_distributor_image);
+        TextView header_full_name = drawer_navigation_header.findViewById(R.id.header_fullname);
+
+        header_image.setOnLongClickListener(new HeaderImageListener());
+        header_full_name.setOnClickListener(new DistributorNameListener());
 
         if(authLoginRequest.isSuccess() && authLoginRequest.hasAuthLogin()) {
             toggleNavigationHeader(true);
@@ -280,6 +287,13 @@ public class MainFragmentActivity extends AppCompatActivity implements LoginList
 
             TextView header_distributor_id = drawer_navigation_header.findViewById(R.id.header_distributor_id);
             header_distributor_id.setText(distributor_id_label);
+
+            ImageView header_image = drawer_navigation_header.findViewById(R.id.header_distributor_image);
+
+            header_image.setLongClickable(true);
+
+            header_full_name.setClickable(true);
+
         }else{
             //drawer_navigation_header.setVisibility(View.GONE);
             //drawer_navigation_header.findViewById(R.id.header_fullname).setVisibility(View.GONE);
@@ -290,6 +304,12 @@ public class MainFragmentActivity extends AppCompatActivity implements LoginList
 
             TextView header_distributor_id = drawer_navigation_header.findViewById(R.id.header_distributor_id);
             header_distributor_id.setText("to manage your account");
+
+            ImageView header_image = drawer_navigation_header.findViewById(R.id.header_distributor_image);
+
+            header_image.setLongClickable(false);
+
+            header_full_name.setClickable(false);
         }
     }
 
@@ -334,13 +354,13 @@ public class MainFragmentActivity extends AppCompatActivity implements LoginList
                 toggleNavigationLoginMenu(false);
                 mBottomNavigationView.getMenu().findItem(R.id.navigation_home).setChecked(true);
             }
-
+/*
             else if(id == R.id.drawer_navigation_profile){
                 fragment = new ProfileFragment();
                 fragment_manager.beginTransaction().replace(R.id.content_frame, fragment).commit();
                 mBottomNavigationView.getMenu().findItem(R.id.navigation_home).setChecked(true);
             }
-
+*/
             mNavigationView.setCheckedItem(id);
 
             if(id != R.id.drawer_navigation_logout) {
@@ -379,8 +399,8 @@ public class MainFragmentActivity extends AppCompatActivity implements LoginList
 
             Bundle bundle = new Bundle();
 
-            FragmentManager front_manager = getFragmentManager();
-            android.support.v4.app.FragmentManager front_manager_old = getSupportFragmentManager();
+            FragmentManager fragment_manager = getFragmentManager();
+            android.support.v4.app.FragmentManager fragment_manager_old = getSupportFragmentManager();
 
 
             switch (id) {
@@ -388,19 +408,19 @@ public class MainFragmentActivity extends AppCompatActivity implements LoginList
                     //set arguments
                     //bundle.putSparseParcelableArray();
                     fragment = new HomeFragment();
-                    front_manager.beginTransaction().replace(R.id.content_frame, fragment).commit();
+                    fragment_manager.beginTransaction().replace(R.id.content_frame, fragment).commit();
                     break;
                 case R.id.navigation_register:
                     fragment_old =  new RegisterAccountFragment();
-                    front_manager_old.beginTransaction().replace(R.id.content_frame, fragment_old).commit();
+                    fragment_manager_old.beginTransaction().replace(R.id.content_frame, fragment_old).commit();
                     break;
                 case R.id.navigation_activate_code:
                     fragment_old =  new ActivateCodeFragment();
-                    front_manager_old.beginTransaction().replace(R.id.content_frame, fragment_old).commit();
+                    fragment_manager_old.beginTransaction().replace(R.id.content_frame, fragment_old).commit();
                     break;
                 case R.id.navigation_upgrade:
                     fragment_old =  new UpgradeAccountFragment();
-                    front_manager_old.beginTransaction().replace(R.id.content_frame, fragment_old).commit();
+                    fragment_manager_old.beginTransaction().replace(R.id.content_frame, fragment_old).commit();
                     break;
             }
 
@@ -435,5 +455,43 @@ public class MainFragmentActivity extends AppCompatActivity implements LoginList
 
         toggleNavigationHeader(false);
         toggleNavigationLoginMenu(false);
+    }
+
+    //other method
+    public class HeaderImageListener implements ImageView.OnLongClickListener {
+
+        @Override
+        public boolean onLongClick(View view) {
+
+            Fragment fragment = null;
+            fragment = new ProfileFragment();
+            view.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS);
+
+            mDrawerLayout.closeDrawer(Gravity.START);
+
+            FragmentManager fragment_manager = getFragmentManager();
+            fragment_manager.beginTransaction().replace(R.id.content_frame, fragment).commit();
+            mBottomNavigationView.getMenu().findItem(R.id.navigation_home).setChecked(true);
+
+            return true;
+        }
+    }
+
+    public class DistributorNameListener implements ImageView.OnClickListener {
+
+        @Override
+        public void onClick(View view) {
+
+            Fragment fragment = null;
+            fragment = new ProfileFragment();
+            view.performHapticFeedback(HapticFeedbackConstants.CONTEXT_CLICK);
+
+            mDrawerLayout.closeDrawer(Gravity.START);
+
+            FragmentManager fragment_manager = getFragmentManager();
+            fragment_manager.beginTransaction().replace(R.id.content_frame, fragment).commit();
+            mBottomNavigationView.getMenu().findItem(R.id.navigation_home).setChecked(true);
+
+        }
     }
 }
