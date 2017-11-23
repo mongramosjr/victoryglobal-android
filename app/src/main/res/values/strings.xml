@@ -134,6 +134,7 @@
     <string name="api_account_registration_checkfirst">/distributor/registration/checkfirst.json</string>
     <string name="api_pickupcenters">/distributor/pickup-centers.json</string>
 
+    <!-- required authenticated login -->
     <string name="api_account">/distributor/account.json</string>
     <string name="api_payout_reports">/distributor/payout-reports.json</string>
     <string name="api_purchases">/distributor/purchases.json</string>

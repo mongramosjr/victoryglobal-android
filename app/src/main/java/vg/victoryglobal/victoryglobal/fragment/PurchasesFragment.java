@@ -10,6 +10,12 @@ package vg.victoryglobal.victoryglobal.fragment;
 
 import android.app.Fragment;
 import android.os.Bundle;
+import android.os.Handler;
+import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.DividerItemDecoration;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,12 +32,26 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import vg.victoryglobal.victoryglobal.R;
-import vg.victoryglobal.victoryglobal.model.AuthLoginRequest;
+import java.util.ArrayList;
 
-public class PurchasesFragment extends Fragment {
+import vg.victoryglobal.victoryglobal.R;
+import vg.victoryglobal.victoryglobal.adapter.PurchasesAdapter;
+import vg.victoryglobal.victoryglobal.model.AuthLoginRequest;
+import vg.victoryglobal.victoryglobal.model.Purchase;
+import vg.victoryglobal.victoryglobal.model.PurchasesRequest;
+
+public class PurchasesFragment extends Fragment
+        implements SwipeRefreshLayout.OnRefreshListener, PurchasesAdapter.PurchasesAdapterListener{
 
     public View currentView;
+
+    private ArrayList<Purchase> purchases = new ArrayList<>();
+    private PurchasesAdapter purchasesAdapter;
+
+    private RecyclerView recyclerView;
+    private SwipeRefreshLayout swipeRefreshLayout;
+
+    PurchasesRequest purchasesRequest;
 
     AuthLoginRequest authLoginRequest;
 
@@ -39,6 +59,7 @@ public class PurchasesFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         authLoginRequest = AuthLoginRequest.getAuthLoginRequest("main");
+        purchasesRequest = PurchasesRequest.getInstance();
     }
 
     // The onCreateView method is called when Fragment should create its View object hierarchy,
@@ -57,6 +78,35 @@ public class PurchasesFragment extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
 
         currentView = view;
+
+        recyclerView = view.findViewById(R.id.purchases_recycler_view);
+        swipeRefreshLayout = view.findViewById(R.id.purchases_swipe_refresh_layout);
+        swipeRefreshLayout.setOnRefreshListener(this);
+
+        purchases = purchasesRequest.getPurchases();
+
+        purchasesAdapter = new PurchasesAdapter(currentView.getContext(), purchases, this);
+
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(view.getContext());
+        recyclerView.setLayoutManager(mLayoutManager);
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+        recyclerView.addItemDecoration(new DividerItemDecoration(view.getContext(), LinearLayoutManager.VERTICAL));
+        recyclerView.setAdapter(purchasesAdapter);
+    }
+
+    @Override
+    public void onRefresh() {
+        swipeRefreshLayout.setRefreshing(true);
+
+        purchases(currentView);
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                swipeRefreshLayout.setRefreshing(false);
+            }
+        }, 10000L);
+
     }
 
 
@@ -85,7 +135,7 @@ public class PurchasesFragment extends Fragment {
 
             //callback_code.getStepperLayout().hideProgress();
             Toast.makeText(getActivity().getApplicationContext(), R.string.ui_exception, Toast.LENGTH_LONG).show();
-            Log.e("Purchases", ex.getMessage());
+            Log.e("Purchase", ex.getMessage());
             return;
         }
 
@@ -97,7 +147,7 @@ public class PurchasesFragment extends Fragment {
 
                             @Override
                             public void onResponse(JSONObject response) {
-                                Log.e("Purchases", "Response: " + response.toString());
+                                Log.e("Purchase", "Response: " + response.toString());
                                 purchasesCallback(view, response.toString());
                             }
                         },
@@ -106,7 +156,7 @@ public class PurchasesFragment extends Fragment {
                             @Override
                             public void onErrorResponse(VolleyError error) {
                                 // Do nothing
-                                Log.e("Purchases", "onErrorResponse: " + error.toString());
+                                Log.e("Purchase", "onErrorResponse: " + error.toString());
                                 Toast.makeText(getActivity().getApplicationContext(), R.string.ui_unexpected_response, Toast.LENGTH_LONG).show();
                                 /*new Handler().postDelayed(new Runnable() {
                                     @Override
@@ -125,5 +175,16 @@ public class PurchasesFragment extends Fragment {
 
 
         queue.add(jsObjRequest);
+    }
+
+
+    @Override
+    public void onMessageRowClicked(int position) {
+        
+    }
+
+    @Override
+    public void onRowLongClicked(int position) {
+
     }
 }
