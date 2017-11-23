@@ -10,10 +10,6 @@ package vg.victoryglobal.victoryglobal.listener;
 
 import vg.victoryglobal.victoryglobal.model.AccountLogin;
 
-/**
- * Created by mong on 11/19/17.
- */
-
 public interface LogoutListener {
 
     void prepareLogout(AccountLogin account_login);

@@ -8,10 +8,6 @@
 
 package vg.victoryglobal.victoryglobal.utils;
 
-/**
- * Created by mong on 11/20/17.
- */
-
 import org.apache.commons.lang3.math.NumberUtils;
 
 
