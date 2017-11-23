@@ -53,6 +53,8 @@ import vg.victoryglobal.victoryglobal.model.RegisterAccountRequest;
 
 public class RegisterAccountNew extends Fragment implements BlockingStep {
 
+    public View currentView;
+
     TextInputLayout inputLayoutPassword;
     TextInputLayout inputLayoutVerifyPassword;
 
@@ -91,6 +93,9 @@ public class RegisterAccountNew extends Fragment implements BlockingStep {
     // Any view setup should occur here.  E.g., view lookups and attaching view listeners.
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
+
+        currentView = view;
+
         inputLayoutPassword = view.findViewById(R.id.password_textinputlayout);
         inputLayoutVerifyPassword = view.findViewById(R.id.verify_password_textinputlayout);
 

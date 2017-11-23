@@ -1,12 +1,12 @@
 /*
- * Created by Mong Ramos Jr. <mongramosjr@gmail.com> on 9/9/17 7:01 AM
+ * Created by Mong Ramos Jr. <mongramosjr@gmail.com> on 11/23/17 10:42 AM
  *
  * Copyright (c) 2017 Victory Global Unlimited Systems Inc. All rights reserved.
  *
- * Last modified 9/9/17 6:59 AM
+ * Last modified 9/22/17 10:09 AM
  */
 
-package vg.victoryglobal.victoryglobal.fragment;
+package vg.victoryglobal.victoryglobal.listener;
 
 import android.app.DatePickerDialog;
 
@@ -21,7 +21,7 @@ import java.util.Calendar;
 import java.util.Locale;
 import java.util.TimeZone;
 
-class TextInputDatePicker implements OnClickListener, DatePickerDialog.OnDateSetListener {
+public class TextInputDatePicker implements OnClickListener, DatePickerDialog.OnDateSetListener {
 
     private final TextInputEditText editText;
     private final Calendar myCalendar;

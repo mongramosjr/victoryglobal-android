@@ -35,10 +35,13 @@ import com.stepstone.stepper.VerificationError;
 import java.util.ArrayList;
 
 import vg.victoryglobal.victoryglobal.R;
+import vg.victoryglobal.victoryglobal.listener.TextInputDatePicker;
 import vg.victoryglobal.victoryglobal.model.MlmResponseError;
 import vg.victoryglobal.victoryglobal.model.RegisterAccountRequest;
 
 public class RegisterAccountPersonalInfo extends Fragment implements BlockingStep {
+
+    public View currentView;
 
     TextInputLayout inputLayoutFirstName;
     TextInputLayout inputLayoutLastName;
@@ -79,7 +82,7 @@ public class RegisterAccountPersonalInfo extends Fragment implements BlockingSte
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
 
-
+        currentView = view;
 
         inputLayoutFirstName = view.findViewById(R.id.first_name_textinputlayout);
         inputLayoutLastName = view.findViewById(R.id.last_name_textinputlayout);

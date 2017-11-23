@@ -45,7 +45,7 @@ import vg.victoryglobal.victoryglobal.model.RegisterAccountRequest;
 
 public class RegisterAccountSubscribe extends Fragment implements BlockingStep {
 
-
+    public View currentView;
 
     TextView firstName;
     TextView lastName;
@@ -89,6 +89,9 @@ public class RegisterAccountSubscribe extends Fragment implements BlockingStep {
     // Any view setup should occur here.  E.g., view lookups and attaching view listeners.
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
+
+        currentView = view;
+
         // get View
         firstName = view.findViewById(R.id.first_name);
         lastName = view.findViewById(R.id.last_name);

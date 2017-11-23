@@ -57,6 +57,8 @@ import vg.victoryglobal.victoryglobal.model.facebook.FbGraphFeedRequest;
 
 public class HomeFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener, FbGraphFeedAdapter.FacebookGraphFeedAdapterListener {
 
+    public View currentView;
+
     private CallbackManager callbackManager;
     private AccessTokenTracker accessTokenTracker;
     private ProfileTracker profileTracker;
@@ -94,6 +96,8 @@ public class HomeFragment extends Fragment implements SwipeRefreshLayout.OnRefre
     // Any view setup should occur here.  E.g., view lookups and attaching view listeners.
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
+
+        currentView = view;
 
         recyclerView = view.findViewById(R.id.facebook_feeds_recycler_view);
         swipeRefreshLayout = view.findViewById(R.id.facebook_feeds_swipe_refresh_layout);

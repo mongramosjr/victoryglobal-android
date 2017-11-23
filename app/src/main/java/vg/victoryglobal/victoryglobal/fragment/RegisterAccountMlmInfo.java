@@ -60,6 +60,8 @@ import vg.victoryglobal.victoryglobal.model.RegisterAccountRequest;
 
 public class RegisterAccountMlmInfo extends Fragment implements BlockingStep {
 
+    public View currentView;
+
     TextInputLayout inputLayoutActivateCode;
     TextInputLayout inputLayoutUplineId;
     TextInputLayout inputLayoutSponsorId;
@@ -107,6 +109,8 @@ public class RegisterAccountMlmInfo extends Fragment implements BlockingStep {
     // Any view setup should occur here.  E.g., view lookups and attaching view listeners.
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
+
+        currentView = view;
 
         pickupCenterRequest.PickupCenters(getContext());
 

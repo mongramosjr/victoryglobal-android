@@ -24,6 +24,7 @@ import vg.victoryglobal.victoryglobal.model.PickupCenterRequest;
 public class RegisterAccountFragment extends Fragment {
 
     public View currentView;
+
     private StepperLayout mStepperLayout;
     PickupCenterRequest pickupCenterRequest;
 

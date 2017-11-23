@@ -22,6 +22,7 @@ import vg.victoryglobal.victoryglobal.adapter.UpgradeAccountStepperAdapter;
 public class UpgradeAccountFragment extends Fragment {
 
     public View currentView;
+
     private StepperLayout mStepperLayout;
 
     @Override

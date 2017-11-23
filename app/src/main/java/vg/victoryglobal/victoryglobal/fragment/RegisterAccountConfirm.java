@@ -45,7 +45,7 @@ import vg.victoryglobal.victoryglobal.model.RegisterAccountRequest;
 
 public class RegisterAccountConfirm extends Fragment implements BlockingStep {
 
-
+    public View currentView;
 
     TextView firstName;
     TextView lastName;
@@ -105,6 +105,8 @@ public class RegisterAccountConfirm extends Fragment implements BlockingStep {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         // get View
+        currentView = view;
+
         firstName = view.findViewById(R.id.first_name);
         lastName = view.findViewById(R.id.last_name);
         activationCode = view.findViewById(R.id.activation_code);

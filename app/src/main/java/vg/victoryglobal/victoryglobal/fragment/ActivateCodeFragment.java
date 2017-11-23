@@ -22,6 +22,7 @@ import vg.victoryglobal.victoryglobal.adapter.ActivateCodeStepperAdapter;
 public class ActivateCodeFragment extends Fragment {
 
     public View currentView;
+
     private StepperLayout mStepperLayout;
 
     @Override

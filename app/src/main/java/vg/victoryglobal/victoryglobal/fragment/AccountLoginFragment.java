@@ -51,6 +51,7 @@ import vg.victoryglobal.victoryglobal.model.MlmResponseError;
 public class AccountLoginFragment extends Fragment {
 
     public View currentView;
+
     TextInputLayout inputLayoutPassword;
     TextInputLayout inputLayoutDistributorId;
     TextInputEditText password;
@@ -134,7 +135,7 @@ public class AccountLoginFragment extends Fragment {
                 authLoginRequest.getAccountLogin().setPassword(password.getText().toString());
                 authLoginRequest.getAccountLogin().setMlmMemberId(Integer.parseInt(mlmMemberId.getText().toString()));
 
-                authAccount(authLoginRequest.getAccountLogin());
+                authAccount(currentView, authLoginRequest.getAccountLogin());
             }
         });
 
@@ -262,7 +263,7 @@ public class AccountLoginFragment extends Fragment {
     }
 
     //private void authAccountCallback(String response_data, final StepperLayout.OnNextClickedCallback callback_code)
-    private void authAccountCallback(String response_data)
+    private void authAccountCallback(final View view, String response_data)
     {
         try {
             JSONObject object = (JSONObject) new JSONTokener(response_data).nextValue();
@@ -389,7 +390,7 @@ public class AccountLoginFragment extends Fragment {
     }
 
     //private void authAccount(AccountLogin account_login, final StepperLayout.OnNextClickedCallback callback_code) {
-    private void authAccount(AccountLogin account_login) {
+    private void authAccount(final View view, AccountLogin account_login) {
 
         RequestQueue queue = Volley.newRequestQueue(getActivity().getApplicationContext());
 
@@ -417,7 +418,7 @@ public class AccountLoginFragment extends Fragment {
                             public void onResponse(JSONObject response) {
                                 Log.e("AccountLogin", "Response: " + response.toString());
                                 //authAccountCallback(response.toString(), callback_code);
-                                authAccountCallback(response.toString());
+                                authAccountCallback(view, response.toString());
                             }
                         },
                         new com.android.volley.Response.ErrorListener() {

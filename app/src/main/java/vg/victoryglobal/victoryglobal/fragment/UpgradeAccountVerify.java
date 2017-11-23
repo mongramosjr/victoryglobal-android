@@ -50,6 +50,8 @@ import vg.victoryglobal.victoryglobal.model.UpgradeAccountRequest;
 
 public class UpgradeAccountVerify extends Fragment implements BlockingStep {
 
+    public View currentView;
+
     TextInputLayout inputLayoutActivateCode;
     TextInputLayout inputLayoutDistributorId;
     TextInputEditText activationCode;
@@ -74,6 +76,8 @@ public class UpgradeAccountVerify extends Fragment implements BlockingStep {
     // Any view setup should occur here.  E.g., view lookups and attaching view listeners.
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
+
+        currentView = view;
 
         // get textview and textinputlayout
         inputLayoutActivateCode = view.findViewById(R.id.activate_code_textinputlayout);

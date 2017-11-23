@@ -38,6 +38,8 @@ import vg.victoryglobal.victoryglobal.model.RegisterAccountRequest;
 
 public class RegisterAccountAddressAndContact extends Fragment implements BlockingStep {
 
+    public View currentView;
+
     TextInputLayout inputLayoutEmail;
     TextInputLayout inputLayoutTelephone;
     TextInputLayout inputLayoutMobileNumber;
@@ -73,6 +75,8 @@ public class RegisterAccountAddressAndContact extends Fragment implements Blocki
     // Any view setup should occur here.  E.g., view lookups and attaching view listeners.
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
+
+        currentView = view;
 
         // get textview and textinputlayout
         inputLayoutEmail = view.findViewById(R.id.email_textinputlayout);

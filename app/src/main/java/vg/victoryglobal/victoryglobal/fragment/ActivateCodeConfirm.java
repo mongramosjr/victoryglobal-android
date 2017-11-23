@@ -44,6 +44,8 @@ import vg.victoryglobal.victoryglobal.model.MlmResponseError;
 
 public class ActivateCodeConfirm extends Fragment implements BlockingStep {
 
+    public View currentView;
+
     TextView activationCode;
     TextView mlmMemberId;
 
@@ -70,6 +72,9 @@ public class ActivateCodeConfirm extends Fragment implements BlockingStep {
     // Any view setup should occur here.  E.g., view lookups and attaching view listeners.
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
+
+        currentView = view;
+
         // get View
         activationCode = view.findViewById(R.id.activation_code);
         mlmMemberId = view.findViewById(R.id.mlm_member_id);
