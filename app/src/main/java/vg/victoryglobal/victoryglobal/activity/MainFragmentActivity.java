@@ -75,9 +75,6 @@ public class MainFragmentActivity extends AppCompatActivity implements LoginList
 
     boolean isLogin = false;
 
-    public final boolean isDebuggable =  ( 0 != ( getApplicationInfo().flags & ApplicationInfo.FLAG_DEBUGGABLE ) );
-
-
     @Override
     public void onSaveInstanceState(Bundle outState) {
     /*Save your data to be restored here
@@ -93,6 +90,7 @@ public class MainFragmentActivity extends AppCompatActivity implements LoginList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_fragment_activity);
 
+        boolean  isDebuggable =  (getApplicationInfo().flags == ApplicationInfo.FLAG_DEBUGGABLE );
         authLoginRequest = AuthLoginRequest.getAuthLoginRequest("main", getApplicationContext());
 
         // CookieStore is just an interface, you can implement it and do things like
@@ -123,14 +121,14 @@ public class MainFragmentActivity extends AppCompatActivity implements LoginList
         mTitle = mDrawerTitle = getTitle();
 
 
-        mBottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
+        mBottomNavigationView = findViewById(R.id.bottom_navigation);
         mBottomNavigationView.setOnNavigationItemSelectedListener(bottomOnNavigationItemSelectedListener);
 
         //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         //setActionBar(toolbar);
 
 
-        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_container);
+        mDrawerLayout = findViewById(R.id.drawer_container);
 
 
         //mDrawerToggle = new ActionBarDrawerToggle(
@@ -182,7 +180,7 @@ public class MainFragmentActivity extends AppCompatActivity implements LoginList
         //mActionBar.setDisplayHomeAsUpEnabled(true);
         //mActionBar.setHomeButtonEnabled(true);
 
-        mNavigationView = (NavigationView) findViewById(R.id.drawer_navigation_view);
+        mNavigationView = findViewById(R.id.drawer_navigation_view);
         mNavigationView.setNavigationItemSelectedListener(drawerOnNavigationItemSelectedListener);
 
         drawer_navigation_header = (android.widget.LinearLayout) mNavigationView.getHeaderView(0);
