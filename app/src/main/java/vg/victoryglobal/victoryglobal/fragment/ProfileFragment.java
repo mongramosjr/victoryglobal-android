@@ -17,6 +17,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.DefaultRetryPolicy;
@@ -28,6 +29,7 @@ import com.android.volley.toolbox.Volley;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 import vg.victoryglobal.victoryglobal.R;
 import vg.victoryglobal.victoryglobal.model.AuthLoginRequest;
@@ -39,6 +41,38 @@ public class ProfileFragment extends Fragment implements SwipeRefreshLayout.OnRe
     private SwipeRefreshLayout swipeRefreshLayout;
 
     AuthLoginRequest authLoginRequest;
+
+    // TextView
+    TextView location0BalanceBinary;
+    TextView location1BalanceBinary;
+    TextView binary;
+    TextView unilevel;
+    TextView groupUnilevel;
+
+    TextView maritalStatus;
+    TextView gender;
+    TextView dateOfBirth;
+    TextView placeOfBirth;
+    TextView taxNumber;
+    TextView socialSecurityNumber;
+    TextView spouseName;
+    TextView occupation;
+    TextView domicile;
+    TextView nationality;
+
+    TextView currentIncomeTotalAmount;
+
+    TextView bankName;
+    TextView accountNumber;
+
+    TextView email;
+    TextView phone;
+    TextView fax;
+    TextView mobileNumber;
+
+    TextView address;
+
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -64,8 +98,40 @@ public class ProfileFragment extends Fragment implements SwipeRefreshLayout.OnRe
 
         currentView = view;
 
+        location0BalanceBinary = view.findViewById(R.id.location0_balance_bv_binary);
+        location1BalanceBinary = view.findViewById(R.id.location1_balance_bv_binary);
+        binary = view.findViewById(R.id.bv_binary);
+        unilevel = view.findViewById(R.id.bv_unilevel);
+        groupUnilevel = view.findViewById(R.id.group_bv_unilevel);
+
+        maritalStatus = view.findViewById(R.id.marital_status);
+        gender = view.findViewById(R.id.gender);
+        dateOfBirth = view.findViewById(R.id.date_of_birth);
+        placeOfBirth = view.findViewById(R.id.place_of_birth);
+        taxNumber = view.findViewById(R.id.tax_number);
+        socialSecurityNumber = view.findViewById(R.id.social_security_number);
+        spouseName = view.findViewById(R.id.spouse_name);
+        occupation = view.findViewById(R.id.occupation);
+        //domicile = view.findViewById(R.id.domicile);
+        nationality = view.findViewById(R.id.nationality);
+
+        currentIncomeTotalAmount = view.findViewById(R.id.current_income_total_amount);
+
+        bankName = view.findViewById(R.id.bank_name);
+        accountNumber = view.findViewById(R.id.account_number);
+
+        email = view.findViewById(R.id.email);
+        phone = view.findViewById(R.id.phone);
+        fax = view.findViewById(R.id.fax);
+        mobileNumber = view.findViewById(R.id.mobile_number);
+
+        address = view.findViewById(R.id.address);
+
+
         swipeRefreshLayout = view.findViewById(R.id.profile_swipe_refresh_layout);
         swipeRefreshLayout.setOnRefreshListener(this);
+
+
     }
 
     @Override

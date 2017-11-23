@@ -48,9 +48,10 @@
                 />
 
             <TextView
+                android:id="@+id/email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Lady Iza Village"/>
+                android:text="juan.dela.cruz@gmail.com"/>
 
             <View
                 style="@style/ViewSeparator"
@@ -95,9 +96,10 @@
                 />
 
             <TextView
+                android:id="@+id/phone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Magallanes"
+                android:text="02-1234567"
                 
                 
                 
@@ -146,9 +148,10 @@
                 />
 
             <TextView
+                android:id="@+id/mobile_number"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Magallanes"
+                android:text="0917-1234567"
                 
                 
 
@@ -197,9 +200,10 @@
                 />
 
             <TextView
+                android:id="@+id/fax"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Magallanes"
+                android:text="02-7654321"
                 />
 
             <View

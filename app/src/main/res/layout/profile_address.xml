@@ -41,6 +41,7 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/address"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Lady Iza Village Cawit Extension \nMagallanes \n4705 Sorsogon \nPhilippines"

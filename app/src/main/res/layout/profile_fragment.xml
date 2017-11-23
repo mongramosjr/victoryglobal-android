@@ -66,11 +66,13 @@
                     android:text="PH-0000000001"
                     android:textAppearance="@style/TextAppearance.AppCompat.Subhead.Inverse"/>
 
-
-
-                <include layout="@layout/profile_matching_bonus_dashboard"/>
+                <include layout="@layout/profile_current_income"/>
 
             </LinearLayout>
+
+            <include layout="@layout/profile_matching_bonus_dashboard"/>
+
+            <include layout="@layout/profile_unilevel"/>
 
             <TextView
                 android:layout_width="match_parent"

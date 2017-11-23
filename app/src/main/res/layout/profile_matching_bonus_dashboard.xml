@@ -15,13 +15,13 @@
     android:layout_gravity="center"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    app:cardBackgroundColor="@color/colorPrimaryDark"
+    app:cardBackgroundColor="@color/colorNeutralWarmDark"
     android:numColumns="1"
-    app:elevation="4dp"
-    card_view:cardElevation="4dp"
+    card_view:cardElevation="2dp"
     card_view:cardCornerRadius="8dp"
     card_view:cardUseCompatPadding="true"
-    android:layout_margin="12dp">
+    android:layout_marginStart="14dp"
+    android:layout_marginEnd="14dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -52,6 +52,7 @@
                     android:layout_weight="1">
 
                     <TextView
+                        android:id="@+id/location0_balance_bv_binary"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
@@ -82,6 +83,7 @@
                     android:layout_weight="1">
 
                     <TextView
+                        android:id="@+id/location1_balance_bv_binary"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
@@ -111,6 +113,7 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/bv_binary"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"

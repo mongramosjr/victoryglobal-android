@@ -1,15 +1,105 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-  ~ Created by Mong Ramos Jr. <mongramosjr@gmail.com> on 11/21/17 12:20 PM
+  ~ Created by Mong Ramos Jr. <mongramosjr@gmail.com> on 11/21/17 2:48 PM
   ~
   ~ Copyright (c) 2017 Victory Global Unlimited Systems Inc. All rights reserved.
   ~
-  ~ Last modified 11/21/17 12:20 PM
+  ~ Last modified 11/21/17 2:48 PM
   -->
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent">
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/card_view"
+    android:layout_gravity="center"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardBackgroundColor="@color/colorNeutralWarmDark"
+    android:numColumns="1"
+    card_view:cardElevation="2dp"
+    card_view:cardCornerRadius="8dp"
+    card_view:cardUseCompatPadding="true"
+    android:layout_marginStart="14dp"
+    android:layout_marginEnd="14dp">
 
-</LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="@dimen/textcontainer_padding_vertical"
+            android:paddingStart="@dimen/container_padding_horizontal"
+            android:paddingEnd="@dimen/container_padding_horizontal"
+            android:text="Unilevel"
+            android:textAppearance="@style/TextAppearance.AppCompat.Subhead.Inverse"/>
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:orientation="horizontal"
+                      android:weightSum="2">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingBottom="@dimen/textcontainer_padding_vertical"
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/bv_unilevel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="2.04k"
+                    android:textAppearance="@style/StatSubNumber"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="Personal"
+                    android:textAllCaps="true"
+                    android:textColor="@color/colorNeutralWarmLight"
+                    />
+
+            </LinearLayout>
+            <View
+                style="@style/ViewVerticalSeparator"
+                android:layout_marginBottom="16dp"
+                android:layout_marginTop="8dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingBottom="@dimen/textcontainer_padding_vertical"
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/group_bv_unilevel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="23.41k"
+                    android:textAppearance="@style/StatSubNumber"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="Group"
+                    android:textAllCaps="true"
+                    android:textColor="@color/colorNeutralWarmLight"
+                    />
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</android.support.v7.widget.CardView>
