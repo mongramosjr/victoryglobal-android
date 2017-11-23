@@ -35,7 +35,7 @@
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingBottom="@dimen/container_padding_vertical"
+                android:paddingTop="@dimen/container_padding_vertical"
                 android:background="@color/colorPrimary">
 
                 <LinearLayout
