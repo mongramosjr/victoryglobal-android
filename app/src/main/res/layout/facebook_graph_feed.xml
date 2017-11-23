@@ -20,9 +20,11 @@
         android:layout_marginTop="@dimen/news_feeds_marginTop"
         android:layout_marginStart="@dimen/news_feeds_marginLeft"
         android:layout_marginEnd="@dimen/news_feeds_marginRight"
-        android:elevation="3dp"
         android:numColumns="1"
-        card_view:cardCornerRadius="@dimen/news_feeds_cardCornerRadius">
+        card_view:elevation="6dp"
+        card_view:cardElevation="10dp"
+        card_view:cardCornerRadius="@dimen/news_feeds_cardCornerRadius"
+        card_view:cardUseCompatPadding="true">
 
         <RelativeLayout
             android:layout_width="match_parent"
