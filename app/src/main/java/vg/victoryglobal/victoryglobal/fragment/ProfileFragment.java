@@ -72,18 +72,22 @@ public class ProfileFragment extends Fragment implements SwipeRefreshLayout.OnRe
     public void onRefresh() {
         swipeRefreshLayout.setRefreshing(true);
 
-        account();
+        account(currentView);
 
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
                 swipeRefreshLayout.setRefreshing(false);
             }
-        }, 10000L);
+        }, 2000L);
+    }
+
+    private void accountCallback(View view, String response_data) {
+
     }
 
 
-    private void account() {
+    private void account(final View view) {
 
         RequestQueue queue = Volley.newRequestQueue(getActivity().getApplicationContext());
 
@@ -102,7 +106,7 @@ public class ProfileFragment extends Fragment implements SwipeRefreshLayout.OnRe
 
             //callback_code.getStepperLayout().hideProgress();
             Toast.makeText(getActivity().getApplicationContext(), R.string.ui_exception, Toast.LENGTH_LONG).show();
-            Log.e("Account", ex.getMessage());
+            Log.e("Profile", ex.getMessage());
             return;
         }
 
@@ -114,7 +118,7 @@ public class ProfileFragment extends Fragment implements SwipeRefreshLayout.OnRe
 
                             @Override
                             public void onResponse(JSONObject response) {
-                                Log.e("Account", "Response: " + response.toString());
+                                Log.e("Profile", "Response: " + response.toString());
                                 //authAccountCallback(response.toString());
                             }
                         },
@@ -123,7 +127,7 @@ public class ProfileFragment extends Fragment implements SwipeRefreshLayout.OnRe
                             @Override
                             public void onErrorResponse(VolleyError error) {
                                 // Do nothing
-                                Log.e("Account", "onErrorResponse: " + error.toString());
+                                Log.e("Profile", "onErrorResponse: " + error.toString());
                                 Toast.makeText(getActivity().getApplicationContext(), R.string.ui_unexpected_response, Toast.LENGTH_LONG).show();
                                 /*new Handler().postDelayed(new Runnable() {
                                     @Override

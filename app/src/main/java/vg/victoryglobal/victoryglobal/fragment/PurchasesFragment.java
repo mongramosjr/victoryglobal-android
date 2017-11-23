@@ -10,19 +10,35 @@ package vg.victoryglobal.victoryglobal.fragment;
 
 import android.app.Fragment;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
+
+import com.android.volley.DefaultRetryPolicy;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import vg.victoryglobal.victoryglobal.R;
+import vg.victoryglobal.victoryglobal.model.AuthLoginRequest;
 
 public class PurchasesFragment extends Fragment {
 
     public View currentView;
 
+    AuthLoginRequest authLoginRequest;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        authLoginRequest = AuthLoginRequest.getAuthLoginRequest("main");
     }
 
     // The onCreateView method is called when Fragment should create its View object hierarchy,
@@ -41,5 +57,73 @@ public class PurchasesFragment extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
 
         currentView = view;
+    }
+
+
+
+    private void purchasesCallback(View view, String response_data) {
+
+    }
+
+
+    private void purchases(final View view) {
+
+        RequestQueue queue = Volley.newRequestQueue(getActivity().getApplicationContext());
+
+        String mlm_member_id = String.valueOf(authLoginRequest.getAccountLogin().getMlmMemberId());
+        String session = authLoginRequest.getAccountLogin().getSession();
+        String auth_token = authLoginRequest.getAccountLogin().getAuthToken();
+
+        String url = getString(R.string.api_url) + getString(R.string.api_purchases);
+
+        JSONObject post_data = new JSONObject();
+        try {
+            post_data.put("session", session);
+            post_data.put("auth_token", auth_token);
+            post_data.put("mlm_member_id", mlm_member_id);
+        }catch(JSONException ex) {
+
+            //callback_code.getStepperLayout().hideProgress();
+            Toast.makeText(getActivity().getApplicationContext(), R.string.ui_exception, Toast.LENGTH_LONG).show();
+            Log.e("Purchases", ex.getMessage());
+            return;
+        }
+
+        JsonObjectRequest jsObjRequest = new JsonObjectRequest
+                (Request.Method.POST,
+                        url,
+                        post_data,
+                        new com.android.volley.Response.Listener<JSONObject>() {
+
+                            @Override
+                            public void onResponse(JSONObject response) {
+                                Log.e("Purchases", "Response: " + response.toString());
+                                purchasesCallback(view, response.toString());
+                            }
+                        },
+                        new com.android.volley.Response.ErrorListener() {
+
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                // Do nothing
+                                Log.e("Purchases", "onErrorResponse: " + error.toString());
+                                Toast.makeText(getActivity().getApplicationContext(), R.string.ui_unexpected_response, Toast.LENGTH_LONG).show();
+                                /*new Handler().postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        callback_code.getStepperLayout().hideProgress();
+                                    }
+                                }, 2000L);
+                                */
+                            }
+                        }
+                );
+
+        // 6 minutes
+        jsObjRequest.setRetryPolicy(new DefaultRetryPolicy(DefaultRetryPolicy.DEFAULT_TIMEOUT_MS * 144,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+
+
+        queue.add(jsObjRequest);
     }
 }

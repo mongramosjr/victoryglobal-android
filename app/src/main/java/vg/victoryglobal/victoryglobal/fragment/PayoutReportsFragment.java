@@ -101,7 +101,7 @@ public class PayoutReportsFragment extends Fragment
     public void onRefresh() {
         swipeRefreshLayout.setRefreshing(true);
 
-        payoutReports();
+        payoutReports(currentView);
 
         new Handler().postDelayed(new Runnable() {
             @Override
@@ -127,7 +127,11 @@ public class PayoutReportsFragment extends Fragment
     }
 
 
-    private void payoutReports() {
+    private void payoutReportsCallback(View view, String response_data) {
+
+    }
+
+    private void payoutReports(final View view) {
 
         RequestQueue queue = Volley.newRequestQueue(getActivity().getApplicationContext());
 
@@ -145,7 +149,7 @@ public class PayoutReportsFragment extends Fragment
 
             //callback_code.getStepperLayout().hideProgress();
             Toast.makeText(getActivity().getApplicationContext(), R.string.ui_exception, Toast.LENGTH_LONG).show();
-            Log.e("Account", ex.getMessage());
+            Log.e("PayoutReports", ex.getMessage());
             return;
         }
 
@@ -157,8 +161,8 @@ public class PayoutReportsFragment extends Fragment
 
                             @Override
                             public void onResponse(JSONObject response) {
-                                Log.e("Account", "Response: " + response.toString());
-                                //authAccountCallback(response.toString());
+                                Log.e("PayoutReports", "Response: " + response.toString());
+                                payoutReportsCallback(view, response.toString());
                             }
                         },
                         new com.android.volley.Response.ErrorListener() {
@@ -166,7 +170,7 @@ public class PayoutReportsFragment extends Fragment
                             @Override
                             public void onErrorResponse(VolleyError error) {
                                 // Do nothing
-                                Log.e("Account", "onErrorResponse: " + error.toString());
+                                Log.e("PayoutReports", "onErrorResponse: " + error.toString());
                                 Toast.makeText(getActivity().getApplicationContext(), R.string.ui_unexpected_response, Toast.LENGTH_LONG).show();
                                 /*new Handler().postDelayed(new Runnable() {
                                     @Override
