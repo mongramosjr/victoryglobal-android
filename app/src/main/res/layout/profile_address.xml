@@ -43,40 +43,12 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Lady Iza Village Cawit Extension"
+                android:text="Lady Iza Village Cawit Extension \nMagallanes \n4705 Sorsogon \nPhilippines"
                 />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Magallanes"
-                />
-
-            <LinearLayout
-                xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="4705"
-                    />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Sorsogon"
-                    />
-            </LinearLayout>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Philippines"
-                />
-
+            <View
+                style="@style/ViewSeparator"
+                android:layout_gravity="bottom"/>
 
         </LinearLayout>
 
