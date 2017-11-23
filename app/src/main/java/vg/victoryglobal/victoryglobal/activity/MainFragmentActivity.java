@@ -467,7 +467,9 @@ public class MainFragmentActivity extends AppCompatActivity implements LoginList
             fragment = new ProfileFragment();
             view.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS);
 
-            mDrawerLayout.closeDrawer(Gravity.START);
+            if (mDrawerLayout.isDrawerOpen(Gravity.START)) {
+                mDrawerLayout.closeDrawer(Gravity.START);
+            }
 
             FragmentManager fragment_manager = getFragmentManager();
             fragment_manager.beginTransaction().replace(R.id.content_frame, fragment).commit();
@@ -486,12 +488,13 @@ public class MainFragmentActivity extends AppCompatActivity implements LoginList
             fragment = new ProfileFragment();
             view.performHapticFeedback(HapticFeedbackConstants.CONTEXT_CLICK);
 
-            mDrawerLayout.closeDrawer(Gravity.START);
+            if (mDrawerLayout.isDrawerOpen(Gravity.START)) {
+                mDrawerLayout.closeDrawer(Gravity.START);
+            }
 
             FragmentManager fragment_manager = getFragmentManager();
             fragment_manager.beginTransaction().replace(R.id.content_frame, fragment).commit();
             mBottomNavigationView.getMenu().findItem(R.id.navigation_home).setChecked(true);
-
         }
     }
 }
