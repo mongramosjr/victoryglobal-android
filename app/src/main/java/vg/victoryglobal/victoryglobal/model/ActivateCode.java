@@ -14,7 +14,7 @@ import android.os.Parcelable;
 public class ActivateCode implements Parcelable {
 
     private String activationCode = "";
-    private int mlmMemberId = 0;
+    private Integer mlmMemberId = 0;
     private String activationCodeName = "";
     private String memberName = "";
 
@@ -28,9 +28,34 @@ public class ActivateCode implements Parcelable {
         this.mlmMemberId = mlmMemberId;
     }
 
-    public ActivateCode(Parcel in) {
-        mlmMemberId = in.readInt();
+
+    protected ActivateCode(Parcel in) {
         activationCode = in.readString();
+        if (in.readByte() == 0) {
+            mlmMemberId = null;
+        } else {
+            mlmMemberId = in.readInt();
+        }
+        activationCodeName = in.readString();
+        memberName = in.readString();
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(activationCode);
+        if (mlmMemberId == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeInt(mlmMemberId);
+        }
+        dest.writeString(activationCodeName);
+        dest.writeString(memberName);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
     }
 
     public static final Creator<ActivateCode> CREATOR = new Creator<ActivateCode>() {
@@ -45,24 +70,12 @@ public class ActivateCode implements Parcelable {
         }
     };
 
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeInt(mlmMemberId);
-        parcel.writeString(activationCode);
-
-    }
-
     //setter and getter
     public String getActivationCode(){return activationCode; }
     public void setActivationCode(String activationCode) {this.activationCode = activationCode; }
 
-    public int getMlmMemberId(){return mlmMemberId; }
-    public void setMlmMemberId(int mlmMemberId) {this.mlmMemberId = mlmMemberId; }
+    public Integer getMlmMemberId(){return mlmMemberId; }
+    public void setMlmMemberId(Integer mlmMemberId) {this.mlmMemberId = mlmMemberId; }
 
     public String getActivationCodeName() {
         return activationCodeName;

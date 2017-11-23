@@ -8,7 +8,10 @@
 
 package vg.victoryglobal.victoryglobal.model;
 
-public class CountryCode {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class CountryCode implements Parcelable{
     private String code;
     private String name;
 
@@ -18,6 +21,34 @@ public class CountryCode {
         this.name = name;
     }
 
+
+    protected CountryCode(Parcel in) {
+        code = in.readString();
+        name = in.readString();
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(code);
+        dest.writeString(name);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    public static final Creator<CountryCode> CREATOR = new Creator<CountryCode>() {
+        @Override
+        public CountryCode createFromParcel(Parcel in) {
+            return new CountryCode(in);
+        }
+
+        @Override
+        public CountryCode[] newArray(int size) {
+            return new CountryCode[size];
+        }
+    };
 
     public String getCode() {
         return code;

@@ -17,23 +17,45 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
+
+/*
+ * Payout report model from API response
+ */
 public class PayoutReport implements Parcelable {
 
-    private int id;
+    public Integer id;
 
-    private float total_amount;
+    public Float total_amount;
 
-    private Date date_start;
+    public Date date_start;
 
-    private Date date_end;
+    public Date date_end;
 
-    private String payout_term;
+    public String payout_term;
 
-    private String reference_code;
+    public String reference_code;
 
-    private Date created;
+    public Date created;
+
 
     protected PayoutReport(Parcel in) {
+        id = in.readInt();
+        total_amount = in.readFloat();
+        payout_term = in.readString();
+        reference_code = in.readString();
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(id);
+        dest.writeFloat(total_amount);
+        dest.writeString(payout_term);
+        dest.writeString(reference_code);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
     }
 
     public static final Creator<PayoutReport> CREATOR = new Creator<PayoutReport>() {
@@ -48,18 +70,7 @@ public class PayoutReport implements Parcelable {
         }
     };
 
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel parcel, int i) {
-    }
-
     //setter and getter
-
-
     public Date getDate_end() {
         return date_end;
     }
@@ -108,11 +119,11 @@ public class PayoutReport implements Parcelable {
         this.reference_code = reference_code;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

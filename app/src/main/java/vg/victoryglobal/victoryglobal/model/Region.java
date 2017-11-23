@@ -8,15 +8,47 @@
 
 package vg.victoryglobal.victoryglobal.model;
 
-public class Region {
+import android.os.Parcel;
+import android.os.Parcelable;
+import android.support.annotation.Nullable;
+
+public class Region implements Parcelable {
     private String id;
     private String name;
 
-    public Region(String id, String name) {
+    //to be used in spinner
+    public Region(@Nullable String id, @Nullable String name) {
         this.id = id;
         this.name = name;
     }
 
+    protected Region(Parcel in) {
+        id = in.readString();
+        name = in.readString();
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(id);
+        dest.writeString(name);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    public static final Creator<Region> CREATOR = new Creator<Region>() {
+        @Override
+        public Region createFromParcel(Parcel in) {
+            return new Region(in);
+        }
+
+        @Override
+        public Region[] newArray(int size) {
+            return new Region[size];
+        }
+    };
 
     public String getId() {
         return id;

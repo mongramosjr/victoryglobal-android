@@ -28,10 +28,24 @@ public class UpgradeAccount implements Parcelable {
         this.mlmMemberId = mlmMemberId;
     }
 
-    // "De-parcel object
-    public UpgradeAccount(Parcel in) {
-        mlmMemberId = in.readInt();
+    protected UpgradeAccount(Parcel in) {
         activationCode = in.readString();
+        mlmMemberId = in.readInt();
+        activationCodeName = in.readString();
+        memberName = in.readString();
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(activationCode);
+        dest.writeInt(mlmMemberId);
+        dest.writeString(activationCodeName);
+        dest.writeString(memberName);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
     }
 
     public static final Creator<UpgradeAccount> CREATOR = new Creator<UpgradeAccount>() {
@@ -45,17 +59,6 @@ public class UpgradeAccount implements Parcelable {
             return new UpgradeAccount[size];
         }
     };
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeInt(mlmMemberId);
-        parcel.writeString(activationCode);
-    }
 
     //setter and getter
     public String getActivationCode(){return activationCode; }

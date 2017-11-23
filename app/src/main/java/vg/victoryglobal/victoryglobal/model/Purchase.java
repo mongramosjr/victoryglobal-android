@@ -16,19 +16,33 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
+/*
+ * Purchase model from API response
+ */
 public class Purchase implements Parcelable {
 
-    private int id;
+    public Integer id;
 
-    private float grand_total;
+    public Float grand_total;
 
-    private Date date_posted;
+    public Date date_posted;
 
-    private Date created;
+    public Date created;
 
     protected Purchase(Parcel in) {
         id = in.readInt();
         grand_total = in.readFloat();
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(id);
+        dest.writeFloat(grand_total);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
     }
 
     public static final Creator<Purchase> CREATOR = new Creator<Purchase>() {
@@ -43,20 +57,7 @@ public class Purchase implements Parcelable {
         }
     };
 
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeInt(id);
-        parcel.writeFloat(grand_total);
-    }
-
     //setter and getter
-
-
     public Date getCreated() {
         return created;
     }

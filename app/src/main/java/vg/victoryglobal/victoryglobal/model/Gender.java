@@ -8,7 +8,10 @@
 
 package vg.victoryglobal.victoryglobal.model;
 
-public class Gender {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class Gender implements Parcelable{
     private String id;
     private String name;
 
@@ -17,6 +20,34 @@ public class Gender {
         this.name = name;
     }
 
+
+    protected Gender(Parcel in) {
+        id = in.readString();
+        name = in.readString();
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(id);
+        dest.writeString(name);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    public static final Creator<Gender> CREATOR = new Creator<Gender>() {
+        @Override
+        public Gender createFromParcel(Parcel in) {
+            return new Gender(in);
+        }
+
+        @Override
+        public Gender[] newArray(int size) {
+            return new Gender[size];
+        }
+    };
 
     public String getId() {
         return id;

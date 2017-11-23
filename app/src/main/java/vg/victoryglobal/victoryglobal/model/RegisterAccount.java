@@ -77,6 +77,69 @@ public class RegisterAccount implements Parcelable {
         sponsorId = in.readInt();
         uplineId = in.readInt();
         password = in.readString();
+        verifyPassword = in.readString();
+        middleName = in.readString();
+        maritalStatus = in.readString();
+        gender = in.readInt();
+        taxNumber = in.readString();
+        socialSecurityNumber = in.readString();
+        street = in.readString();
+        city = in.readString();
+        region = in.readString();
+        postalCode = in.readString();
+        countryCode = in.readString();
+        email = in.readString();
+        telephone = in.readString();
+        mobileNumber = in.readString();
+        mlmAccountId = in.readInt();
+        mlmLocation = in.readInt();
+        pickupCenterId = in.readInt();
+        activationCodeName = in.readString();
+        sponsorName = in.readString();
+        uplineName = in.readString();
+        mlmAccountName = in.readString();
+        pickupCenterName = in.readString();
+        mlmLocationName = in.readString();
+        genderName = in.readString();
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(firstName);
+        dest.writeString(lastName);
+        dest.writeString(activationCode);
+        dest.writeInt(sponsorId);
+        dest.writeInt(uplineId);
+        dest.writeString(password);
+        dest.writeString(verifyPassword);
+        dest.writeString(middleName);
+        dest.writeString(maritalStatus);
+        dest.writeInt(gender);
+        dest.writeString(taxNumber);
+        dest.writeString(socialSecurityNumber);
+        dest.writeString(street);
+        dest.writeString(city);
+        dest.writeString(region);
+        dest.writeString(postalCode);
+        dest.writeString(countryCode);
+        dest.writeString(email);
+        dest.writeString(telephone);
+        dest.writeString(mobileNumber);
+        dest.writeInt(mlmAccountId);
+        dest.writeInt(mlmLocation);
+        dest.writeInt(pickupCenterId);
+        dest.writeString(activationCodeName);
+        dest.writeString(sponsorName);
+        dest.writeString(uplineName);
+        dest.writeString(mlmAccountName);
+        dest.writeString(pickupCenterName);
+        dest.writeString(mlmLocationName);
+        dest.writeString(genderName);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
     }
 
     public static final Creator<RegisterAccount> CREATOR = new Creator<RegisterAccount>() {
@@ -90,23 +153,6 @@ public class RegisterAccount implements Parcelable {
             return new RegisterAccount[size];
         }
     };
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeString(firstName);
-        parcel.writeString(lastName);
-        parcel.writeString(activationCode);
-        parcel.writeInt(sponsorId);
-        parcel.writeInt(uplineId);
-        parcel.writeString(password);
-    }
-
-
 
     //setter and getter
     public String getFirstName(){return firstName; }

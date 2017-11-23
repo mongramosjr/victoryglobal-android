@@ -8,15 +8,46 @@
 
 package vg.victoryglobal.victoryglobal.model;
 
-public class MlmAccount {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class MlmAccount implements Parcelable {
     private String id;
     private String name;
 
+    //to be used in spinner
     public MlmAccount(String id, String name) {
         this.id = id;
         this.name = name;
     }
 
+    protected MlmAccount(Parcel in) {
+        id = in.readString();
+        name = in.readString();
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(id);
+        dest.writeString(name);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    public static final Creator<MlmAccount> CREATOR = new Creator<MlmAccount>() {
+        @Override
+        public MlmAccount createFromParcel(Parcel in) {
+            return new MlmAccount(in);
+        }
+
+        @Override
+        public MlmAccount[] newArray(int size) {
+            return new MlmAccount[size];
+        }
+    };
 
     public String getId() {
         return id;

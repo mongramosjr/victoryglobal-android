@@ -8,15 +8,47 @@
 
 package vg.victoryglobal.victoryglobal.model;
 
-public class MlmLocation {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class MlmLocation implements Parcelable{
     private String id;
     private String name;
 
+    //to be used in spinner
     public MlmLocation(String id, String name) {
         this.id = id;
         this.name = name;
     }
 
+
+    protected MlmLocation(Parcel in) {
+        id = in.readString();
+        name = in.readString();
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(id);
+        dest.writeString(name);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    public static final Creator<MlmLocation> CREATOR = new Creator<MlmLocation>() {
+        @Override
+        public MlmLocation createFromParcel(Parcel in) {
+            return new MlmLocation(in);
+        }
+
+        @Override
+        public MlmLocation[] newArray(int size) {
+            return new MlmLocation[size];
+        }
+    };
 
     public String getId() {
         return id;

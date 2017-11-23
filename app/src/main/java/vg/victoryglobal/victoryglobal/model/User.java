@@ -13,6 +13,9 @@ import android.os.Parcelable;
 
 import java.sql.Date;
 
+/*
+ * User model from API response
+ */
 public class User implements Parcelable {
 
     public String frontend_label;
@@ -31,7 +34,36 @@ public class User implements Parcelable {
     }
 
     protected User(Parcel in) {
-        username = in.readInt();
+        frontend_label = in.readString();
+        first_name = in.readString();
+        middle_name = in.readString();
+        last_name = in.readString();
+        email = in.readString();
+        if (in.readByte() == 0) {
+            username = null;
+        } else {
+            username = in.readInt();
+        }
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(frontend_label);
+        dest.writeString(first_name);
+        dest.writeString(middle_name);
+        dest.writeString(last_name);
+        dest.writeString(email);
+        if (username == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeInt(username);
+        }
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
     }
 
     public static final Creator<User> CREATOR = new Creator<User>() {
@@ -45,17 +77,4 @@ public class User implements Parcelable {
             return new User[size];
         }
     };
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeInt(username);
-    }
-
-    //setter and getter
-
 }

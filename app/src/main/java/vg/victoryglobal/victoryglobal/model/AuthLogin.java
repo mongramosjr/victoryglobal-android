@@ -11,6 +11,9 @@ package vg.victoryglobal.victoryglobal.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+/*
+ * Auth login model from API response
+ */
 public class AuthLogin implements Parcelable {
 
     public Integer status;
@@ -29,7 +32,34 @@ public class AuthLogin implements Parcelable {
     }
 
     protected AuthLogin(Parcel in) {
+        if (in.readByte() == 0) {
+            status = null;
+        } else {
+            status = in.readInt();
+        }
+        auth_token = in.readString();
         session = in.readString();
+        account = in.readParcelable(Account.class.getClassLoader());
+        user = in.readParcelable(User.class.getClassLoader());
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        if (status == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeInt(status);
+        }
+        dest.writeString(auth_token);
+        dest.writeString(session);
+        dest.writeParcelable(account, flags);
+        dest.writeParcelable(user, flags);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
     }
 
     public static final Creator<AuthLogin> CREATOR = new Creator<AuthLogin>() {
@@ -44,21 +74,7 @@ public class AuthLogin implements Parcelable {
         }
     };
 
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeInt(status);
-        parcel.writeString(session);
-        parcel.writeString(auth_token);
-    }
-
     //setter and getter
-
-
     public Integer getStatus() {
         return status;
     }

@@ -14,16 +14,15 @@ import android.os.Parcelable;
 public class AccountLogin implements Parcelable {
 
     //request params
-    private int mlmMemberId = 0;
+    private Integer mlmMemberId = 0;
     private String password = "";
 
     //response data
     private String session = "";
     private String authToken = "";
-    private boolean status = false;
+    private Boolean status = false;
 
     public AccountLogin(){
-
     }
 
     public AccountLogin(int mlmMemberId){
@@ -31,7 +30,35 @@ public class AccountLogin implements Parcelable {
     }
 
     protected AccountLogin(Parcel in) {
-        mlmMemberId = in.readInt();
+        if (in.readByte() == 0) {
+            mlmMemberId = null;
+        } else {
+            mlmMemberId = in.readInt();
+        }
+        password = in.readString();
+        session = in.readString();
+        authToken = in.readString();
+        byte tmpStatus = in.readByte();
+        status = tmpStatus == 0 ? null : tmpStatus == 1;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        if (mlmMemberId == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeInt(mlmMemberId);
+        }
+        dest.writeString(password);
+        dest.writeString(session);
+        dest.writeString(authToken);
+        dest.writeByte((byte) (status == null ? 0 : status ? 1 : 2));
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
     }
 
     public static final Creator<AccountLogin> CREATOR = new Creator<AccountLogin>() {
@@ -46,21 +73,9 @@ public class AccountLogin implements Parcelable {
         }
     };
 
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeInt(mlmMemberId);
-        parcel.writeString(session);
-        parcel.writeString(authToken);
-    }
-
     //setter and getter
-    public int getMlmMemberId(){ return mlmMemberId; }
-    public void setMlmMemberId(int mlmMemberId) {this.mlmMemberId = mlmMemberId; }
+    public Integer getMlmMemberId(){ return mlmMemberId; }
+    public void setMlmMemberId(Integer mlmMemberId) {this.mlmMemberId = mlmMemberId; }
 
     public String getPassword() { return password; }
     public void setPassword(String password) {this.password = password; }
@@ -83,11 +98,11 @@ public class AccountLogin implements Parcelable {
         this.session = session;
     }
 
-    public void setStatus(boolean status) {
+    public void setStatus(Boolean status) {
         this.status = status;
     }
 
-    public boolean isStatus() {
+    public Boolean isStatus() {
         return status;
     }
 }
