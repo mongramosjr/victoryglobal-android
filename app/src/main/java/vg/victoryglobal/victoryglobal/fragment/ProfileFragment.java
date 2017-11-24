@@ -26,6 +26,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.bumptech.glide.load.engine.Resource;
 import com.google.gson.Gson;
 
 import org.json.JSONException;
@@ -33,12 +34,18 @@ import org.json.JSONObject;
 import org.json.JSONTokener;
 import org.w3c.dom.Text;
 
+import java.text.NumberFormat;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Locale;
+
 import vg.victoryglobal.victoryglobal.R;
 import vg.victoryglobal.victoryglobal.model.AuthLoginRequest;
 import vg.victoryglobal.victoryglobal.model.DistributorAccount;
 import vg.victoryglobal.victoryglobal.model.DistributorAccountRequest;
 import vg.victoryglobal.victoryglobal.model.DistributorPoint;
 import vg.victoryglobal.victoryglobal.model.MlmResponseError;
+import vg.victoryglobal.victoryglobal.utils.RoundedMetricPrefixFormat;
 
 public class ProfileFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
 
@@ -65,7 +72,7 @@ public class ProfileFragment extends Fragment implements SwipeRefreshLayout.OnRe
     TextView socialSecurityNumber;
     TextView spouseName;
     TextView occupation;
-    TextView domicile;
+    //TextView domicile;
     TextView nationality;
 
     TextView currentIncomeTotalAmount;
@@ -162,55 +169,96 @@ public class ProfileFragment extends Fragment implements SwipeRefreshLayout.OnRe
     private void prepareProfile(DistributorAccount distributor_account)
     {
         DistributorPoint point = null;
+
+        //TODO: find alternative
+        RoundedMetricPrefixFormat formatter = new RoundedMetricPrefixFormat();
+
+        NumberFormat nf = NumberFormat.getIntegerInstance(Locale.US);
+        nf.setParseIntegerOnly(true);
+
         point = distributor_account.findDistributorPointByName("location0_balance_bv_binary");
         if(point!=null)
         {
-            location0BalanceBinary.setText(String.valueOf(point.value));
+            location0BalanceBinary.setText(formatter.format(point.value));
         }
         point = distributor_account.findDistributorPointByName("location1_balance_bv_binary");
         if(point!=null)
         {
-            location1BalanceBinary.setText(String.valueOf(point.value));
+            location1BalanceBinary.setText(formatter.format(point.value));
         }
         point = distributor_account.findDistributorPointByName("bv_binary");
         if(point!=null)
         {
-            binary.setText(String.valueOf(point.value));
+            binary.setText(nf.format(point.value));
         }
         point = distributor_account.findDistributorPointByName("bv_unilevel");
         if(point!=null)
         {
-            unilevel.setText(String.valueOf(point.value));
+            unilevel.setText(nf.format(point.value));
         }
         point = distributor_account.findDistributorPointByName("group_bv_unilevel");
         if(point!=null)
         {
-            groupUnilevel.setText(String.valueOf(point.value));
+            groupUnilevel.setText(nf.format(point.value));
         }
 
-        maritalStatus.setText(distributor_account.profile.marital_status);
-        gender.setText(distributor_account.profile.gender);
-        dateOfBirth.setText(distributor_account.profile.createdTimeFormatted(distributor_account.profile.date_of_birth));
-        placeOfBirth.setText(distributor_account.profile.place_of_birth);
-        taxNumber.setText(distributor_account.profile.tax_number);
-        socialSecurityNumber.setText(distributor_account.profile.social_security_number);
-        spouseName.setText(distributor_account.profile.spouse_name);
-        occupation.setText(distributor_account.profile.occupation);
-        domicile.setText(distributor_account.profile.domicile);
-        nationality.setText(distributor_account.profile.nationality);
+        if(distributor_account.profile != null) {
+            if(distributor_account.profile.marital_status != null) {
+                maritalStatus.setText(distributor_account.profile.marital_status);
+            }
+            if(distributor_account.profile.gender != null) {
+                //R.array.gender_array
+                List<String> gender_list = Arrays.asList(getResources().getStringArray(R.array.gender_array));
+                String gender_name = gender_list.get(distributor_account.profile.gender);
+                gender.setText(gender_name);
+            }
+            if(distributor_account.profile.date_of_birth != null) {
+                dateOfBirth.setText(distributor_account.profile.createdTimeFormatted(distributor_account.profile.date_of_birth));
+            }
+            if(distributor_account.profile.place_of_birth != null) {
+                placeOfBirth.setText(distributor_account.profile.place_of_birth);
+            }
+            if(distributor_account.profile.tax_number !=null) {
+                taxNumber.setText(distributor_account.profile.tax_number);
+            }
+            if(distributor_account.profile.social_security_number != null) {
+                socialSecurityNumber.setText(distributor_account.profile.social_security_number);
+            }
+            if(distributor_account.profile.spouse_name != null) {
+                spouseName.setText(distributor_account.profile.spouse_name);
+            }
+            if(distributor_account.profile.occupation != null){
+            occupation.setText(distributor_account.profile.occupation);
+            }
+            //domicile.setText(distributor_account.profile.domicile);
+            if(distributor_account.profile.nationality != null) {
+                nationality.setText(distributor_account.profile.nationality);
+            }
+        }
 
-        currentIncomeTotalAmount.setText(
-                    String.valueOf(distributor_account.current_income.total_amount));
+        if(distributor_account.current_income !=null) {
+            if(distributor_account.current_income.total_amount == null)
+                distributor_account.current_income.total_amount = 0.00f;
+            nf = NumberFormat.getNumberInstance(Locale.US);
+            nf.setMaximumFractionDigits(2);
+            currentIncomeTotalAmount.setText(nf.format(distributor_account.current_income.total_amount));
+        }
 
-        bankName.setText(distributor_account.bank_account.bank_name);
-        accountNumber.setText(distributor_account.bank_account.account_number);
+        if(distributor_account.bank_account != null) {
+            bankName.setText(distributor_account.bank_account.bank_name);
+            accountNumber.setText(distributor_account.bank_account.account_number);
+        }
 
-        email.setText(distributor_account.contact_info.email);
-        phone.setText(distributor_account.contact_info.telephone);
-        fax.setText(distributor_account.contact_info.fax);
-        mobileNumber.setText(distributor_account.contact_info.mobile_number);
+        if(distributor_account.contact_info != null) {
+            email.setText(distributor_account.contact_info.email);
+            phone.setText(distributor_account.contact_info.telephone);
+            fax.setText(distributor_account.contact_info.fax);
+            mobileNumber.setText(distributor_account.contact_info.mobile_number);
+        }
 
-        address.setText(distributor_account.address.addressFormatted());
+        if(distributor_account.address != null) {
+            address.setText(distributor_account.address.addressFormatted());
+        }
 
     }
 
@@ -292,7 +340,8 @@ public class ProfileFragment extends Fragment implements SwipeRefreshLayout.OnRe
                             @Override
                             public void onResponse(JSONObject response) {
                                 Log.e("DistributorAccount", "Response: " + response.toString());
-                                //authAccountCallback(response.toString());
+                                accountCallback(view, response.toString());
+
                             }
                         },
                         new com.android.volley.Response.ErrorListener() {

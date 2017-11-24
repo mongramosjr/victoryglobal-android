@@ -27,7 +27,12 @@ public class DistributorAccount implements Parcelable {
     public ArrayList<MlmValidity> mlm_validity;
     public MlmEntryType mlm_entry_type;
     public MlmRank mlm_rank;
-    public MatchingPairs matching_pairs;
+
+    // TODO: should return an object only
+    // Current state: return one array of object instead of an object
+    //public MatchingPairs matching_pairs;
+    public ArrayList<MatchingPairs> matching_pairs;
+
     public ArrayList<DistributorPoint> mlm_member_points;
     public Sponsor sponsor;
     public Upline upline;
@@ -49,7 +54,7 @@ public class DistributorAccount implements Parcelable {
         mlm_validity = in.createTypedArrayList(MlmValidity.CREATOR);
         mlm_entry_type = in.readParcelable(MlmEntryType.class.getClassLoader());
         mlm_rank = in.readParcelable(MlmRank.class.getClassLoader());
-        matching_pairs = in.readParcelable(MatchingPairs.class.getClassLoader());
+        matching_pairs = in.createTypedArrayList(MatchingPairs.CREATOR);
         mlm_member_points = in.createTypedArrayList(DistributorPoint.CREATOR);
         sponsor = in.readParcelable(Sponsor.class.getClassLoader());
         upline = in.readParcelable(Upline.class.getClassLoader());
@@ -73,7 +78,7 @@ public class DistributorAccount implements Parcelable {
         dest.writeTypedList(mlm_validity);
         dest.writeParcelable(mlm_entry_type, flags);
         dest.writeParcelable(mlm_rank, flags);
-        dest.writeParcelable(matching_pairs, flags);
+        dest.writeTypedList(matching_pairs);
         dest.writeTypedList(mlm_member_points);
         dest.writeParcelable(sponsor, flags);
         dest.writeParcelable(upline, flags);

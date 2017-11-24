@@ -111,6 +111,8 @@ public class Profile implements Parcelable {
     // other methods
     public String createdTimeFormatted(Date date_time)
     {
+        if(date_time == null) return "";
+
         String display_date;
 
         //2017-09-18T08:02:39+0000

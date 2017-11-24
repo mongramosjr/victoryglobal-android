@@ -22,7 +22,7 @@ import java.util.regex.Pattern;
  * Converts a number to a string in <a href="http://en.wikipedia.org/wiki/Metric_prefix">metric prefix</a> format.
  * For example, 7800000 will be formatted as '7.8M'. Numbers under 1000 will be unchanged. Refer to the tests for further examples.
  */
-class RoundedMetricPrefixFormat extends Format {
+public class RoundedMetricPrefixFormat extends Format {
 
     private static final String[] METRIC_PREFIXES = new String[]{"", "k", "M", "G", "T"};
 
