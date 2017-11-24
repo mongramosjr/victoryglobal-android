@@ -26,13 +26,19 @@ import com.android.volley.RequestQueue;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.gson.Gson;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.json.JSONTokener;
 import org.w3c.dom.Text;
 
 import vg.victoryglobal.victoryglobal.R;
 import vg.victoryglobal.victoryglobal.model.AuthLoginRequest;
+import vg.victoryglobal.victoryglobal.model.DistributorAccount;
+import vg.victoryglobal.victoryglobal.model.DistributorAccountRequest;
+import vg.victoryglobal.victoryglobal.model.DistributorPoint;
+import vg.victoryglobal.victoryglobal.model.MlmResponseError;
 
 public class ProfileFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
 
@@ -41,6 +47,8 @@ public class ProfileFragment extends Fragment implements SwipeRefreshLayout.OnRe
     private SwipeRefreshLayout swipeRefreshLayout;
 
     AuthLoginRequest authLoginRequest;
+
+    DistributorAccountRequest distributorAccountRequest;
 
     // TextView
     TextView location0BalanceBinary;
@@ -78,6 +86,7 @@ public class ProfileFragment extends Fragment implements SwipeRefreshLayout.OnRe
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         authLoginRequest = AuthLoginRequest.getAuthLoginRequest("main");
+        distributorAccountRequest = DistributorAccountRequest.getInstance();
         setRetainInstance(true);
     }
 
@@ -148,7 +157,105 @@ public class ProfileFragment extends Fragment implements SwipeRefreshLayout.OnRe
         }, 2000L);
     }
 
+
+    //other methods
+    private void prepareProfile(DistributorAccount distributor_account)
+    {
+        DistributorPoint point = null;
+        point = distributor_account.findDistributorPointByName("location0_balance_bv_binary");
+        if(point!=null)
+        {
+            location0BalanceBinary.setText(String.valueOf(point.value));
+        }
+        point = distributor_account.findDistributorPointByName("location1_balance_bv_binary");
+        if(point!=null)
+        {
+            location1BalanceBinary.setText(String.valueOf(point.value));
+        }
+        point = distributor_account.findDistributorPointByName("bv_binary");
+        if(point!=null)
+        {
+            binary.setText(String.valueOf(point.value));
+        }
+        point = distributor_account.findDistributorPointByName("bv_unilevel");
+        if(point!=null)
+        {
+            unilevel.setText(String.valueOf(point.value));
+        }
+        point = distributor_account.findDistributorPointByName("group_bv_unilevel");
+        if(point!=null)
+        {
+            groupUnilevel.setText(String.valueOf(point.value));
+        }
+
+        maritalStatus.setText(distributor_account.profile.marital_status);
+        gender.setText(distributor_account.profile.gender);
+        dateOfBirth.setText(distributor_account.profile.createdTimeFormatted(distributor_account.profile.date_of_birth));
+        placeOfBirth.setText(distributor_account.profile.place_of_birth);
+        taxNumber.setText(distributor_account.profile.tax_number);
+        socialSecurityNumber.setText(distributor_account.profile.social_security_number);
+        spouseName.setText(distributor_account.profile.spouse_name);
+        occupation.setText(distributor_account.profile.occupation);
+        domicile.setText(distributor_account.profile.domicile);
+        nationality.setText(distributor_account.profile.nationality);
+
+        currentIncomeTotalAmount.setText(
+                    String.valueOf(distributor_account.current_income.total_amount));
+
+        bankName.setText(distributor_account.bank_account.bank_name);
+        accountNumber.setText(distributor_account.bank_account.account_number);
+
+        email.setText(distributor_account.contact_info.email);
+        phone.setText(distributor_account.contact_info.telephone);
+        fax.setText(distributor_account.contact_info.fax);
+        mobileNumber.setText(distributor_account.contact_info.mobile_number);
+
+        address.setText(distributor_account.address.addressFormatted());
+
+    }
+
     private void accountCallback(View view, String response_data) {
+
+        try {
+            JSONObject object = (JSONObject) new JSONTokener(response_data).nextValue();
+            int status = object.getInt("status");
+
+            Log.e("accountCallback ", "Status: " + String.valueOf(status));
+
+            if(status == 200 ){
+
+                if(distributorAccountRequest.saveDistributorAccount(response_data)){
+                    prepareProfile(distributorAccountRequest.getDistributorAccount());
+                }
+/*
+                // run something here
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        //callback_code.goToNextStep();
+                    }
+                }, 2000L);
+*/
+
+
+            }else if(status == 402 ) {
+                //TODO: redirect/show to error page
+                String message = object.getString("message");
+                Toast.makeText(getActivity().getApplicationContext(), message, Toast.LENGTH_LONG).show();
+            }else if(status == 401 ){
+                String message = object.getString("message");
+                //TODO: force logout
+                Toast.makeText(getActivity().getApplicationContext(), message, Toast.LENGTH_LONG).show();
+
+            }else{
+                Toast.makeText(getActivity().getApplicationContext(), R.string.ui_exception, Toast.LENGTH_LONG).show();
+            }
+        } catch (JSONException e) {
+            //do nothing
+            Log.e("ProfileFragment", "AccountCallback: (4) " + e.getMessage());
+            Toast.makeText(getActivity().getApplicationContext(), R.string.ui_exception, Toast.LENGTH_LONG).show();
+        }
+
 
     }
 
@@ -172,7 +279,7 @@ public class ProfileFragment extends Fragment implements SwipeRefreshLayout.OnRe
 
             //callback_code.getStepperLayout().hideProgress();
             Toast.makeText(getActivity().getApplicationContext(), R.string.ui_exception, Toast.LENGTH_LONG).show();
-            Log.e("Profile", ex.getMessage());
+            Log.e("DistributorAccount", ex.getMessage());
             return;
         }
 
@@ -184,7 +291,7 @@ public class ProfileFragment extends Fragment implements SwipeRefreshLayout.OnRe
 
                             @Override
                             public void onResponse(JSONObject response) {
-                                Log.e("Profile", "Response: " + response.toString());
+                                Log.e("DistributorAccount", "Response: " + response.toString());
                                 //authAccountCallback(response.toString());
                             }
                         },
@@ -193,7 +300,7 @@ public class ProfileFragment extends Fragment implements SwipeRefreshLayout.OnRe
                             @Override
                             public void onErrorResponse(VolleyError error) {
                                 // Do nothing
-                                Log.e("Profile", "onErrorResponse: " + error.toString());
+                                Log.e("DistributorAccount", "onErrorResponse: " + error.toString());
                                 Toast.makeText(getActivity().getApplicationContext(), R.string.ui_unexpected_response, Toast.LENGTH_LONG).show();
                                 /*new Handler().postDelayed(new Runnable() {
                                     @Override
