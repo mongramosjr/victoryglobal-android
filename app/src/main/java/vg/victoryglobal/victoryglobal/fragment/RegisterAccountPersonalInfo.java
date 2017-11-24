@@ -340,7 +340,7 @@ public class RegisterAccountPersonalInfo extends Fragment implements BlockingSte
             }
         }
 
-        if(registerAccountRequest.getRegisterAccount().getGender() != 0 ) {
+        if(registerAccountRequest.getRegisterAccount().getGender() != null ) {
             String gender_name = registerAccountRequest.getRegisterAccount().getGenderName();
             int position = adapterGender.getPosition(gender_name);
             gender.setSelection(position);

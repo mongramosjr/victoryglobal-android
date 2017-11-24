@@ -47,7 +47,7 @@ public class AuthLoginRequest {
     private ArrayList<MlmResponseError> mlmResponseErrors = new ArrayList<>();
 
     // response status
-    private boolean success = false;
+    private Boolean success = false;
 
     /**
      * Constructs a AuthLoginRequest for a subsystem.  Most applications do not
@@ -168,11 +168,11 @@ public class AuthLoginRequest {
     }
 
 
-    public synchronized boolean isSuccess() {
+    public synchronized Boolean isSuccess() {
         return success;
     }
 
-    public synchronized void setSuccess(boolean success) {
+    public synchronized void setSuccess(Boolean success) {
         this.success = success;
     }
 

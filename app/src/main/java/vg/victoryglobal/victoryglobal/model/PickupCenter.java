@@ -29,8 +29,14 @@ public class PickupCenter implements Parcelable {
     }
 
 
+    //setter and getter
+
     protected PickupCenter(Parcel in) {
-        id = in.readInt();
+        if (in.readByte() == 0) {
+            id = null;
+        } else {
+            id = in.readInt();
+        }
         frontend_label = in.readString();
         city = in.readString();
         region = in.readString();
@@ -39,7 +45,12 @@ public class PickupCenter implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(id);
+        if (id == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeInt(id);
+        }
         dest.writeString(frontend_label);
         dest.writeString(city);
         dest.writeString(region);

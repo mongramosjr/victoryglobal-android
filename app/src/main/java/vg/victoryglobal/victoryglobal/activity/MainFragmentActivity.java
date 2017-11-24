@@ -75,8 +75,6 @@ public class MainFragmentActivity extends AppCompatActivity implements LoginList
 
     CookieStore cookieStore;
 
-    boolean isLogin = false;
-
     @Override
     public void onSaveInstanceState(Bundle outState) {
     /*Save your data to be restored here
@@ -112,9 +110,6 @@ public class MainFragmentActivity extends AppCompatActivity implements LoginList
             CookieManager manager = new CookieManager( cookieStore, CookiePolicy.ACCEPT_ALL );
             CookieHandler.setDefault( manager );
         }
-
-        // check if account is already authenticated
-        isLogin = authLoginRequest.isSuccess();
 
         // Optionally, you can just use the default CookieManager
         //CookieManager manager = new CookieManager();

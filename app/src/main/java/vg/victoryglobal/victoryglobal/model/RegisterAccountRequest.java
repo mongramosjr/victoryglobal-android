@@ -16,12 +16,12 @@ public class RegisterAccountRequest {
 
     private ArrayList<MlmResponseError> mlmResponseErrors = new ArrayList<>();
 
-    private boolean success = false;
-    private boolean successPersonalInfo = false;
-    private boolean successAddressAndContact = false;
-    private boolean successMlmInfo = false;
-    private boolean successSecurity = false;
-    private boolean successNew = false;
+    private Boolean success = false;
+    private Boolean successPersonalInfo = false;
+    private Boolean successAddressAndContact = false;
+    private Boolean successMlmInfo = false;
+    private Boolean successSecurity = false;
+    private Boolean successNew = false;
 
     private static final RegisterAccountRequest ourInstance = new RegisterAccountRequest();
 
@@ -56,51 +56,51 @@ public class RegisterAccountRequest {
         mlmResponseErrors.clear();
     }
 
-    public boolean isSuccess() {
+    public Boolean isSuccess() {
         return success;
     }
 
-    public void setSuccess(boolean success) {
+    public void setSuccess(Boolean success) {
         this.success = success;
     }
 
-    public boolean isSuccessPersonalInfo() {
+    public Boolean isSuccessPersonalInfo() {
         return successPersonalInfo;
     }
 
-    public void setSuccessPersonalInfo(boolean successPersonalInfo) {
+    public void setSuccessPersonalInfo(Boolean successPersonalInfo) {
         this.successPersonalInfo = successPersonalInfo;
     }
 
-    public boolean isSuccessAddressAndContact() {
+    public Boolean isSuccessAddressAndContact() {
         return successAddressAndContact;
     }
 
-    public void setSuccessAddressAndContact(boolean successAddressAndContact) {
+    public void setSuccessAddressAndContact(Boolean successAddressAndContact) {
         this.successAddressAndContact = successAddressAndContact;
     }
 
-    public void setSuccessMlmInfo(boolean successMlmInfo) {
+    public void setSuccessMlmInfo(Boolean successMlmInfo) {
         this.successMlmInfo = successMlmInfo;
     }
 
-    public boolean isSuccessMlmInfo() {
+    public Boolean isSuccessMlmInfo() {
         return successMlmInfo;
     }
 
-    public void setSuccessSecurity(boolean successSecurity) {
+    public void setSuccessSecurity(Boolean successSecurity) {
         this.successSecurity = successSecurity;
     }
 
-    public boolean isSuccessSecurity() {
+    public Boolean isSuccessSecurity() {
         return successSecurity;
     }
 
-    public boolean isSuccessNew() {
+    public Boolean isSuccessNew() {
         return successNew;
     }
 
-    public void setSuccessNew(boolean successNew) {
+    public void setSuccessNew(Boolean successNew) {
         this.successNew = successNew;
     }
 }

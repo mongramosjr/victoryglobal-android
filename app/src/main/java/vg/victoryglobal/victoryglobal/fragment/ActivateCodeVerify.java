@@ -280,7 +280,7 @@ public class ActivateCodeVerify extends Fragment implements BlockingStep {
             }
         }
 
-        if(activateCodeRequest.getActivateCode().getMlmMemberId() != 0 ) {
+        if(activateCodeRequest.getActivateCode().getMlmMemberId() != null ) {
             mlmMemberId.setText(String.valueOf(activateCodeRequest.getActivateCode().getMlmMemberId()));
         }
     }

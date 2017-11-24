@@ -28,7 +28,7 @@ public class Account implements Parcelable {
     public Integer mlm_upline;
     public Integer mlm_entry_type;
     public Integer mlm_rank;
-    public boolean account_status;
+    public Boolean account_status;
     public Date date_last_active;
     public Integer pickup_center_id;
     public Integer bank_account_id;
@@ -41,7 +41,7 @@ public class Account implements Parcelable {
 
     }
 
-    public Account(int id){
+    public Account(Integer id){
         this.id = id;
     }
 

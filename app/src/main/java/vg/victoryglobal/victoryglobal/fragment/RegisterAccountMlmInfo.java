@@ -332,7 +332,7 @@ public class RegisterAccountMlmInfo extends Fragment implements BlockingStep {
             int position_pickup_center = pickupCenterId.getSelectedItemPosition();
             String pickup_center_name = adapterPickupCenter.getItem(position_pickup_center);
             PickupCenter pickup_center = pickupCenterRequest.getPickupCentersHsh().get(pickup_center_name);
-            registerAccountRequest.getRegisterAccount().setPickupCenterId(Integer.parseInt(pickup_center.getId()));
+            registerAccountRequest.getRegisterAccount().setPickupCenterId(pickup_center.getId());
             registerAccountRequest.getRegisterAccount().setPickupCenterName(pickup_center_name);
         }
 
@@ -405,7 +405,7 @@ public class RegisterAccountMlmInfo extends Fragment implements BlockingStep {
 
 
             //set the text
-            if(registerAccountRequest.getRegisterAccount().getMlmAccountId() != 0 ) {
+            if(registerAccountRequest.getRegisterAccount().getMlmAccountId()  != null ) {
 
                 String mlm_account_id_name = registerAccountRequest.getRegisterAccount().getMlmAccountName();
                 int position = adapterMlmAccount.getPosition(mlm_account_id_name);
@@ -430,7 +430,7 @@ public class RegisterAccountMlmInfo extends Fragment implements BlockingStep {
             pickupCenterId.setAdapter(adapterPickupCenter);
 
             //set the text
-            if(registerAccountRequest.getRegisterAccount().getPickupCenterId() != 0 ) {
+            if(registerAccountRequest.getRegisterAccount().getPickupCenterId()  != null ) {
 
                 String pickup_center_name = registerAccountRequest.getRegisterAccount().getPickupCenterName();
                 int position = adapterPickupCenter.getPosition(pickup_center_name);
@@ -450,14 +450,14 @@ public class RegisterAccountMlmInfo extends Fragment implements BlockingStep {
                 activationCode.setText(registerAccountRequest.getRegisterAccount().getActivationCode());
             }
         }
-        if(registerAccountRequest.getRegisterAccount().getUplineId() != 0 ) {
+        if(registerAccountRequest.getRegisterAccount().getUplineId()  != null ) {
             uplineId.setText(String.valueOf(registerAccountRequest.getRegisterAccount().getUplineId()));
         }
-        if(registerAccountRequest.getRegisterAccount().getSponsorId() != 0 ) {
+        if(registerAccountRequest.getRegisterAccount().getSponsorId() != null ) {
             sponsorId.setText(String.valueOf(registerAccountRequest.getRegisterAccount().getSponsorId()));
         }
 
-        if(registerAccountRequest.getRegisterAccount().getMlmLocation() != 0 ) {
+        if(registerAccountRequest.getRegisterAccount().getMlmLocation() != null) {
             String mlm_location_name = registerAccountRequest.getRegisterAccount().getMlmLocationName();
             int position = adapterMlmLocation.getPosition(mlm_location_name);
             mlmLocation.setSelection(position);
@@ -717,7 +717,7 @@ public class RegisterAccountMlmInfo extends Fragment implements BlockingStep {
                 }
             }
 
-            if(register_account.getGender() > 0) {
+            if(register_account.getGender() != null ) {
                 post_data.put("gender", register_account.getGender());
             }
 

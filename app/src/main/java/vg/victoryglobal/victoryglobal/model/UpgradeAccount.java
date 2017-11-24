@@ -13,24 +13,29 @@ import android.os.Parcelable;
 
 public class UpgradeAccount implements Parcelable {
 
-    private String activationCode = "";
-    private int mlmMemberId = 0;
+    private String activationCode;
+    private Integer mlmMemberId;
 
-    private String activationCodeName = "";
-    private String memberName = "";
+    private String activationCodeName;
+    private String memberName;
 
     public UpgradeAccount(){
 
     }
 
-    public UpgradeAccount(int mlmMemberId, String activationCode){
+    public UpgradeAccount(Integer mlmMemberId, String activationCode){
         this.activationCode = activationCode;
         this.mlmMemberId = mlmMemberId;
     }
 
+
     protected UpgradeAccount(Parcel in) {
         activationCode = in.readString();
-        mlmMemberId = in.readInt();
+        if (in.readByte() == 0) {
+            mlmMemberId = null;
+        } else {
+            mlmMemberId = in.readInt();
+        }
         activationCodeName = in.readString();
         memberName = in.readString();
     }
@@ -38,7 +43,12 @@ public class UpgradeAccount implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(activationCode);
-        dest.writeInt(mlmMemberId);
+        if (mlmMemberId == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeInt(mlmMemberId);
+        }
         dest.writeString(activationCodeName);
         dest.writeString(memberName);
     }
@@ -64,8 +74,8 @@ public class UpgradeAccount implements Parcelable {
     public String getActivationCode(){return activationCode; }
     public void setActivationCode(String activationCode) {this.activationCode = activationCode; }
 
-    public int getMlmMemberId(){return mlmMemberId; }
-    public void setMlmMemberId(int mlmMemberId) {this.mlmMemberId = mlmMemberId; }
+    public Integer getMlmMemberId(){return mlmMemberId; }
+    public void setMlmMemberId(Integer mlmMemberId) {this.mlmMemberId = mlmMemberId; }
 
     public String getActivationCodeName() {
         return activationCodeName;

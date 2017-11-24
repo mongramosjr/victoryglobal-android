@@ -278,7 +278,7 @@ public class RegisterAccountConfirm extends Fragment implements BlockingStep {
         }
 
 
-        if(registerAccountRequest.getRegisterAccount().getMlmAccountId() != 0 ) {
+        if(registerAccountRequest.getRegisterAccount().getMlmAccountId() != null ) {
             if(registerAccountRequest.getRegisterAccount().getMlmAccountName() != null) {
                 if (registerAccountRequest.getRegisterAccount().getMlmAccountName().length() > 0) {
                     mlmAccountName.setVisibility(View.VISIBLE);
@@ -303,7 +303,7 @@ public class RegisterAccountConfirm extends Fragment implements BlockingStep {
                 }
             }
         }
-        if(registerAccountRequest.getRegisterAccount().getUplineId() != 0 ) {
+        if(registerAccountRequest.getRegisterAccount().getUplineId() != null ) {
             uplineId.setText(String.valueOf(registerAccountRequest.getRegisterAccount().getUplineId()));
             if(registerAccountRequest.getRegisterAccount().getUplineName() != null) {
                 if (registerAccountRequest.getRegisterAccount().getUplineName().length() > 0) {
@@ -311,7 +311,7 @@ public class RegisterAccountConfirm extends Fragment implements BlockingStep {
                 }
             }
         }
-        if(registerAccountRequest.getRegisterAccount().getSponsorId() != 0 ) {
+        if(registerAccountRequest.getRegisterAccount().getSponsorId() != null ) {
             sponsorId.setText(String.valueOf(registerAccountRequest.getRegisterAccount().getSponsorId()));
             if(registerAccountRequest.getRegisterAccount().getSponsorName() != null) {
                 if (registerAccountRequest.getRegisterAccount().getSponsorName().length() > 0) {
@@ -320,7 +320,7 @@ public class RegisterAccountConfirm extends Fragment implements BlockingStep {
             }
         }
 
-        //if(registerAccountRequest.getRegisterAccount().getMlmLocation() != 0 ) {
+        //if(registerAccountRequest.getRegisterAccount().getMlmLocation() != null ) {
             //mlmLocation.setText(String.valueOf(registerAccountRequest.getRegisterAccount().getMlmLocation()));
             if(registerAccountRequest.getRegisterAccount().getMlmLocationName() != null) {
                 if (registerAccountRequest.getRegisterAccount().getMlmLocationName().length() > 0) {
@@ -329,7 +329,7 @@ public class RegisterAccountConfirm extends Fragment implements BlockingStep {
             }
         //}
 
-        if(registerAccountRequest.getRegisterAccount().getPickupCenterId() != 0 ) {
+        if(registerAccountRequest.getRegisterAccount().getPickupCenterId() != null ) {
             if(registerAccountRequest.getRegisterAccount().getPickupCenterName() != null) {
                 if (registerAccountRequest.getRegisterAccount().getPickupCenterName().length() > 0) {
                     pickupCenterId.setText(registerAccountRequest.getRegisterAccount().getPickupCenterName());

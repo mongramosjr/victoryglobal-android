@@ -15,20 +15,20 @@ import java.sql.Date;
 
 public class RegisterAccount implements Parcelable {
 
-    private String firstName = "";
-    private String lastName = "";
-    private String activationCode = "";
+    private String firstName;
+    private String lastName;
+    private String activationCode;
 
-    private int sponsorId = 0;
-    private int uplineId = 0;
-    private String password = "";
-    private String verifyPassword = "";
+    private Integer sponsorId;
+    private Integer uplineId;
+    private String password;
+    private String verifyPassword;
 
     private String middleName;
 
     private Date dateOfBirth;
     private String maritalStatus;
-    private int gender;
+    private Integer gender;
     private String taxNumber;
     private String socialSecurityNumber;
 
@@ -41,19 +41,19 @@ public class RegisterAccount implements Parcelable {
     private String telephone;
     private String mobileNumber;
 
-    private int mlmAccountId;
-    private int mlmLocation;
-    private int pickupCenterId;
+    private Integer mlmAccountId;
+    private Integer mlmLocation;
+    private Integer pickupCenterId;
 
-    private String activationCodeName = "";
-    private String sponsorName = "";
-    private String uplineName = "";
-    private String mlmAccountName = "";
+    private String activationCodeName;
+    private String sponsorName;
+    private String uplineName;
+    private String mlmAccountName;
 
-    private String pickupCenterName = "";
-    private String mlmLocationName = "";
+    private String pickupCenterName;
+    private String mlmLocationName;
 
-    private String genderName = "";
+    private String genderName;
 
 
 
@@ -61,7 +61,7 @@ public class RegisterAccount implements Parcelable {
 
     }
 
-    public RegisterAccount(String firstName, String lastName, String activationCode, int sponsorId, int uplineId, String password){
+    public RegisterAccount(String firstName, String lastName, String activationCode, Integer sponsorId, Integer uplineId, String password){
         this.firstName = firstName;
         this.lastName = lastName;
         this.activationCode = activationCode;
@@ -70,17 +70,30 @@ public class RegisterAccount implements Parcelable {
         this.password = password;
     }
 
+
     protected RegisterAccount(Parcel in) {
         firstName = in.readString();
         lastName = in.readString();
         activationCode = in.readString();
-        sponsorId = in.readInt();
-        uplineId = in.readInt();
+        if (in.readByte() == 0) {
+            sponsorId = null;
+        } else {
+            sponsorId = in.readInt();
+        }
+        if (in.readByte() == 0) {
+            uplineId = null;
+        } else {
+            uplineId = in.readInt();
+        }
         password = in.readString();
         verifyPassword = in.readString();
         middleName = in.readString();
         maritalStatus = in.readString();
-        gender = in.readInt();
+        if (in.readByte() == 0) {
+            gender = null;
+        } else {
+            gender = in.readInt();
+        }
         taxNumber = in.readString();
         socialSecurityNumber = in.readString();
         street = in.readString();
@@ -91,9 +104,21 @@ public class RegisterAccount implements Parcelable {
         email = in.readString();
         telephone = in.readString();
         mobileNumber = in.readString();
-        mlmAccountId = in.readInt();
-        mlmLocation = in.readInt();
-        pickupCenterId = in.readInt();
+        if (in.readByte() == 0) {
+            mlmAccountId = null;
+        } else {
+            mlmAccountId = in.readInt();
+        }
+        if (in.readByte() == 0) {
+            mlmLocation = null;
+        } else {
+            mlmLocation = in.readInt();
+        }
+        if (in.readByte() == 0) {
+            pickupCenterId = null;
+        } else {
+            pickupCenterId = in.readInt();
+        }
         activationCodeName = in.readString();
         sponsorName = in.readString();
         uplineName = in.readString();
@@ -108,13 +133,28 @@ public class RegisterAccount implements Parcelable {
         dest.writeString(firstName);
         dest.writeString(lastName);
         dest.writeString(activationCode);
-        dest.writeInt(sponsorId);
-        dest.writeInt(uplineId);
+        if (sponsorId == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeInt(sponsorId);
+        }
+        if (uplineId == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeInt(uplineId);
+        }
         dest.writeString(password);
         dest.writeString(verifyPassword);
         dest.writeString(middleName);
         dest.writeString(maritalStatus);
-        dest.writeInt(gender);
+        if (gender == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeInt(gender);
+        }
         dest.writeString(taxNumber);
         dest.writeString(socialSecurityNumber);
         dest.writeString(street);
@@ -125,9 +165,24 @@ public class RegisterAccount implements Parcelable {
         dest.writeString(email);
         dest.writeString(telephone);
         dest.writeString(mobileNumber);
-        dest.writeInt(mlmAccountId);
-        dest.writeInt(mlmLocation);
-        dest.writeInt(pickupCenterId);
+        if (mlmAccountId == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeInt(mlmAccountId);
+        }
+        if (mlmLocation == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeInt(mlmLocation);
+        }
+        if (pickupCenterId == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeInt(pickupCenterId);
+        }
         dest.writeString(activationCodeName);
         dest.writeString(sponsorName);
         dest.writeString(uplineName);
@@ -164,11 +219,11 @@ public class RegisterAccount implements Parcelable {
     public String getActivationCode(){return activationCode; }
     public void setActivationCode(String activationCode) {this.activationCode = activationCode; }
 
-    public int getSponsorId(){ return sponsorId; }
-    public void setSponsorId(int sponsorId) {this.sponsorId = sponsorId; }
+    public Integer getSponsorId(){ return sponsorId; }
+    public void setSponsorId(Integer sponsorId) {this.sponsorId = sponsorId; }
 
-    public int getUplineId(){ return uplineId; }
-    public void setUplineId(int uplineId) {this.uplineId = uplineId; }
+    public Integer getUplineId(){ return uplineId; }
+    public void setUplineId(Integer uplineId) {this.uplineId = uplineId; }
 
     public String getPassword() { return password; }
     public void setPassword(String password) {this.password = password; }
@@ -185,8 +240,8 @@ public class RegisterAccount implements Parcelable {
     public void setMaritalStatus(String maritalStatus) {this.maritalStatus = maritalStatus; }
 
 
-    public int getGender() { return gender; }
-    public void setGender(int gender) {this.gender = gender; }
+    public Integer getGender() { return gender; }
+    public void setGender(Integer gender) {this.gender = gender; }
 
 
     public String getTaxNumber() { return taxNumber; }
@@ -230,16 +285,21 @@ public class RegisterAccount implements Parcelable {
     public void setMobileNumber(String mobileNumber) {this.mobileNumber = mobileNumber; }
 
 
-    public int getMlmAccountId() { return mlmAccountId; }
-    public void setMlmAccountId(int mlmAccountId) {this.mlmAccountId = mlmAccountId; }
+    public Integer getMlmAccountId() {
+        return mlmAccountId;
+    }
+
+    public void setMlmAccountId(Integer mlmAccountId) {
+        this.mlmAccountId = mlmAccountId;
+    }
+
+    public Integer getMlmLocation() { return mlmLocation; }
+    public void setMlmLocation(Integer mlmLocation) {this.mlmLocation = mlmLocation; }
 
 
-    public int getMlmLocation() { return mlmLocation; }
-    public void setMlmLocation(int mlmLocation) {this.mlmLocation = mlmLocation; }
 
-
-    public int getPickupCenterId() { return pickupCenterId; }
-    public void setPickupCenterId(int pickupCenterId) {this.pickupCenterId = pickupCenterId; }
+    public Integer getPickupCenterId() { return pickupCenterId; }
+    public void setPickupCenterId(Integer pickupCenterId) {this.pickupCenterId = pickupCenterId; }
 
     public String getActivationCodeName() { return activationCodeName; }
     public void setActivationCodeName(String activationCodeName) { this.activationCodeName = activationCodeName; }

@@ -13,17 +13,17 @@ import android.os.Parcelable;
 
 public class ActivateCode implements Parcelable {
 
-    private String activationCode = "";
-    private Integer mlmMemberId = 0;
-    private String activationCodeName = "";
-    private String memberName = "";
+    private String activationCode;
+    private Integer mlmMemberId;
+    private String activationCodeName;
+    private String memberName;
 
 
     public ActivateCode(){
 
     }
 
-    public ActivateCode(int mlmMemberId, String activationCode){
+    public ActivateCode(Integer mlmMemberId, String activationCode){
         this.activationCode = activationCode;
         this.mlmMemberId = mlmMemberId;
     }

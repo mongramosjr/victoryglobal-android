@@ -138,7 +138,7 @@ public class UpgradeAccountConfirm extends Fragment implements BlockingStep {
                 activationCode.setText(upgradeAccountRequest.getUpgradeAccount().getActivationCode());
             }
         }
-        if (upgradeAccountRequest.getUpgradeAccount().getMlmMemberId() != 0) {
+        if (upgradeAccountRequest.getUpgradeAccount().getMlmMemberId() != null) {
             mlmMemberId.setText(String.valueOf(upgradeAccountRequest.getUpgradeAccount().getMlmMemberId()));
         }
         if(upgradeAccountRequest.getUpgradeAccount().getActivationCodeName() != null) {

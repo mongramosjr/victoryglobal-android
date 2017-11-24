@@ -16,7 +16,7 @@ public class UpgradeAccountRequest {
 
     private ArrayList<MlmResponseError> mlmResponseErrors = new ArrayList<>();
 
-    private boolean success = false;
+    private Boolean success = false;
 
     //eager loading singeton
     private static final UpgradeAccountRequest ourInstance = new UpgradeAccountRequest();
@@ -52,11 +52,11 @@ public class UpgradeAccountRequest {
         mlmResponseErrors.clear();
     }
 
-    public boolean isSuccess() {
+    public Boolean isSuccess() {
         return success;
     }
 
-    public void setSuccess(boolean success) {
+    public void setSuccess(Boolean success) {
         this.success = success;
     }
 }

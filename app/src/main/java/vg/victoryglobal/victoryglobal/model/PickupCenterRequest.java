@@ -98,7 +98,7 @@ public class PickupCenterRequest {
                     JSONObject pickup_center_json = pickup_centers.getJSONObject(i);
 
                     PickupCenter pickup_center =  new PickupCenter(
-                            pickup_center_json.getString("id"),
+                            pickup_center_json.getInt("id"),
                             pickup_center_json.getString("frontend_label"));
 
                     getPickupCentersStr().add(pickup_center_json.getString("frontend_label"));

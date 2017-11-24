@@ -29,15 +29,34 @@ public class Purchase implements Parcelable {
 
     public Date created;
 
+
     protected Purchase(Parcel in) {
-        id = in.readInt();
-        grand_total = in.readFloat();
+        if (in.readByte() == 0) {
+            id = null;
+        } else {
+            id = in.readInt();
+        }
+        if (in.readByte() == 0) {
+            grand_total = null;
+        } else {
+            grand_total = in.readFloat();
+        }
     }
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(id);
-        dest.writeFloat(grand_total);
+        if (id == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeInt(id);
+        }
+        if (grand_total == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeFloat(grand_total);
+        }
     }
 
     @Override
@@ -82,11 +101,11 @@ public class Purchase implements Parcelable {
         this.grand_total = grand_total;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

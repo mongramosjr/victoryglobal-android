@@ -39,16 +39,34 @@ public class PayoutReport implements Parcelable {
 
 
     protected PayoutReport(Parcel in) {
-        id = in.readInt();
-        total_amount = in.readFloat();
+        if (in.readByte() == 0) {
+            id = null;
+        } else {
+            id = in.readInt();
+        }
+        if (in.readByte() == 0) {
+            total_amount = null;
+        } else {
+            total_amount = in.readFloat();
+        }
         payout_term = in.readString();
         reference_code = in.readString();
     }
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(id);
-        dest.writeFloat(total_amount);
+        if (id == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeInt(id);
+        }
+        if (total_amount == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeFloat(total_amount);
+        }
         dest.writeString(payout_term);
         dest.writeString(reference_code);
     }
