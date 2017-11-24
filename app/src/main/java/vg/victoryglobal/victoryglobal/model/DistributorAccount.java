@@ -18,21 +18,22 @@ import java.util.ArrayList;
  */
 public class DistributorAccount implements Parcelable {
 
-    private Integer status;
-    private CurrentIncome current_income;
-    private BankAccount bank_account;
-    private Address address;
-    private ContactInfo contact_info;
-    private MlmValidity mlm_validity_matchingbonus;
-    private ArrayList<MlmValidity> mlm_validity;
-    private MlmEntryType mlm_entry_type;
-    private MlmRank mlm_rank;
-    private MatchingPairs matching_pairs;
-    private DistributorPoints mlm_member_points;
-    private Sponsor sponsor;
-    private Upline upline;
-    private Account account;
-    private Profile profile;
+    public Integer status;
+    public CurrentIncome current_income;
+    public BankAccount bank_account;
+    public Address address;
+    public ContactInfo contact_info;
+    public MlmValidity mlm_validity_matchingbonus;
+    public ArrayList<MlmValidity> mlm_validity;
+    public MlmEntryType mlm_entry_type;
+    public MlmRank mlm_rank;
+    public MatchingPairs matching_pairs;
+    public ArrayList<DistributorPoint> mlm_member_points;
+    public Sponsor sponsor;
+    public Upline upline;
+    public Account account;
+    public Profile profile;
+
 
     protected DistributorAccount(Parcel in) {
         if (in.readByte() == 0) {
@@ -49,7 +50,7 @@ public class DistributorAccount implements Parcelable {
         mlm_entry_type = in.readParcelable(MlmEntryType.class.getClassLoader());
         mlm_rank = in.readParcelable(MlmRank.class.getClassLoader());
         matching_pairs = in.readParcelable(MatchingPairs.class.getClassLoader());
-        mlm_member_points = in.readParcelable(DistributorPoints.class.getClassLoader());
+        mlm_member_points = in.createTypedArrayList(DistributorPoint.CREATOR);
         sponsor = in.readParcelable(Sponsor.class.getClassLoader());
         upline = in.readParcelable(Upline.class.getClassLoader());
         account = in.readParcelable(Account.class.getClassLoader());
@@ -73,7 +74,7 @@ public class DistributorAccount implements Parcelable {
         dest.writeParcelable(mlm_entry_type, flags);
         dest.writeParcelable(mlm_rank, flags);
         dest.writeParcelable(matching_pairs, flags);
-        dest.writeParcelable(mlm_member_points, flags);
+        dest.writeTypedList(mlm_member_points);
         dest.writeParcelable(sponsor, flags);
         dest.writeParcelable(upline, flags);
         dest.writeParcelable(account, flags);
@@ -96,4 +97,15 @@ public class DistributorAccount implements Parcelable {
             return new DistributorAccount[size];
         }
     };
+
+    //other method
+    public DistributorPoint findDistributorPointByName(String name)
+    {
+        for(DistributorPoint point : mlm_member_points) {
+            if(point.attribute_code.equals(name)) {
+                return point;
+            }
+        }
+        return null;
+    }
 }

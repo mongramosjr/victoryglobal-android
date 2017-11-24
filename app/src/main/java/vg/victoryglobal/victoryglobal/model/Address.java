@@ -64,4 +64,34 @@ public class Address implements Parcelable {
             return new Address[size];
         }
     };
+
+
+    //other methods
+    public String addressFormatted()
+    {
+        String result = "";
+        if(street != null) result = result.concat(street);
+        if(city != null) {
+            if(street != null) result = result.concat("\n" + city);
+            else result = result.concat(city);
+        }
+        if(region != null){
+            if(city != null) result = result.concat(", " + region);
+            else if(street != null && city == null) result = result.concat("\n" + region);
+            else result = result.concat(street);
+        }
+        if(post_code != null){
+            if(region != null) result = result.concat(" " + post_code);
+            else if(region == null && city != null) result = result.concat(", " + post_code);
+            else if(region == null && city == null && street != null ) result = result.concat("\n" + post_code);
+            else result = result.concat(street);
+        }
+        if(country_code != null) {
+            if(result.length() > 0 ) result = result.concat("\n" + city);
+            else result = result.concat(street);
+        }
+
+        return result;
+
+    }
 }

@@ -14,13 +14,13 @@ import android.os.Parcelable;
 /*
  * Distributor Points model from API response
  */
-public class DistributorPoints implements Parcelable {
+public class DistributorPoint implements Parcelable {
 
     public Integer id;
     public String attribute_code;
     public Float value;
 
-    protected DistributorPoints(Parcel in) {
+    protected DistributorPoint(Parcel in) {
         if (in.readByte() == 0) {
             id = null;
         } else {
@@ -56,15 +56,15 @@ public class DistributorPoints implements Parcelable {
         return 0;
     }
 
-    public static final Creator<DistributorPoints> CREATOR = new Creator<DistributorPoints>() {
+    public static final Creator<DistributorPoint> CREATOR = new Creator<DistributorPoint>() {
         @Override
-        public DistributorPoints createFromParcel(Parcel in) {
-            return new DistributorPoints(in);
+        public DistributorPoint createFromParcel(Parcel in) {
+            return new DistributorPoint(in);
         }
 
         @Override
-        public DistributorPoints[] newArray(int size) {
-            return new DistributorPoints[size];
+        public DistributorPoint[] newArray(int size) {
+            return new DistributorPoint[size];
         }
     };
 }

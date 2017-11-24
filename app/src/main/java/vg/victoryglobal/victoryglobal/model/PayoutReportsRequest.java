@@ -17,7 +17,7 @@ public class PayoutReportsRequest {
 
     private ArrayList<MlmResponseError> mlmResponseErrors = new ArrayList<>();
 
-    private boolean success = false;
+    private Boolean success = false;
 
 
     public static PayoutReportsRequest getInstance() {
@@ -45,11 +45,11 @@ public class PayoutReportsRequest {
         this.payoutReports = payoutReports;
     }
 
-    public void setSuccess(boolean success) {
+    public void setSuccess(Boolean success) {
         this.success = success;
     }
 
-    public boolean isSuccess() {
+    public Boolean isSuccess() {
         return success;
     }
 }
