@@ -150,6 +150,8 @@ public class ProfileFragment extends Fragment implements SwipeRefreshLayout.OnRe
         if(distributorAccountRequest.isSuccess() && distributorAccountRequest.getDistributorAccount() != null) {
             DistributorAccount distributor_account = distributorAccountRequest.getDistributorAccount();
             prepareProfile(distributor_account);
+        }else{
+            account(currentView);
         }
 
 
@@ -161,12 +163,6 @@ public class ProfileFragment extends Fragment implements SwipeRefreshLayout.OnRe
 
         account(currentView);
 
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                swipeRefreshLayout.setRefreshing(false);
-            }
-        }, 2000L);
     }
 
 
@@ -280,17 +276,6 @@ public class ProfileFragment extends Fragment implements SwipeRefreshLayout.OnRe
                 if(distributorAccountRequest.saveDistributorAccount(response_data)){
                     prepareProfile(distributorAccountRequest.getDistributorAccount());
                 }
-/*
-                // run something here
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        //callback_code.goToNextStep();
-                    }
-                }, 2000L);
-*/
-
-
             }else if(status == 402 ) {
                 //TODO: redirect/show to error page
                 String message = object.getString("message");
@@ -308,7 +293,6 @@ public class ProfileFragment extends Fragment implements SwipeRefreshLayout.OnRe
             Log.e("ProfileFragment", "AccountCallback: (4) " + e.getMessage());
             Toast.makeText(getActivity().getApplicationContext(), R.string.ui_exception, Toast.LENGTH_LONG).show();
         }
-
 
     }
 
@@ -330,9 +314,16 @@ public class ProfileFragment extends Fragment implements SwipeRefreshLayout.OnRe
             post_data.put("mlm_member_id", mlm_member_id);
         }catch(JSONException ex) {
 
-            //callback_code.getStepperLayout().hideProgress();
             Toast.makeText(getActivity().getApplicationContext(), R.string.ui_exception, Toast.LENGTH_LONG).show();
             Log.e("DistributorAccount", ex.getMessage());
+
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    swipeRefreshLayout.setRefreshing(false);
+                }
+            }, 2000L);
+
             return;
         }
 
@@ -347,6 +338,13 @@ public class ProfileFragment extends Fragment implements SwipeRefreshLayout.OnRe
                                 Log.e("DistributorAccount", "Response: " + response.toString());
                                 accountCallback(view, response.toString());
 
+                                new Handler().postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        swipeRefreshLayout.setRefreshing(false);
+                                    }
+                                }, 2000L);
+
                             }
                         },
                         new com.android.volley.Response.ErrorListener() {
@@ -356,13 +354,13 @@ public class ProfileFragment extends Fragment implements SwipeRefreshLayout.OnRe
                                 // Do nothing
                                 Log.e("DistributorAccount", "onErrorResponse: " + error.toString());
                                 Toast.makeText(getActivity().getApplicationContext(), R.string.ui_unexpected_response, Toast.LENGTH_LONG).show();
-                                /*new Handler().postDelayed(new Runnable() {
+
+                                new Handler().postDelayed(new Runnable() {
                                     @Override
                                     public void run() {
-                                        callback_code.getStepperLayout().hideProgress();
+                                        swipeRefreshLayout.setRefreshing(false);
                                     }
                                 }, 2000L);
-                                */
                             }
                         }
                 );
