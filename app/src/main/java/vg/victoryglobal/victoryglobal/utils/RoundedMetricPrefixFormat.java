@@ -8,6 +8,8 @@
 
 package vg.victoryglobal.victoryglobal.utils;
 
+import android.util.Log;
+
 import org.apache.commons.lang3.math.NumberUtils;
 
 
@@ -29,7 +31,7 @@ public class RoundedMetricPrefixFormat extends Format {
     /**
      * The maximum number of characters in the output, excluding the negative sign
      */
-    private static final Integer MAX_LENGTH = 4;
+    private static final Integer MAX_LENGTH = 5;
 
     private static final Pattern TRAILING_DECIMAL_POINT = Pattern.compile("[0-9]+\\.[kMGT]");
 
@@ -44,7 +46,7 @@ public class RoundedMetricPrefixFormat extends Format {
         boolean isNegative = number < 0;
         number = Math.abs(number);
 
-        String result = new DecimalFormat("##0E0").format(number);
+        String result = new DecimalFormat("###E0").format(number);
 
         Integer index = Character.getNumericValue(result.charAt(result.length() - 1)) / 3;
         result = result.replaceAll("E[0-9]", METRIC_PREFIXES[index]);

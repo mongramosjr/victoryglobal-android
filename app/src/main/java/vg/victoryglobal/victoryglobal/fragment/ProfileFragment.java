@@ -147,6 +147,11 @@ public class ProfileFragment extends Fragment implements SwipeRefreshLayout.OnRe
         swipeRefreshLayout = view.findViewById(R.id.profile_swipe_refresh_layout);
         swipeRefreshLayout.setOnRefreshListener(this);
 
+        if(distributorAccountRequest.isSuccess() && distributorAccountRequest.getDistributorAccount() != null) {
+            DistributorAccount distributor_account = distributorAccountRequest.getDistributorAccount();
+            prepareProfile(distributor_account);
+        }
+
 
     }
 

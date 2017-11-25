@@ -56,7 +56,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
-                        android:text="2.04k"
                         android:textAppearance="@style/StatNumber"
                         />
                     <TextView
@@ -87,7 +86,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
-                        android:text="23.41k"
                         android:textAppearance="@style/StatNumber"
                         />
                     <TextView
@@ -117,7 +115,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:text="12,123,234"
                     android:textAppearance="@style/StatSubNumber"
                     />
                 <TextView

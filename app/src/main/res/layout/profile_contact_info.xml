@@ -51,7 +51,7 @@
                 android:id="@+id/email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="juan.dela.cruz@gmail.com"/>
+                />
 
             <View
                 style="@style/ViewSeparator"
@@ -99,10 +99,6 @@
                 android:id="@+id/phone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="02-1234567"
-                
-                
-                
                 />
 
             <View
@@ -151,10 +147,6 @@
                 android:id="@+id/mobile_number"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="0917-1234567"
-                
-                
-
                 />
 
             <View
@@ -203,7 +195,6 @@
                 android:id="@+id/fax"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="02-7654321"
                 />
 
             <View

@@ -43,15 +43,12 @@
                 android:id="@+id/bank_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="BPI"
-                
                 />
 
             <TextView
                 android:id="@+id/account_number"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="000-32325-3532-5325235"
                 />
 
             <View

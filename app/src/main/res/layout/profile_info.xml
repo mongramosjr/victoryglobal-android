@@ -52,10 +52,6 @@
                 android:id="@+id/date_of_birth"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="May 01 1978"
-                
-                
-                
                 />
 
             <View
@@ -105,10 +101,6 @@
                 android:id="@+id/place_of_birth"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Tabaco"
-                
-                
-                
                 />
 
             <View
@@ -157,10 +149,6 @@
                 android:id="@+id/occupation"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="IT"
-                
-                
-                
                 />
 
             <View
@@ -209,10 +197,6 @@
                 android:id="@+id/gender"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Male"
-                
-                
-                
                 />
 
             <View
@@ -261,10 +245,6 @@
                 android:id="@+id/tax_number"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="2352365236"
-                
-                
-                
                 />
 
             <View
@@ -313,10 +293,6 @@
                 android:id="@+id/social_security_number"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="5346346"
-                
-                
-                
                 />
 
             <View
@@ -365,10 +341,6 @@
                 android:id="@+id/marital_status"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Single"
-                
-                
-                
                 />
 
             <View
@@ -417,10 +389,6 @@
                 android:id="@+id/nationality"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Filipino"
-                
-                
-                
                 />
 
             <View
@@ -469,10 +437,6 @@
                 android:id="@+id/spouse_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Ruht"
-                
-                
-                
                 />
 
             <View

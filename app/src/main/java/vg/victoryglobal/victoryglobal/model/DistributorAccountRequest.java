@@ -63,7 +63,11 @@ public class DistributorAccountRequest {
     public synchronized Boolean saveDistributorAccount(String response_data) {
         Gson gson = new Gson();
         distributorAccount = gson.fromJson(response_data, DistributorAccount.class);
-
+        if(distributorAccount == null) {
+            setSuccess(false);
+            return false;
+        }
+        setSuccess(true);
         return true;
     }
 }
