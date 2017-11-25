@@ -20,6 +20,8 @@
     <dimen name="container_padding_horizontal">16dp</dimen>
     <dimen name="textcontainer_padding_vertical">8dp</dimen>
     <dimen name="textcontainer_padding_horizontal">8dp</dimen>
+    <dimen name="textcontainer_margin_vertical">8dp</dimen>
+    <dimen name="textcontainer_margin_horizontal">8dp</dimen>
 
     <dimen name="vertical_spacing">16dp</dimen>
 

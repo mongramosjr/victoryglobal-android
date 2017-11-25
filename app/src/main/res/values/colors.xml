@@ -20,17 +20,21 @@
     <color name="statusBarColor">#621118</color>
     <color name="bottomNavigationBarColor">#15507A</color>
 
-    <color name="colorNeutralWarm">#AEA79F</color>
-    <color name="colorNeutralWarmLight">#EEEDEB</color>
-    <color name="colorNeutralWarmDark">#7f7871</color>
-
     <color name="colorNeutralCool">#333333</color>
 
+    <color name="colorNeutralWarmDark">#7f7871</color>
+    <color name="colorNeutralWarm">#AEA79F</color>
+    <color name="colorNeutralWarmLight">#EEEDEB</color>
+    <color name="colorNeutralWarmLighter">#fff2f1f0</color>
 
 
 
+    <color name="materialGrey_100">#fff5f5f5</color>
+    <color name="materialGrey_300">#ffe0e0e0</color>
+    <color name="materialGrey_50">#fffafafa</color>
 
-    <color name="viewBg">#FFF2F1F0</color>
+    <color name="viewBg">@color/materialGrey_50</color>
+
 
     <!--
 

@@ -23,7 +23,8 @@
         <LinearLayout
             android:layout_width="64dp"
             android:layout_height="match_parent"
-            android:gravity="center_horizontal">
+            android:gravity="center_horizontal|center_vertical"
+            android:background="@color/materialGrey_100">
             <ImageView
                 android:src="@drawable/home_map_marker"
                 android:layout_width="32dp"
@@ -32,23 +33,38 @@
         </LinearLayout>
 
         <View
-            style="@style/ViewVerticalSeparator"/>
+            style="@style/ViewVerticalSeparator"
+            android:background="@color/colorNeutralWarmLighter"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
+            android:layout_marginStart="@dimen/container_margin_horizontal"
+            android:layout_marginEnd="@dimen/container_margin_horizontal"
             android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:paddingBottom="@dimen/container_padding_vertical"
+                android:paddingTop="@dimen/container_padding_vertical"
+                android:orientation="vertical">
 
             <TextView
                 android:id="@+id/address"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
                 />
+
+            </LinearLayout>
 
             <View
                 style="@style/ViewSeparator"
-                android:layout_gravity="bottom"/>
+                android:layout_gravity="bottom"
+                android:background="@color/colorNeutralWarmLighter"/>
 
         </LinearLayout>
 

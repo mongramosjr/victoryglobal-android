@@ -24,7 +24,8 @@
         <LinearLayout
             android:layout_width="64dp"
             android:layout_height="match_parent"
-            android:gravity="center_horizontal">
+            android:gravity="center_horizontal|center_vertical"
+            android:background="@color/materialGrey_100">
             <ImageView
                 android:src="@drawable/cake_variant"
                 android:layout_width="32dp"
@@ -33,30 +34,45 @@
         </LinearLayout>
 
         <View
-            style="@style/ViewVerticalSeparator"/>
+            style="@style/ViewVerticalSeparator"
+            android:background="@color/colorNeutralWarmLighter"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
+            android:layout_marginStart="@dimen/container_margin_horizontal"
+            android:layout_marginEnd="@dimen/container_margin_horizontal"
             android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:paddingBottom="@dimen/container_padding_vertical"
+                android:paddingTop="@dimen/container_padding_vertical"
+                android:orientation="vertical">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Date of Birth"
-                
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
                 />
 
             <TextView
                 android:id="@+id/date_of_birth"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
                 />
+
+            </LinearLayout>
 
             <View
                 style="@style/ViewSeparator"
-                android:layout_gravity="bottom"/>
+                android:layout_gravity="bottom"
+                android:background="@color/colorNeutralWarmLighter"/>
 
         </LinearLayout>
 
@@ -73,7 +89,8 @@
         <LinearLayout
             android:layout_width="64dp"
             android:layout_height="match_parent"
-            android:gravity="center_horizontal">
+            android:gravity="center_horizontal|center_vertical"
+            android:background="@color/materialGrey_100">
             <ImageView
                 android:src="@drawable/star_location"
                 android:layout_width="32dp"
@@ -82,30 +99,45 @@
         </LinearLayout>
 
         <View
-            style="@style/ViewVerticalSeparator"/>
+            style="@style/ViewVerticalSeparator"
+            android:background="@color/colorNeutralWarmLighter"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
+            android:layout_marginStart="@dimen/container_margin_horizontal"
+            android:layout_marginEnd="@dimen/container_margin_horizontal"
             android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:paddingBottom="@dimen/container_padding_vertical"
+                android:paddingTop="@dimen/container_padding_vertical"
+                android:orientation="vertical">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Place of Birth"
-                
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
                 />
 
             <TextView
                 android:id="@+id/place_of_birth"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
                 />
+
+            </LinearLayout>
 
             <View
                 style="@style/ViewSeparator"
-                android:layout_gravity="bottom"/>
+                android:layout_gravity="bottom"
+                android:background="@color/colorNeutralWarmLighter"/>
 
         </LinearLayout>
 
@@ -121,7 +153,8 @@
         <LinearLayout
             android:layout_width="64dp"
             android:layout_height="match_parent"
-            android:gravity="center_horizontal">
+            android:gravity="center_horizontal|center_vertical"
+            android:background="@color/materialGrey_100">
             <ImageView
                 android:src="@drawable/worker"
                 android:layout_width="32dp"
@@ -130,30 +163,45 @@
         </LinearLayout>
 
         <View
-            style="@style/ViewVerticalSeparator"/>
+            style="@style/ViewVerticalSeparator"
+            android:background="@color/colorNeutralWarmLighter"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
+            android:layout_marginStart="@dimen/container_margin_horizontal"
+            android:layout_marginEnd="@dimen/container_margin_horizontal"
             android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:paddingBottom="@dimen/container_padding_vertical"
+                android:paddingTop="@dimen/container_padding_vertical"
+                android:orientation="vertical">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Occupation"
-                
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
                 />
 
             <TextView
                 android:id="@+id/occupation"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
                 />
+
+            </LinearLayout>
 
             <View
                 style="@style/ViewSeparator"
-                android:layout_gravity="bottom"/>
+                android:layout_gravity="bottom"
+                android:background="@color/colorNeutralWarmLighter"/>
 
         </LinearLayout>
 
@@ -169,7 +217,8 @@
         <LinearLayout
             android:layout_width="64dp"
             android:layout_height="match_parent"
-            android:gravity="center_horizontal">
+            android:gravity="center_horizontal|center_vertical"
+            android:background="@color/materialGrey_100">
             <ImageView
                 android:src="@drawable/gender_male_female"
                 android:layout_width="32dp"
@@ -178,30 +227,45 @@
         </LinearLayout>
 
         <View
-            style="@style/ViewVerticalSeparator"/>
+            style="@style/ViewVerticalSeparator"
+            android:background="@color/colorNeutralWarmLighter"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
+            android:layout_marginStart="@dimen/container_margin_horizontal"
+            android:layout_marginEnd="@dimen/container_margin_horizontal"
             android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:paddingBottom="@dimen/container_padding_vertical"
+                android:paddingTop="@dimen/container_padding_vertical"
+                android:orientation="vertical">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Gender"
-                
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
                 />
 
             <TextView
                 android:id="@+id/gender"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
                 />
+
+            </LinearLayout>
 
             <View
                 style="@style/ViewSeparator"
-                android:layout_gravity="bottom"/>
+                android:layout_gravity="bottom"
+                android:background="@color/colorNeutralWarmLighter"/>
 
         </LinearLayout>
 
@@ -217,7 +281,8 @@
         <LinearLayout
             android:layout_width="64dp"
             android:layout_height="match_parent"
-            android:gravity="center_horizontal">
+            android:gravity="center_horizontal|center_vertical"
+            android:background="@color/materialGrey_100">
             <ImageView
                 android:src="@drawable/calculator"
                 android:layout_width="32dp"
@@ -226,30 +291,45 @@
         </LinearLayout>
 
         <View
-            style="@style/ViewVerticalSeparator"/>
+            style="@style/ViewVerticalSeparator"
+            android:background="@color/colorNeutralWarmLighter"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center_vertical"
+            android:layout_marginStart="@dimen/container_margin_horizontal"
+            android:layout_marginEnd="@dimen/container_margin_horizontal"
             android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:paddingBottom="@dimen/container_padding_vertical"
+                android:paddingTop="@dimen/container_padding_vertical"
+                android:orientation="vertical">
+
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Tax Number"
-                
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
                 />
 
             <TextView
                 android:id="@+id/tax_number"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
                 />
+
+            </LinearLayout>
 
             <View
                 style="@style/ViewSeparator"
-                android:layout_gravity="bottom"/>
+                android:layout_gravity="bottom"
+                android:background="@color/colorNeutralWarmLighter"/>
 
         </LinearLayout>
 
@@ -265,7 +345,8 @@
         <LinearLayout
             android:layout_width="64dp"
             android:layout_height="match_parent"
-            android:gravity="center_horizontal">
+            android:gravity="center_horizontal|center_vertical"
+            android:background="@color/materialGrey_100">
             <ImageView
                 android:src="@drawable/security"
                 android:layout_width="32dp"
@@ -274,30 +355,44 @@
         </LinearLayout>
 
         <View
-            style="@style/ViewVerticalSeparator"/>
+            style="@style/ViewVerticalSeparator"
+            android:background="@color/colorNeutralWarmLighter"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
+            android:layout_marginStart="@dimen/container_margin_horizontal"
+            android:layout_marginEnd="@dimen/container_margin_horizontal"
             android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:paddingBottom="@dimen/container_padding_vertical"
+                android:paddingTop="@dimen/container_padding_vertical"
+                android:orientation="vertical">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Social Security"
-                
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
                 />
 
             <TextView
                 android:id="@+id/social_security_number"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
                 />
+            </LinearLayout>
 
             <View
                 style="@style/ViewSeparator"
-                android:layout_gravity="bottom"/>
+                android:layout_gravity="bottom"
+                android:background="@color/colorNeutralWarmLighter"/>
 
         </LinearLayout>
 
@@ -313,7 +408,8 @@
         <LinearLayout
             android:layout_width="64dp"
             android:layout_height="match_parent"
-            android:gravity="center_horizontal">
+            android:gravity="center_horizontal|center_vertical"
+            android:background="@color/materialGrey_100">
             <ImageView
                 android:src="@drawable/ring"
                 android:layout_width="32dp"
@@ -322,30 +418,45 @@
         </LinearLayout>
 
         <View
-            style="@style/ViewVerticalSeparator"/>
+            style="@style/ViewVerticalSeparator"
+            android:background="@color/colorNeutralWarmLighter"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
+            android:layout_marginStart="@dimen/container_margin_horizontal"
+            android:layout_marginEnd="@dimen/container_margin_horizontal"
             android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:paddingBottom="@dimen/container_padding_vertical"
+                android:paddingTop="@dimen/container_padding_vertical"
+                android:orientation="vertical">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Marital Status"
-                
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
                 />
 
             <TextView
                 android:id="@+id/marital_status"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
                 />
+
+            </LinearLayout>
 
             <View
                 style="@style/ViewSeparator"
-                android:layout_gravity="bottom"/>
+                android:layout_gravity="bottom"
+                android:background="@color/colorNeutralWarmLighter"/>
 
         </LinearLayout>
 
@@ -361,7 +472,8 @@
         <LinearLayout
             android:layout_width="64dp"
             android:layout_height="match_parent"
-            android:gravity="center_horizontal">
+            android:gravity="center_horizontal|center_vertical"
+            android:background="@color/materialGrey_100">
             <ImageView
                 android:src="@drawable/flag_variant_outline"
                 android:layout_width="32dp"
@@ -370,30 +482,45 @@
         </LinearLayout>
 
         <View
-            style="@style/ViewVerticalSeparator"/>
+            style="@style/ViewVerticalSeparator"
+            android:background="@color/colorNeutralWarmLighter"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
+            android:layout_marginStart="@dimen/container_margin_horizontal"
+            android:layout_marginEnd="@dimen/container_margin_horizontal"
             android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:paddingBottom="@dimen/container_padding_vertical"
+                android:paddingTop="@dimen/container_padding_vertical"
+                android:orientation="vertical">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Nationality"
-                
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
                 />
 
             <TextView
                 android:id="@+id/nationality"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
                 />
+
+            </LinearLayout>
 
             <View
                 style="@style/ViewSeparator"
-                android:layout_gravity="bottom"/>
+                android:layout_gravity="bottom"
+                android:background="@color/colorNeutralWarmLighter"/>
 
         </LinearLayout>
 
@@ -409,7 +536,8 @@
         <LinearLayout
             android:layout_width="64dp"
             android:layout_height="match_parent"
-            android:gravity="center_horizontal">
+            android:gravity="center_horizontal|center_vertical"
+            android:background="@color/materialGrey_100">
             <ImageView
                 android:src="@drawable/heart_outline"
                 android:layout_width="32dp"
@@ -418,30 +546,45 @@
         </LinearLayout>
 
         <View
-            style="@style/ViewVerticalSeparator"/>
+            style="@style/ViewVerticalSeparator"
+            android:background="@color/colorNeutralWarmLighter"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
+            android:layout_marginStart="@dimen/container_margin_horizontal"
+            android:layout_marginEnd="@dimen/container_margin_horizontal"
             android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:paddingBottom="@dimen/container_padding_vertical"
+                android:paddingTop="@dimen/container_padding_vertical"
+                android:orientation="vertical">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Spouse Name"
-                
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
                 />
 
             <TextView
                 android:id="@+id/spouse_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
                 />
+
+            </LinearLayout>
 
             <View
                 style="@style/ViewSeparator"
-                android:layout_gravity="bottom"/>
+                android:layout_gravity="bottom"
+                android:background="@color/colorNeutralWarmLighter"/>
 
         </LinearLayout>
 
