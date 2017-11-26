@@ -7,44 +7,77 @@
   ~ Last modified 11/22/17 8:18 PM
   -->
 
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:clickable="true"
-    android:focusable="true"
-    android:orientation="vertical">
+    android:layout_height="wrap_content">
 
-    <LinearLayout
-        android:id="@+id/message_container"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:clickable="true"
-        android:orientation="vertical">
+    <android.support.v7.widget.CardView
+        android:id="@+id/card_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:elevation="3dp"
+        card_view:cardCornerRadius="2dp">
 
-        <TextView
-            android:id="@+id/total_amount"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ellipsize="end"
-            android:lines="1"
-            android:text="55235.98"/>
+            android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/created"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="1 Nov 2017"/>
-        <TextView
-            android:id="@+id/date_start"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="24 Oct 2017"/>
-        <TextView
-            android:id="@+id/date_end"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="30 Oct 2017"/>
+            <LinearLayout
+                android:id="@+id/date_container"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
 
-    </LinearLayout>
-</RelativeLayout>
+                <TextView
+                    android:id="@+id/created_day"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="1"/>
+                <TextView
+                    android:id="@+id/created_month"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Nov"/>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/payout_term"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/date_container"
+                android:layout_alignParentTop="true"
+                android:text="Weekly"/>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/date_container"
+                android:layout_below="@id/payout_term"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/date_start"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="24 Oct 2017"
+                    />
+                <TextView
+                    android:id="@+id/date_end"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="30 Oct 2017"/>
+            </LinearLayout>
+            <TextView
+                android:id="@+id/total_amount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:text="55235.98"/>
+
+        </RelativeLayout>
+   </android.support.v7.widget.CardView>
+</LinearLayout>
