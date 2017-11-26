@@ -45,6 +45,7 @@ import vg.victoryglobal.victoryglobal.model.DistributorAccount;
 import vg.victoryglobal.victoryglobal.model.DistributorAccountRequest;
 import vg.victoryglobal.victoryglobal.model.DistributorPoint;
 import vg.victoryglobal.victoryglobal.model.MlmResponseError;
+import vg.victoryglobal.victoryglobal.utils.DateTimeFormat;
 import vg.victoryglobal.victoryglobal.utils.RoundedMetricPrefixFormat;
 
 public class ProfileFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
@@ -171,6 +172,8 @@ public class ProfileFragment extends Fragment implements SwipeRefreshLayout.OnRe
     {
         DistributorPoint point = null;
 
+        DateTimeFormat dateTimeFormat = new DateTimeFormat();
+
         //TODO: find alternative
         RoundedMetricPrefixFormat formatter = new RoundedMetricPrefixFormat();
 
@@ -214,7 +217,7 @@ public class ProfileFragment extends Fragment implements SwipeRefreshLayout.OnRe
                 gender.setText(gender_name);
             }
             if(distributor_account.profile.date_of_birth != null) {
-                dateOfBirth.setText(distributor_account.profile.createdTimeFormatted(distributor_account.profile.date_of_birth));
+                dateOfBirth.setText(dateTimeFormat.createdTimeFormatted(distributor_account.profile.date_of_birth));
             }
             if(distributor_account.profile.place_of_birth != null) {
                 placeOfBirth.setText(distributor_account.profile.place_of_birth);

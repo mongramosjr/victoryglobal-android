@@ -19,6 +19,7 @@ import java.util.ArrayList;
 
 import vg.victoryglobal.victoryglobal.R;
 import vg.victoryglobal.victoryglobal.model.Purchase;
+import vg.victoryglobal.victoryglobal.utils.DateTimeFormat;
 
 public class PurchasesAdapter extends RecyclerView.Adapter<PurchasesAdapter.PurchasesViewHolder> {
 
@@ -40,10 +41,12 @@ public class PurchasesAdapter extends RecyclerView.Adapter<PurchasesAdapter.Purc
 
     @Override
     public void onBindViewHolder(PurchasesViewHolder holder, int position) {
+
+        DateTimeFormat dateTimeFormat = new DateTimeFormat();
         Purchase purchase = purchases.get(position);
 
         holder.grandTotal.setText(String.valueOf(purchase.getGrand_total()));
-        holder.datePosted.setText(purchase.createdTimeFormatted(purchase.getDate_posted()));
+        holder.datePosted.setText(dateTimeFormat.createdTimeFormatted(purchase.getDate_posted()));
         holder.id.setText(String.valueOf(purchase.getId()));
     }
 

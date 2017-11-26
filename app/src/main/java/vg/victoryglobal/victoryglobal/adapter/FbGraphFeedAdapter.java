@@ -22,6 +22,7 @@ import java.util.ArrayList;
 
 import vg.victoryglobal.victoryglobal.R;
 import vg.victoryglobal.victoryglobal.model.facebook.FbGraphFeed;
+import vg.victoryglobal.victoryglobal.utils.DateTimeFormat;
 
 
 import com.bumptech.glide.Glide;
@@ -84,13 +85,15 @@ public class FbGraphFeedAdapter extends RecyclerView.Adapter<FbGraphFeedAdapter.
 
         FbGraphFeed feed = feeds.get(position);
 
+        DateTimeFormat dateTimeFormat = new DateTimeFormat();
+
         // displaying text view data
         applyFromOrStory(holder, feed);
 
         applyMessage(holder, feed);
 
 
-        holder.createdTime.setText(feed.createdTimeFormatted());
+        holder.createdTime.setText(dateTimeFormat.createdTimeFormatted(feed.getCreatedTime(), null, null));
 
         applyVideo(holder, feed);
         applyDescription(holder, feed);

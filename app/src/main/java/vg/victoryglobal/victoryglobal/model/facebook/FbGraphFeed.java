@@ -10,6 +10,7 @@ package vg.victoryglobal.victoryglobal.model.facebook;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.support.annotation.Nullable;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -196,38 +197,5 @@ public class FbGraphFeed implements Parcelable {
 
         return fbGraphWithTags;
     }
-
-    public String createdTimeFormatted()
-    {
-        String display_date;
-
-        //2017-09-18T08:02:39+0000
-        //yyyy-MM-dd'T'HH:mm:ssZ
-        String myFormat = "yyyy-MM-dd'T'HH:mm:ssZ"; //In which you need put here
-        SimpleDateFormat sdformat = new SimpleDateFormat(myFormat, Locale.US);
-
-        Calendar calendar = Calendar.getInstance();
-
-        Date date;
-        try {
-            date = sdformat.parse(createdTime);
-            calendar.setTime(date);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-
-
-        myFormat = "MMM dd, yyyy 'at' hh:mm a"; //In which you need put here
-        sdformat = new SimpleDateFormat(myFormat, Locale.US);
-
-
-        display_date = sdformat.format(calendar.getTime());
-
-
-        return display_date;
-
-
-    }
-
 }
 

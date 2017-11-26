@@ -21,6 +21,7 @@ import java.util.ArrayList;
 
 import vg.victoryglobal.victoryglobal.R;
 import vg.victoryglobal.victoryglobal.model.PayoutReport;
+import vg.victoryglobal.victoryglobal.utils.DateTimeFormat;
 
 public class PayoutReportsAdapter extends RecyclerView.Adapter<PayoutReportsAdapter.PayoutReportsViewHolder> {
 
@@ -48,11 +49,13 @@ public class PayoutReportsAdapter extends RecyclerView.Adapter<PayoutReportsAdap
     @Override
     public void onBindViewHolder(PayoutReportsViewHolder holder, int position) {
         PayoutReport payout_report = payoutReports.get(position);
+        DateTimeFormat dateTimeFormat = new DateTimeFormat();
 
-        holder.created.setText(payout_report.createdTimeFormatted(payout_report.getCreated()));
-        holder.dateEnd.setText(payout_report.createdTimeFormatted(payout_report.getDate_end()));
-        holder.dateStart.setText(payout_report.createdTimeFormatted(payout_report.getDate_start()));
+        holder.createdDay.setText(dateTimeFormat.createdTimeFormatted(payout_report.getCreated(),"dd"));
+        holder.dateEnd.setText(dateTimeFormat.createdTimeFormatted(payout_report.getDate_end(), "MMM"));
+        holder.dateStart.setText(dateTimeFormat.createdTimeFormatted(payout_report.getDate_start(), null));
         holder.totalAmount.setText(String.valueOf(payout_report.getTotal_amount()));
+        holder.payoutTerm.setText(String.valueOf(payout_report.getPayout_term()));
 
     }
 
@@ -66,15 +69,19 @@ public class PayoutReportsAdapter extends RecyclerView.Adapter<PayoutReportsAdap
         public final TextView totalAmount;
         public final TextView dateStart;
         public final TextView dateEnd;
-        public final TextView created;
+        public final TextView createdDay;
+        public final TextView createdMonth;
+        public final TextView payoutTerm;
 
         public PayoutReportsViewHolder(View itemView) {
             super(itemView);
 
-            created = itemView.findViewById(R.id.created);
+            createdDay = itemView.findViewById(R.id.created_day);
+            createdMonth = itemView.findViewById(R.id.created_month);
             dateStart = itemView.findViewById(R.id.date_start);
             dateEnd = itemView.findViewById(R.id.date_end);
             totalAmount = itemView.findViewById(R.id.total_amount);
+            payoutTerm = itemView.findViewById(R.id.payout_term);
 
 
 
