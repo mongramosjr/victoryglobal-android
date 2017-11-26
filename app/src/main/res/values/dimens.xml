@@ -18,12 +18,21 @@
     <dimen name="container_margin_horizontal">16dp</dimen>
     <dimen name="container_padding_vertical">16dp</dimen>
     <dimen name="container_padding_horizontal">16dp</dimen>
-    <dimen name="textcontainer_padding_vertical">8dp</dimen>
-    <dimen name="textcontainer_padding_horizontal">8dp</dimen>
+
+    <dimen name="iconcontainer_padding_vertical">16dp</dimen>
+    <dimen name="iconcontainer_padding_horizontal">16dp</dimen>
+
+    <dimen name="textcontainer_padding_vertical">16dp</dimen>
+    <dimen name="textcontainer_padding_horizontal">16dp</dimen>
     <dimen name="textcontainer_margin_vertical">8dp</dimen>
     <dimen name="textcontainer_margin_horizontal">8dp</dimen>
+    <dimen name="textcontainer_top_spacing">16dp</dimen>
+    <dimen name="textcontainer_bottom_spacing">8dp</dimen>
 
     <dimen name="vertical_spacing">16dp</dimen>
+    <dimen name="horizontal_spacing">16dp</dimen>
+    <dimen name="top_spacing">16dp</dimen>
+    <dimen name="bottom_spacing">8dp</dimen>
 
     <dimen name="stat_textsize">30sp</dimen>
     <dimen name="stat_sub_textsize">18sp</dimen>
