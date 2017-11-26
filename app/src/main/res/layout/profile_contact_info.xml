@@ -21,14 +21,14 @@
         android:orientation="horizontal">
 
         <LinearLayout
-            android:layout_width="64dp"
+            android:layout_width="56dp"
             android:layout_height="match_parent"
             android:gravity="center_horizontal|center_vertical"
             android:background="@color/materialGrey_100">
             <ImageView
                 android:src="@drawable/email_variant"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
                 />
         </LinearLayout>
 
@@ -40,16 +40,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
-            android:layout_marginStart="@dimen/container_margin_horizontal"
-            android:layout_marginEnd="@dimen/container_margin_horizontal"
+            android:layout_marginStart="@dimen/horizontal_spacing"
+            android:layout_marginEnd="@dimen/horizontal_spacing"
             android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
-                android:paddingBottom="@dimen/container_padding_vertical"
-                android:paddingTop="@dimen/container_padding_vertical"
+                android:paddingTop="@dimen/textcontainer_top_spacing"
+                android:paddingBottom="@dimen/textcontainer_bottom_spacing"
                 android:orientation="vertical">
 
             <TextView
@@ -85,14 +85,14 @@
         android:orientation="horizontal">
 
         <LinearLayout
-            android:layout_width="64dp"
+            android:layout_width="56dp"
             android:layout_height="match_parent"
             android:gravity="center_horizontal|center_vertical"
             android:background="@color/materialGrey_100">
             <ImageView
                 android:src="@drawable/phone"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
                 />
         </LinearLayout>
 
@@ -112,8 +112,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
-                android:paddingBottom="@dimen/container_padding_vertical"
-                android:paddingTop="@dimen/container_padding_vertical"
+                android:paddingTop="@dimen/textcontainer_top_spacing"
+                android:paddingBottom="@dimen/textcontainer_bottom_spacing"
                 android:orientation="vertical">
 
             <TextView
@@ -149,14 +149,14 @@
         android:orientation="horizontal">
 
         <LinearLayout
-            android:layout_width="64dp"
+            android:layout_width="56dp"
             android:layout_height="match_parent"
             android:gravity="center_horizontal|center_vertical"
             android:background="@color/materialGrey_100">
             <ImageView
                 android:src="@drawable/cellphone_basic"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
                 />
         </LinearLayout>
 
@@ -176,8 +176,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
-                android:paddingBottom="@dimen/container_padding_vertical"
-                android:paddingTop="@dimen/container_padding_vertical"
+                android:paddingTop="@dimen/textcontainer_top_spacing"
+                android:paddingBottom="@dimen/textcontainer_bottom_spacing"
                 android:orientation="vertical">
 
             <TextView
@@ -213,14 +213,14 @@
         android:orientation="horizontal">
 
         <LinearLayout
-            android:layout_width="64dp"
+            android:layout_width="56dp"
             android:layout_height="match_parent"
             android:gravity="center_horizontal|center_vertical"
             android:background="@color/materialGrey_100">
             <ImageView
                 android:src="@drawable/fax"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
                 />
         </LinearLayout>
 
@@ -240,8 +240,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
-                android:paddingBottom="@dimen/container_padding_vertical"
-                android:paddingTop="@dimen/container_padding_vertical"
+                android:paddingTop="@dimen/textcontainer_top_spacing"
+                android:paddingBottom="@dimen/textcontainer_bottom_spacing"
                 android:orientation="vertical">
 
             <TextView

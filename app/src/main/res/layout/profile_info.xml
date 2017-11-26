@@ -22,14 +22,14 @@
         >
 
         <LinearLayout
-            android:layout_width="64dp"
+            android:layout_width="56dp"
             android:layout_height="match_parent"
             android:gravity="center_horizontal|center_vertical"
             android:background="@color/materialGrey_100">
             <ImageView
                 android:src="@drawable/cake_variant"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
                 />
         </LinearLayout>
 
@@ -49,8 +49,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
-                android:paddingBottom="@dimen/container_padding_vertical"
-                android:paddingTop="@dimen/container_padding_vertical"
+                android:paddingTop="@dimen/textcontainer_top_spacing"
+                android:paddingBottom="@dimen/textcontainer_bottom_spacing"
                 android:orientation="vertical">
 
             <TextView
@@ -87,14 +87,14 @@
         >
 
         <LinearLayout
-            android:layout_width="64dp"
+            android:layout_width="56dp"
             android:layout_height="match_parent"
             android:gravity="center_horizontal|center_vertical"
             android:background="@color/materialGrey_100">
             <ImageView
                 android:src="@drawable/star_location"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
                 />
         </LinearLayout>
 
@@ -114,8 +114,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
-                android:paddingBottom="@dimen/container_padding_vertical"
-                android:paddingTop="@dimen/container_padding_vertical"
+                android:paddingTop="@dimen/textcontainer_top_spacing"
+                android:paddingBottom="@dimen/textcontainer_bottom_spacing"
                 android:orientation="vertical">
 
             <TextView
@@ -151,14 +151,14 @@
         android:orientation="horizontal">
 
         <LinearLayout
-            android:layout_width="64dp"
+            android:layout_width="56dp"
             android:layout_height="match_parent"
             android:gravity="center_horizontal|center_vertical"
             android:background="@color/materialGrey_100">
             <ImageView
                 android:src="@drawable/worker"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
                 />
         </LinearLayout>
 
@@ -178,8 +178,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
-                android:paddingBottom="@dimen/container_padding_vertical"
-                android:paddingTop="@dimen/container_padding_vertical"
+                android:paddingTop="@dimen/textcontainer_top_spacing"
+                android:paddingBottom="@dimen/textcontainer_bottom_spacing"
                 android:orientation="vertical">
 
             <TextView
@@ -215,14 +215,14 @@
         android:orientation="horizontal">
 
         <LinearLayout
-            android:layout_width="64dp"
+            android:layout_width="56dp"
             android:layout_height="match_parent"
             android:gravity="center_horizontal|center_vertical"
             android:background="@color/materialGrey_100">
             <ImageView
                 android:src="@drawable/gender_male_female"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
                 />
         </LinearLayout>
 
@@ -242,8 +242,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
-                android:paddingBottom="@dimen/container_padding_vertical"
-                android:paddingTop="@dimen/container_padding_vertical"
+                android:paddingTop="@dimen/textcontainer_top_spacing"
+                android:paddingBottom="@dimen/textcontainer_bottom_spacing"
                 android:orientation="vertical">
 
             <TextView
@@ -279,14 +279,14 @@
         android:orientation="horizontal">
 
         <LinearLayout
-            android:layout_width="64dp"
+            android:layout_width="56dp"
             android:layout_height="match_parent"
             android:gravity="center_horizontal|center_vertical"
             android:background="@color/materialGrey_100">
             <ImageView
                 android:src="@drawable/calculator"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
                 />
         </LinearLayout>
 
@@ -305,8 +305,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
-                android:paddingBottom="@dimen/container_padding_vertical"
-                android:paddingTop="@dimen/container_padding_vertical"
+                android:paddingTop="@dimen/textcontainer_top_spacing"
+                android:paddingBottom="@dimen/textcontainer_bottom_spacing"
                 android:orientation="vertical">
 
 
@@ -343,14 +343,14 @@
         android:orientation="horizontal">
 
         <LinearLayout
-            android:layout_width="64dp"
+            android:layout_width="56dp"
             android:layout_height="match_parent"
             android:gravity="center_horizontal|center_vertical"
             android:background="@color/materialGrey_100">
             <ImageView
                 android:src="@drawable/security"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
                 />
         </LinearLayout>
 
@@ -370,8 +370,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
-                android:paddingBottom="@dimen/container_padding_vertical"
-                android:paddingTop="@dimen/container_padding_vertical"
+                android:paddingTop="@dimen/textcontainer_top_spacing"
+                android:paddingBottom="@dimen/textcontainer_bottom_spacing"
                 android:orientation="vertical">
 
             <TextView
@@ -406,14 +406,14 @@
         android:orientation="horizontal">
 
         <LinearLayout
-            android:layout_width="64dp"
+            android:layout_width="56dp"
             android:layout_height="match_parent"
             android:gravity="center_horizontal|center_vertical"
             android:background="@color/materialGrey_100">
             <ImageView
                 android:src="@drawable/ring"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
                 />
         </LinearLayout>
 
@@ -433,8 +433,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
-                android:paddingBottom="@dimen/container_padding_vertical"
-                android:paddingTop="@dimen/container_padding_vertical"
+                android:paddingTop="@dimen/textcontainer_top_spacing"
+                android:paddingBottom="@dimen/textcontainer_bottom_spacing"
                 android:orientation="vertical">
 
             <TextView
@@ -470,14 +470,14 @@
         android:orientation="horizontal">
 
         <LinearLayout
-            android:layout_width="64dp"
+            android:layout_width="56dp"
             android:layout_height="match_parent"
             android:gravity="center_horizontal|center_vertical"
             android:background="@color/materialGrey_100">
             <ImageView
                 android:src="@drawable/flag_variant_outline"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
                 />
         </LinearLayout>
 
@@ -497,8 +497,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
-                android:paddingBottom="@dimen/container_padding_vertical"
-                android:paddingTop="@dimen/container_padding_vertical"
+                android:paddingTop="@dimen/textcontainer_top_spacing"
+                android:paddingBottom="@dimen/textcontainer_bottom_spacing"
                 android:orientation="vertical">
 
             <TextView
@@ -534,14 +534,14 @@
         android:orientation="horizontal">
 
         <LinearLayout
-            android:layout_width="64dp"
+            android:layout_width="56dp"
             android:layout_height="match_parent"
             android:gravity="center_horizontal|center_vertical"
             android:background="@color/materialGrey_100">
             <ImageView
                 android:src="@drawable/heart_outline"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
                 />
         </LinearLayout>
 
@@ -561,8 +561,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
-                android:paddingBottom="@dimen/container_padding_vertical"
-                android:paddingTop="@dimen/container_padding_vertical"
+                android:paddingTop="@dimen/textcontainer_top_spacing"
+                android:paddingBottom="@dimen/textcontainer_bottom_spacing"
                 android:orientation="vertical">
 
             <TextView
