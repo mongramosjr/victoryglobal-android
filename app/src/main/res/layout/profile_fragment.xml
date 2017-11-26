@@ -82,7 +82,7 @@
                 android:paddingBottom="8dp"
                 android:paddingStart="@dimen/container_padding_horizontal"
                 android:paddingEnd="@dimen/container_padding_horizontal"
-                android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
                 />
 
             <include layout="@layout/profile_info"/>
@@ -97,7 +97,7 @@
                 android:paddingBottom="8dp"
                 android:paddingStart="@dimen/container_padding_horizontal"
                 android:paddingEnd="@dimen/container_padding_horizontal"
-                android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
                 />
 
             <include layout="@layout/profile_address"/>
@@ -111,7 +111,7 @@
                 android:paddingBottom="8dp"
                 android:paddingStart="@dimen/container_padding_horizontal"
                 android:paddingEnd="@dimen/container_padding_horizontal"
-                android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
                 />
 
 
@@ -125,7 +125,7 @@
                 android:paddingBottom="8dp"
                 android:paddingStart="@dimen/container_padding_horizontal"
                 android:paddingEnd="@dimen/container_padding_horizontal"
-                android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
                 />
 
 
