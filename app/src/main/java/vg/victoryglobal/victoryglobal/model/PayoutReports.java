@@ -13,10 +13,6 @@ import android.os.Parcelable;
 
 import java.util.ArrayList;
 
-/**
- * Created by mong on 11/27/17.
- */
-
 public class PayoutReports implements Parcelable{
     public ArrayList<PayoutReport> payout_reports;
     public Paging paging;
@@ -67,4 +63,10 @@ public class PayoutReports implements Parcelable{
             return new PayoutReports[size];
         }
     };
+
+    //setter and getter
+
+    public ArrayList<PayoutReport> getPayout_reports() {
+        return payout_reports;
+    }
 }

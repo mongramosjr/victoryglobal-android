@@ -18,6 +18,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 import vg.victoryglobal.victoryglobal.R;
@@ -52,11 +53,14 @@ public class PayoutReportsAdapter extends RecyclerView.Adapter<PayoutReportsAdap
         PayoutReport payout_report = payoutReports.get(position);
         DateTimeFormat dateTimeFormat = new DateTimeFormat();
 
+        DecimalFormat nf = new DecimalFormat("###,##0.00");
+        String total_amount = nf.format(payout_report.getTotal_amount());
+
         holder.createdDay.setText(dateTimeFormat.createdTimeFormatted(payout_report.getCreated(),"dd"));
         holder.createdMonth.setText(dateTimeFormat.createdTimeFormatted(payout_report.getDate_end(), "MMM"));
         holder.dateEnd.setText(dateTimeFormat.createdTimeFormatted(payout_report.getDate_end(), "dd MMM YYYY"));
         holder.dateStart.setText(dateTimeFormat.createdTimeFormatted(payout_report.getDate_start(), "dd MMM YYYY - "));
-        holder.totalAmount.setText(String.valueOf(payout_report.getTotal_amount()));
+        holder.totalAmount.setText(total_amount);
         holder.payoutTerm.setText(String.valueOf(payout_report.getPayout_term()));
 
     }
