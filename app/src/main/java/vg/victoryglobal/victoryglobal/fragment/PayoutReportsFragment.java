@@ -188,6 +188,7 @@ public class PayoutReportsFragment extends Fragment
         try {
             post_data.put("session", session);
             post_data.put("auth_token", auth_token);
+            post_data.put("mlm_member_id", mlm_member_id);
         }catch(JSONException ex) {
 
             //callback_code.getStepperLayout().hideProgress();

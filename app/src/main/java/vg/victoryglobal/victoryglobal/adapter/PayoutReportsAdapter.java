@@ -59,7 +59,7 @@ public class PayoutReportsAdapter extends RecyclerView.Adapter<PayoutReportsAdap
         holder.createdDay.setText(dateTimeFormat.createdTimeFormatted(payout_report.getCreated(),"dd"));
         holder.createdMonth.setText(dateTimeFormat.createdTimeFormatted(payout_report.getDate_end(), "MMM"));
         holder.dateEnd.setText(dateTimeFormat.createdTimeFormatted(payout_report.getDate_end(), "dd MMM YYYY"));
-        holder.dateStart.setText(dateTimeFormat.createdTimeFormatted(payout_report.getDate_start(), "dd MMM YYYY - "));
+        holder.dateStart.setText(dateTimeFormat.createdTimeFormatted(payout_report.getDate_start(), "dd MMM YYYY"));
         holder.totalAmount.setText(total_amount);
         holder.payoutTerm.setText(String.valueOf(payout_report.getPayout_term()));
 
