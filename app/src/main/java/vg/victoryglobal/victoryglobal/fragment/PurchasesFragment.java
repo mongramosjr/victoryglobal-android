@@ -31,6 +31,7 @@ import com.android.volley.toolbox.Volley;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.json.JSONTokener;
 
 import java.util.ArrayList;
 
@@ -51,6 +52,7 @@ public class PurchasesFragment extends Fragment
     private RecyclerView recyclerView;
     private SwipeRefreshLayout swipeRefreshLayout;
 
+
     PurchasesRequest purchasesRequest;
 
     AuthLoginRequest authLoginRequest;
@@ -60,6 +62,7 @@ public class PurchasesFragment extends Fragment
         super.onCreate(savedInstanceState);
         authLoginRequest = AuthLoginRequest.getAuthLoginRequest("main");
         purchasesRequest = PurchasesRequest.getInstance();
+        setRetainInstance(true);
     }
 
     // The onCreateView method is called when Fragment should create its View object hierarchy,
@@ -83,15 +86,17 @@ public class PurchasesFragment extends Fragment
         swipeRefreshLayout = view.findViewById(R.id.purchases_swipe_refresh_layout);
         swipeRefreshLayout.setOnRefreshListener(this);
 
-        purchases = purchasesRequest.getPurchases();
+        purchases = purchasesRequest.getPurchaseList();
 
         purchasesAdapter = new PurchasesAdapter(currentView.getContext(), purchases, this);
 
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(view.getContext());
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-        recyclerView.addItemDecoration(new DividerItemDecoration(view.getContext(), LinearLayoutManager.VERTICAL));
+        //recyclerView.addItemDecoration(new DividerItemDecoration(view.getContext(), LinearLayoutManager.VERTICAL));
         recyclerView.setAdapter(purchasesAdapter);
+
+        fetchPurchases();
     }
 
     @Override
@@ -100,19 +105,62 @@ public class PurchasesFragment extends Fragment
 
         purchases(currentView);
 
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                swipeRefreshLayout.setRefreshing(false);
-            }
-        }, 10000L);
-
     }
 
+    private void fetchPurchases() {
+        if(purchasesRequest.getPurchaseList().size() == 0 ){
+
+            swipeRefreshLayout.setRefreshing(true);
+            purchases(currentView);
+        }
+    }
+
+    public ArrayList<Purchase> getPurchases() {
+        return purchases;
+    }
 
 
     private void purchasesCallback(View view, String response_data) {
 
+        Boolean has_updates = false;
+
+        try {
+            JSONObject object = (JSONObject) new JSONTokener(response_data).nextValue();
+            int status = object.getInt("status");
+
+            //Log.e("purchasesCallback ", "Status: " + String.valueOf(status));
+
+            if(status == 200 ){
+                if(purchasesRequest.savePurchases(response_data))
+                {
+                    has_updates = true;
+                }
+            }else if(status == 402 ) {
+                //TODO: redirect/show to error page
+                String message = object.getString("message");
+                Toast.makeText(getActivity().getApplicationContext(), message, Toast.LENGTH_LONG).show();
+            }else if(status == 401 ){
+                String message = object.getString("message");
+                //TODO: force logout
+                Toast.makeText(getActivity().getApplicationContext(), message, Toast.LENGTH_LONG).show();
+
+            }else{
+                Toast.makeText(getActivity().getApplicationContext(), R.string.ui_exception, Toast.LENGTH_LONG).show();
+            }
+        } catch (JSONException e) {
+            //do nothing
+            Log.e("PayoutReportsFragment", "purchasesCallback: (4) " + e.getMessage());
+            Toast.makeText(getActivity().getApplicationContext(), R.string.ui_exception, Toast.LENGTH_LONG).show();
+        }
+
+        if(has_updates)
+        {
+            if(purchasesRequest.getPurchaseList().size()>0){
+                purchasesAdapter.notifyDataSetChanged();
+            }
+        }
+
+        swipeRefreshLayout.setRefreshing(false);
     }
 
 
@@ -147,7 +195,7 @@ public class PurchasesFragment extends Fragment
 
                             @Override
                             public void onResponse(JSONObject response) {
-                                Log.e("Purchase", "Response: " + response.toString());
+                                //Log.e("Purchase", "Response: " + response.toString());
                                 purchasesCallback(view, response.toString());
                             }
                         },
@@ -158,13 +206,6 @@ public class PurchasesFragment extends Fragment
                                 // Do nothing
                                 Log.e("Purchase", "onErrorResponse: " + error.toString());
                                 Toast.makeText(getActivity().getApplicationContext(), R.string.ui_unexpected_response, Toast.LENGTH_LONG).show();
-                                /*new Handler().postDelayed(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        callback_code.getStepperLayout().hideProgress();
-                                    }
-                                }, 2000L);
-                                */
                             }
                         }
                 );

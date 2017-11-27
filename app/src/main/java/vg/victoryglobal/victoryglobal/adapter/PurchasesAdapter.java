@@ -10,12 +10,17 @@ package vg.victoryglobal.victoryglobal.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.HapticFeedbackConstants;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.Locale;
 
 import vg.victoryglobal.victoryglobal.R;
 import vg.victoryglobal.victoryglobal.model.Purchase;
@@ -36,7 +41,10 @@ public class PurchasesAdapter extends RecyclerView.Adapter<PurchasesAdapter.Purc
 
     @Override
     public PurchasesViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return null;
+        View itemView = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.purchases_row, parent, false);
+
+        return new PurchasesViewHolder(itemView);
     }
 
     @Override
@@ -45,27 +53,32 @@ public class PurchasesAdapter extends RecyclerView.Adapter<PurchasesAdapter.Purc
         DateTimeFormat dateTimeFormat = new DateTimeFormat();
         Purchase purchase = purchases.get(position);
 
-        holder.grandTotal.setText(String.valueOf(purchase.getGrand_total()));
-        holder.datePosted.setText(dateTimeFormat.createdTimeFormatted(purchase.getDate_posted()));
-        holder.id.setText(String.valueOf(purchase.getId()));
+        DecimalFormat nf = new DecimalFormat("###,##0.00");
+        String grand_total = nf.format(purchase.getGrand_total());
+        holder.grandTotal.setText(grand_total);
+        //holder.datePosted.setText(dateTimeFormat.createdTimeFormatted(purchase.getDate_posted()));
+        holder.datePostedDay.setText(dateTimeFormat.createdTimeFormatted(purchase.getDate_posted(),"dd"));
+        holder.datePostedMonth.setText(dateTimeFormat.createdTimeFormatted(purchase.getDate_posted(), "MMM"));
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return purchases.size();
     }
 
     public class PurchasesViewHolder extends RecyclerView.ViewHolder implements View.OnLongClickListener {
 
         public final TextView grandTotal;
-        public final TextView datePosted;
-        public final TextView id;
+        //public final TextView datePosted;
+        public final TextView datePostedDay;
+        public final TextView datePostedMonth;
 
         public PurchasesViewHolder(View itemView) {
             super(itemView);
 
-            datePosted = itemView.findViewById(R.id.date_posted);
-            id = itemView.findViewById(R.id.id);
+            //datePosted = itemView.findViewById(R.id.date_posted);
+            datePostedDay = itemView.findViewById(R.id.date_posted_day);
+            datePostedMonth = itemView.findViewById(R.id.date_posted_month);
             grandTotal = itemView.findViewById(R.id.grand_total);
 
             itemView.setOnLongClickListener(this);
