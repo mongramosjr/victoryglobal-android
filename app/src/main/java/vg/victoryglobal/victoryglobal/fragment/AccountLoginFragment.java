@@ -294,7 +294,7 @@ public class AccountLoginFragment extends Fragment {
                         simpleProgressBar.setVisibility(View.INVISIBLE);
                         loginListener.prepareLogin(authLoginRequest.getAccountLogin());
                     }
-                }, 2000L);
+                }, 1000L);
 
 
 
@@ -320,14 +320,7 @@ public class AccountLoginFragment extends Fragment {
                     Toast.makeText(getActivity().getApplicationContext(), message, Toast.LENGTH_LONG).show();
                 }
 
-                /*
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        callback_code.getStepperLayout().hideProgress();
-                    }
-                }, 2000L);
-                */
+                simpleProgressBar.setVisibility(View.INVISIBLE);
 
             }else if(status == 401 ){
 
@@ -351,39 +344,17 @@ public class AccountLoginFragment extends Fragment {
                         Toast.makeText(getActivity().getApplicationContext(), message, Toast.LENGTH_LONG).show();
                     }
 
-                /*
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        callback_code.getStepperLayout().hideProgress();
-                    }
-                }, 2000L);
-                */
+                    simpleProgressBar.setVisibility(View.INVISIBLE);
             }else{
                 Toast.makeText(getActivity().getApplicationContext(), R.string.ui_exception, Toast.LENGTH_LONG).show();
-
-                /*
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        callback_code.getStepperLayout().hideProgress();
-                    }
-                }, 2000L);
-                */
+                simpleProgressBar.setVisibility(View.INVISIBLE);
             }
         } catch (JSONException e) {
             //do nothing
             Log.e("AccountLogin", "AccountLoginCallback: (4) " + e.getMessage());
             Toast.makeText(getActivity().getApplicationContext(), R.string.ui_exception, Toast.LENGTH_LONG).show();
 
-            /*
-            new Handler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    callback_code.getStepperLayout().hideProgress();
-                }
-            }, 2000L);
-            */
+            simpleProgressBar.setVisibility(View.INVISIBLE);
         }
 
 
@@ -428,13 +399,6 @@ public class AccountLoginFragment extends Fragment {
                                 // Do nothing
                                 Log.e("AccountLogin", "onErrorResponse: " + error.toString());
                                 Toast.makeText(getActivity().getApplicationContext(), R.string.ui_unexpected_response, Toast.LENGTH_LONG).show();
-                                /*new Handler().postDelayed(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        callback_code.getStepperLayout().hideProgress();
-                                    }
-                                }, 2000L);
-                                */
                             }
                         }
                 );
