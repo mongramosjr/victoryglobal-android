@@ -269,7 +269,7 @@ public class AccountLoginFragment extends Fragment {
             JSONObject object = (JSONObject) new JSONTokener(response_data).nextValue();
             int status = object.getInt("status");
 
-            Log.e("AccountLogin ", "Status: " + String.valueOf(status));
+            //Log.e("AccountLogin ", "Status: " + String.valueOf(status));
 
             if(status == 200 ){
 
@@ -416,7 +416,7 @@ public class AccountLoginFragment extends Fragment {
 
                             @Override
                             public void onResponse(JSONObject response) {
-                                Log.e("AccountLogin", "Response: " + response.toString());
+                                //Log.e("AccountLogin", "Response: " + response.toString());
                                 //authAccountCallback(response.toString(), callback_code);
                                 authAccountCallback(view, response.toString());
                             }
