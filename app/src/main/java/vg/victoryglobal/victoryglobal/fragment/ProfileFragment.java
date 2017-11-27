@@ -274,7 +274,7 @@ public class ProfileFragment extends Fragment implements SwipeRefreshLayout.OnRe
             JSONObject object = (JSONObject) new JSONTokener(response_data).nextValue();
             int status = object.getInt("status");
 
-            Log.e("accountCallback ", "Status: " + String.valueOf(status));
+            //Log.e("accountCallback ", "Status: " + String.valueOf(status));
 
             if(status == 200 ){
 
@@ -340,7 +340,7 @@ public class ProfileFragment extends Fragment implements SwipeRefreshLayout.OnRe
 
                             @Override
                             public void onResponse(JSONObject response) {
-                                Log.e("DistributorAccount", "Response: " + response.toString());
+                                //Log.e("DistributorAccount", "Response: " + response.toString());
                                 accountCallback(view, response.toString());
 
                                 new Handler().postDelayed(new Runnable() {
