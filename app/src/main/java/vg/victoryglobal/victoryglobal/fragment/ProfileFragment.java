@@ -34,6 +34,7 @@ import org.json.JSONObject;
 import org.json.JSONTokener;
 import org.w3c.dom.Text;
 
+import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.Arrays;
 import java.util.List;
@@ -243,9 +244,10 @@ public class ProfileFragment extends Fragment implements SwipeRefreshLayout.OnRe
         if(distributor_account.current_income !=null) {
             if(distributor_account.current_income.total_amount == null)
                 distributor_account.current_income.total_amount = 0.00f;
-            nf = NumberFormat.getNumberInstance(Locale.US);
-            nf.setMaximumFractionDigits(2);
-            currentIncomeTotalAmount.setText(nf.format(distributor_account.current_income.total_amount));
+
+            DecimalFormat df = new DecimalFormat("###,##0.00");
+            String total_amount = df.format(distributor_account.current_income.total_amount);
+            currentIncomeTotalAmount.setText(total_amount);
         }
 
         if(distributor_account.bank_account != null) {
