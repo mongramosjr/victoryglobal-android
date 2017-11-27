@@ -325,6 +325,7 @@ public class MainFragmentActivity extends AppCompatActivity implements LoginList
                 fragment_manager.beginTransaction().replace(R.id.content_frame, fragment).commit();
                 //set item check in bottom navigation
                 mBottomNavigationView.getMenu().findItem(R.id.navigation_home).setChecked(true);
+/*
             } else if (id == R.id.drawer_navigation_current_sales) {
                 fragment = new CurrentSalesFragment();
                 fragment_manager.beginTransaction().replace(R.id.content_frame, fragment).commit();
@@ -333,6 +334,7 @@ public class MainFragmentActivity extends AppCompatActivity implements LoginList
                 fragment = new GenealogyFragment();
                 fragment_manager.beginTransaction().replace(R.id.content_frame, fragment).commit();
                 mBottomNavigationView.getMenu().findItem(R.id.navigation_home).setChecked(true);
+*/
             } else if (id == R.id.drawer_navigation_payout_reports) {
                 fragment = new PayoutReportsFragment();
                 fragment_manager.beginTransaction().replace(R.id.content_frame, fragment).commit();
@@ -347,7 +349,7 @@ public class MainFragmentActivity extends AppCompatActivity implements LoginList
             }else if(id == R.id.drawer_navigation_logout){
                 toggleNavigationHeader(false);
                 toggleNavigationLoginMenu(false);
-                mBottomNavigationView.getMenu().findItem(R.id.navigation_home).setChecked(true);
+                prepareLogout(authLoginRequest.getAccountLogin());
             }
 /*
             else if(id == R.id.drawer_navigation_profile){
@@ -450,6 +452,12 @@ public class MainFragmentActivity extends AppCompatActivity implements LoginList
 
         toggleNavigationHeader(false);
         toggleNavigationLoginMenu(false);
+
+        Fragment fragment = null;
+        FragmentManager fragment_manager = getFragmentManager();
+        fragment = new HomeFragment();
+        fragment_manager.beginTransaction().replace(R.id.content_frame, fragment).commit();
+        mBottomNavigationView.getMenu().findItem(R.id.navigation_home).setChecked(true);
     }
 
     //other method
