@@ -42,6 +42,10 @@
         <item name="android:textColor">?android:attr/textColorPrimaryInverse</item>
     </style>
 
+    <style name="StatDateDay" parent="TextAppearance.AppCompat.Display1">
+        <item name="android:textColor">?android:attr/textColorPrimaryInverse</item>
+    </style>
+
     <style name="StatSubNumber" parent="TextAppearance.AppCompat.Large">
         <item name="android:textColor">?android:attr/textColorPrimaryInverse</item>
     </style>
