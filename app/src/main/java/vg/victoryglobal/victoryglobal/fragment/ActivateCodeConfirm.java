@@ -177,7 +177,7 @@ public class ActivateCodeConfirm extends Fragment implements BlockingStep {
             int status = object.getInt("status");
             String message = object.getString("message");
 
-            Log.e("ActivateCodeConfirm ", "Status: " + String.valueOf(status));
+            //Log.e("ActivateCodeConfirm ", "Status: " + String.valueOf(status));
 
             if (status == 200) {
 
@@ -312,7 +312,7 @@ public class ActivateCodeConfirm extends Fragment implements BlockingStep {
 
             @Override
             public void onResponse(JSONObject response) {
-                Log.e("ActivateCodeConfirm", "Response: " + response.toString());
+                //Log.e("ActivateCodeConfirm", "Response: " + response.toString());
                 codeRegistrationCallback(view, response.toString(), callback_code);
             }
         }, new com.android.volley.Response.ErrorListener() {

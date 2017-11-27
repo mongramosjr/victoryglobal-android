@@ -358,7 +358,7 @@ public class RegisterAccountConfirm extends Fragment implements BlockingStep {
             int status = object.getInt("status");
             String message = object.getString("message");
 
-            Log.e("RegisterAccountConfirm ", "Status: " + String.valueOf(status));
+            //Log.e("RegisterAccountConfirm ", "Status: " + String.valueOf(status));
 
             if (status == 200) {
 
@@ -403,7 +403,7 @@ public class RegisterAccountConfirm extends Fragment implements BlockingStep {
                 }, 2000L);
 
             } else if (status == 402) {
-                Log.e("RegisterAccountConfirm", "accountRegistrationCallback: " + message);
+                //Log.e("RegisterAccountConfirm", "accountRegistrationCallback: " + message);
 
                 object.has("error");
 
@@ -627,7 +627,7 @@ public class RegisterAccountConfirm extends Fragment implements BlockingStep {
 
             @Override
             public void onResponse(JSONObject response) {
-                Log.e("RegisterAccountConfirm", "Response: " + response.toString());
+                //Log.e("RegisterAccountConfirm", "Response: " + response.toString());
                 accountRegistrationCallback(view, response.toString(), callback_register);
             }
         }, new com.android.volley.Response.ErrorListener() {

@@ -87,7 +87,7 @@ public class PersistentCookieStore implements CookieStore {
     @Override
     public void add(URI uri, HttpCookie cookie) {
 
-        Log.e("-------------", cookie.toString());
+        //Log.e("-------------", cookie.toString());
         if (cookie.getName().equals("sessionid")) {
             // if the cookie that the cookie store attempt to add is a session cookie,
             // we remove the older cookie and save the new one in shared preferences
@@ -100,14 +100,14 @@ public class PersistentCookieStore implements CookieStore {
 
     @Override
     public List<HttpCookie> get(URI uri) {
-        Log.e("-------------", uri.toString());
-                Log.e("-------------", mStore.get(uri).toString());
+        //Log.e("-------------", uri.toString());
+        //Log.e("-------------", mStore.get(uri).toString());
         return mStore.get(uri);
     }
 
     @Override
     public List<HttpCookie> getCookies() {
-        Log.e("-------------", mStore.getCookies().toString());
+        //Log.e("-------------", mStore.getCookies().toString());
         return mStore.getCookies();
     }
 

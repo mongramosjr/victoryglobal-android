@@ -160,7 +160,7 @@ public class UpgradeAccountConfirm extends Fragment implements BlockingStep {
             int status = object.getInt("status");
             String message = object.getString("message");
 
-            Log.e("UpgradeAccountConfirm ", "Status: " + String.valueOf(status));
+            //Log.e("UpgradeAccountConfirm ", "Status: " + String.valueOf(status));
 
             if (status == 200) {
 
@@ -194,7 +194,7 @@ public class UpgradeAccountConfirm extends Fragment implements BlockingStep {
                 }, 2000L);
 
             } else if (status == 402) {
-                Log.e("UpgradeAccountConfirm", "upgradeRegistrationCallback: " + message);
+                //Log.e("UpgradeAccountConfirm", "upgradeRegistrationCallback: " + message);
 
                 object.has("error");
 
