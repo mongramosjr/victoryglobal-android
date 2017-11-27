@@ -38,6 +38,9 @@ public class PayoutReport implements Parcelable {
 
     public Date created;
 
+    public PayoutReport(){
+
+    }
 
     protected PayoutReport(Parcel in) {
         if (in.readByte() == 0) {

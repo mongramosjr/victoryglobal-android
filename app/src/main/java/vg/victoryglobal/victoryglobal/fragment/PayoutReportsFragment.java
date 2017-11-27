@@ -31,12 +31,14 @@ import com.android.volley.toolbox.Volley;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.json.JSONTokener;
 
 import java.util.ArrayList;
 
 import vg.victoryglobal.victoryglobal.R;
 import vg.victoryglobal.victoryglobal.adapter.PayoutReportsAdapter;
 import vg.victoryglobal.victoryglobal.model.AuthLoginRequest;
+import vg.victoryglobal.victoryglobal.model.MlmResponseError;
 import vg.victoryglobal.victoryglobal.model.PayoutReport;
 import vg.victoryglobal.victoryglobal.model.PayoutReportsRequest;
 
@@ -85,16 +87,17 @@ public class PayoutReportsFragment extends Fragment
         swipeRefreshLayout = view.findViewById(R.id.payout_reports_swipe_refresh_layout);
         swipeRefreshLayout.setOnRefreshListener(this);
 
-        payoutReports = payoutReportsRequest.getPayoutReports();
+        payoutReports = payoutReportsRequest.getPayoutReportsList();
 
         payoutReportsAdapter = new PayoutReportsAdapter(currentView.getContext(), payoutReports, this);
 
-        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(view.getContext());
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(currentView.getContext());
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-        recyclerView.addItemDecoration(new DividerItemDecoration(view.getContext(), LinearLayoutManager.VERTICAL));
+        //recyclerView.addItemDecoration(new DividerItemDecoration(currentView.getContext(), LinearLayoutManager.VERTICAL));
         recyclerView.setAdapter(payoutReportsAdapter);
 
+        fetchPayoutReports();
     }
 
     @Override
@@ -102,13 +105,6 @@ public class PayoutReportsFragment extends Fragment
         swipeRefreshLayout.setRefreshing(true);
 
         payoutReports(currentView);
-
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                swipeRefreshLayout.setRefreshing(false);
-            }
-        }, 10000L);
 
     }
 
@@ -122,6 +118,14 @@ public class PayoutReportsFragment extends Fragment
 
     }
 
+    private void fetchPayoutReports() {
+        if(payoutReportsRequest.getPayoutReportsList().size() == 0 ){
+
+            swipeRefreshLayout.setRefreshing(true);
+            payoutReports(currentView);
+        }
+    }
+
     public ArrayList<PayoutReport> getPayoutReports() {
         return payoutReports;
     }
@@ -129,6 +133,45 @@ public class PayoutReportsFragment extends Fragment
 
     private void payoutReportsCallback(View view, String response_data) {
 
+        Boolean has_updates = false;
+
+        try {
+            JSONObject object = (JSONObject) new JSONTokener(response_data).nextValue();
+            int status = object.getInt("status");
+
+            //Log.e("payoutReportsCallback ", "Status: " + String.valueOf(status));
+
+            if(status == 200 ){
+                if(payoutReportsRequest.savePayoutReports(response_data))
+                {
+                    has_updates = true;
+                }
+            }else if(status == 402 ) {
+                //TODO: redirect/show to error page
+                String message = object.getString("message");
+                Toast.makeText(getActivity().getApplicationContext(), message, Toast.LENGTH_LONG).show();
+            }else if(status == 401 ){
+                String message = object.getString("message");
+                //TODO: force logout
+                Toast.makeText(getActivity().getApplicationContext(), message, Toast.LENGTH_LONG).show();
+
+            }else{
+                Toast.makeText(getActivity().getApplicationContext(), R.string.ui_exception, Toast.LENGTH_LONG).show();
+            }
+        } catch (JSONException e) {
+            //do nothing
+            Log.e("PayoutReportsFragment", "payoutReportsCallback: (4) " + e.getMessage());
+            Toast.makeText(getActivity().getApplicationContext(), R.string.ui_exception, Toast.LENGTH_LONG).show();
+        }
+
+        if(has_updates)
+        {
+            if(payoutReportsRequest.getPayoutReportsList().size()>0){
+                payoutReportsAdapter.notifyDataSetChanged();
+            }
+        }
+
+        swipeRefreshLayout.setRefreshing(false);
     }
 
     private void payoutReports(final View view) {
@@ -149,7 +192,7 @@ public class PayoutReportsFragment extends Fragment
 
             //callback_code.getStepperLayout().hideProgress();
             Toast.makeText(getActivity().getApplicationContext(), R.string.ui_exception, Toast.LENGTH_LONG).show();
-            Log.e("PayoutReports", ex.getMessage());
+            //Log.e("PayoutReports", ex.getMessage());
             return;
         }
 
@@ -158,27 +201,19 @@ public class PayoutReportsFragment extends Fragment
                         url,
                         post_data,
                         new com.android.volley.Response.Listener<JSONObject>() {
-
                             @Override
                             public void onResponse(JSONObject response) {
-                                Log.e("PayoutReports", "Response: " + response.toString());
+                                //Log.e("PayoutReports", "Response: " + response.toString());
                                 payoutReportsCallback(view, response.toString());
                             }
                         },
                         new com.android.volley.Response.ErrorListener() {
-
                             @Override
                             public void onErrorResponse(VolleyError error) {
                                 // Do nothing
                                 Log.e("PayoutReports", "onErrorResponse: " + error.toString());
                                 Toast.makeText(getActivity().getApplicationContext(), R.string.ui_unexpected_response, Toast.LENGTH_LONG).show();
-                                /*new Handler().postDelayed(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        callback_code.getStepperLayout().hideProgress();
-                                    }
-                                }, 2000L);
-                                */
+                                swipeRefreshLayout.setRefreshing(false);
                             }
                         }
                 );

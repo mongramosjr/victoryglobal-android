@@ -10,6 +10,7 @@ package vg.victoryglobal.victoryglobal.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.HapticFeedbackConstants;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -52,8 +53,9 @@ public class PayoutReportsAdapter extends RecyclerView.Adapter<PayoutReportsAdap
         DateTimeFormat dateTimeFormat = new DateTimeFormat();
 
         holder.createdDay.setText(dateTimeFormat.createdTimeFormatted(payout_report.getCreated(),"dd"));
-        holder.dateEnd.setText(dateTimeFormat.createdTimeFormatted(payout_report.getDate_end(), "MMM"));
-        holder.dateStart.setText(dateTimeFormat.createdTimeFormatted(payout_report.getDate_start(), null));
+        holder.createdMonth.setText(dateTimeFormat.createdTimeFormatted(payout_report.getDate_end(), "MMM"));
+        holder.dateEnd.setText(dateTimeFormat.createdTimeFormatted(payout_report.getDate_end(), "dd MMM YYYY"));
+        holder.dateStart.setText(dateTimeFormat.createdTimeFormatted(payout_report.getDate_start(), "dd MMM YYYY - "));
         holder.totalAmount.setText(String.valueOf(payout_report.getTotal_amount()));
         holder.payoutTerm.setText(String.valueOf(payout_report.getPayout_term()));
 
@@ -61,7 +63,7 @@ public class PayoutReportsAdapter extends RecyclerView.Adapter<PayoutReportsAdap
 
     @Override
     public int getItemCount() {
-        return 0;
+        return payoutReports.size();
     }
 
     public class PayoutReportsViewHolder extends RecyclerView.ViewHolder implements View.OnLongClickListener {
@@ -83,10 +85,7 @@ public class PayoutReportsAdapter extends RecyclerView.Adapter<PayoutReportsAdap
             totalAmount = itemView.findViewById(R.id.total_amount);
             payoutTerm = itemView.findViewById(R.id.payout_term);
 
-
-
             itemView.setOnLongClickListener(this);
-
         }
 
         @Override
