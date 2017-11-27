@@ -31,18 +31,22 @@
             <group android:checkableBehavior="single"
                    android:id="@+id/group_menu_login"
                 >
+<!--
             <item
                 android:id="@+id/drawer_navigation_genealogy"
                 android:icon="@drawable/account_network"
                 android:title="@string/title_genealogy" />
+-->
             <item
                 android:id="@+id/drawer_navigation_payout_reports"
                 android:icon="@drawable/wallet_giftcard"
                 android:title="@string/title_payout_reports" />
+<!--
             <item
                 android:id="@+id/drawer_navigation_current_sales"
                 android:icon="@drawable/currency_usd"
                 android:title="@string/title_current_sales" />
+-->
             <item
                 android:id="@+id/drawer_navigation_purchases"
                 android:icon="@drawable/chart_gantt"
