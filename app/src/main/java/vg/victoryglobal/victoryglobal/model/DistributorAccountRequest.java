@@ -8,8 +8,6 @@
 
 package vg.victoryglobal.victoryglobal.model;
 
-import android.view.View;
-
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
@@ -25,7 +23,7 @@ public class DistributorAccountRequest {
         return onlyInstance;
     }
 
-    private DistributorAccount distributorAccount;
+    private DistributorAccountResponse distributorAccountResponse;
 
     private ArrayList<MlmResponseError> mlmResponseErrors = new ArrayList<>();
 
@@ -43,12 +41,12 @@ public class DistributorAccountRequest {
         return mlmResponseErrors;
     }
 
-    public void setDistributorAccount(DistributorAccount distributorAccount) {
-        this.distributorAccount = distributorAccount;
+    public void setDistributorAccountResponse(DistributorAccountResponse distributorAccountResponse) {
+        this.distributorAccountResponse = distributorAccountResponse;
     }
 
-    public DistributorAccount getDistributorAccount() {
-        return distributorAccount;
+    public DistributorAccountResponse getDistributorAccountResponse() {
+        return distributorAccountResponse;
     }
 
     public Boolean isSuccess() {
@@ -62,8 +60,8 @@ public class DistributorAccountRequest {
     //other method
     public synchronized Boolean saveDistributorAccount(String response_data) {
         Gson gson = new Gson();
-        distributorAccount = gson.fromJson(response_data, DistributorAccount.class);
-        if(distributorAccount == null) {
+        distributorAccountResponse = gson.fromJson(response_data, DistributorAccountResponse.class);
+        if(distributorAccountResponse == null) {
             setSuccess(false);
             return false;
         }

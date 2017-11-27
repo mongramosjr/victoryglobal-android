@@ -16,7 +16,7 @@ import java.util.ArrayList;
 /*
  * Distributor account model from API response
  */
-public class DistributorAccount implements Parcelable {
+public class DistributorAccountResponse implements Parcelable {
 
     public Integer status;
     public CurrentIncome current_income;
@@ -40,7 +40,7 @@ public class DistributorAccount implements Parcelable {
     public Profile profile;
 
 
-    protected DistributorAccount(Parcel in) {
+    protected DistributorAccountResponse(Parcel in) {
         if (in.readByte() == 0) {
             status = null;
         } else {
@@ -91,15 +91,15 @@ public class DistributorAccount implements Parcelable {
         return 0;
     }
 
-    public static final Creator<DistributorAccount> CREATOR = new Creator<DistributorAccount>() {
+    public static final Creator<DistributorAccountResponse> CREATOR = new Creator<DistributorAccountResponse>() {
         @Override
-        public DistributorAccount createFromParcel(Parcel in) {
-            return new DistributorAccount(in);
+        public DistributorAccountResponse createFromParcel(Parcel in) {
+            return new DistributorAccountResponse(in);
         }
 
         @Override
-        public DistributorAccount[] newArray(int size) {
-            return new DistributorAccount[size];
+        public DistributorAccountResponse[] newArray(int size) {
+            return new DistributorAccountResponse[size];
         }
     };
 

@@ -9,7 +9,6 @@
 package vg.victoryglobal.victoryglobal.fragment;
 
 import android.app.Fragment;
-import android.content.pm.ApplicationInfo;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -26,13 +25,10 @@ import com.android.volley.RequestQueue;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.bumptech.glide.load.engine.Resource;
-import com.google.gson.Gson;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONTokener;
-import org.w3c.dom.Text;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
@@ -42,10 +38,9 @@ import java.util.Locale;
 
 import vg.victoryglobal.victoryglobal.R;
 import vg.victoryglobal.victoryglobal.model.AuthLoginRequest;
-import vg.victoryglobal.victoryglobal.model.DistributorAccount;
+import vg.victoryglobal.victoryglobal.model.DistributorAccountResponse;
 import vg.victoryglobal.victoryglobal.model.DistributorAccountRequest;
 import vg.victoryglobal.victoryglobal.model.DistributorPoint;
-import vg.victoryglobal.victoryglobal.model.MlmResponseError;
 import vg.victoryglobal.victoryglobal.utils.DateTimeFormat;
 import vg.victoryglobal.victoryglobal.utils.RoundedMetricPrefixFormat;
 
@@ -149,9 +144,9 @@ public class ProfileFragment extends Fragment implements SwipeRefreshLayout.OnRe
         swipeRefreshLayout = view.findViewById(R.id.profile_swipe_refresh_layout);
         swipeRefreshLayout.setOnRefreshListener(this);
 
-        if(distributorAccountRequest.isSuccess() && distributorAccountRequest.getDistributorAccount() != null) {
-            DistributorAccount distributor_account = distributorAccountRequest.getDistributorAccount();
-            prepareProfile(distributor_account);
+        if(distributorAccountRequest.isSuccess() && distributorAccountRequest.getDistributorAccountResponse() != null) {
+            DistributorAccountResponse distributor_account_response = distributorAccountRequest.getDistributorAccountResponse();
+            prepareProfile(distributor_account_response);
         }else{
             account(currentView);
         }
@@ -169,7 +164,7 @@ public class ProfileFragment extends Fragment implements SwipeRefreshLayout.OnRe
 
 
     //other methods
-    private void prepareProfile(DistributorAccount distributor_account)
+    private void prepareProfile(DistributorAccountResponse distributor_account_response)
     {
         DistributorPoint point = null;
 
@@ -181,89 +176,89 @@ public class ProfileFragment extends Fragment implements SwipeRefreshLayout.OnRe
         NumberFormat nf = NumberFormat.getIntegerInstance(Locale.US);
         nf.setParseIntegerOnly(true);
 
-        point = distributor_account.findDistributorPointByName("location0_balance_bv_binary");
+        point = distributor_account_response.findDistributorPointByName("location0_balance_bv_binary");
         if(point!=null)
         {
             location0BalanceBinary.setText(formatter.format(point.value));
         }
-        point = distributor_account.findDistributorPointByName("location1_balance_bv_binary");
+        point = distributor_account_response.findDistributorPointByName("location1_balance_bv_binary");
         if(point!=null)
         {
             location1BalanceBinary.setText(formatter.format(point.value));
         }
-        point = distributor_account.findDistributorPointByName("bv_binary");
+        point = distributor_account_response.findDistributorPointByName("bv_binary");
         if(point!=null)
         {
             binary.setText(nf.format(point.value));
         }
-        point = distributor_account.findDistributorPointByName("bv_unilevel");
+        point = distributor_account_response.findDistributorPointByName("bv_unilevel");
         if(point!=null)
         {
             unilevel.setText(nf.format(point.value));
         }
-        point = distributor_account.findDistributorPointByName("group_bv_unilevel");
+        point = distributor_account_response.findDistributorPointByName("group_bv_unilevel");
         if(point!=null)
         {
             groupUnilevel.setText(nf.format(point.value));
         }
 
-        if(distributor_account.profile != null) {
-            if(distributor_account.profile.marital_status != null) {
-                maritalStatus.setText(distributor_account.profile.marital_status);
+        if(distributor_account_response.profile != null) {
+            if(distributor_account_response.profile.marital_status != null) {
+                maritalStatus.setText(distributor_account_response.profile.marital_status);
             }
-            if(distributor_account.profile.gender != null) {
+            if(distributor_account_response.profile.gender != null) {
                 //R.array.gender_array
                 List<String> gender_list = Arrays.asList(getResources().getStringArray(R.array.gender_array));
-                String gender_name = gender_list.get(distributor_account.profile.gender);
+                String gender_name = gender_list.get(distributor_account_response.profile.gender);
                 gender.setText(gender_name);
             }
-            if(distributor_account.profile.date_of_birth != null) {
-                dateOfBirth.setText(dateTimeFormat.createdTimeFormatted(distributor_account.profile.date_of_birth));
+            if(distributor_account_response.profile.date_of_birth != null) {
+                dateOfBirth.setText(dateTimeFormat.createdTimeFormatted(distributor_account_response.profile.date_of_birth));
             }
-            if(distributor_account.profile.place_of_birth != null) {
-                placeOfBirth.setText(distributor_account.profile.place_of_birth);
+            if(distributor_account_response.profile.place_of_birth != null) {
+                placeOfBirth.setText(distributor_account_response.profile.place_of_birth);
             }
-            if(distributor_account.profile.tax_number !=null) {
-                taxNumber.setText(distributor_account.profile.tax_number);
+            if(distributor_account_response.profile.tax_number !=null) {
+                taxNumber.setText(distributor_account_response.profile.tax_number);
             }
-            if(distributor_account.profile.social_security_number != null) {
-                socialSecurityNumber.setText(distributor_account.profile.social_security_number);
+            if(distributor_account_response.profile.social_security_number != null) {
+                socialSecurityNumber.setText(distributor_account_response.profile.social_security_number);
             }
-            if(distributor_account.profile.spouse_name != null) {
-                spouseName.setText(distributor_account.profile.spouse_name);
+            if(distributor_account_response.profile.spouse_name != null) {
+                spouseName.setText(distributor_account_response.profile.spouse_name);
             }
-            if(distributor_account.profile.occupation != null){
-            occupation.setText(distributor_account.profile.occupation);
+            if(distributor_account_response.profile.occupation != null){
+            occupation.setText(distributor_account_response.profile.occupation);
             }
-            //domicile.setText(distributor_account.profile.domicile);
-            if(distributor_account.profile.nationality != null) {
-                nationality.setText(distributor_account.profile.nationality);
+            //domicile.setText(distributor_account_response.profile.domicile);
+            if(distributor_account_response.profile.nationality != null) {
+                nationality.setText(distributor_account_response.profile.nationality);
             }
         }
 
-        if(distributor_account.current_income !=null) {
-            if(distributor_account.current_income.total_amount == null)
-                distributor_account.current_income.total_amount = 0.00f;
+        if(distributor_account_response.current_income !=null) {
+            if(distributor_account_response.current_income.total_amount == null)
+                distributor_account_response.current_income.total_amount = 0.00f;
 
             DecimalFormat df = new DecimalFormat("###,##0.00");
-            String total_amount = df.format(distributor_account.current_income.total_amount);
+            String total_amount = df.format(distributor_account_response.current_income.total_amount);
             currentIncomeTotalAmount.setText(total_amount);
         }
 
-        if(distributor_account.bank_account != null) {
-            bankName.setText(distributor_account.bank_account.bank_name);
-            accountNumber.setText(distributor_account.bank_account.account_number);
+        if(distributor_account_response.bank_account != null) {
+            bankName.setText(distributor_account_response.bank_account.bank_name);
+            accountNumber.setText(distributor_account_response.bank_account.account_number);
         }
 
-        if(distributor_account.contact_info != null) {
-            email.setText(distributor_account.contact_info.email);
-            phone.setText(distributor_account.contact_info.telephone);
-            fax.setText(distributor_account.contact_info.fax);
-            mobileNumber.setText(distributor_account.contact_info.mobile_number);
+        if(distributor_account_response.contact_info != null) {
+            email.setText(distributor_account_response.contact_info.email);
+            phone.setText(distributor_account_response.contact_info.telephone);
+            fax.setText(distributor_account_response.contact_info.fax);
+            mobileNumber.setText(distributor_account_response.contact_info.mobile_number);
         }
 
-        if(distributor_account.address != null) {
-            address.setText(distributor_account.address.addressFormatted());
+        if(distributor_account_response.address != null) {
+            address.setText(distributor_account_response.address.addressFormatted());
         }
 
     }
@@ -279,7 +274,7 @@ public class ProfileFragment extends Fragment implements SwipeRefreshLayout.OnRe
             if(status == 200 ){
 
                 if(distributorAccountRequest.saveDistributorAccount(response_data)){
-                    prepareProfile(distributorAccountRequest.getDistributorAccount());
+                    prepareProfile(distributorAccountRequest.getDistributorAccountResponse());
                 }
             }else if(status == 402 ) {
                 //TODO: redirect/show to error page
@@ -320,7 +315,7 @@ public class ProfileFragment extends Fragment implements SwipeRefreshLayout.OnRe
         }catch(JSONException ex) {
 
             Toast.makeText(getActivity().getApplicationContext(), R.string.ui_exception, Toast.LENGTH_LONG).show();
-            Log.e("DistributorAccount", ex.getMessage());
+            Log.e("ProfileResponse", ex.getMessage());
 
             new Handler().postDelayed(new Runnable() {
                 @Override
@@ -340,7 +335,7 @@ public class ProfileFragment extends Fragment implements SwipeRefreshLayout.OnRe
 
                             @Override
                             public void onResponse(JSONObject response) {
-                                //Log.e("DistributorAccount", "Response: " + response.toString());
+                                //Log.e("DistributorAccountResponse", "Response: " + response.toString());
                                 accountCallback(view, response.toString());
 
                                 new Handler().postDelayed(new Runnable() {
@@ -357,7 +352,7 @@ public class ProfileFragment extends Fragment implements SwipeRefreshLayout.OnRe
                             @Override
                             public void onErrorResponse(VolleyError error) {
                                 // Do nothing
-                                Log.e("DistributorAccount", "onErrorResponse: " + error.toString());
+                                Log.e("ProfileResponse", "onErrorResponse: " + error.toString());
                                 Toast.makeText(getActivity().getApplicationContext(), R.string.ui_unexpected_response, Toast.LENGTH_LONG).show();
 
                                 new Handler().postDelayed(new Runnable() {
