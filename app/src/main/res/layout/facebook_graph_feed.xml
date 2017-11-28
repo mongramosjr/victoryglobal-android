@@ -7,22 +7,23 @@
   ~ Last modified 9/10/17 12:19 PM
   -->
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:card_view="http://schemas.android.com/apk/res-auto"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content">
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="@dimen/news_feeds_marginBottom"
+    android:paddingTop="@dimen/news_feeds_marginTop"
+    android:paddingLeft="@dimen/news_feeds_marginLeft"
+    android:paddingRight="@dimen/news_feeds_marginRight">
 
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"
-        android:layout_marginBottom="@dimen/news_feeds_marginBottom"
-        android:layout_marginTop="@dimen/news_feeds_marginTop"
-        android:layout_marginStart="@dimen/news_feeds_marginLeft"
-        android:layout_marginEnd="@dimen/news_feeds_marginRight"
         android:numColumns="1"
         card_view:elevation="6dp"
-        card_view:cardElevation="10dp"
+        card_view:cardElevation="@dimen/news_feeds_cardElevation"
         card_view:cardCornerRadius="@dimen/news_feeds_cardCornerRadius"
         card_view:cardUseCompatPadding="true">
 

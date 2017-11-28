@@ -7,23 +7,25 @@
   ~ Last modified 9/10/17 12:19 PM
   -->
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:card_view="http://schemas.android.com/apk/res-auto"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content">
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="@dimen/news_feeds_marginBottom"
+    android:paddingTop="@dimen/news_feeds_marginTop"
+    android:paddingStart="@dimen/news_feeds_marginLeft"
+    android:paddingEnd="@dimen/news_feeds_marginRight">
 
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"
-        android:layout_marginVertical="@dimen/news_feeds_marginVertical"
-        android:layout_marginBottom="@dimen/news_feeds_marginBottom"
-        android:layout_marginTop="@dimen/news_feeds_marginTop"
-        android:layout_marginStart="@dimen/news_feeds_marginLeft"
-        android:layout_marginEnd="@dimen/news_feeds_marginRight"
-        android:elevation="3dp"
         android:numColumns="1"
-        card_view:cardCornerRadius="@dimen/news_feeds_cardCornerRadius">
+        card_view:elevation="6dp"
+        card_view:cardElevation="@dimen/news_feeds_cardElevation"
+        card_view:cardCornerRadius="@dimen/news_feeds_cardCornerRadius"
+        card_view:cardUseCompatPadding="true">
 
         <RelativeLayout
             android:layout_width="match_parent"

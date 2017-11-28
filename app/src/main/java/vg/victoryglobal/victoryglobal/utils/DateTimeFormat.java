@@ -9,6 +9,7 @@
 package vg.victoryglobal.victoryglobal.utils;
 
 import android.support.annotation.Nullable;
+import android.util.Log;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -45,6 +46,8 @@ public class DateTimeFormat {
             date = sdformat.parse(date_time);
         } catch (ParseException e) {
             e.printStackTrace();
+            Log.e("DateTimeFormat", e.getMessage());
+            return "";
         }
 
         return createdTimeFormatted(date, toFormat);
@@ -56,6 +59,9 @@ public class DateTimeFormat {
 
     public String createdTimeFormatted(Date date_time, @Nullable String showFormat)
     {
+        if(date_time == null){
+            return "";
+        }
         String display_date;
 
         //2017-09-18T08:02:39+0000

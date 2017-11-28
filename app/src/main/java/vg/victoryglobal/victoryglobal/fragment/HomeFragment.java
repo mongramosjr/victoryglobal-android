@@ -22,6 +22,7 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -111,7 +112,8 @@ public class HomeFragment extends Fragment implements SwipeRefreshLayout.OnRefre
         int news_feeds_grid_columns = getResources().getInteger(R.integer.news_feeds_grid_columns);
 
         RecyclerView.LayoutManager mLayoutManager
-                = new GridLayoutManager(view.getContext(), news_feeds_grid_columns, LinearLayoutManager.VERTICAL, false);
+               // = new GridLayoutManager(view.getContext(), news_feeds_grid_columns, LinearLayoutManager.VERTICAL, false);
+            = new StaggeredGridLayoutManager(news_feeds_grid_columns, LinearLayoutManager.VERTICAL);
 
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());

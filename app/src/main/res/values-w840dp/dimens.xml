@@ -14,12 +14,15 @@
 
     <integer name="news_feeds_grid_columns">2</integer>
 
-    <dimen name="news_feeds_marginVertical">16dp</dimen>
-    <dimen name="news_feeds_marginHorizontal">16dp</dimen>
-    <dimen name="news_feeds_marginBottom">8dp</dimen>
+    <dimen name="news_feeds_mainconter_horizontal">0dp</dimen>
+    <dimen name="news_feeds_mainconter_vertical">0dp</dimen>
+    <dimen name="news_feeds_marginVertical">0dp</dimen>
+    <dimen name="news_feeds_marginHorizontal">0dp</dimen>
+    <dimen name="news_feeds_marginBottom">0dp</dimen>
     <dimen name="news_feeds_marginTop">8dp</dimen>
     <dimen name="news_feeds_marginLeft">8dp</dimen>
     <dimen name="news_feeds_marginRight">8dp</dimen>
     <dimen name="news_feeds_cardCornerRadius">8dp</dimen>
+    <dimen name="news_feeds_cardElevation">8dp</dimen>
 
 </resources>
