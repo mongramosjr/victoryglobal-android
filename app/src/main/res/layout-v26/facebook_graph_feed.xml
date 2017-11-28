@@ -95,7 +95,9 @@
                     android:background="@color/colorNeutralCool"
                     android:clickable="true"
                     android:contentDescription="@string/full_picture_desc"
-                    android:id="@+id/full_picture">
+                    android:id="@+id/full_picture"
+                    android:scaleType="centerCrop"
+                    >
                 </ImageView>
 
                 <ImageView
@@ -116,8 +118,7 @@
                 android:layout_below="@id/full_picture_container"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="5dp"
-                android:id="@+id/description_container"
-                >
+                android:id="@+id/description_container">
 
                 <TextView
                     android:layout_width="match_parent"

@@ -95,7 +95,8 @@
                     android:background="@color/colorNeutralCool"
                     android:clickable="true"
                     android:contentDescription="@string/full_picture_desc"
-                    android:id="@+id/full_picture">
+                    android:id="@+id/full_picture"
+                    android:scaleType="centerCrop">
                 </ImageView>
 
                 <ImageView

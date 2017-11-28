@@ -10,7 +10,7 @@
 <resources>
     <dimen name="activity_horizontal_margin">16dp</dimen>
 
-    <integer name="news_feeds_grid_columns">1</integer>
+    <integer name="news_feeds_grid_columns">2</integer>
 
     <dimen name="news_feeds_mainconter_horizontal">0dp</dimen>
     <dimen name="news_feeds_mainconter_vertical">8dp</dimen>
@@ -18,8 +18,8 @@
     <dimen name="news_feeds_marginHorizontal">0dp</dimen>
     <dimen name="news_feeds_marginBottom">0dp</dimen>
     <dimen name="news_feeds_marginTop">0dp</dimen>
-    <dimen name="news_feeds_marginLeft">10dp</dimen>
-    <dimen name="news_feeds_marginRight">10dp</dimen>
-    <dimen name="news_feeds_cardCornerRadius">8dp</dimen>
-    <dimen name="news_feeds_cardElevation">6dp</dimen>
+    <dimen name="news_feeds_marginLeft">0dp</dimen>
+    <dimen name="news_feeds_marginRight">0dp</dimen>
+    <dimen name="news_feeds_cardCornerRadius">4dp</dimen>
+    <dimen name="news_feeds_cardElevation">4dp</dimen>
 </resources>
