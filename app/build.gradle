@@ -64,8 +64,8 @@ android {
             applicationId 'vg.victoryglobal.victoryglobal'
             signingConfig signingConfigs.vg_signing_config
             targetSdkVersion 27
-            versionName 'vgcaps-1.0.7'
-            versionCode 7
+            versionName 'vgcaps-1.0.9'
+            versionCode 9
             versionNameSuffix "-vgcaps"
             testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
         }
@@ -75,8 +75,8 @@ android {
             applicationId 'vg.victoryglobal.victoryglobal'
             signingConfig signingConfigs.vg_signing_config
             targetSdkVersion 27
-            versionName 'curac-1.0.7'
-            versionCode 7
+            versionName 'curac-1.0.9'
+            versionCode 9
             versionNameSuffix "-curac"
             testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
         }
