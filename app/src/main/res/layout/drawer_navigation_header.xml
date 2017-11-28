@@ -28,7 +28,7 @@
         android:id="@+id/header_distributor_image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@android:drawable/sym_def_app_icon" />
+        android:src="@mipmap/genealogy_businessman" />
 
     <TextView
         android:id="@+id/header_fullname"

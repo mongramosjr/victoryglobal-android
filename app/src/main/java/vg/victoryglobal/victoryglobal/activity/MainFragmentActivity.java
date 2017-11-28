@@ -477,7 +477,7 @@ public class MainFragmentActivity extends AppCompatActivity implements LoginList
             FragmentManager fragment_manager = getFragmentManager();
             fragment_manager.beginTransaction().replace(R.id.content_frame, fragment).commit();
             mBottomNavigationView.getMenu().findItem(R.id.navigation_home).setChecked(true);
-
+            setTitle("Profile");
             return true;
         }
     }
@@ -498,6 +498,7 @@ public class MainFragmentActivity extends AppCompatActivity implements LoginList
             FragmentManager fragment_manager = getFragmentManager();
             fragment_manager.beginTransaction().replace(R.id.content_frame, fragment).commit();
             mBottomNavigationView.getMenu().findItem(R.id.navigation_home).setChecked(true);
+            setTitle("Profile");
         }
     }
 }

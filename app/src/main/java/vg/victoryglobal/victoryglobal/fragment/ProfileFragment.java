@@ -55,6 +55,9 @@ public class ProfileFragment extends Fragment implements SwipeRefreshLayout.OnRe
     DistributorAccountRequest distributorAccountRequest;
 
     // TextView
+    TextView profileFullname;
+    TextView profileDistributorId;
+
     TextView location0BalanceBinary;
     TextView location1BalanceBinary;
     TextView binary;
@@ -111,6 +114,9 @@ public class ProfileFragment extends Fragment implements SwipeRefreshLayout.OnRe
 
         currentView = view;
 
+        profileFullname = view.findViewById(R.id.profile_fullname);
+        profileDistributorId = view.findViewById(R.id.profile_distributor_id);
+
         location0BalanceBinary = view.findViewById(R.id.location0_balance_bv_binary);
         location1BalanceBinary = view.findViewById(R.id.location1_balance_bv_binary);
         binary = view.findViewById(R.id.bv_binary);
@@ -145,8 +151,8 @@ public class ProfileFragment extends Fragment implements SwipeRefreshLayout.OnRe
         swipeRefreshLayout.setOnRefreshListener(this);
 
         if(distributorAccountRequest.isSuccess() && distributorAccountRequest.getDistributorAccountResponse() != null) {
-            DistributorAccountResponse distributor_account_response = distributorAccountRequest.getDistributorAccountResponse();
-            prepareProfile(distributor_account_response);
+            DistributorAccountResponse distributor_account = distributorAccountRequest.getDistributorAccountResponse();
+            prepareProfile(distributor_account);
         }else{
             account(currentView);
         }
@@ -164,9 +170,18 @@ public class ProfileFragment extends Fragment implements SwipeRefreshLayout.OnRe
 
 
     //other methods
-    private void prepareProfile(DistributorAccountResponse distributor_account_response)
+    private void prepareProfile(DistributorAccountResponse distributor_account)
     {
         DistributorPoint point = null;
+
+        String full_name = authLoginRequest.getAuthLogin().getUser().frontend_label;
+
+        String distributor_id_label = String.format("%09d", authLoginRequest.getAccountLogin().getMlmMemberId());
+
+        profileFullname.setText(full_name);
+
+        profileDistributorId.setText(distributor_id_label);
+
 
         DateTimeFormat dateTimeFormat = new DateTimeFormat();
 
@@ -176,89 +191,89 @@ public class ProfileFragment extends Fragment implements SwipeRefreshLayout.OnRe
         NumberFormat nf = NumberFormat.getIntegerInstance(Locale.US);
         nf.setParseIntegerOnly(true);
 
-        point = distributor_account_response.findDistributorPointByName("location0_balance_bv_binary");
+        point = distributor_account.findDistributorPointByName("location0_balance_bv_binary");
         if(point!=null)
         {
             location0BalanceBinary.setText(formatter.format(point.value));
         }
-        point = distributor_account_response.findDistributorPointByName("location1_balance_bv_binary");
+        point = distributor_account.findDistributorPointByName("location1_balance_bv_binary");
         if(point!=null)
         {
             location1BalanceBinary.setText(formatter.format(point.value));
         }
-        point = distributor_account_response.findDistributorPointByName("bv_binary");
+        point = distributor_account.findDistributorPointByName("bv_binary");
         if(point!=null)
         {
             binary.setText(nf.format(point.value));
         }
-        point = distributor_account_response.findDistributorPointByName("bv_unilevel");
+        point = distributor_account.findDistributorPointByName("bv_unilevel");
         if(point!=null)
         {
             unilevel.setText(nf.format(point.value));
         }
-        point = distributor_account_response.findDistributorPointByName("group_bv_unilevel");
+        point = distributor_account.findDistributorPointByName("group_bv_unilevel");
         if(point!=null)
         {
             groupUnilevel.setText(nf.format(point.value));
         }
 
-        if(distributor_account_response.profile != null) {
-            if(distributor_account_response.profile.marital_status != null) {
-                maritalStatus.setText(distributor_account_response.profile.marital_status);
+        if(distributor_account.profile != null) {
+            if(distributor_account.profile.marital_status != null) {
+                maritalStatus.setText(distributor_account.profile.marital_status);
             }
-            if(distributor_account_response.profile.gender != null) {
+            if(distributor_account.profile.gender != null) {
                 //R.array.gender_array
                 List<String> gender_list = Arrays.asList(getResources().getStringArray(R.array.gender_array));
-                String gender_name = gender_list.get(distributor_account_response.profile.gender);
+                String gender_name = gender_list.get(distributor_account.profile.gender);
                 gender.setText(gender_name);
             }
-            if(distributor_account_response.profile.date_of_birth != null) {
-                dateOfBirth.setText(dateTimeFormat.createdTimeFormatted(distributor_account_response.profile.date_of_birth));
+            if(distributor_account.profile.date_of_birth != null) {
+                dateOfBirth.setText(dateTimeFormat.createdTimeFormatted(distributor_account.profile.date_of_birth));
             }
-            if(distributor_account_response.profile.place_of_birth != null) {
-                placeOfBirth.setText(distributor_account_response.profile.place_of_birth);
+            if(distributor_account.profile.place_of_birth != null) {
+                placeOfBirth.setText(distributor_account.profile.place_of_birth);
             }
-            if(distributor_account_response.profile.tax_number !=null) {
-                taxNumber.setText(distributor_account_response.profile.tax_number);
+            if(distributor_account.profile.tax_number !=null) {
+                taxNumber.setText(distributor_account.profile.tax_number);
             }
-            if(distributor_account_response.profile.social_security_number != null) {
-                socialSecurityNumber.setText(distributor_account_response.profile.social_security_number);
+            if(distributor_account.profile.social_security_number != null) {
+                socialSecurityNumber.setText(distributor_account.profile.social_security_number);
             }
-            if(distributor_account_response.profile.spouse_name != null) {
-                spouseName.setText(distributor_account_response.profile.spouse_name);
+            if(distributor_account.profile.spouse_name != null) {
+                spouseName.setText(distributor_account.profile.spouse_name);
             }
-            if(distributor_account_response.profile.occupation != null){
-            occupation.setText(distributor_account_response.profile.occupation);
+            if(distributor_account.profile.occupation != null){
+            occupation.setText(distributor_account.profile.occupation);
             }
-            //domicile.setText(distributor_account_response.profile.domicile);
-            if(distributor_account_response.profile.nationality != null) {
-                nationality.setText(distributor_account_response.profile.nationality);
+            //domicile.setText(distributor_account.profile.domicile);
+            if(distributor_account.profile.nationality != null) {
+                nationality.setText(distributor_account.profile.nationality);
             }
         }
 
-        if(distributor_account_response.current_income !=null) {
-            if(distributor_account_response.current_income.total_amount == null)
-                distributor_account_response.current_income.total_amount = 0.00f;
+        if(distributor_account.current_income !=null) {
+            if(distributor_account.current_income.total_amount == null)
+                distributor_account.current_income.total_amount = 0.00f;
 
             DecimalFormat df = new DecimalFormat("###,##0.00");
-            String total_amount = df.format(distributor_account_response.current_income.total_amount);
+            String total_amount = df.format(distributor_account.current_income.total_amount);
             currentIncomeTotalAmount.setText(total_amount);
         }
 
-        if(distributor_account_response.bank_account != null) {
-            bankName.setText(distributor_account_response.bank_account.bank_name);
-            accountNumber.setText(distributor_account_response.bank_account.account_number);
+        if(distributor_account.bank_account != null) {
+            bankName.setText(distributor_account.bank_account.bank_name);
+            accountNumber.setText(distributor_account.bank_account.account_number);
         }
 
-        if(distributor_account_response.contact_info != null) {
-            email.setText(distributor_account_response.contact_info.email);
-            phone.setText(distributor_account_response.contact_info.telephone);
-            fax.setText(distributor_account_response.contact_info.fax);
-            mobileNumber.setText(distributor_account_response.contact_info.mobile_number);
+        if(distributor_account.contact_info != null) {
+            email.setText(distributor_account.contact_info.email);
+            phone.setText(distributor_account.contact_info.telephone);
+            fax.setText(distributor_account.contact_info.fax);
+            mobileNumber.setText(distributor_account.contact_info.mobile_number);
         }
 
-        if(distributor_account_response.address != null) {
-            address.setText(distributor_account_response.address.addressFormatted());
+        if(distributor_account.address != null) {
+            address.setText(distributor_account.address.addressFormatted());
         }
 
     }
