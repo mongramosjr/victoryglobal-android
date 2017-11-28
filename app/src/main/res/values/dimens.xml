@@ -37,6 +37,9 @@
     <dimen name="top_spacing">16dp</dimen>
     <dimen name="bottom_spacing">8dp</dimen>
 
+    <dimen name="header_icon_size">72dp</dimen>
+    <dimen name="header_icon_margin_vertical">24dp</dimen>
+
     <dimen name="stat_textsize">30sp</dimen>
     <dimen name="stat_sub_textsize">18sp</dimen>
 
@@ -47,8 +50,9 @@
 
     <dimen name="text_margin">16dp</dimen>
 
-    <dimen name="login_layout_marginLeft">20dp</dimen>
-    <dimen name="login_layout_marginRight">20dp</dimen>
+    <dimen name="form_container_paddingLeft">24dp</dimen>
+    <dimen name="form_container_paddingRight">24dp</dimen>
+    <dimen name="form_textinputlayout_marginVertical">8dp</dimen>
 
     <dimen name="item_label_paddingTop">8dp</dimen>
     <dimen name="item_title_paddingTop">16dp</dimen>

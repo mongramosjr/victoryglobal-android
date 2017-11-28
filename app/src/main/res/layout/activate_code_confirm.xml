@@ -18,8 +18,9 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_gravity="center_vertical"
-        android:layout_marginRight="@dimen/login_layout_marginRight"
-        android:layout_marginLeft="@dimen/login_layout_marginRight">
+        android:paddingTop="@dimen/vertical_spacing"
+        android:layout_marginRight="@dimen/form_container_paddingRight"
+        android:layout_marginLeft="@dimen/form_container_paddingLeft">
 
         <LinearLayout
             android:orientation="vertical"

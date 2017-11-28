@@ -10,7 +10,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorNeutralWarmLight"
+    android:background="@color/viewBg"
     tools:context="vg.victoryglobal.victoryglobal.fragment.UpgradeAccountFragment">
 
     <com.stepstone.stepper.StepperLayout
@@ -19,7 +19,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:ms_stepperFeedbackType="tabs|content_fade|content_overlay|disabled_bottom_navigation"
-        app:ms_bottomNavigationBackground="@color/colorAccent"
+        app:ms_bottomNavigationBackground="@color/colorAccentDark"
         app:ms_completeButtonText="@string/upgrade_completeButtonText"
         app:ms_stepperType="dots">
 

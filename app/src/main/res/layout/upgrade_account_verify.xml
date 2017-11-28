@@ -18,13 +18,15 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_gravity="center_vertical"
-        android:layout_marginRight="@dimen/login_layout_marginRight"
-        android:layout_marginLeft="@dimen/login_layout_marginRight"
+        android:layout_marginRight="@dimen/form_container_paddingRight"
+        android:layout_marginLeft="@dimen/form_container_paddingLeft"
         >
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/distributor_id_textinputlayout"
+            android:layout_marginTop="@dimen/form_textinputlayout_marginVertical"
+            android:layout_marginBottom="@dimen/form_textinputlayout_marginVertical"
             >
 
             <android.support.design.widget.TextInputEditText
@@ -41,6 +43,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/activate_code_textinputlayout"
+            android:layout_marginTop="@dimen/form_textinputlayout_marginVertical"
+            android:layout_marginBottom="@dimen/form_textinputlayout_marginVertical"
             >
             <android.support.design.widget.TextInputEditText
                 android:id="@+id/activation_code"

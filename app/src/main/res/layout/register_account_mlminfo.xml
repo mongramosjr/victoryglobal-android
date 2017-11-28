@@ -21,21 +21,25 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_marginRight="@dimen/login_layout_marginRight"
-        android:layout_marginLeft="@dimen/login_layout_marginRight"
+        android:paddingTop="@dimen/vertical_spacing"
+        android:layout_marginRight="@dimen/form_container_paddingRight"
+        android:layout_marginLeft="@dimen/form_container_paddingLeft"
         >
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/activation_code_hint"
-            android:textAppearance="@style/itemTitleText"
+            android:paddingTop="@dimen/vertical_spacing"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             />
 
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/activate_code_textinputlayout"
+            android:layout_marginTop="@dimen/form_textinputlayout_marginVertical"
+            android:layout_marginBottom="@dimen/form_textinputlayout_marginVertical"
             >
             <android.support.design.widget.TextInputEditText
                 android:id="@+id/activation_code"
@@ -50,7 +54,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/sponsor_and_placement"
-            android:textAppearance="@style/itemTitleText"
+            android:paddingTop="@dimen/vertical_spacing"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             />
 
         <LinearLayout
@@ -58,6 +63,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/mlm_account_id_layout"
+            android:layout_marginTop="@dimen/form_textinputlayout_marginVertical"
+            android:layout_marginBottom="@dimen/form_textinputlayout_marginVertical"
             >
             <TextView
                 android:layout_width="match_parent"
@@ -80,6 +87,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/upline_id_textinputlayout"
+            android:layout_marginTop="@dimen/form_textinputlayout_marginVertical"
+            android:layout_marginBottom="@dimen/form_textinputlayout_marginVertical"
             >
 
             <android.support.design.widget.TextInputEditText
@@ -94,6 +103,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/sponsor_id_textinputlayout"
+            android:layout_marginTop="@dimen/form_textinputlayout_marginVertical"
+            android:layout_marginBottom="@dimen/form_textinputlayout_marginVertical"
             >
 
             <android.support.design.widget.TextInputEditText
@@ -110,6 +121,8 @@
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/form_textinputlayout_marginVertical"
+                android:layout_marginBottom="@dimen/form_textinputlayout_marginVertical"
                 >
 
                 <TextView
@@ -133,6 +146,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/pickup_center_id_layout"
+                android:layout_marginTop="@dimen/form_textinputlayout_marginVertical"
+                android:layout_marginBottom="@dimen/form_textinputlayout_marginVertical"
                 >
                 <TextView
                     android:layout_width="match_parent"
