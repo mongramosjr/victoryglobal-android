@@ -34,9 +34,9 @@
     <string name="facebook_app_name">Victory Global</string>
 
     <!-- activation code, upgrade account, register account -->
-    <string name="new_account">Set up your business account with us — so you can stand out, and reach your goals.</string>
-    <string name="upgrade_account">Upgrading your account allows you to earn more.</string>
-    <string name="register_activation_code" >To be able to earn, the activation code must be properly registered.</string>
+    <string name="new_account">Set up your business account with us — so you can stand out, and reach your goals</string>
+    <string name="upgrade_account">Upgrading your account allows you to earn more</string>
+    <string name="register_activation_code" >To be able to earn, activation code must be registered</string>
     <string name="residence_address">Residence address</string>
     <string name="contact_info">Contact Info</string>
     <string name="personal_info">Personal info</string>
