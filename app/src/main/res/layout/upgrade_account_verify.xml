@@ -12,15 +12,36 @@
     android:layout_height="match_parent"
     tools:context="vg.victoryglobal.victoryglobal.fragment.UpgradeAccountVerify">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
     <LinearLayout
         android:id="@+id/upgrade_account_linearlayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_gravity="center_vertical"
+        android:paddingTop="@dimen/vertical_spacing"
         android:layout_marginRight="@dimen/form_container_paddingRight"
-        android:layout_marginLeft="@dimen/form_container_paddingLeft"
-        >
+        android:layout_marginLeft="@dimen/form_container_paddingLeft">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/vertical_spacing"/>
+
+        <ImageView android:src="@drawable/startup"
+                   android:layout_width="wrap_content"
+                   android:layout_height="@dimen/header_icon_size"
+                   android:layout_marginBottom="@dimen/header_icon_margin_vertical"
+                   android:layout_gravity="center_horizontal" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/upgrade_account"
+            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+            android:textColor="@color/colorPrimary"/>
+
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -57,5 +78,6 @@
                 />
         </android.support.design.widget.TextInputLayout>
     </LinearLayout>
+    </ScrollView>
 
 </FrameLayout>

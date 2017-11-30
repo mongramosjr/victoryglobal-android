@@ -85,4 +85,6 @@
     <dimen name="profile_subheader_margin_end">16dp</dimen>
     <dimen name="profile_text_spacing">2dp</dimen>
 
+    <dimen name="icon_spacing">8dp</dimen>
+
 </resources>
