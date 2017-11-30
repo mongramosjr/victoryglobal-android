@@ -206,6 +206,7 @@ public class PurchasesFragment extends Fragment
                                 // Do nothing
                                 Log.e("Purchase", "onErrorResponse: " + error.toString());
                                 Toast.makeText(getActivity().getApplicationContext(), R.string.ui_unexpected_response, Toast.LENGTH_LONG).show();
+                                swipeRefreshLayout.setRefreshing(false);
                             }
                         }
                 );

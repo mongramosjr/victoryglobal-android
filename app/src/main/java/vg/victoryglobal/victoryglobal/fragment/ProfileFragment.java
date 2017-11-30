@@ -309,6 +309,8 @@ public class ProfileFragment extends Fragment implements SwipeRefreshLayout.OnRe
             Toast.makeText(getActivity().getApplicationContext(), R.string.ui_exception, Toast.LENGTH_LONG).show();
         }
 
+        swipeRefreshLayout.setRefreshing(false);
+
     }
 
 
