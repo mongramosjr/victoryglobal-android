@@ -1,0 +1,742 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Created by Mong Ramos Jr. <mongramosjr@gmail.com> on 12/1/17 9:56 AM
+  ~
+  ~ Copyright (c) 2017 Victory Global Unlimited Systems Inc. All rights reserved.
+  ~
+  ~ Last modified 12/1/17 9:52 AM
+  -->
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/genealogy_level_1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/vertical_spacing"
+        android:orientation="horizontal"
+        android:weightSum="2">
+
+        <LinearLayout
+            android:id="@+id/genealogy_level_1_0_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text="Group A"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"/>
+
+            <ImageView
+                android:id="@+id/genealogy_level_1_0"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/icon_spacing"
+                android:src="@mipmap/genealogy_grey_user_round"/>
+
+            <TextView
+                android:id="@+id/genealogy_level_1_0_id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"/>
+
+            <LinearLayout
+                android:id="@+id/genealogy_level_1_0_container_more"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/icon_spacing"
+                    android:src="@mipmap/genealogy_grey_user_round"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"/>
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/genealogy_level_1_1_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_horizontal"
+                android:text="Group B"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"/>
+
+            <ImageView
+                android:id="@+id/genealogy_level_1_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/icon_spacing"
+                android:src="@mipmap/genealogy_grey_user_round"/>
+
+            <TextView
+                android:id="@+id/genealogy_level_1_1_id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"/>
+
+            <LinearLayout
+                android:id="@+id/genealogy_level_1_1_container_more"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/vertical_spacing"
+        android:orientation="horizontal"
+        android:weightSum="2">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <View
+                style="@style/ViewVerticalSeparator"
+                android:layout_height="10dp"
+                android:gravity="center_horizontal|bottom"
+                android:paddingTop="@dimen/icon_spacing"
+                />
+
+            <View
+                style="@style/ViewSeparator"
+                android:layout_marginEnd="@dimen/vertical_spacing"
+                android:layout_marginStart="@dimen/vertical_spacing"
+                android:gravity="bottom"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <View
+                style="@style/ViewVerticalSeparator"
+                android:layout_height="10dp"
+                android:gravity="center_horizontal|bottom"
+                android:paddingTop="@dimen/icon_spacing"
+                />
+
+            <View
+                style="@style/ViewSeparator"
+                android:layout_marginEnd="@dimen/vertical_spacing"
+                android:layout_marginStart="@dimen/vertical_spacing"
+                android:gravity="bottom"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/genealogy_level_2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/vertical_spacing"
+        android:orientation="horizontal"
+        android:weightSum="4">
+
+        <LinearLayout
+            android:id="@+id/genealogy_level_2_0_container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_horizontal"
+                android:text="Group A"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"/>
+
+            <ImageView
+                android:id="@+id/genealogy_level_2_0"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/icon_spacing"
+                android:src="@mipmap/genealogy_grey_user_round"/>
+
+            <TextView
+                android:id="@+id/genealogy_level_2_0_id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"/>
+
+            <LinearLayout
+                android:id="@+id/genealogy_level_2_0_container_more"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/genealogy_level_2_1_container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_horizontal"
+                android:text="Group B"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"/>
+
+            <ImageView
+                android:id="@+id/genealogy_level_2_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/icon_spacing"
+                android:src="@mipmap/genealogy_grey_user_round"/>
+
+            <TextView
+                android:id="@+id/genealogy_level_2_1_id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"/>
+
+            <LinearLayout
+                android:id="@+id/genealogy_level_2_1_container_more"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/genealogy_level_2_2_container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_horizontal"
+                android:text="Group A"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"/>
+
+            <ImageView
+                android:id="@+id/genealogy_level_2_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/icon_spacing"
+                android:src="@mipmap/genealogy_grey_user_round"/>
+
+            <TextView
+                android:id="@+id/genealogy_level_2_2_id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"/>
+
+            <LinearLayout
+                android:id="@+id/genealogy_level_2_2_container_more"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/genealogy_level_2_3_container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_horizontal"
+                android:text="Group B"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"/>
+
+            <ImageView
+                android:id="@+id/genealogy_level_2_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/icon_spacing"
+                android:src="@mipmap/genealogy_grey_user_round"/>
+
+            <TextView
+                android:id="@+id/genealogy_level_2_3_id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"/>
+
+            <LinearLayout
+                android:id="@+id/genealogy_level_2_3_container_more"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/vertical_spacing"
+        android:orientation="horizontal"
+        android:visibility="gone"
+        android:weightSum="4">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <View
+                style="@style/ViewVerticalSeparator"
+                android:layout_height="10dp"
+                android:gravity="center_horizontal|bottom"
+                android:paddingTop="@dimen/icon_spacing"
+                />
+
+            <View
+                style="@style/ViewSeparator"
+                android:layout_marginEnd="@dimen/vertical_spacing"
+                android:layout_marginStart="@dimen/vertical_spacing"
+                android:gravity="bottom"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <View
+                style="@style/ViewVerticalSeparator"
+                android:layout_height="10dp"
+                android:gravity="center_horizontal|bottom"
+                android:paddingTop="@dimen/icon_spacing"
+                />
+
+            <View
+                style="@style/ViewSeparator"
+                android:layout_marginEnd="@dimen/vertical_spacing"
+                android:layout_marginStart="@dimen/vertical_spacing"
+                android:gravity="bottom"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <View
+                style="@style/ViewVerticalSeparator"
+                android:layout_height="10dp"
+                android:gravity="center_horizontal|bottom"
+                android:paddingTop="@dimen/icon_spacing"
+                />
+
+            <View
+                style="@style/ViewSeparator"
+                android:layout_marginEnd="@dimen/vertical_spacing"
+                android:layout_marginStart="@dimen/vertical_spacing"
+                android:gravity="bottom"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <View
+                style="@style/ViewVerticalSeparator"
+                android:layout_height="10dp"
+                android:gravity="center_horizontal|bottom"
+                android:paddingTop="@dimen/icon_spacing"
+                />
+
+            <View
+                style="@style/ViewSeparator"
+                android:layout_marginEnd="@dimen/vertical_spacing"
+                android:layout_marginStart="@dimen/vertical_spacing"
+                android:gravity="bottom"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/genealogy_level_3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/vertical_spacing"
+        android:orientation="horizontal"
+        android:visibility="gone"
+        android:weightSum="8">
+
+        <LinearLayout
+            android:id="@+id/genealogy_level_3_0_container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_horizontal"
+                android:text="Group A"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"/>
+
+            <ImageView
+                android:id="@+id/genealogy_level_3_0"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/icon_spacing"
+                android:src="@mipmap/genealogy_grey_user_round"/>
+
+            <TextView
+                android:id="@+id/genealogy_level_3_0_id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"/>
+
+            <LinearLayout
+                android:id="@+id/genealogy_level_3_0_container_more"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/genealogy_level_3_1_container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_horizontal"
+                android:text="Group B"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"/>
+
+            <ImageView
+                android:id="@+id/genealogy_level_3_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/icon_spacing"
+                android:src="@mipmap/genealogy_grey_user_round"/>
+
+            <TextView
+                android:id="@+id/genealogy_level_3_1_id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"/>
+
+            <LinearLayout
+                android:id="@+id/genealogy_level_3_1_container_more"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/genealogy_level_3_2_container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_horizontal"
+                android:text="Group A"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"/>
+
+            <ImageView
+                android:id="@+id/genealogy_level_3_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/icon_spacing"
+                android:src="@mipmap/genealogy_grey_user_round"/>
+
+            <TextView
+                android:id="@+id/genealogy_level_3_2_id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"/>
+
+            <LinearLayout
+                android:id="@+id/genealogy_level_3_2_container_more"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/genealogy_level_3_3_container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_horizontal"
+                android:text="Group B"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"/>
+
+            <ImageView
+                android:id="@+id/genealogy_level_3_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/icon_spacing"
+                android:src="@mipmap/genealogy_grey_user_round"/>
+
+            <TextView
+                android:id="@+id/genealogy_level_3_3_id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"/>
+
+            <LinearLayout
+                android:id="@+id/genealogy_level_3_3_container_more"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/genealogy_level_3_4_container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_horizontal"
+                android:text="Group A"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"/>
+
+            <ImageView
+                android:id="@+id/genealogy_level_3_4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/icon_spacing"
+                android:src="@mipmap/genealogy_grey_user_round"/>
+
+            <TextView
+                android:id="@+id/genealogy_level_3_4_id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"/>
+
+            <LinearLayout
+                android:id="@+id/genealogy_level_3_4_container_more"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/genealogy_level_3_5_container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_horizontal"
+                android:text="Group B"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"/>
+
+            <ImageView
+                android:id="@+id/genealogy_level_3_5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/icon_spacing"
+                android:src="@mipmap/genealogy_grey_user_round"/>
+
+            <TextView
+                android:id="@+id/genealogy_level_3_5_id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"/>
+
+            <LinearLayout
+                android:id="@+id/genealogy_level_3_5_container_more"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/genealogy_level_3_6_container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_horizontal"
+                android:text="Group A"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"/>
+
+            <ImageView
+                android:id="@+id/genealogy_level_3_6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/icon_spacing"
+                android:src="@mipmap/genealogy_grey_user_round"/>
+
+            <TextView
+                android:id="@+id/genealogy_level_3_6_id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"/>
+
+            <LinearLayout
+                android:id="@+id/genealogy_level_3_6_container_more"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/genealogy_level_3_7_container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text="Group B"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"/>
+
+            <ImageView
+                android:id="@+id/genealogy_level_3_7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/icon_spacing"
+                android:src="@mipmap/genealogy_grey_user_round"/>
+
+            <TextView
+                android:id="@+id/genealogy_level_3_7_id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"/>
+
+            <LinearLayout
+                android:id="@+id/genealogy_level_3_7_container_more"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</LinearLayout>
