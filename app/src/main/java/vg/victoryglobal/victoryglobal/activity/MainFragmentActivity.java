@@ -330,11 +330,12 @@ public class MainFragmentActivity extends AppCompatActivity implements LoginList
                 fragment = new CurrentSalesFragment();
                 fragment_manager.beginTransaction().replace(R.id.content_frame, fragment).commit();
                 mBottomNavigationView.getMenu().findItem(R.id.navigation_home).setChecked(true);
+*/
             } else if (id == R.id.drawer_navigation_genealogy) {
                 fragment = new GenealogyFragment();
                 fragment_manager.beginTransaction().replace(R.id.content_frame, fragment).commit();
                 mBottomNavigationView.getMenu().findItem(R.id.navigation_home).setChecked(true);
-*/
+
             } else if (id == R.id.drawer_navigation_payout_reports) {
                 fragment = new PayoutReportsFragment();
                 fragment_manager.beginTransaction().replace(R.id.content_frame, fragment).commit();

@@ -14,27 +14,17 @@ import android.os.Parcelable;
 /*
  * Upline model from API response
  */
-public class Upline implements Parcelable {
-    public Integer id;
+public class Upline extends BaseMlmMember {
     public Profile mlm_account;
 
     protected Upline(Parcel in) {
-        if (in.readByte() == 0) {
-            id = null;
-        } else {
-            id = in.readInt();
-        }
+        super(in);
         mlm_account = in.readParcelable(Profile.class.getClassLoader());
     }
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        if (id == null) {
-            dest.writeByte((byte) 0);
-        } else {
-            dest.writeByte((byte) 1);
-            dest.writeInt(id);
-        }
+        super.writeToParcel(dest, flags);
         dest.writeParcelable(mlm_account, flags);
     }
 

@@ -14,28 +14,18 @@ import android.os.Parcelable;
 /*
  * Sponsor model from API response
  */
-public class Sponsor implements Parcelable {
+public class Sponsor extends BaseMlmMember {
 
-    public Integer id;
     public Profile mlm_account;
 
     protected Sponsor(Parcel in) {
-        if (in.readByte() == 0) {
-            id = null;
-        } else {
-            id = in.readInt();
-        }
+        super(in);
         mlm_account = in.readParcelable(Profile.class.getClassLoader());
     }
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        if (id == null) {
-            dest.writeByte((byte) 0);
-        } else {
-            dest.writeByte((byte) 1);
-            dest.writeInt(id);
-        }
+        super.writeToParcel(dest, flags);
         dest.writeParcelable(mlm_account, flags);
     }
 
