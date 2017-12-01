@@ -8,18 +8,15 @@
 
 package vg.victoryglobal.victoryglobal.model;
 
-import android.util.Log;
-
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class PayoutReportsRequest {
     private static final PayoutReportsRequest onlyInstance = new PayoutReportsRequest();
 
     //Response from API request
-    private PayoutReports payoutReports = null;
+    private PayoutReportsResponse payoutReportsResponse = null;
 
     //save to array list once fetched a successful reponse
     private ArrayList<PayoutReport> payoutReportsList = new ArrayList<>();
@@ -56,15 +53,15 @@ public class PayoutReportsRequest {
         this.mlmResponseErrors = mlmResponseErrors;
     }
 
-    public void setPayoutReports(PayoutReports payoutReports) {
-        this.payoutReports = payoutReports;
+    public void setPayoutReportsResponse(PayoutReportsResponse payoutReportsResponse) {
+        this.payoutReportsResponse = payoutReportsResponse;
     }
 
-    public PayoutReports getPayoutReports() {
-        if(payoutReports == null){
-            this.payoutReports = new PayoutReports();
+    public PayoutReportsResponse getPayoutReportsResponse() {
+        if(payoutReportsResponse == null){
+            this.payoutReportsResponse = new PayoutReportsResponse();
         }
-        return payoutReports;
+        return payoutReportsResponse;
     }
 
     public void setSuccess(Boolean success) {
@@ -95,41 +92,41 @@ public class PayoutReportsRequest {
     public synchronized Boolean savePayoutReports(String response_data) {
         //NOTE: When adding to the list, use add or addAll instead of deep copy
         Gson gson = new Gson();
-        payoutReports = gson.fromJson(response_data, PayoutReports.class);
-        if(payoutReports == null) {
+        payoutReportsResponse = gson.fromJson(response_data, PayoutReportsResponse.class);
+        if(payoutReportsResponse == null) {
             setSuccess(false);
             return false;
         }else{
 
             if(pagingPrev == null){
-                pagingPrev = payoutReports.paging;
+                pagingPrev = payoutReportsResponse.paging;
                 itemInsertedPosition = 0;
-                itemInsertedCount = payoutReports.payout_reports.size();
-                payoutReportsList.addAll(payoutReports.payout_reports);
-            }else if(!pagingPrev.equals(payoutReports.paging)){
-                if(pagingPrev.count == payoutReports.paging.count
-                        && pagingPrev.perPage ==  payoutReports.paging.perPage
-                        && pagingPrev.direction == payoutReports.paging.direction
-                        && pagingPrev.page !=  payoutReports.paging.page){
+                itemInsertedCount = payoutReportsResponse.payout_reports.size();
+                payoutReportsList.addAll(payoutReportsResponse.payout_reports);
+            }else if(!pagingPrev.equals(payoutReportsResponse.paging)){
+                if(pagingPrev.count == payoutReportsResponse.paging.count
+                        && pagingPrev.perPage ==  payoutReportsResponse.paging.perPage
+                        && pagingPrev.direction == payoutReportsResponse.paging.direction
+                        && pagingPrev.page !=  payoutReportsResponse.paging.page){
 
-                    if(pagingPrev.page < payoutReports.paging.page) {
+                    if(pagingPrev.page < payoutReportsResponse.paging.page) {
                         //append
                         itemInsertedPosition = payoutReportsList.size() - 1;
-                        itemInsertedCount = payoutReports.payout_reports.size();
-                        payoutReportsList.addAll(payoutReports.payout_reports);
+                        itemInsertedCount = payoutReportsResponse.payout_reports.size();
+                        payoutReportsList.addAll(payoutReportsResponse.payout_reports);
                     }else{
                         //prepend
                         itemInsertedPosition = 0;
-                        itemInsertedCount = payoutReports.payout_reports.size();
-                        payoutReportsList.addAll(0, payoutReports.payout_reports);
+                        itemInsertedCount = payoutReportsResponse.payout_reports.size();
+                        payoutReportsList.addAll(0, payoutReportsResponse.payout_reports);
                     }
 
                 }else{
                     // change on direction, perpage, or has additional entry
                     itemInsertedPosition = 0;
-                    itemInsertedCount = payoutReports.payout_reports.size();
+                    itemInsertedCount = payoutReportsResponse.payout_reports.size();
                     payoutReportsList.clear();
-                    payoutReportsList.addAll(payoutReports.payout_reports);
+                    payoutReportsList.addAll(payoutReportsResponse.payout_reports);
                 }
             }else{
                 //do nothing, exception
@@ -137,5 +134,11 @@ public class PayoutReportsRequest {
         }
         setSuccess(true);
         return true;
+    }
+
+    public void reset()
+    {
+        payoutReportsResponse = null;
+        payoutReportsList.clear();
     }
 }

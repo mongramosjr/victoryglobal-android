@@ -135,4 +135,10 @@ public class PurchasesRequest {
         setSuccess(true);
         return true;
     }
+
+    public void reset()
+    {
+        purchasesResponse = null;
+        purchaseList.clear();
+    }
 }

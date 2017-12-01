@@ -54,6 +54,10 @@ import vg.victoryglobal.victoryglobal.listener.LoginListener;
 import vg.victoryglobal.victoryglobal.listener.LogoutListener;
 import vg.victoryglobal.victoryglobal.model.AccountLogin;
 import vg.victoryglobal.victoryglobal.model.AuthLoginRequest;
+import vg.victoryglobal.victoryglobal.model.DistributorAccountRequest;
+import vg.victoryglobal.victoryglobal.model.GenealogyRequest;
+import vg.victoryglobal.victoryglobal.model.PayoutReportsRequest;
+import vg.victoryglobal.victoryglobal.model.PurchasesRequest;
 import vg.victoryglobal.victoryglobal.utils.PersistentCookieStore;
 
 public class MainFragmentActivity extends AppCompatActivity implements LoginListener,LogoutListener {
@@ -453,6 +457,27 @@ public class MainFragmentActivity extends AppCompatActivity implements LoginList
 
         toggleNavigationHeader(false);
         toggleNavigationLoginMenu(false);
+
+        //reset stored response in profile, payout reports, purchases and genealogy
+        //TODO: reset also in current sales response
+        GenealogyRequest genealogyRequest = GenealogyRequest.getInstance();
+        genealogyRequest.reset();
+
+        DistributorAccountRequest distributorAccountRequest = DistributorAccountRequest.getInstance();
+        distributorAccountRequest.reset();
+
+        PayoutReportsRequest payoutReportsRequest = PayoutReportsRequest.getInstance();
+        payoutReportsRequest.reset();
+
+        PurchasesRequest purchasesRequest = PurchasesRequest.getInstance();
+        purchasesRequest.reset();
+
+        //CurrentSalesRequest currentSalesRequest = CurrentSalesRequest.getInstance();
+        //currentSalesRequest.reset();
+
+
+
+
 
         Fragment fragment = null;
         FragmentManager fragment_manager = getFragmentManager();

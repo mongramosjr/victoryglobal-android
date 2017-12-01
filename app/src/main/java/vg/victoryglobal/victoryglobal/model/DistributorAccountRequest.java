@@ -68,4 +68,9 @@ public class DistributorAccountRequest {
         setSuccess(true);
         return true;
     }
+
+    public void reset()
+    {
+        distributorAccountResponse = null;
+    }
 }

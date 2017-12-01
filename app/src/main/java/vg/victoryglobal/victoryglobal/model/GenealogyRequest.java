@@ -90,4 +90,10 @@ public class GenealogyRequest {
         setSuccess(true);
         return true;
     }
+
+    public void reset()
+    {
+        genealogyResponse = null;
+        genealogyList.clear();
+    }
 }

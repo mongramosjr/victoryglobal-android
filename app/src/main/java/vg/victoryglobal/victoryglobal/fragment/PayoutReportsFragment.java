@@ -193,7 +193,7 @@ public class PayoutReportsFragment extends Fragment
 
             //callback_code.getStepperLayout().hideProgress();
             Toast.makeText(getActivity().getApplicationContext(), R.string.ui_exception, Toast.LENGTH_LONG).show();
-            //Log.e("PayoutReports", ex.getMessage());
+            //Log.e("PayoutReportsResponse", ex.getMessage());
             return;
         }
 
@@ -204,7 +204,7 @@ public class PayoutReportsFragment extends Fragment
                         new com.android.volley.Response.Listener<JSONObject>() {
                             @Override
                             public void onResponse(JSONObject response) {
-                                //Log.e("PayoutReports", "Response: " + response.toString());
+                                //Log.e("PayoutReportsResponse", "Response: " + response.toString());
                                 payoutReportsCallback(view, response.toString());
                             }
                         },
@@ -212,7 +212,7 @@ public class PayoutReportsFragment extends Fragment
                             @Override
                             public void onErrorResponse(VolleyError error) {
                                 // Do nothing
-                                Log.e("PayoutReports", "onErrorResponse: " + error.toString());
+                                Log.e("PayoutReportsResponse", "onErrorResponse: " + error.toString());
                                 Toast.makeText(getActivity().getApplicationContext(), R.string.ui_unexpected_response, Toast.LENGTH_LONG).show();
                                 swipeRefreshLayout.setRefreshing(false);
                             }

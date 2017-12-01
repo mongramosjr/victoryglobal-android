@@ -13,18 +13,18 @@ import android.os.Parcelable;
 
 import java.util.ArrayList;
 
-public class PayoutReports implements Parcelable{
+public class PayoutReportsResponse implements Parcelable{
     public ArrayList<PayoutReport> payout_reports;
     public Paging paging;
     public Integer status;
 
 
-    public PayoutReports()
+    public PayoutReportsResponse()
     {
        payout_reports = new ArrayList<>();
     }
 
-    protected PayoutReports(Parcel in) {
+    protected PayoutReportsResponse(Parcel in) {
         payout_reports = new ArrayList<>();
         payout_reports = in.createTypedArrayList(PayoutReport.CREATOR);
         paging = in.readParcelable(Paging.class.getClassLoader());
@@ -52,15 +52,15 @@ public class PayoutReports implements Parcelable{
         return 0;
     }
 
-    public static final Creator<PayoutReports> CREATOR = new Creator<PayoutReports>() {
+    public static final Creator<PayoutReportsResponse> CREATOR = new Creator<PayoutReportsResponse>() {
         @Override
-        public PayoutReports createFromParcel(Parcel in) {
-            return new PayoutReports(in);
+        public PayoutReportsResponse createFromParcel(Parcel in) {
+            return new PayoutReportsResponse(in);
         }
 
         @Override
-        public PayoutReports[] newArray(int size) {
-            return new PayoutReports[size];
+        public PayoutReportsResponse[] newArray(int size) {
+            return new PayoutReportsResponse[size];
         }
     };
 
