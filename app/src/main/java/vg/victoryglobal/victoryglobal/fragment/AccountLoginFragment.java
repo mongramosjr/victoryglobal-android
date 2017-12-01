@@ -357,6 +357,7 @@ public class AccountLoginFragment extends Fragment {
             simpleProgressBar.setVisibility(View.INVISIBLE);
         }
 
+        simpleProgressBar.setVisibility(View.INVISIBLE);
 
     }
 
@@ -399,6 +400,7 @@ public class AccountLoginFragment extends Fragment {
                                 // Do nothing
                                 Log.e("AccountLogin", "onErrorResponse: " + error.toString());
                                 Toast.makeText(getActivity().getApplicationContext(), R.string.ui_unexpected_response, Toast.LENGTH_LONG).show();
+                                simpleProgressBar.setVisibility(View.INVISIBLE);
                             }
                         }
                 );
