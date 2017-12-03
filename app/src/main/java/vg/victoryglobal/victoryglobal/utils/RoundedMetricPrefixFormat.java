@@ -83,7 +83,7 @@ public class RoundedMetricPrefixFormat extends Format {
     @Override
     public Object parseObject(String source, ParsePosition pos) {
 
-        if (NumberUtils.isNumber(source)) {
+        if (NumberUtils.isParsable(source)) {
 
             // if the value is a number (without a prefix) don't return it as a Long or we'll lose any decimals
             pos.setIndex(source.length());
