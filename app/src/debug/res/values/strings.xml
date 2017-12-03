@@ -17,4 +17,8 @@
 
     <string name="facebook_app_name">Victory Global</string>
     <string name="api_url">http://api-beta.victoryglobal.vg</string>
+
+    <string name="admob_app_id">ca-app-pub-3940256099942544~3347511713</string>
+    <string name="admob_add_id_afterlogin">ca-app-pub-3940256099942544/1033173712</string>
+    <string name="admob_add_id_afterlogout">ca-app-pub-3940256099942544/1033173712</string>
 </resources>
