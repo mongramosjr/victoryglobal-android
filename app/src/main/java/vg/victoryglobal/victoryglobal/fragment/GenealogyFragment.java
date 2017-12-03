@@ -64,6 +64,7 @@ public class GenealogyFragment extends Fragment implements SwipeRefreshLayout.On
     ImageView genealogyMeAvatar;
     TextView genealogyMeId;
     TextView genealogyMeFullname;
+    TextView genealogyMeMlmRank;
 
     ImageView genealogyLevel_1_0;
     ImageView genealogyLevel_1_1;
@@ -143,6 +144,8 @@ public class GenealogyFragment extends Fragment implements SwipeRefreshLayout.On
         genealogyMeFullname = view.findViewById(R.id.genealogy_me_fullname);
         genealogyMeId= view.findViewById(R.id.genealogy_me_id);
 
+        genealogyMeMlmRank = view.findViewById(R.id.genealogy_me_mlm_rank);
+
         genealogyLevel_1_0 = view.findViewById(R.id.genealogy_level_1_0);
         genealogyLevel_1_1 = view.findViewById(R.id.genealogy_level_1_1);
         genealogyLevel_1_0_container_more = view.findViewById(R.id.genealogy_level_1_0_container_more);
@@ -206,7 +209,12 @@ public class GenealogyFragment extends Fragment implements SwipeRefreshLayout.On
     public void onRefresh() {
         swipeRefreshLayout.setRefreshing(true);
 
-        genealogyStructure(currentView, null);
+        if(genealogyRequest.isSuccess() && genealogyRequest.getGenealogyResponse() != null) {
+            GenealogyResponse genealogy_structure = genealogyRequest.getGenealogyResponse();
+            prepareGenealogy(genealogy_structure);
+        }else {
+            genealogyStructure(currentView, null);
+        }
     }
 
     private void prepareGenealogy(GenealogyResponse genealogy_structure){
@@ -216,10 +224,16 @@ public class GenealogyFragment extends Fragment implements SwipeRefreshLayout.On
 
         String full_name = genealogy_structure.profile.frontend_label;
 
-        String distributor_id_label = String.format("%09d", genealogy_structure.account.id);
+        String distributor_id_label =
+                genealogy_structure.account.country_code
+                + "-"
+                + String.format("%09d", genealogy_structure.account.id);
 
+        String mlm_rank = genealogy_structure.mlm_ranks
+                .get(String.valueOf(genealogy_structure.account.mlm_rank));
         genealogyMeFullname.setText(full_name);
         genealogyMeId.setText(distributor_id_label);
+        genealogyMeMlmRank.setText(mlm_rank);
 
         NumberFormat nf = NumberFormat.getIntegerInstance(Locale.US);
         nf.setParseIntegerOnly(true);
