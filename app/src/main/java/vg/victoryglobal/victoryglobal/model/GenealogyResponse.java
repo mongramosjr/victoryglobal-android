@@ -12,6 +12,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class GenealogyResponse {
 
@@ -23,5 +24,9 @@ public class GenealogyResponse {
     public Upline upline;
     public Account account;
     public Profile profile;
+
+    public HashMap<String, String> mlm_ranks = new HashMap<>();
+
+    public HashMap<String, String>pickup_centers = new HashMap<>();
 
 }
