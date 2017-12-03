@@ -29,6 +29,8 @@ public class GenealogyRequest {
 
     private Boolean success = false;
 
+    private Integer distributor_id = null;
+
     private GenealogyRequest() {
     }
 
@@ -74,7 +76,6 @@ public class GenealogyRequest {
             return false;
         }
 
-        Integer distributor_id = null;
         if(genealogyResponse.account != null) {
             if(genealogyResponse.account.id != null) {
                 distributor_id = genealogyResponse.account.id;
@@ -93,6 +94,7 @@ public class GenealogyRequest {
 
     public void reset()
     {
+        distributor_id = null;
         genealogyResponse = null;
         genealogyList.clear();
     }
