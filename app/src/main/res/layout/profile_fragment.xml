@@ -55,7 +55,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center_horizontal"
                     android:paddingTop="@dimen/drawer_navigation_header_vertical_spacing"
-                    android:text="Android Studio"
+                    android:text="Juan Dela Cruz"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large.Inverse" />
 
                 <TextView
@@ -64,6 +64,13 @@
                     android:layout_height="wrap_content"
                     android:gravity="center_horizontal"
                     android:text="PH-0000000001"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Subhead.Inverse"/>
+                <TextView
+                    android:id="@+id/profile_mlm_rank"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:text="DISTRIBUTOR"
                     android:textAppearance="@style/TextAppearance.AppCompat.Subhead.Inverse"/>
 
                 <include layout="@layout/profile_current_income"/>
