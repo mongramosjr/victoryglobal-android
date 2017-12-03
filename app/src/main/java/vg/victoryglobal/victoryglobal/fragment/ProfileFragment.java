@@ -57,6 +57,7 @@ public class ProfileFragment extends Fragment implements SwipeRefreshLayout.OnRe
     // TextView
     TextView profileFullname;
     TextView profileDistributorId;
+    TextView profileMlmRank;
 
     TextView location0BalanceBinary;
     TextView location1BalanceBinary;
@@ -117,6 +118,8 @@ public class ProfileFragment extends Fragment implements SwipeRefreshLayout.OnRe
         profileFullname = view.findViewById(R.id.profile_fullname);
         profileDistributorId = view.findViewById(R.id.profile_distributor_id);
 
+        profileMlmRank = view.findViewById(R.id.profile_mlm_rank);
+
         location0BalanceBinary = view.findViewById(R.id.location0_balance_bv_binary);
         location1BalanceBinary = view.findViewById(R.id.location1_balance_bv_binary);
         binary = view.findViewById(R.id.bv_binary);
@@ -176,11 +179,18 @@ public class ProfileFragment extends Fragment implements SwipeRefreshLayout.OnRe
 
         String full_name = authLoginRequest.getAuthLogin().getUser().frontend_label;
 
-        String distributor_id_label = String.format("%09d", authLoginRequest.getAccountLogin().getMlmMemberId());
+        String distributor_id_label =
+                distributor_account.account.country_code
+                + "-"
+                + String.format("%09d", distributor_account.account.id);
+
+        String mlm_rank = distributor_account.mlm_rank.frontend_label;
 
         profileFullname.setText(full_name);
 
         profileDistributorId.setText(distributor_id_label);
+
+        profileMlmRank.setText(mlm_rank);
 
 
         DateTimeFormat dateTimeFormat = new DateTimeFormat();
