@@ -33,6 +33,11 @@
 
     <string name="facebook_app_name">Victory Global</string>
 
+    <!-- AdMob -->
+    <string name="admob_app_id">ca-app-pub-7232836526709156~3269468932</string>
+    <string name="admob_add_id_afterlogin">ca-app-pub-7232836526709156/5867712114</string>
+    <string name="admob_add_id_afterlogout">ca-app-pub-7232836526709156/2690884436</string>
+
     <!-- activation code, upgrade account, register account -->
     <string name="new_account">Set up your business account with us — so you can stand out, and reach your goals</string>
     <string name="upgrade_account">Upgrading your account allows you to earn more</string>

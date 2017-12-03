@@ -37,6 +37,7 @@ import java.util.List;
 import java.util.Locale;
 
 import vg.victoryglobal.victoryglobal.R;
+import vg.victoryglobal.victoryglobal.listener.LogoutListener;
 import vg.victoryglobal.victoryglobal.model.AuthLoginRequest;
 import vg.victoryglobal.victoryglobal.model.DistributorAccountResponse;
 import vg.victoryglobal.victoryglobal.model.DistributorAccountRequest;
@@ -88,7 +89,7 @@ public class ProfileFragment extends Fragment implements SwipeRefreshLayout.OnRe
 
     TextView address;
 
-
+    LogoutListener logoutListener;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -96,6 +97,10 @@ public class ProfileFragment extends Fragment implements SwipeRefreshLayout.OnRe
         authLoginRequest = AuthLoginRequest.getAuthLoginRequest("main");
         distributorAccountRequest = DistributorAccountRequest.getInstance();
         setRetainInstance(true);
+
+        if(getActivity() instanceof LogoutListener){
+            logoutListener = (LogoutListener) getActivity();
+        }
     }
 
     // The onCreateView method is called when Fragment should create its View object hierarchy,
@@ -165,6 +170,7 @@ public class ProfileFragment extends Fragment implements SwipeRefreshLayout.OnRe
 
     @Override
     public void onRefresh() {
+
         swipeRefreshLayout.setRefreshing(true);
 
         account(currentView);
@@ -307,8 +313,10 @@ public class ProfileFragment extends Fragment implements SwipeRefreshLayout.OnRe
                 Toast.makeText(getActivity().getApplicationContext(), message, Toast.LENGTH_LONG).show();
             }else if(status == 401 ){
                 String message = object.getString("message");
-                //TODO: force logout
+                //force logout
                 Toast.makeText(getActivity().getApplicationContext(), message, Toast.LENGTH_LONG).show();
+                swipeRefreshLayout.setRefreshing(false);
+                logoutListener.prepareLogout(authLoginRequest.getAccountLogin());
 
             }else{
                 Toast.makeText(getActivity().getApplicationContext(), R.string.ui_exception, Toast.LENGTH_LONG).show();

@@ -27,6 +27,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import vg.victoryglobal.victoryglobal.R;
+import vg.victoryglobal.victoryglobal.listener.LoginListener;
+import vg.victoryglobal.victoryglobal.listener.LogoutListener;
 import vg.victoryglobal.victoryglobal.model.AuthLoginRequest;
 
 public class CurrentSalesFragment extends Fragment {
@@ -35,10 +37,16 @@ public class CurrentSalesFragment extends Fragment {
 
     AuthLoginRequest authLoginRequest;
 
+    private LogoutListener logoutListener;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         authLoginRequest = AuthLoginRequest.getAuthLoginRequest("main");
+
+        if(getActivity() instanceof LogoutListener){
+            logoutListener = (LogoutListener) getActivity();
+        }
     }
 
     // The onCreateView method is called when Fragment should create its View object hierarchy,

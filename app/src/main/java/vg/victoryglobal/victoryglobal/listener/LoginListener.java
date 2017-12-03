@@ -15,4 +15,6 @@ public interface LoginListener {
     void prepareLogin(AccountLogin account_login);
 
     void prepareRegister();
+
+    void showInterstitialAdAfterLogin();
 }

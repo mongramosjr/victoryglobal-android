@@ -37,6 +37,7 @@ import java.util.ArrayList;
 
 import vg.victoryglobal.victoryglobal.R;
 import vg.victoryglobal.victoryglobal.adapter.PurchasesAdapter;
+import vg.victoryglobal.victoryglobal.listener.LogoutListener;
 import vg.victoryglobal.victoryglobal.model.AuthLoginRequest;
 import vg.victoryglobal.victoryglobal.model.Purchase;
 import vg.victoryglobal.victoryglobal.model.PurchasesRequest;
@@ -57,12 +58,18 @@ public class PurchasesFragment extends Fragment
 
     AuthLoginRequest authLoginRequest;
 
+    LogoutListener logoutListener;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         authLoginRequest = AuthLoginRequest.getAuthLoginRequest("main");
         purchasesRequest = PurchasesRequest.getInstance();
         setRetainInstance(true);
+
+        if(getActivity() instanceof LogoutListener){
+            logoutListener = (LogoutListener) getActivity();
+        }
     }
 
     // The onCreateView method is called when Fragment should create its View object hierarchy,
@@ -141,8 +148,11 @@ public class PurchasesFragment extends Fragment
                 Toast.makeText(getActivity().getApplicationContext(), message, Toast.LENGTH_LONG).show();
             }else if(status == 401 ){
                 String message = object.getString("message");
-                //TODO: force logout
+                //force logout
+
                 Toast.makeText(getActivity().getApplicationContext(), message, Toast.LENGTH_LONG).show();
+                swipeRefreshLayout.setRefreshing(false);
+                logoutListener.prepareLogout(authLoginRequest.getAccountLogin());
 
             }else{
                 Toast.makeText(getActivity().getApplicationContext(), R.string.ui_exception, Toast.LENGTH_LONG).show();

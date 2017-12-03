@@ -60,7 +60,14 @@ import vg.victoryglobal.victoryglobal.model.PayoutReportsRequest;
 import vg.victoryglobal.victoryglobal.model.PurchasesRequest;
 import vg.victoryglobal.victoryglobal.utils.PersistentCookieStore;
 
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.InterstitialAd;
+import com.google.android.gms.ads.MobileAds;
+
 public class MainFragmentActivity extends AppCompatActivity implements LoginListener,LogoutListener {
+
+    private static final String TAG = "MainActivity";
 
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mDrawerToggle;
@@ -79,6 +86,8 @@ public class MainFragmentActivity extends AppCompatActivity implements LoginList
 
     CookieStore cookieStore;
 
+    private InterstitialAd mInterstitialAd;
+
     @Override
     public void onSaveInstanceState(Bundle outState) {
     /*Save your data to be restored here
@@ -93,6 +102,44 @@ public class MainFragmentActivity extends AppCompatActivity implements LoginList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_fragment_activity);
+
+        MobileAds.initialize(this, getString(R.string.admob_app_id));
+
+        Log.e("*******", getString(R.string.admob_app_id));
+        Log.e("*******", getString(R.string.admob_add_id_afterlogin));
+
+        mInterstitialAd = new InterstitialAd(this);
+        mInterstitialAd.setAdUnitId(getString(R.string.admob_add_id_afterlogin));
+        mInterstitialAd.loadAd(new AdRequest.Builder().build());
+
+        mInterstitialAd.setAdListener(new AdListener() {
+            @Override
+            public void onAdLoaded() {
+                // Code to be executed when an ad finishes loading.
+            }
+
+            @Override
+            public void onAdFailedToLoad(int errorCode) {
+                // Code to be executed when an ad request fails.
+                Log.w(TAG, "onAdFailedToLoad:" + errorCode);
+            }
+
+            @Override
+            public void onAdOpened() {
+                // Code to be executed when the ad is displayed.
+            }
+
+            @Override
+            public void onAdLeftApplication() {
+                // Code to be executed when the user has left the app.
+            }
+
+            @Override
+            public void onAdClosed() {
+                // Code to be executed when when the interstitial ad is closed.
+                requestNewInterstitial();
+            }
+        });
 
         boolean  isDebuggable =  (getApplicationInfo().flags == ApplicationInfo.FLAG_DEBUGGABLE );
         authLoginRequest = AuthLoginRequest.getAuthLoginRequest("main", getApplicationContext());
@@ -245,6 +292,17 @@ public class MainFragmentActivity extends AppCompatActivity implements LoginList
             super.onBackPressed();
         }
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        if (!mInterstitialAd.isLoaded()) {
+            requestNewInterstitial();
+        }
+    }
+
+    //other methods
 
     private void toggleNavigationLoginMenu(boolean show) {
 
@@ -438,10 +496,14 @@ public class MainFragmentActivity extends AppCompatActivity implements LoginList
 
     @Override
     public void prepareLogin(AccountLogin account_login) {
+        showInterstitialAdAfterLogin();
+
         toggleNavigationHeader(true);
         toggleNavigationLoginMenu(true);
 
         mBottomNavigationView.setSelectedItemId(R.id.navigation_home);
+
+
     }
 
     @Override
@@ -450,7 +512,28 @@ public class MainFragmentActivity extends AppCompatActivity implements LoginList
     }
 
     @Override
+    public void showInterstitialAdAfterLogin() {
+        if (mInterstitialAd.isLoaded()) {
+            mInterstitialAd.show();
+        } else {
+            Log.d(TAG, "The interstitial wasn't loaded yet.");
+        }
+    }
+
+    @Override
+    public void showInterstitialAdAfterLogout() {
+        if (mInterstitialAd.isLoaded()) {
+            mInterstitialAd.show();
+        } else {
+            Log.d(TAG, "The interstitial wasn't loaded yet.");
+        }
+    }
+
+    @Override
     public void prepareLogout(AccountLogin account_login) {
+
+        showInterstitialAdAfterLogout();
+
         AuthLoginRequest authLoginRequest = AuthLoginRequest.getAuthLoginRequest("main");
         authLoginRequest.setSuccess(false);
         authLoginRequest.reset();
@@ -484,6 +567,8 @@ public class MainFragmentActivity extends AppCompatActivity implements LoginList
         fragment = new HomeFragment();
         fragment_manager.beginTransaction().replace(R.id.content_frame, fragment).commit();
         mBottomNavigationView.getMenu().findItem(R.id.navigation_home).setChecked(true);
+
+
     }
 
     //other method
@@ -526,5 +611,12 @@ public class MainFragmentActivity extends AppCompatActivity implements LoginList
             mBottomNavigationView.getMenu().findItem(R.id.navigation_home).setChecked(true);
             setTitle("Profile");
         }
+    }
+
+    private void requestNewInterstitial() {
+        AdRequest adRequest = new AdRequest.Builder()
+                .build();
+
+        mInterstitialAd.loadAd(adRequest);
     }
 }

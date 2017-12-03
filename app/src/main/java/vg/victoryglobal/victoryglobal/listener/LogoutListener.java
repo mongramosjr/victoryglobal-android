@@ -13,4 +13,6 @@ import vg.victoryglobal.victoryglobal.model.AccountLogin;
 public interface LogoutListener {
 
     void prepareLogout(AccountLogin account_login);
+
+    void showInterstitialAdAfterLogout();
 }
