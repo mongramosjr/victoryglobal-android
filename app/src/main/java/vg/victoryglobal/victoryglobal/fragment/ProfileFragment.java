@@ -9,13 +9,17 @@
 package vg.victoryglobal.victoryglobal.fragment;
 
 import android.app.Fragment;
+import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
+import android.app.FragmentManager;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -165,7 +169,59 @@ public class ProfileFragment extends Fragment implements SwipeRefreshLayout.OnRe
             account(currentView);
         }
 
+        ImageView profile_info_edit = view.findViewById(R.id.profile_info_edit);
+        profile_info_edit.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                showProfileInfoEditDialog();
+            }
+        });
 
+        ImageView profile_contact_info_edit = view.findViewById(R.id.profile_contact_info_edit);
+        profile_contact_info_edit.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                showProfileContactInfoEditDialog();
+            }
+        });
+
+        ImageView profile_address_edit = view.findViewById(R.id.profile_address_edit);
+        profile_address_edit.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                showProfileAddressEditDialog();
+            }
+        });
+
+        ImageView profile_bank_account_edit = view.findViewById(R.id.profile_bank_account_edit);
+        profile_bank_account_edit.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                showProfileBankAccountEditDialog();
+            }
+        });
+
+
+    }
+
+    private void showProfileInfoEditDialog() {
+        FragmentManager fm = getChildFragmentManager();
+        ProfileInfoEditFragment profileInfoEditDialog = new ProfileInfoEditFragment();
+        profileInfoEditDialog.show(fm, "profile_info_edit_tag");
+    }
+
+    private void showProfileContactInfoEditDialog() {
+        FragmentManager fm = getChildFragmentManager();
+        ProfileContactInfoEditFragment profileContactInfoEditDialog = new ProfileContactInfoEditFragment();
+        profileContactInfoEditDialog.show(fm, "profile_contact_info_edit_tag");
+    }
+
+    private void showProfileAddressEditDialog() {
+        FragmentManager fm = getChildFragmentManager();
+        ProfileAddressEditFragment profileAddressEditDialog = new ProfileAddressEditFragment();
+        profileAddressEditDialog.show(fm, "profile_address_edit_tag");
+    }
+
+    private void showProfileBankAccountEditDialog() {
+        FragmentManager fm = getChildFragmentManager();
+        ProfileBankAccountEditFragment profileBankAccountEditDialog = new ProfileBankAccountEditFragment();
+        profileBankAccountEditDialog.show(fm, "profile_bank_account_edit_tag");
     }
 
     @Override

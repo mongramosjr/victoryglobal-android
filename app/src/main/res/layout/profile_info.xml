@@ -56,7 +56,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Date of Birth"
+                android:text="@string/date_of_birth_hint"
                 android:textAppearance="@style/TextAppearance.AppCompat.Small"
                 />
 
@@ -121,7 +121,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Place of Birth"
+                android:text="@string/place_of_birth_hint"
                 android:textAppearance="@style/TextAppearance.AppCompat.Small"
                 />
 
@@ -185,7 +185,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Occupation"
+                android:text="@string/occupation_hint"
                 android:textAppearance="@style/TextAppearance.AppCompat.Small"
                 />
 
@@ -207,7 +207,72 @@
 
     </LinearLayout>
 
-        <!-- template for profile for each field -->
+    <!-- template for profile for each field -->
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="56dp"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal|center_vertical"
+            android:background="@color/materialGrey_100">
+            <ImageView
+                android:src="@drawable/ring"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                />
+        </LinearLayout>
+
+        <View
+            style="@style/ViewVerticalSeparator"
+            android:background="@color/colorNeutralWarmLighter"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:layout_marginStart="@dimen/container_margin_horizontal"
+            android:layout_marginEnd="@dimen/container_margin_horizontal"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:paddingTop="@dimen/textcontainer_top_spacing"
+                android:paddingBottom="@dimen/textcontainer_bottom_spacing"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Marital Status"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                    />
+
+                <TextView
+                    android:id="@+id/marital_status"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                    />
+
+            </LinearLayout>
+
+            <View
+                style="@style/ViewSeparator"
+                android:layout_gravity="bottom"
+                android:background="@color/colorNeutralWarmLighter"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+    <!-- template for profile for each field -->
     <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
@@ -249,7 +314,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Gender"
+                android:text="@string/gender_hint"
                 android:textAppearance="@style/TextAppearance.AppCompat.Small"
                 />
 
@@ -313,7 +378,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Tax Number"
+                android:text="@string/tax_number_hint"
                 android:textAppearance="@style/TextAppearance.AppCompat.Small"
                 />
 
@@ -377,7 +442,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Social Security"
+                android:text="@string/social_security_number_hint"
                 android:textAppearance="@style/TextAppearance.AppCompat.Small"
                 />
 
@@ -398,69 +463,6 @@
 
     </LinearLayout>
 
-        <!-- template for profile for each field -->
-    <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <LinearLayout
-            android:layout_width="56dp"
-            android:layout_height="match_parent"
-            android:gravity="center_horizontal|center_vertical"
-            android:background="@color/materialGrey_100">
-            <ImageView
-                android:src="@drawable/ring"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                />
-        </LinearLayout>
-
-        <View
-            style="@style/ViewVerticalSeparator"
-            android:background="@color/colorNeutralWarmLighter"/>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:layout_marginStart="@dimen/container_margin_horizontal"
-            android:layout_marginEnd="@dimen/container_margin_horizontal"
-            android:orientation="vertical">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:paddingTop="@dimen/textcontainer_top_spacing"
-                android:paddingBottom="@dimen/textcontainer_bottom_spacing"
-                android:orientation="vertical">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Marital Status"
-                android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                />
-
-            <TextView
-                android:id="@+id/marital_status"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
-                />
-
-            </LinearLayout>
-
-            <View
-                style="@style/ViewSeparator"
-                android:layout_gravity="bottom"
-                android:background="@color/colorNeutralWarmLighter"/>
-
-        </LinearLayout>
-
-    </LinearLayout>
 
         <!-- template for profile for each field -->
     <LinearLayout
@@ -504,7 +506,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Nationality"
+                android:text="@string/nationality_hint"
                 android:textAppearance="@style/TextAppearance.AppCompat.Small"
                 />
 
@@ -568,7 +570,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Spouse Name"
+                android:text="@string/spouse_name_hint"
                 android:textAppearance="@style/TextAppearance.AppCompat.Small"
                 />
 

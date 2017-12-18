@@ -15,6 +15,10 @@ public class CountryCode implements Parcelable{
     private String code;
     private String name;
 
+    public CountryCode(){
+
+    }
+
 
     public CountryCode(String code, String name) {
         this.code = code;

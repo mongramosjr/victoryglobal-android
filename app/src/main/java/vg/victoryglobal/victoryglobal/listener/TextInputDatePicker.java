@@ -8,9 +8,11 @@
 
 package vg.victoryglobal.victoryglobal.listener;
 
+import android.app.Activity;
 import android.app.DatePickerDialog;
 
 import android.content.Context;
+import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputEditText;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -26,11 +28,13 @@ public class TextInputDatePicker implements OnClickListener, DatePickerDialog.On
     private final TextInputEditText editText;
     private final Calendar myCalendar;
     private final Context ctx;
+    private final Activity mActivity;
 
-    public TextInputDatePicker(TextInputEditText editText, Context ctx){
+    public TextInputDatePicker(TextInputEditText editText, Context context, @Nullable Activity activity){
         this.editText = editText;
         this.editText.setOnClickListener(this);
-        this.ctx = ctx;
+        this.ctx = context;
+        this.mActivity = activity;
         myCalendar = Calendar.getInstance();
     }
 
@@ -51,10 +55,12 @@ public class TextInputDatePicker implements OnClickListener, DatePickerDialog.On
     @Override
     public void onClick(View view) {
         Calendar calendar = Calendar.getInstance(TimeZone.getDefault());
-
-        DatePickerDialog dialog = new DatePickerDialog(ctx, this,
-                calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH),
-                calendar.get(Calendar.DAY_OF_MONTH));
+        DatePickerDialog dialog;
+        if(mActivity != null) {
+            dialog = new DatePickerDialog(mActivity, this, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
+        }else{
+            dialog = new DatePickerDialog(ctx, this, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
+        }
         dialog.show();
     }
 }

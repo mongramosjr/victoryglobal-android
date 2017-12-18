@@ -43,6 +43,9 @@
     <string name="upgrade_account">Upgrading your account allows you to earn more</string>
     <string name="register_activation_code" >To be able to earn, activation code must be registered</string>
     <string name="residence_address">Residence address</string>
+
+    <string name="profile">Profile</string>
+    <string name="address">Address</string>
     <string name="contact_info">Contact Info</string>
     <string name="personal_info">Personal info</string>
     <string name="sponsor_and_placement">Sponsor and placement info</string>
@@ -63,6 +66,11 @@
     <string name="social_security_number_hint">SSS</string>
     <string name="tax_number_hint">TIN</string>
     <string name="date_of_birth_hint">Birth Date</string>
+    <string name="occupation_hint">Occupation</string>
+    <string name="nationality_hint">Nationality</string>
+    <string name="spouse_name_hint">Spouse Name</string>
+    <string name="place_of_birth_hint">Place of Birth</string>
+
     <string name="gender_hint">Gender</string>
     <string name="marital_status_hint">Marital Status</string>
 
@@ -75,11 +83,19 @@
     <string name="pickup_center_id_hint">Pickup Center</string>
     <string name="telephone_hint">Telephone</string>
     <string name="mobile_number_hint">Mobile</string>
+    <string name="fax_hint">Fax</string>
+
+    <string name="bank_name_hint">Bank</string>
+    <string name="account_number_hint">Account Number</string>
+
 
     <string name="register_completeButtonText">Register</string>
     <string name="upgrade_completeButtonText">Confirm</string>
     <string name="activate_completeButtonText">Confirm</string>
     <string name="login_ButtonText">Log in</string>
+
+    <string name="action_cancel">Cancel</string>
+    <string name="action_save">Save</string>
 
     <string name="progress_message">Checking in progress, please wait…</string>
     <string name="login_succesful">Login successful</string>
@@ -103,33 +119,7 @@
     <string name="ui_unexpected_response">Unable to process. Try again.</string>
     <string name="ui_fb_exception">Error in retrieving newsfeeds. Try again.</string>
 
-    <!--
-    <string name="first_name_hint">First Name</string>
-    <string name="middle_name_hint">Middle Name</string>
-    <string name="last_name_hint">Last Name</string>
-    <string name="upline_id_hint">Upline ID</string>
-    <string name="sponsor_id_hint">Sponsor ID</string>
-    <string name="password_hint">Password</string>
-    <string name="confirm_password_hint">Confirm Password</string>
-    <string name="mlm_location_hint">Group</string>
-    <string name="email_hint">Email</string>
-    <string name="mlm_account_id_hint">Account</string>
-    <string name="social_security_number_hint">SSS</string>
-    <string name="tax_number_hint">TIN</string>
-    <string name="date_of_birth_hint">Birth Date</string>
-    <string name="gender_hint">Gender</string>
-    <string name="marital_status_hint">Marital Status</string>
 
-    <string name="street_hint">Street</string>
-    <string name="city_hint">City</string>
-    <string name="region_hint">Province/State</string>
-    <string name="postal_code_hint">ZIP Code</string>
-    <string name="country_code_hint">Country</string>
-
-    <string name="pickup_center_id_hint">Pickup Center</string>
-    <string name="telephone_hint">Telephone</string>
-    <string name="mobile_number_hint">Mobile</string>
-    -->
 
     <string name="api_url">http://api.victoryglobal.vg</string>
     <string name="api_account_login">/distributor/auth/login.json</string>

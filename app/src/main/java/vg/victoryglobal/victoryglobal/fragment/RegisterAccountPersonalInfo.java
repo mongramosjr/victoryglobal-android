@@ -93,7 +93,7 @@ public class RegisterAccountPersonalInfo extends Fragment implements BlockingSte
         lastName = view.findViewById(R.id.last_name);
 
         dateOfBirth = view.findViewById(R.id.date_of_birth);
-        TextInputDatePicker dateOfBirthPicker = new TextInputDatePicker(dateOfBirth, this.getContext());
+        TextInputDatePicker dateOfBirthPicker = new TextInputDatePicker(dateOfBirth, this.getContext(), null);
 
         maritalStatus = view.findViewById(R.id.marital_status);
         gender = view.findViewById(R.id.gender);

@@ -24,4 +24,17 @@
         <item>Female</item>
         <item>TransGender</item>
     </string-array>
+
+    <string-array name="bank_array">
+        <item>None</item>
+        <item>BPI</item>
+        <item>EastWest Bank</item>
+    </string-array>
+
+    <array name="bank_keys">
+        <item>none</item>
+        <item>bpi</item>
+        <item>eastwest</item>
+    </array>
+
 </resources>

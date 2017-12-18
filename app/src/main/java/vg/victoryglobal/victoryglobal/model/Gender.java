@@ -15,6 +15,10 @@ public class Gender implements Parcelable{
     private String id;
     private String name;
 
+    public Gender(){
+
+    }
+
     public Gender(String id, String name) {
         this.id = id;
         this.name = name;

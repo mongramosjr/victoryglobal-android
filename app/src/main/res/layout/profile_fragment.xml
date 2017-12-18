@@ -81,60 +81,124 @@
 
             <include layout="@layout/profile_unilevel"/>
 
-            <TextView
+
+
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Profile"
                 android:paddingTop="@dimen/textcontainer_top_spacing"
                 android:paddingBottom="@dimen/textcontainer_bottom_spacing"
                 android:paddingStart="@dimen/container_padding_horizontal"
-                android:paddingEnd="@dimen/container_padding_horizontal"
-                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
-                />
+                android:paddingEnd="@dimen/container_padding_horizontal">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:text="@string/profile"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                    />
+
+                <ImageView
+                    android:id="@+id/profile_info_edit"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:contentDescription="Edit"
+                    android:src="@drawable/pencil_accent_color"/>
+
+            </RelativeLayout>
 
             <include layout="@layout/profile_info"/>
 
 
 
-            <TextView
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Address"
                 android:paddingTop="@dimen/textcontainer_top_spacing"
                 android:paddingBottom="@dimen/textcontainer_bottom_spacing"
                 android:paddingStart="@dimen/container_padding_horizontal"
-                android:paddingEnd="@dimen/container_padding_horizontal"
-                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
-                />
+                android:paddingEnd="@dimen/container_padding_horizontal">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:text="@string/address"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                    />
+
+                <ImageView
+                    android:id="@+id/profile_address_edit"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:src="@drawable/pencil_accent_color"/>
+
+            </RelativeLayout>
 
             <include layout="@layout/profile_address"/>
 
-
-            <TextView
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Contact Info"
                 android:paddingTop="@dimen/textcontainer_top_spacing"
                 android:paddingBottom="@dimen/textcontainer_bottom_spacing"
                 android:paddingStart="@dimen/container_padding_horizontal"
-                android:paddingEnd="@dimen/container_padding_horizontal"
-                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
-                />
+                android:paddingEnd="@dimen/container_padding_horizontal">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:text="@string/contact_info"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                    />
+
+                <ImageView
+                    android:id="@+id/profile_contact_info_edit"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:src="@drawable/pencil_accent_color"/>
+
+            </RelativeLayout>
+
+
+
 
 
             <include layout="@layout/profile_contact_info"/>
 
-            <TextView
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Bank Account"
                 android:paddingTop="@dimen/textcontainer_top_spacing"
                 android:paddingBottom="@dimen/textcontainer_bottom_spacing"
                 android:paddingStart="@dimen/container_padding_horizontal"
-                android:paddingEnd="@dimen/container_padding_horizontal"
-                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
-                />
+                android:paddingEnd="@dimen/container_padding_horizontal">
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:text="Bank Account"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                    />
+
+                <ImageView
+                    android:id="@+id/profile_bank_account_edit"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:src="@drawable/pencil_accent_color"/>
+
+            </RelativeLayout>
 
 
             <include layout="@layout/profile_bank_account"/>
