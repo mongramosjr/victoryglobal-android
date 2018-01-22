@@ -11,7 +11,6 @@ package vg.victoryglobal.victoryglobal.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 public class GenealogyStructurePerLevel implements Parcelable{

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Created by Mong Ramos Jr. <mongramosjr@gmail.com> on 1/22/18 9:21 PM
+  ~
+  ~ Copyright (c) 2018 Victory Global Unlimited Systems Inc. All rights reserved.
+  ~
+  ~ Last modified 1/22/18 9:21 PM
+  -->
+
+<full-backup-content>
+    <!-- TODO Remove the following "exclude" elements to make them a part of the auto backup -->
+    <!-- Exclude the shared preferences file that contains the GCM registrationId -->
+    <exclude
+        domain="sharedpref"
+        path="vg.victoryglobal.victoryglobal.preference_cookie_store.xml"/>
+    <exclude
+        domain="sharedpref"
+        path="vg.victoryglobal.victoryglobal.user_authentication.xml"/>
+</full-backup-content>

@@ -36,7 +36,6 @@ import org.json.JSONObject;
 import org.json.JSONTokener;
 
 import vg.victoryglobal.victoryglobal.R;
-import vg.victoryglobal.victoryglobal.adapter.RegisterAccountStepperAdapter;
 import vg.victoryglobal.victoryglobal.adapter.UpgradeAccountStepperAdapter;
 import vg.victoryglobal.victoryglobal.model.MlmResponseError;
 import vg.victoryglobal.victoryglobal.model.UpgradeAccount;

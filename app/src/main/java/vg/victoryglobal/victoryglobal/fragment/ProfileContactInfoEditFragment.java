@@ -15,23 +15,12 @@ import android.support.design.widget.TextInputLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.Spinner;
-
-import java.text.DecimalFormat;
-import java.text.NumberFormat;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Locale;
 
 import vg.victoryglobal.victoryglobal.R;
-import vg.victoryglobal.victoryglobal.listener.TextInputDatePicker;
 import vg.victoryglobal.victoryglobal.model.AuthLoginRequest;
 import vg.victoryglobal.victoryglobal.model.DistributorAccountRequest;
 import vg.victoryglobal.victoryglobal.model.DistributorAccountResponse;
-import vg.victoryglobal.victoryglobal.utils.DateTimeFormat;
-import vg.victoryglobal.victoryglobal.utils.RoundedMetricPrefixFormat;
 
 public class ProfileContactInfoEditFragment extends DialogFragment {
 

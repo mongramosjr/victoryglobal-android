@@ -11,6 +11,7 @@ package vg.victoryglobal.victoryglobal.activity;
 import android.content.Context;
 import android.content.pm.ApplicationInfo;
 import android.content.res.Configuration;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -41,7 +42,6 @@ import java.net.CookieStore;
 
 import vg.victoryglobal.victoryglobal.R;
 import vg.victoryglobal.victoryglobal.fragment.ActivateCodeFragment;
-import vg.victoryglobal.victoryglobal.fragment.CurrentSalesFragment;
 import vg.victoryglobal.victoryglobal.fragment.GenealogyFragment;
 import vg.victoryglobal.victoryglobal.fragment.HomeFragment;
 import vg.victoryglobal.victoryglobal.fragment.AccountLoginFragment;
@@ -600,7 +600,9 @@ public class MainFragmentActivity extends AppCompatActivity implements LoginList
 
             Fragment fragment = null;
             fragment = new ProfileFragment();
-            view.performHapticFeedback(HapticFeedbackConstants.CONTEXT_CLICK);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                view.performHapticFeedback(HapticFeedbackConstants.CONTEXT_CLICK);
+            }
 
             if (mDrawerLayout.isDrawerOpen(Gravity.START)) {
                 mDrawerLayout.closeDrawer(Gravity.START);

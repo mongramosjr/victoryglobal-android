@@ -8,8 +8,6 @@
 
 package vg.victoryglobal.victoryglobal.utils;
 
-import android.util.Log;
-
 import org.apache.commons.lang3.math.NumberUtils;
 
 

@@ -8,18 +8,10 @@
 
 package vg.victoryglobal.victoryglobal.network.http.client;
 
-import com.android.volley.*;
-import com.android.volley.Response;
-import com.android.volley.toolbox.StringRequest;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
-
-import vg.victoryglobal.victoryglobal.model.MlmAccount;
 
 public class Request extends Message {
 

@@ -9,17 +9,14 @@
 package vg.victoryglobal.victoryglobal.fragment;
 
 import android.app.Activity;
-import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 
 import android.app.Fragment;
-import android.app.FragmentManager;
 
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.view.ActionMode;
 import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
@@ -51,7 +48,6 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 import vg.victoryglobal.victoryglobal.R;
-import vg.victoryglobal.victoryglobal.activity.MainFragmentActivity;
 import vg.victoryglobal.victoryglobal.adapter.FbGraphFeedAdapter;
 import vg.victoryglobal.victoryglobal.model.facebook.FbGraphFeed;
 import vg.victoryglobal.victoryglobal.model.facebook.FbGraphFeedRequest;

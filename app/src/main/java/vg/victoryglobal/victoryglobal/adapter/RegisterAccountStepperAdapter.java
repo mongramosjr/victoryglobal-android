@@ -13,7 +13,6 @@ import android.content.Context;
 import android.support.annotation.IntRange;
 import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentManager;
-import android.util.Log;
 
 import com.stepstone.stepper.BlockingStep;
 import com.stepstone.stepper.Step;

@@ -8,14 +8,7 @@
 
 package vg.victoryglobal.victoryglobal.network.http.client;
 
-import android.util.Log;
-import android.widget.Toast;
-
-import com.android.volley.VolleyError;
-
 import org.json.JSONObject;
-
-import vg.victoryglobal.victoryglobal.R;
 
 public class Response extends Message {
 

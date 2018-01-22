@@ -42,8 +42,7 @@ public class AuthLoginManager {
     }
 
     private static AuthLoginManager makeAuthLoginManager() {
-        AuthLoginManager manager = new AuthLoginManager();
-        return manager;
+        return new AuthLoginManager();
     }
 
     private static void initLogManager() {

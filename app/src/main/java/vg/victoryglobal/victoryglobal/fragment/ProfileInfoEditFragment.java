@@ -8,7 +8,6 @@
 
 package vg.victoryglobal.victoryglobal.fragment;
 
-import android.app.DatePickerDialog;
 import android.app.DialogFragment;
 import android.os.Bundle;
 import android.support.design.widget.TextInputEditText;
@@ -18,26 +17,18 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.Spinner;
 
-import java.text.DecimalFormat;
-import java.text.NumberFormat;
-import java.text.SimpleDateFormat;
 import java.util.Arrays;
-import java.util.Calendar;
 import java.util.List;
-import java.util.Locale;
 
 import vg.victoryglobal.victoryglobal.R;
 import vg.victoryglobal.victoryglobal.listener.TextInputDatePicker;
 import vg.victoryglobal.victoryglobal.model.AuthLoginRequest;
 import vg.victoryglobal.victoryglobal.model.DistributorAccountRequest;
 import vg.victoryglobal.victoryglobal.model.DistributorAccountResponse;
-import vg.victoryglobal.victoryglobal.model.DistributorPoint;
 import vg.victoryglobal.victoryglobal.model.Gender;
 import vg.victoryglobal.victoryglobal.utils.DateTimeFormat;
-import vg.victoryglobal.victoryglobal.utils.RoundedMetricPrefixFormat;
 
 public class ProfileInfoEditFragment extends DialogFragment {
 

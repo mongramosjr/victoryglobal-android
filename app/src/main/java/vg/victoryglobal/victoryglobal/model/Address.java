@@ -10,7 +10,6 @@ package vg.victoryglobal.victoryglobal.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.support.annotation.IntegerRes;
 
 /*
  * Address model from API response

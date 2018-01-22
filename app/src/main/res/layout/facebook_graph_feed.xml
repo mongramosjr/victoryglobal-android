@@ -96,7 +96,8 @@
                     android:clickable="true"
                     android:contentDescription="@string/full_picture_desc"
                     android:id="@+id/full_picture"
-                    android:scaleType="centerCrop">
+                    android:scaleType="centerCrop"
+                    android:focusable="true">
                 </ImageView>
 
                 <ImageView

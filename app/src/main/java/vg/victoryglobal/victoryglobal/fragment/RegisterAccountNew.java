@@ -25,30 +25,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.Toast;
 
-import com.android.volley.DefaultRetryPolicy;
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.Volley;
 import com.stepstone.stepper.BlockingStep;
 import com.stepstone.stepper.StepperLayout;
 import com.stepstone.stepper.VerificationError;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-import org.json.JSONTokener;
-
 import java.util.ArrayList;
 
 import vg.victoryglobal.victoryglobal.R;
-import vg.victoryglobal.victoryglobal.model.MlmAccount;
 import vg.victoryglobal.victoryglobal.model.MlmAccountRequest;
 import vg.victoryglobal.victoryglobal.model.MlmResponseError;
-import vg.victoryglobal.victoryglobal.model.RegisterAccount;
 import vg.victoryglobal.victoryglobal.model.RegisterAccountRequest;
 
 public class RegisterAccountNew extends Fragment implements BlockingStep {

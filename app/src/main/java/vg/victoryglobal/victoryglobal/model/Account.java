@@ -10,12 +10,8 @@ package vg.victoryglobal.victoryglobal.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.support.annotation.Nullable;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.Locale;
 
 /*
  * Account model from API response
