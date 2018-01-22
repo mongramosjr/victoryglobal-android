@@ -13,12 +13,13 @@ import android.os.Parcelable;
 
 import java.util.ArrayList;
 
+import vg.victoryglobal.victoryglobal.network.http.client.Response;
+
 /*
  * Distributor account model from API response
  */
-public class DistributorAccountResponse implements Parcelable {
+public class DistributorAccountResponse extends Response implements Parcelable {
 
-    public Integer status;
     public CurrentIncome current_income;
     public BankAccount bank_account;
     public Address address;
@@ -114,3 +115,8 @@ public class DistributorAccountResponse implements Parcelable {
         return null;
     }
 }
+
+    /*
+    NOTE: This is the basis for request/response format, alwasy extend Response classs
+    Date: 2018-01-22
+     */

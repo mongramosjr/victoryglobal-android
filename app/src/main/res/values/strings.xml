@@ -138,6 +138,11 @@
     <string name="api_current_sales">/victory-global/distributors/current-sales.json</string>
     <string name="api_genealogy">/distributor/genealogy/structure.json</string>
 
+    <string name="api_profileinfo_update">/distributor/profile/update.json</string>
+    <string name="api_profileaddress_update">/distributor/address/update.json</string>
+    <string name="api_profilebankaccount_update">/distributor/bank-account/update.json</string>
+    <string name="api_profilecontactinfo_update">/distributor/contact-info/update.json</string>
+
     <string name="full_picture_desc">Full picture</string>
     <string name="play_button_desc">Play button</string>
 

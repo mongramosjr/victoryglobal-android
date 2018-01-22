@@ -42,6 +42,7 @@ import java.util.Locale;
 
 import vg.victoryglobal.victoryglobal.R;
 import vg.victoryglobal.victoryglobal.listener.LogoutListener;
+import vg.victoryglobal.victoryglobal.listener.OnProfileUpdateListener;
 import vg.victoryglobal.victoryglobal.model.AuthLoginRequest;
 import vg.victoryglobal.victoryglobal.model.DistributorAccountResponse;
 import vg.victoryglobal.victoryglobal.model.DistributorAccountRequest;
@@ -49,7 +50,8 @@ import vg.victoryglobal.victoryglobal.model.DistributorPoint;
 import vg.victoryglobal.victoryglobal.utils.DateTimeFormat;
 import vg.victoryglobal.victoryglobal.utils.RoundedMetricPrefixFormat;
 
-public class ProfileFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
+public class ProfileFragment extends Fragment
+        implements SwipeRefreshLayout.OnRefreshListener, OnProfileUpdateListener {
 
     public View currentView;
 
@@ -215,6 +217,7 @@ public class ProfileFragment extends Fragment implements SwipeRefreshLayout.OnRe
     private void showProfileAddressEditDialog() {
         FragmentManager fm = getChildFragmentManager();
         ProfileAddressEditFragment profileAddressEditDialog = new ProfileAddressEditFragment();
+        profileAddressEditDialog.setTargetFragment(ProfileFragment.this, 300);
         profileAddressEditDialog.show(fm, "profile_address_edit_tag");
     }
 
@@ -235,7 +238,8 @@ public class ProfileFragment extends Fragment implements SwipeRefreshLayout.OnRe
 
 
     //other methods
-    private void prepareProfile(DistributorAccountResponse distributor_account)
+    @Override
+    public void prepareProfile(DistributorAccountResponse distributor_account)
     {
         DistributorPoint point = null;
 

@@ -21,9 +21,6 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.Spinner;
 
-import com.mukesh.countrypicker.CountryPicker;
-import com.mukesh.countrypicker.CountryPickerListener;
-
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;

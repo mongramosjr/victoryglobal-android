@@ -22,6 +22,10 @@ public class Address implements Parcelable {
     public Integer post_code;
     public String country_code;
 
+    public Address() {
+
+    }
+
     protected Address(Parcel in) {
         street = in.readString();
         city = in.readString();
@@ -78,17 +82,17 @@ public class Address implements Parcelable {
         if(region != null){
             if(city != null) result = result.concat(", " + region);
             else if(street != null && city == null) result = result.concat("\n" + region);
-            else result = result.concat(street);
+            else result = result.concat(region);
         }
         if(post_code != null){
-            if(region != null) result = result.concat(" " + post_code);
-            else if(region == null && city != null) result = result.concat(", " + post_code);
-            else if(region == null && city == null && street != null ) result = result.concat("\n" + post_code);
-            else result = result.concat(street);
+            if(region != null) result = result.concat(" " + post_code.toString());
+            else if(region == null && city != null) result = result.concat(", " + post_code.toString());
+            else if(region == null && city == null && street != null ) result = result.concat("\n" + post_code.toString());
+            else result = result.concat(post_code.toString());
         }
         if(country_code != null) {
-            if(result.length() > 0 ) result = result.concat("\n" + city);
-            else result = result.concat(street);
+            if(result.length() > 0 ) result = result.concat("\n" + country_code);
+            else result = result.concat(country_code);
         }
 
         return result;
