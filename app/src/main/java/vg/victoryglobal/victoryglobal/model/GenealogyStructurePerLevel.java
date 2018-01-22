@@ -14,10 +14,6 @@ import android.os.Parcelable;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-/**
- * Created by mong on 11/30/17.
- */
-
 public class GenealogyStructurePerLevel implements Parcelable{
 
     HashMap<String, GenealogyAccount> mlm_members = new HashMap<>();

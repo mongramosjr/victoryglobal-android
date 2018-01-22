@@ -12,10 +12,6 @@ import com.google.gson.Gson;
 
 import java.util.ArrayList;
 
-/**
- * Created by mong on 11/24/17.
- */
-
 public class DistributorAccountRequest {
     private static final DistributorAccountRequest onlyInstance = new DistributorAccountRequest();
 

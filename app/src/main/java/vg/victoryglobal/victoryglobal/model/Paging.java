@@ -11,10 +11,6 @@ package vg.victoryglobal.victoryglobal.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-/**
- * Created by mong on 11/27/17.
- */
-
 public class Paging implements Parcelable{
 
     public Integer page;

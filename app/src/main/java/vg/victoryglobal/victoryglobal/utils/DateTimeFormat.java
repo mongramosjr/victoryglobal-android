@@ -17,10 +17,6 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
-/**
- * Created by mong on 11/26/17.
- */
-
 public class DateTimeFormat {
 
     public DateTimeFormat(){
