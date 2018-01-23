@@ -70,7 +70,9 @@ public class AccountLoginFragment extends Fragment {
         super.onAttach(context);
 
         if(getActivity() instanceof LoginListener){
-            loginListener = (LoginListener) getActivity();
+            if(loginListener == null) {
+                loginListener = (LoginListener) getActivity();
+            }
         }
 
     }
@@ -78,6 +80,13 @@ public class AccountLoginFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        if(getActivity() instanceof LoginListener){
+            if(loginListener == null) {
+                loginListener = (LoginListener) getActivity();
+            }
+        }
+
         authLoginRequest = AuthLoginRequest.getAuthLoginRequest("main", getActivity().getApplicationContext());
     }
 

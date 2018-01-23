@@ -64,9 +64,9 @@ android {
             minSdkVersion 21
             applicationId 'vg.victoryglobal.victoryglobal'
             signingConfig signingConfigs.vg_signing_config
-            targetSdkVersion 26
-            versionName 'vgcaps-1.0.11'
-            versionCode 11
+            targetSdkVersion 27
+            versionName 'vgcaps-1.0.12'
+            versionCode 12
             versionNameSuffix "-vgcaps"
             testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
         }
@@ -75,9 +75,9 @@ android {
             minSdkVersion 21
             applicationId 'vg.victoryglobal.victoryglobal'
             signingConfig signingConfigs.vg_signing_config
-            targetSdkVersion 26
-            versionName 'curac-1.0.11'
-            versionCode 11
+            targetSdkVersion 27
+            versionName 'curac-1.0.12'
+            versionCode 12
             versionNameSuffix "-curac"
             testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
         }
@@ -100,7 +100,6 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.8.2'
     //stepper
     implementation 'com.stepstone.stepper:material-stepper:4.3.1'
-
     // retrofit
     implementation 'com.squareup.retrofit2:retrofit:2.3.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
@@ -110,14 +109,10 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     implementation 'de.hdodenhof:circleimageview:2.1.0'
     implementation 'org.apache.commons:commons-lang3:3.6'
-
     implementation 'com.google.android.gms:play-services-ads:11.8.0'
-
     implementation 'com.hendraanggrian:countrydialog:0.3.4'
-
     //facebook android sdk
     implementation 'com.facebook.android:facebook-android-sdk:[4,5)'
-
 }
 
 
