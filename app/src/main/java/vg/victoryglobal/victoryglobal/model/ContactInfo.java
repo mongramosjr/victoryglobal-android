@@ -21,6 +21,8 @@ public class ContactInfo implements Parcelable {
     public String mobile_number;
     public String fax;
 
+    public ContactInfo(){}
+
     protected ContactInfo(Parcel in) {
         email = in.readString();
         telephone = in.readString();

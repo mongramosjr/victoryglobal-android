@@ -40,6 +40,11 @@ public class Profile implements Parcelable {
     public String middle_name;
     public String last_name;
 
+    public Profile() {
+
+    }
+
+
 
     protected Profile(Parcel in) {
         marital_status = in.readString();

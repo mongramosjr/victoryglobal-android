@@ -203,12 +203,14 @@ public class ProfileFragment extends Fragment
     private void showProfileInfoEditDialog() {
         FragmentManager fm = getChildFragmentManager();
         ProfileInfoEditFragment profileInfoEditDialog = new ProfileInfoEditFragment();
+        profileInfoEditDialog.setTargetFragment(ProfileFragment.this, 300);
         profileInfoEditDialog.show(fm, "profile_info_edit_tag");
     }
 
     private void showProfileContactInfoEditDialog() {
         FragmentManager fm = getChildFragmentManager();
         ProfileContactInfoEditFragment profileContactInfoEditDialog = new ProfileContactInfoEditFragment();
+        profileContactInfoEditDialog.setTargetFragment(ProfileFragment.this, 300);
         profileContactInfoEditDialog.show(fm, "profile_contact_info_edit_tag");
     }
 
@@ -222,6 +224,7 @@ public class ProfileFragment extends Fragment
     private void showProfileBankAccountEditDialog() {
         FragmentManager fm = getChildFragmentManager();
         ProfileBankAccountEditFragment profileBankAccountEditDialog = new ProfileBankAccountEditFragment();
+        profileBankAccountEditDialog.setTargetFragment(ProfileFragment.this, 300);
         profileBankAccountEditDialog.show(fm, "profile_bank_account_edit_tag");
     }
 
@@ -335,7 +338,13 @@ public class ProfileFragment extends Fragment
         }
 
         if(distributor_account.bank_account != null) {
-            bankName.setText(distributor_account.bank_account.bank_name);
+
+            List<String> bank_list = Arrays.asList(getResources().getStringArray(R.array.bank_array));
+            List<String> bank_keys_list = Arrays.asList(getResources().getStringArray(R.array.bank_keys));
+
+            Integer pos = bank_keys_list.indexOf(distributor_account.bank_account.bank_name);
+
+            bankName.setText(bank_list.get(pos));
             accountNumber.setText(distributor_account.bank_account.account_number);
         }
 

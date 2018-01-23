@@ -21,6 +21,8 @@ public class BankAccount implements Parcelable {
     public String account_number;
     public Date modified;
 
+    public BankAccount(){}
+
     protected BankAccount(Parcel in) {
         bank_name = in.readString();
         account_number = in.readString();

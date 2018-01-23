@@ -87,8 +87,6 @@ public class PickupCenterRequest {
             JSONObject object = (JSONObject) new JSONTokener(response_data).nextValue();
             int status = object.getInt("status");
 
-            Log.e("PickupCenterRequest ", "Status: " + String.valueOf(status));
-
             if(status == 200 ){
 
                 //TODO: use gson instead of JSONObject
