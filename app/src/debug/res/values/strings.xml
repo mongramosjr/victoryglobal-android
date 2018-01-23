@@ -10,12 +10,15 @@
 <resources>
     <!-- facebook -->
     <string name="facebook_app_id">344323752657014</string>
-    <string name="fb_login_protocol_scheme">fb344323752657014</string>
-    <string name="fb_page_access_token_ryr">EAAE5KR73AHYBABZC0ztDYf1y6Aoyrga6hEpCPJK4CV898v6mnuDQBZAv39DwOnpuPkMmnjjTpbC0s7I8bYGFXtjfjDoI0GfkBPWc0VsjVZACjCKUdidhk8odcoBFqIIM1SlgWZBRA0d2jwSqFAUC5ke7Iqwx1Uz4AnkKp0IVHwZDZD</string>
-    <string name="fb_page_access_token_vg">EAAE5KR73AHYBALEb3UtndR0SjiYjrWPaf5yqwOjiPbDJFSZBcDqV7y88pAdgAz11zJoT2UZC5nw4tijLVH3Eob8GKupFS2GWvF5SP1Y3yU3JGZCgzQCY6Xz9RaqKj18pVTMDYQsW1mxy8wTJfAVeHeJENW1OB9kG3QKL6zvZAgZDZD</string>
-    <string name="fb_user_id_mong">188501987866116</string>
-
+    <string name="facebook_app_secret">536afccd5b2195e51fb935d22629d306</string>
+    <string name="facebook_client_token">beb1cb49909f66e289e31ee89eb694f5</string>
+    <string name="facebook_login_protocol_scheme">fb344323752657014</string>
     <string name="facebook_app_name">Victory Global</string>
+    <string name="facebook_page_id">188501987866116</string>
+
+    <!-- facebook account kit -->
+    <string name="facebook_account_kit_client_token">ACCOUNT_KIT_CLIENT_TOKEN</string>
+
     <string name="api_url">http://api-beta.victoryglobal.vg</string>
 
     <string name="admob_app_id">ca-app-pub-3940256099942544~3347511713</string>

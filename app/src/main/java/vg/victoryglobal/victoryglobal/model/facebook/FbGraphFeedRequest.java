@@ -20,6 +20,8 @@ public class FbGraphFeedRequest {
 
     String next = null;
 
+    String accessToken = null;
+
 
     private static final FbGraphFeedRequest ourInstance = new FbGraphFeedRequest();
 
@@ -52,5 +54,13 @@ public class FbGraphFeedRequest {
 
     public void setFeedsHsh(HashMap<String, FbGraphFeed> feedsHsh) {
         this.feedsHsh = feedsHsh;
+    }
+
+    public String getAccessToken() {
+        return accessToken;
+    }
+
+    public void setAccessToken(String accessToken) {
+        this.accessToken = accessToken;
     }
 }

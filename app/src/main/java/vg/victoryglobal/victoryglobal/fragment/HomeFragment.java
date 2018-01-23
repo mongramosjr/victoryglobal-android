@@ -36,11 +36,11 @@ import com.facebook.AccessToken;
 import com.facebook.AccessTokenTracker;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookRequestError;
+import com.facebook.FacebookSdk;
 import com.facebook.GraphRequest;
 import com.facebook.GraphResponse;
 import com.facebook.HttpMethod;
 import com.facebook.ProfileTracker;
-
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -80,6 +80,8 @@ public class HomeFragment extends Fragment implements SwipeRefreshLayout.OnRefre
         fbGraphFeedRequest = FbGraphFeedRequest.getInstance();
 
         setRetainInstance(true);
+
+        GenerateAppAccessToken();
     }
 
     @Override
@@ -87,6 +89,7 @@ public class HomeFragment extends Fragment implements SwipeRefreshLayout.OnRefre
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.home_fragment, container, false);
+
     }
 
     // This event is triggered soon after onCreateView().
@@ -144,8 +147,6 @@ public class HomeFragment extends Fragment implements SwipeRefreshLayout.OnRefre
 
 
         }
-
-        //swipeRefreshLayout.setRefreshing(false);
     }
 
     public void refreshFeeds(String next){
@@ -164,7 +165,6 @@ public class HomeFragment extends Fragment implements SwipeRefreshLayout.OnRefre
         }else{
             FbGraphFeed();
         }
-        //swipeRefreshLayout.setRefreshing(false);
     }
 
     @Override
@@ -265,7 +265,7 @@ public class HomeFragment extends Fragment implements SwipeRefreshLayout.OnRefre
         if(graphObject == null){
 
             FacebookRequestError fb_request_error = response.getError();
-            Log.e("FbGraphFeedCallBack", "onCompleted: " + fb_request_error.toString());
+            Log.e("FbGraphFeedCallBack", "Error: " + fb_request_error.toString());
             swipeRefreshLayout.setRefreshing(false);
 
             //Note: Toast inside of GraphRequest executeAsync inside of fragment causes crashes
@@ -390,23 +390,32 @@ public class HomeFragment extends Fragment implements SwipeRefreshLayout.OnRefre
     {
         //AccessToken at = AccessToken.getCurrentAccessToken();
 
-        AccessToken at = new AccessToken(
-                getString(R.string.fb_page_access_token_vg),
-                getString(R.string.facebook_app_id), getString(R.string.fb_user_id_mong), null, null, null, null, null);
+        FacebookSdk.setClientToken(getString(R.string.facebook_client_token));
 
+        String access_token = null;
+
+        if(fbGraphFeedRequest.getAccessToken() != null) {
+            access_token = fbGraphFeedRequest.getAccessToken();
+        }else{
+            access_token = getString(R.string.facebook_app_id) + "|" + getString(R.string.facebook_app_secret);
+        }
+
+        AccessToken at = new AccessToken(
+                access_token,
+                getString(R.string.facebook_app_id), getString(R.string.facebook_page_id), null, null, null, null, null);
+        String graph_path = getString(R.string.facebook_page_id) + "?fields=posts{id,story,from,with_tags,description,type,source,created_time,message,full_picture}";
+        /*
         Bundle fb_bundle=  new Bundle();
         fb_bundle.putString("fields", "posts{id,story,from,with_tags,description,type,source,created_time,message,full_picture}");
         //fb_bundle.putString("access_token", "beb1cb49909f66e289e31ee89eb694f5");
         //fb_bundle.putString("access_token", "344323752657014|536afccd5b2195e51fb935d22629d306");
         fb_bundle.putInt("limit", 10);
+        */
 
-        //fbGraphFeedRequest.getFeeds().clear();
-
-                /* make the API call */
+        /* make the API call */
         new GraphRequest(
                 at,
-                //"/329922417180457?fields=feed{id,story,from,with_tags,icon,created_time,message,full_picture}&limit=20",
-                "188501987866116?fields=posts{id,story,from,with_tags,description,type,source,created_time,message,full_picture}",
+                graph_path,
                 null,
                 HttpMethod.GET,
                 new GraphRequest.Callback() {
@@ -414,6 +423,74 @@ public class HomeFragment extends Fragment implements SwipeRefreshLayout.OnRefre
                         FbGraphFeedCallBack(response);
                     }
                 }).executeAsync();
+    }
+
+
+    private void GenerateAppAccessTokenCallback(JSONObject response){
+        try {
+            fbGraphFeedRequest.setAccessToken(response.getString("access_token"));
+        } catch (JSONException e) {
+            Log.e("AppAccessToken", "error: " + e.getMessage() );
+        }
+    }
+
+
+    private void GenerateAppAccessToken(){
+
+        String url; // = getString(R.string.api_url) + getString(R.string.api_code_registration);
+
+        String graph_path = "/oauth/access_token?client_id=" + getString(R.string.facebook_app_id)
+                + "&client_secret=" + getString(R.string.facebook_app_secret)
+                + "&grant_type=client_credentials";
+
+        url = "https://graph.facebook.com" + graph_path;
+
+        /*
+        //NOTE: Using GraphRequest
+        AccessToken at = new AccessToken(
+                getString(R.string.facebook_app_id) + "|" + getString(R.string.facebook_app_secret),
+                getString(R.string.facebook_app_id), getString(R.string.fb_user_id_mong), null, null, null, null, null);
+
+        new GraphRequest(
+                at,
+                graph_path,
+                null,
+                HttpMethod.GET,
+                new GraphRequest.Callback() {
+                    public void onCompleted(GraphResponse response) {
+                        GenerateAppAccessTokenCallback(response);
+                    }
+                }).executeAsync();
+        */
+
+        //NOTE: Using Volley
+        RequestQueue queue = Volley.newRequestQueue(this.getActivity().getApplicationContext());
+
+        JsonObjectRequest jsObjRequest = new JsonObjectRequest(Request.Method.GET, url,
+                null, new com.android.volley.Response.Listener<JSONObject>() {
+
+            @Override
+            public void onResponse(JSONObject response) {
+                GenerateAppAccessTokenCallback(response);
+            }
+        }, new com.android.volley.Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                // Do nothing
+                Log.e("GenerateAppAccessToken", "onErrorResponse: " + error.toString());
+
+            }
+        });
+
+        // 6 minutes
+        jsObjRequest.setRetryPolicy(new DefaultRetryPolicy(DefaultRetryPolicy.DEFAULT_TIMEOUT_MS * 144,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+
+
+        queue.add(jsObjRequest);
+
+
     }
 
 

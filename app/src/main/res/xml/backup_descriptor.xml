@@ -16,4 +16,8 @@
     <exclude
         domain="sharedpref"
         path="vg.victoryglobal.victoryglobal.user_authentication.xml"/>
+    <exclude
+        domain="sharedpref"
+        path="com.facebook.accountkit.AccessTokenManager.SharedPreferences.xml"/>
+
 </full-backup-content>
